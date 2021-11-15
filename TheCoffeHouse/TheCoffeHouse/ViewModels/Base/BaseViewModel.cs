@@ -1,0 +1,228 @@
+﻿using Plugin.Connectivity;
+using Plugin.SecureStorage;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Navigation;
+using Prism.Services;
+using TheCoffeHouse.Enums;  
+using TheCoffeHouse.Helpers;
+using TheCoffeHouse.Services;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Essentials;
+
+namespace TheCoffeHouse.ViewModels.Base
+{
+    public class BaseViewModel : BindableBase, INavigationAware
+    {
+        #region Properties
+
+        public static BaseViewModel Instance;
+
+        private string _pageTitle;
+
+        public string PageTitle
+        {
+            get => _pageTitle;
+            set => SetProperty(ref _pageTitle, value);
+        }
+
+        
+        public INavigationService Navigation { get; private set; }
+        public IPageDialogService DialogService { get; private set; }
+        public IHttpService HttpService { get; set; }
+        public ISQLiteService SQLiteService { get; }
+
+        #endregion
+
+        #region Constructors
+
+        public BaseViewModel(INavigationService navigationService = null,
+            IPageDialogService dialogService = null,
+            IHttpService httpService = null,
+            ISQLiteService sQLiteService = null)
+        {
+            if (navigationService != null) Navigation = navigationService;
+            if (dialogService != null) DialogService = dialogService;
+            if (httpService != null) HttpService = httpService;
+            if (sQLiteService != null) SQLiteService = sQLiteService;
+            BackCommand = new DelegateCommand(async () => await BackExecute());
+
+            Instance = this;
+            
+        }
+
+        #endregion
+
+        #region Navigate
+
+        public virtual void OnNavigatedFrom(INavigationParameters parameters)
+        {
+#if DEBUG
+            Debug.WriteLine("Navigated from");
+#endif
+        }
+
+        public virtual void OnNavigatingTo(INavigationParameters parameters)
+        {
+#if DEBUG
+            Debug.WriteLine("Navigating to");
+#endif
+        }
+
+        public async virtual void OnNavigatedTo(INavigationParameters parameters)
+        {
+#if DEBUG
+            Debug.WriteLine("Navigated to");
+#endif
+            if (parameters != null)
+            {
+                var navMode = parameters.GetNavigationMode();
+                switch (navMode)
+                {
+                    case Prism.Navigation.NavigationMode.New: OnNavigatedNewTo(parameters); break;
+                    case Prism.Navigation.NavigationMode.Back: OnNavigatedBackTo(parameters); break;
+                }
+            }
+
+        }
+
+        public virtual void OnNavigatedNewTo(INavigationParameters parameters)
+        {
+#if DEBUG
+            Debug.WriteLine("Navigate new to");
+#endif
+        }
+
+        public virtual void OnNavigatedBackTo(INavigationParameters parameters)
+        {
+#if DEBUG
+            Debug.WriteLine("Navigate back to");
+#endif
+        }
+
+        #endregion
+
+        #region OnAppear / Disappear
+
+        public virtual void OnAppear()
+        {
+        }
+
+        public virtual void OnFirstTimeAppear()
+        {
+            
+        }
+
+        public virtual void OnDisappear()
+        {
+
+        }
+
+        #endregion
+
+        #region GetMessageError
+
+        public string GetMessageError(HttpsError error)
+        {
+            switch (error)
+            {
+                case HttpsError.Null:
+                    return "We cannot connect to server due to several reasons. Do you want to try again?";
+                case HttpsError.InternetConnection:
+                    return "Connection lost. Please check on the internet connection and try again.";
+                case HttpsError.RequestCancellation:
+                    return "We cannot connect to server due to several reasons. Do you want to try again?";
+                case HttpsError.RequestTimeout:
+                    return "The system is busy at the moment. Please try again or come back later.";
+                default:
+                    return "We cannot connect to server due to several reasons. Do you want to try again?";
+            }
+
+        }
+
+        #endregion
+
+        #region BackCommand
+
+        public ICommand BackCommand { get; }
+
+        protected virtual async Task BackExecute()
+        {
+            await CheckNotBusy(async () =>
+            {
+                await Navigation.GoBackAsync(null, null, false);
+            });
+        }
+
+        #endregion
+
+        #region BackButtonPress
+
+        /// <summary>
+        /// //false is default value when system call back press
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool OnBackButtonPressed()
+        {
+            BackExecute();
+
+            return true;
+
+        }
+
+        /// <summary>
+        /// called when page need override soft back button
+        /// </summary>
+        public virtual void OnSoftBackButtonPressed() { }
+
+        #endregion
+
+        #region CheckBusy
+        /// <summary>
+        /// Check app is busy or not
+        /// </summary>
+        /// <param name="function"></param>
+        /// <returns></returns>
+        protected async Task CheckNotBusy(Func<Task> function)
+        {
+            if (App.IsNotBusy)
+            {
+                App.IsNotBusy = false;
+                try
+                {
+                    await function();
+                }
+                catch (Exception e)
+                {
+#if DEBUG
+                    Debug.WriteLine(e);
+#endif
+                }
+                finally
+                {
+                    App.IsNotBusy = true;
+                }
+            }
+        }
+
+        #endregion
+
+        #region CheckInternetConnection
+
+        public bool IsInternetConnected()
+        {
+            return CrossConnectivity.Current.IsConnected;
+        }
+
+        #endregion
+
+     
+
+        
+
+
+    }
+}

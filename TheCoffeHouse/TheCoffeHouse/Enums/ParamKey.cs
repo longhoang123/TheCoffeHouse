@@ -6,6 +6,7 @@ namespace TheCoffeHouse.Enums
 {
     public enum ParamKey
     {
-        CurrentUser
+        CurrentUser,
+        Username
     }
 }

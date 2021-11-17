@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              x:Class="TheCoffeHouse.App">
-  <Application.Resources>
-
-    <!-- Application resource dictionary -->
-
-  </Application.Resources>
+    <Application.Resources>
+    </Application.Resources>
 </prism:PrismApplication>

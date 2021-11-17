@@ -92,29 +92,9 @@ namespace TheCoffeHouse.Helpers
 
         #region Pages
 
-        public readonly static string SignUpOptionPage = "SignUpOptionPage";
-        public readonly static string SignUpDetailsPage = "SignUpDetailsPage";
-        public readonly static string SendVerificationCodePage = "SendVerificationCodePage";
-        public readonly static string VerificationOTPPage = "VerificationOTPPage";
-        public readonly static string LoginPage = "LoginPage";
-        public readonly static string MasterContainerPage = "MasterContainerPage";
-        public readonly static string CreateAccountPage = "CreateAccountPage";
-        public readonly static string PersonalInformationPage = "PersonalInformationPage";
-        public readonly static string DriverLicenseldIdPage = "DriverLicenseldIdPage";
-        public readonly static string ChooseYourRidePage = "ChooseYourRidePage";
-        public readonly static string VehicleRegistrationPage = "VehicleRegistrationPage";
-        public readonly static string PickupMapPage = "PickupMapPage";
-        public readonly static string SignPickupPage = "SignPickupPage";
-        public readonly static string ProfilePage = "ProfilePage";
-        public readonly static string AccountPage = "AccountPage";
-        public readonly static string EditDriverLicenseIdPage = "EditDriverLicenseIdPage";
-        public readonly static string VehicleInformationPage = "VehicleInformationPage";
-        public readonly static string ChangePasswordPage = "ChangePasswordPage";
-        public readonly static string ContactUsPage = "ContactUsPage";
-        public readonly static string TripDetailPage = "TripDetailPage";
-        public readonly static string SettingPage = "SettingPage";
-        public readonly static string TripHistoryPage = "TripHistoryPage";
-        public readonly static string PaymentHistory = "PaymentHistory";
+        public readonly static string MainPage = "MainPage";
+        public readonly static string Page1 = "Page1";
+      
         
         
 

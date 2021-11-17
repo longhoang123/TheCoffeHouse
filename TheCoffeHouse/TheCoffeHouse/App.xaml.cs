@@ -1,6 +1,7 @@
 using Prism;
 using Prism.Ioc;
 using TheCoffeHouse.Enums;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels;
 using TheCoffeHouse.Views;
@@ -37,7 +38,7 @@ namespace TheCoffeHouse
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync($"NavigationPage/{PageManagement.MainPage}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -46,6 +47,7 @@ namespace TheCoffeHouse
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<Page1, Page1ViewModel>(PageManagement.Page1);
         }
     }
 }

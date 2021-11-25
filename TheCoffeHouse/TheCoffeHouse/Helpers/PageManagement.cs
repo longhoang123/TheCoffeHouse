@@ -93,7 +93,7 @@ namespace TheCoffeHouse.Helpers
         #region Pages
 
         public readonly static string MainPage = "MainPage";
-        public readonly static string Page1 = "Page1";
+        public readonly static string LoginPage = "LoginPage";
       
         
         

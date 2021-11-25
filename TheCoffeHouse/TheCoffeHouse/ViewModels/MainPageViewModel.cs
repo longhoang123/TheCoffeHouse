@@ -82,7 +82,6 @@ namespace TheCoffeHouse.ViewModels
             string abc = "abc";
             NavigationParameters navParams = new NavigationParameters();
             navParams.Add(ParamKey.Username.ToString(), abc);
-            await Navigation.NavigateAsync(PageManagement.Page1, navParams);
         }
         #endregion
 

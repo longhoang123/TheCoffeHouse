@@ -38,7 +38,7 @@ namespace TheCoffeHouse
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync($"NavigationPage/{PageManagement.MainPage}");
+            await NavigationService.NavigateAsync($"NavigationPage/{PageManagement.LoginPage}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -47,7 +47,8 @@ namespace TheCoffeHouse
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<Page1, Page1ViewModel>(PageManagement.Page1);
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+
         }
     }
 }

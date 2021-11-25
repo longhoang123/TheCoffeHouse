@@ -12,7 +12,7 @@ namespace TheCoffeHouse.Views.Base
     {
         public BasePage()
         {
-            NavigationPage.SetIconColor(this, Color.Black);                        
+            NavigationPage.SetHasNavigationBar(this, false);
                     
         }
 

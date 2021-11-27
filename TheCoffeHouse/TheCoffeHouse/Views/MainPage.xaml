@@ -8,6 +8,8 @@
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
         <Button Command="{Binding OpenPage1Command}" Text="Page 1" />
+        <Button Command="{Binding OpenOrderPageCommand}" Text="Order Page"/>
+        <Button Command="{Binding OpenStorePageCommand}" Text="Store Page"/>
         <Label Text="{Binding HelloWord}" />
 
         <ListView ItemsSource="{Binding ListString}">

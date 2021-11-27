@@ -23,9 +23,10 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             PageTitle = "Main Page";
-            ListString = new ObservableCollection<string>();
+            ListString = new ObservableCollection<string>();   
             OpenPage1Command = new DelegateCommand(OpenPage1Execute);
-
+            OpenOrderPageCommand = new DelegateCommand(OpenOrderPageExecute);
+            OpenStorePageCommand = new DelegateCommand(OpenStorePageExecute);
 
         }
 
@@ -39,7 +40,7 @@ namespace TheCoffeHouse.ViewModels
         private void InitData()
         {
             HelloWord = "Hello xamarin form";
-            for(var i = 0; i < 10; i++)
+            for(var i = 0; i < 20; i++)
             {
                 ListString.Add("abc");
             }
@@ -83,6 +84,24 @@ namespace TheCoffeHouse.ViewModels
             NavigationParameters navParams = new NavigationParameters();
             navParams.Add(ParamKey.Username.ToString(), abc);
             await Navigation.NavigateAsync(PageManagement.Page1, navParams);
+        }
+        #endregion
+        #region OpenOrderPageCommand
+        public ICommand OpenOrderPageCommand { get; set; }
+        private async void OpenOrderPageExecute()
+        {
+            //NavigationParameters navParams = new NavigationParameters();
+            //navParams.Add()
+            await Navigation.NavigateAsync(PageManagement.OrderPage);
+        }
+        #endregion
+        #region OpenOrderPageCommand
+        public ICommand OpenStorePageCommand { get; set; }
+        private async void OpenStorePageExecute()
+        {
+            //NavigationParameters navParams = new NavigationParameters();
+            //navParams.Add()
+            await Navigation.NavigateAsync(PageManagement.StorePage);
         }
         #endregion
 

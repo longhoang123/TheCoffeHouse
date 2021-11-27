@@ -48,6 +48,8 @@ namespace TheCoffeHouse
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<Page1, Page1ViewModel>(PageManagement.Page1);
+            containerRegistry.RegisterForNavigation<OrderPage, OrderPageViewModel>(PageManagement.OrderPage);
+            containerRegistry.RegisterForNavigation<StorePage, StorePageViewModel>();
         }
     }
 }

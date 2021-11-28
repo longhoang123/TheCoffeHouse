@@ -27,9 +27,9 @@ namespace TheCoffeHouse.ViewModels
             PageTitle = "Đặt hàng";
             ListDrinks = new ObservableCollection<Drink>();
             ListCategory = new ObservableCollection<string>();
-           // ItemTappedCommand = new DelegateCommand(ItemTappedExecute);
+            //ItemTappedCommand = new DelegateCommand(ItemTapped);
         }
-     
+        
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
@@ -53,6 +53,19 @@ namespace TheCoffeHouse.ViewModels
 
 
         #region Properties
+        private Drink _selectedDrink; 
+
+        public Drink ItemTappedCommand
+        {
+            get => _selectedDrink; 
+            set 
+            {
+                SetProperty(ref _selectedDrink, value);
+                RaisePropertyChanged();
+              
+            }
+        }
+
         private ObservableCollection<Drink> _listDrinks;
 
         public ObservableCollection<Drink> ListDrinks
@@ -76,13 +89,10 @@ namespace TheCoffeHouse.ViewModels
                 //RaisePropertyChanged()
             }
         }
-        public ICommand ItemTappedCommand { get; set; }
-        private async void ItemTappedExecute()
-        {
-            NavigationParameters navParams = new NavigationParameters();
-            //navParams.Add(ParamKey.Username.ToString(), abc);
-            await Navigation.NavigateAsync(PageManagement.Page1, navParams);
-        }
+        #endregion
+        #region ItemTappedListViewCommand
+       // public DelegateCommand ItemTappedCommand { get; set; }
+
         #endregion
     }
 }

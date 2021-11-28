@@ -10,14 +10,13 @@ using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
 {
-    public class LoginPageViewModel : BaseViewModel 
+    public class TabContainerPageViewModel : BaseViewModel
     {
-        public LoginPageViewModel(INavigationService navigationService = null,
+        public TabContainerPageViewModel(INavigationService navigationService = null,
             IPageDialogService dialogService = null,
             IHttpService httpService = null,
-            ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
-        {
+            ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService) { }
 
-        }
+        
     }
 }

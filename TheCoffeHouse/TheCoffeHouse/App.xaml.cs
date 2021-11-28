@@ -1,10 +1,12 @@
 using Prism;
 using Prism.Ioc;
+using Prism.Navigation;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels;
 using TheCoffeHouse.Views;
+using TheCoffeHouse.Views.Tabs;
 using Xamarin.Essentials;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
@@ -37,8 +39,8 @@ namespace TheCoffeHouse
         protected override async void OnInitialized()
         {
             InitializeComponent();
-
-            await NavigationService.NavigateAsync($"NavigationPage/{PageManagement.LoginPage}");
+            //await NavigationService.NavigateAsync(PageManagement.LoginPage);
+            await NavigationService.NavigateAsync("NavigationPage/TabContainerPage?selectedTab=HomeTabPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -46,9 +48,10 @@ namespace TheCoffeHouse
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>(PageManagement.LoginPage);
 
+            containerRegistry.RegisterForNavigation<TabContainerPage, TabContainerPageViewModel>(PageManagement.TabContainerPage);
+            containerRegistry.RegisterForNavigation<HomeTabPage, HomeTabPageViewModel>(PageManagement.HomeTabPage);
         }
     }
 }

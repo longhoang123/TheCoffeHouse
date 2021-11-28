@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TheCoffeHouse.Views.Tabs.HomeTabPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    ControlTemplate="{StaticResource HomePageTemplete}">
+
+    <ScrollView>
+        <Grid BackgroundColor="#fef7e5">
+
+            <StackLayout Spacing="30">
+                <Frame
+                    Margin="20,40"
+                    Padding="0"
+                    BackgroundColor="White"
+                    CornerRadius="15"
+                    HasShadow="True">
+                    <Grid>
+                        <Image Source="bg_art_coffee.jpg" VerticalOptions="End" />
+                        <StackLayout Margin="10" Spacing="10">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="Đăng nhập" />
+                            <Label HorizontalTextAlignment="Center" Text="Sử dụng app để tích điểm và đổi những ưu đãi chỉ dành riêng cho thành viên bạn nhé!" />
+                            <Frame
+                                Padding="40,10"
+                                BackgroundColor="{StaticResource MainColor}"
+                                CornerRadius="10"
+                                HorizontalOptions="CenterAndExpand">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenLoginPageCommand}" />
+                                </Frame.GestureRecognizers>
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="Đăng nhập"
+                                    TextColor="White" />
+                            </Frame>
+                            <Frame
+                                Margin="0,40,0,0"
+                                BackgroundColor="White"
+                                CornerRadius="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label HorizontalOptions="Start" Text="The Coffe House's Reward" />
+                                    <Image
+                                        HeightRequest="20"
+                                        HorizontalOptions="EndAndExpand"
+                                        Source="forward.png"
+                                        WidthRequest="20" />
+                                </StackLayout>
+                            </Frame>
+
+
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="White" CornerRadius="10">
+                    <StackLayout Spacing="20">
+                        <Frame Padding="10">
+                            <Grid ColumnDefinitions="*,10,*">
+                                <StackLayout>
+                                    <Image
+                                        HeightRequest="50"
+                                        HorizontalOptions="Center"
+                                        Source="ic_delivery.png"
+                                        WidthRequest="50" />
+                                    <Label HorizontalOptions="Center" Text="Giao hàng" />
+                                </StackLayout>
+                                <Image
+                                    Grid.Column="1"
+                                    HeightRequest="50"
+                                    Source="ic_line_long.png" />
+                                <StackLayout Grid.Column="2">
+                                    <Image
+                                        HeightRequest="50"
+                                        HorizontalOptions="Center"
+                                        Source="ic_take_away.png"
+                                        WidthRequest="50" />
+                                    <Label HorizontalOptions="Center" Text="Mang đi" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                        <StackLayout HeightRequest="200">
+                            <CarouselView IndicatorView="indicatorView" ItemsSource="{Binding ListBanner}">
+                                <CarouselView.ItemsLayout>
+                                    <LinearItemsLayout ItemSpacing="30" Orientation="Horizontal" />
+                                </CarouselView.ItemsLayout>
+                                <CarouselView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Padding="5,0">
+                                            <Frame Padding="0" CornerRadius="10">
+                                                <Image
+                                                    HorizontalOptions="Fill"
+                                                    Source="{Binding .}"
+                                                    VerticalOptions="Fill" />
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            <IndicatorView
+                                x:Name="indicatorView"
+                                IndicatorColor="LightGray"
+                                IndicatorsShape="Square"
+                                SelectedIndicatorColor="DarkGray" />
+                        </StackLayout>
+
+                        <StackLayout BindableLayout.ItemsSource="{Binding ListPostUI}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid
+                                        Margin="0"
+                                        ColumnDefinitions="*,*"
+                                        ColumnSpacing="10"
+                                        RowDefinitions="320">
+                                        <StackLayout Margin="0" Padding="0">
+                                            <Frame Padding="0" CornerRadius="10">
+                                                <Image
+                                                    HorizontalOptions="Fill"
+                                                    Source="{Binding Image1}"
+                                                    VerticalOptions="Fill" />
+                                            </Frame>
+                                            <Label FontAttributes="Bold" Text="{Binding Title1}" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image
+                                                    HeightRequest="30"
+                                                    Source="calendar.png"
+                                                    WidthRequest="30" />
+                                                <Label Text="{Binding Date1, StringFormat='{0:MMMM dd, yyyy}'}" VerticalOptions="Center" />
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            Margin="0"
+                                            Padding="0"
+                                            IsVisible="{Binding IsEvenNumber}">
+
+                                            <Frame Padding="0" CornerRadius="10">
+                                                <Image
+                                                    HorizontalOptions="Fill"
+                                                    Source="{Binding Image2}"
+                                                    VerticalOptions="Fill" />
+                                            </Frame>
+                                            <Label FontAttributes="Bold" Text="{Binding Title2}" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image
+                                                    HeightRequest="30"
+                                                    Source="calendar.png"
+                                                    WidthRequest="30" />
+                                                <Label Text="{Binding Date2, StringFormat='{0:MMMM dd, yyyy}'}" VerticalOptions="Center" />
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

@@ -94,6 +94,8 @@ namespace TheCoffeHouse.Helpers
 
         public readonly static string MainPage = "MainPage";
         public readonly static string LoginPage = "LoginPage";
+        public readonly static string TabContainerPage = "TabContainerPage";
+        public readonly static string HomeTabPage = "HomeTabPage";
       
         
         

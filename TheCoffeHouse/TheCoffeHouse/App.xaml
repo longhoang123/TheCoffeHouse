@@ -3,6 +3,27 @@
     x:Class="TheCoffeHouse.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
     xmlns:prism="http://prismlibrary.com">
-    <Application.Resources />
+    <Application.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="HomePageTemplete">
+                <controls:HeaderView Title="Chào bạn mới" />
+            </ControlTemplate>
+
+            <Color x:Key="MainColor">#e47905</Color>
+            <Color x:Key="facebook_color">#1976d3</Color>
+            <Color x:Key="light_gray">#e8e8e8</Color>
+            <Color x:Key="dark_gray">#7e7e80</Color>
+
+
+            <Style ApplyToDerivedTypes="True" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style ApplyToDerivedTypes="True" TargetType="Frame">
+                <Setter Property="BorderColor" Value="{StaticResource light_gray}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </prism:PrismApplication>

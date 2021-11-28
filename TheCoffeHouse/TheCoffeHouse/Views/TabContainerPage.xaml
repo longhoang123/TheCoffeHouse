@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="TheCoffeHouse.Views.TabContainerPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:tabs="clr-namespace:TheCoffeHouse.Views.Tabs"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False"
+    SelectedTabColor="#e47905"
+    UnselectedTabColor="Black">
+    <TabbedPage.Children>
+        <tabs:HomeTabPage Title="Trangchủ" IconImageSource="home.png" />
+        <tabs:HomeTabPage Title="Đặt hàng" IconImageSource="order.png" />
+        <tabs:HomeTabPage Title="Cửa hàng" IconImageSource="shop.png" />
+        <tabs:HomeTabPage Title="Tích điểm" IconImageSource="ticket.png" />
+        <tabs:HomeTabPage Title="Khác" IconImageSource="hamburger.png" />
+    </TabbedPage.Children>
+
+</TabbedPage>

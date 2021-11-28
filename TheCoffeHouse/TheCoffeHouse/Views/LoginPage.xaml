@@ -8,92 +8,92 @@
     xmlns:renderers="clr-namespace:TheCoffeHouse.Renderers"
     prism:ViewModelLocator.AutowireViewModel="True"
     NavigationPage.HasNavigationBar="False">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="facebook_color">#1976d3</Color>
-            <Color x:Key="light_gray">#bbbbbb</Color>
-            <Color x:Key="dark_gray">#7e7e80</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <Grid RowDefinitions="3*, 7*" VerticalOptions="Fill">
-        <Image ScaleX="1.2" Source="bg_login.jpg" />
-        <Image
-            Margin="15"
-            HeightRequest="35"
-            HorizontalOptions="End"
-            Source="cancel.png"
-            VerticalOptions="Start"
-            WidthRequest="35" />
-        <Frame
-            Grid.Row="1"
-            Margin="0,-20"
-            BackgroundColor="White"
-            CornerRadius="20">
-            <StackLayout Spacing="15">
-                <Label HorizontalOptions="Center" Text="Chào mừng bạn đến với" />
-                <Image
-                    Margin="0,-50"
-                    HeightRequest="150"
-                    Source="login_logo.png"
-                    WidthRequest="250" />
-                <Frame
-                    Padding="20"
-                    BorderColor="{StaticResource light_gray}"
-                    CornerRadius="10"
-                    HasShadow="False">
-                    <StackLayout Orientation="Horizontal">
-                        <Image
-                            Source="vietnam.png"
-                            VerticalOptions="Center"
-                            WidthRequest="30" />
+
+    <ScrollView>
+        <Grid RowDefinitions="3*, 7*" VerticalOptions="Fill">
+            <Image ScaleX="1.2" Source="bg_login.jpg" />
+            <Image
+                Margin="15"
+                HeightRequest="30"
+                HorizontalOptions="End"
+                Source="cancel.png"
+                VerticalOptions="Start"
+                WidthRequest="30">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Frame
+                Grid.Row="1"
+                Margin="0,-20"
+                BackgroundColor="White"
+                CornerRadius="20">
+                <StackLayout Spacing="15">
+                    <Label HorizontalOptions="Center" Text="Chào mừng bạn đến với" />
+                    <Image
+                        Margin="0,-50"
+                        HeightRequest="150"
+                        Source="login_logo.png"
+                        WidthRequest="250" />
+                    <Frame
+                        Padding="20"
+                        BorderColor="{StaticResource light_gray}"
+                        CornerRadius="10"
+                        HasShadow="False">
+                        <StackLayout Orientation="Horizontal">
+                            <Image
+                                Source="vietnam.png"
+                                VerticalOptions="Center"
+                                WidthRequest="30" />
+                            <Label
+                                Text="+84"
+                                TextColor="{StaticResource dark_gray}"
+                                VerticalOptions="Center" />
+                            <Image HeightRequest="15" Source="line.png" />
+                            <renderers:CustomEntry
+                                Margin="10,0,0,0"
+                                Keyboard="Telephone"
+                                Placeholder="Nhập số điện thoại"
+                                TextColor="Black" />
+
+                        </StackLayout>
+                    </Frame>
+                    <Frame BackgroundColor="{StaticResource light_gray}" CornerRadius="10">
                         <Label
-                            Text="+84"
+                            HorizontalOptions="Center"
+                            Text="Đăng nhập"
+                            TextColor="White" />
+                    </Frame>
+
+                    <Grid Margin="0,15" HorizontalOptions="Fill">
+                        <BoxView
+                            Margin="0,15"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HeightRequest="1"
+                            WidthRequest="1000" />
+                        <Label
+                            Padding="3"
+                            BackgroundColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="HOẶC"
                             TextColor="{StaticResource dark_gray}"
                             VerticalOptions="Center" />
-                        <Image HeightRequest="15" Source="line.png" />
-                        <renderers:CustomEntry
-                            Margin="10,0,0,0"
-                            Keyboard="Telephone"
-                            Placeholder="Nhập số điện thoại"
-                            TextColor="Black" />
+                    </Grid>
 
-                    </StackLayout>
-                </Frame>
-                <Frame BackgroundColor="{StaticResource light_gray}" CornerRadius="10">
-                    <Label
-                        HorizontalOptions="Center"
-                        Text="Đăng nhập"
+                    <controls:ButtonLogin
+                        BackgroundColor="{StaticResource facebook_color}"
+                        ButtonImage="facebook.png"
+                        Text="Tiếp tục bằng Facebook"
                         TextColor="White" />
-                </Frame>
-
-                <Grid Margin="0,15" HorizontalOptions="Fill">
-                    <BoxView
-                        Margin="0,15"
-                        BackgroundColor="{StaticResource light_gray}"
-                        HeightRequest="1"
-                        WidthRequest="1000" />
-                    <Label
-                        Padding="3"
+                    <controls:ButtonLogin
                         BackgroundColor="White"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        Text="HOẶC"
-                        TextColor="{StaticResource dark_gray}"
-                        VerticalOptions="Center" />
-                </Grid>
-
-                <controls:ButtonLogin
-                    BackgroundColor="{StaticResource facebook_color}"
-                    ButtonImage="facebook.png"
-                    Text="Tiếp tục bằng Facebook"
-                    TextColor="White" />
-                <controls:ButtonLogin
-                    BackgroundColor="White"
-                    ButtonImage="google.png"
-                    Text="Tiếp tục bằng Google"
-                    TextColor="Black" />
-            </StackLayout>
-        </Frame>
-    </Grid>
+                        ButtonImage="google.png"
+                        Text="Tiếp tục bằng Google"
+                        TextColor="Black" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
 
 </ContentPage>

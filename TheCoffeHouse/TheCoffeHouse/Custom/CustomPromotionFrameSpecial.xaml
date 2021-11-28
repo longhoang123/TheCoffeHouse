@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TheCoffeHouse.Custom.CustomPromotionFrameSpecial">
+    <ContentView.Content>
+        <StackLayout BackgroundColor="White" Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
+            <Image x:Name="ImageButton" Source="User_active.png"  Margin="-10,0,-10,0" WidthRequest="190" HeightRequest="190"></Image>
+            <Label x:Name="Name" Text="Trà đào"  FontSize="Medium" TextColor="Black" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+            <Label x:Name="Size" Text="size M" TextColor="Black" LineBreakMode="WordWrap" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+            <Button x:Name="NumPoint" Text="99"  FontSize="Small" TextColor="DarkGreen" BackgroundColor="LimeGreen" CornerRadius="20" WidthRequest="50" HeightRequest="40" IsEnabled="False"></Button>
+            <Label Text="BEAN" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -94,11 +94,16 @@ namespace TheCoffeHouse.Helpers
 
         public readonly static string MainPage = "MainPage";
         public readonly static string Page1 = "Page1";
-      
-        
-        
-
-
+        public readonly static string OtherPage = "OtherPage";
+        public readonly static string HistoryPage = "HistoryPage";
+        public readonly static string PolicyPage = "PolicyPage";
+        public readonly static string VotePage = "VotePage";
+        public readonly static string ContactPage = "ContactPage";
+        public readonly static string PersonalInfoPage = "PersonalInfoPage";
+        public readonly static string AddressPage = "AddressPage";
+        public readonly static string SettingPage = "SettingPage";
+        public readonly static string CollectPointPage = "CollectPointPage";
+        public readonly static string ExchangePromotionPage = "ExchangePromotionPage";
         #endregion
     }
 }

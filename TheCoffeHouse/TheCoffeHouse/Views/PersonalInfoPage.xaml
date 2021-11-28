@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.PersonalInfoPage"
+               Title="Thông tin cá nhân">
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <Image HorizontalOptions="Center" VerticalOptions="Center" Source="User_active.png" HeightRequest="100"></Image>
+            <Frame CornerRadius="10" BackgroundColor="White" Padding="20,5,20,5" Margin="5">
+                <Entry Text="Nguyễn"></Entry>
+            </Frame>
+            <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5">
+                <Entry Text="Long"></Entry>
+            </Frame>
+            <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5">
+                <Entry Text="Email" Keyboard="Email"></Entry>
+            </Frame>
+            <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5">
+                <Entry Text="0388813493" Keyboard="Telephone" MaxLength="10"></Entry>
+            </Frame>
+            <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5">
+                <DatePicker></DatePicker>
+            </Frame>
+            <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5">
+                <Picker SelectedItem="0">
+                    <Picker.Items>
+                        <x:String>Nam</x:String>
+                        <x:String>Nữ</x:String>
+                        <x:String>Khác</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Frame>
+            <Button Text="Cập nhật tài khoản" BackgroundColor="DarkGoldenrod" TextColor="White" CornerRadius="10"  Margin="5"></Button>
+        </StackLayout>
+    </ScrollView>
+</base:BasePage>

@@ -185,9 +185,6 @@
     <AndroidResource Include="Resources\drawable\forward.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bg_art_coffe.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_art_coffee.jpg" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage  xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" 
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:prism="http://prismlibrary.com"
+                prism:ViewModelLocator.AutowireViewModel="True"
+                Title="{Binding PageTitle}"
+                x:Class="TheCoffeHouse.Views.OrderPage"
+                NavigationPage.HasBackButton="False"
+                BackgroundColor="White"
+                >
+    <ScrollView BackgroundColor="White" >
+        <StackLayout Margin="20" >
+            
+            <FlexLayout Margin="10,0,0,5"  Direction="Row" Wrap="Wrap" AlignItems="Start" JustifyContent="Start" HorizontalOptions="StartAndExpand">
+   
+                <!--<ListView ItemsSource="{Binding ListCategory}" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+                <StackLayout Margin="0,10,20,10" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton BackgroundColor="#f0daaa" Padding="5" Source="coffee_cup.jpg" WidthRequest="70" HeightRequest="70"
+                                 CornerRadius="50"
+                                 />
+                    <Label  Text="Cà phê" HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,20,10" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton BackgroundColor="#f0daaa" Padding="5" Source="coffee_cup.jpg" WidthRequest="70" HeightRequest="70"
+                                 CornerRadius="50"
+                                 />
+                    <Label Text="Đá xay" FontSize="18" HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,20,10" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton BackgroundColor="#f0daaa" Padding="5" Source="coffee_cup.jpg" WidthRequest="70" HeightRequest="70"
+                                 CornerRadius="50"
+                                 />
+                    <Label Text="Trà xanh" HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,20,10" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton BackgroundColor="#f0daaa" Padding="5" Source="coffee_cup.jpg" WidthRequest="70" HeightRequest="70"
+                                 CornerRadius="50"
+                                 />
+                    <Label Text="Snack" HorizontalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,20,10" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <ImageButton BackgroundColor="#f0daaa" Padding="5" Source="coffee_cup.jpg" WidthRequest="70" HeightRequest="70"
+                                 CornerRadius="50"
+                                 />
+                    <Label Text="Combo" HorizontalOptions="Center"/>
+                </StackLayout>
+
+            </FlexLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" >
+
+                <ImageButton CornerRadius="50" BackgroundColor="#f0daaa"  Source="coffee_cup.jpg" WidthRequest="35" HeightRequest="35"/>
+                <Label Text="Cà phê" FontSize="Large" FontAttributes="Bold"/>
+                
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding ListDrinks}" SelectedItem="{Binding  SelectedDrink}"  HasUnevenRows="True" SelectionMode="None" >
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="0.5*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Aspect="AspectFill" Source="{Binding DrinkImage}" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center"
+                                        Grid.Row ="0" Grid.Column="0" Grid.RowSpan="4"
+                                       />
+                                <Label Text="{Binding DrinkName}" FontSize="18" FontAttributes="Bold" VerticalOptions="Center"
+                                       Grid.Column="1" Grid.Row="0" 
+                                       />
+                                <Label Text="{Binding DrinkPrice, StringFormat='{0:#,0}'}" 
+                                       FontSize="15"
+                                       Grid.Column="1" Grid.Row="1" 
+                                       />
+                                <ImageButton Padding="10" Source="plus.png" BackgroundColor="Orange" WidthRequest="35" HeightRequest="35"
+                                        HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="50"
+                                        Grid.Column="2" Grid.Row="2" 
+                                        />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"/>
+                </ListView.Behaviors>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+   
+   
+</base:BasePage>

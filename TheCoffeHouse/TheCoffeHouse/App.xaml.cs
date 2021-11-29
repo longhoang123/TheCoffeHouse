@@ -49,9 +49,18 @@ namespace TheCoffeHouse
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>(PageManagement.LoginPage);
-
             containerRegistry.RegisterForNavigation<TabContainerPage, TabContainerPageViewModel>(PageManagement.TabContainerPage);
             containerRegistry.RegisterForNavigation<HomeTabPage, HomeTabPageViewModel>(PageManagement.HomeTabPage);
+            containerRegistry.RegisterForNavigation<OtherPage, OtherPageViewModel>(PageManagement.OtherPage);
+            containerRegistry.RegisterForNavigation<HistoryPage, HistoryPageViewModel>(PageManagement.HistoryPage);
+            containerRegistry.RegisterForNavigation<PolicyPage, PolicyPageViewModel>(PageManagement.PolicyPage);
+            containerRegistry.RegisterForNavigation<VotePage, VotePageViewModel>(PageManagement.VotePage);
+            containerRegistry.RegisterForNavigation<ContactPage, ContactPageViewModel>(PageManagement.ContactPage);
+            containerRegistry.RegisterForNavigation<PersonalInfoPage, PersonalInfoPageViewModel>(PageManagement.PersonalInfoPage);
+            containerRegistry.RegisterForNavigation<AddressPage, AddressPageViewModel>(PageManagement.AddressPage);
+            containerRegistry.RegisterForNavigation<SettingPage, SettingPageViewModel>(PageManagement.SettingPage);
+            containerRegistry.RegisterForNavigation<CollectPointPage, CollectPointPageViewModel>(PageManagement.CollectPointPage);
+            containerRegistry.RegisterForNavigation<ExchangePromotionPage, ExchangePromotionPageViewModel>(PageManagement.ExchangePromotionPage);
         }
     }
 }

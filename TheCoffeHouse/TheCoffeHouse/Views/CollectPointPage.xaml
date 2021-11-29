@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+             xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.CollectPointPage"
+             Title="Tích điểm">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="5, 10, 5, 5">
+                <Button Text="Tích điểm" CornerRadius="20" BackgroundColor="White" WidthRequest="120"></Button>
+                <Button Text="Đổi ưu đãi" CornerRadius="20" BackgroundColor="White" WidthRequest="120"></Button>
+            </StackLayout>
+            <StackLayout BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Padding="0,0,0,140">
+                <Frame Margin="10, 190, 10, 10" CornerRadius="10" BorderColor="Gainsboro" Padding="10, 10, 10, 10">
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="10,50,10,10">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Mới" FontSize="Small" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontAttributes="Bold"></Label>
+                            <Label Text="Đồng" FontSize="Small" VerticalOptions="Center" HorizontalOptions="EndAndExpand" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <Label BackgroundColor="DarkGoldenrod" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="4"></Label>
+                        <Label Text="Còn 100 BEAN nữa bạn sẽ thăng hạng." VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+                        <Label Text="Đổi quà không ảnh hưởng tới việc thăng hạng của bạn." VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+                        <Label Text="Chưa tích điểm" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+                    </StackLayout>
+                </Frame>
+                <Frame CornerRadius="10" Margin=" 10,-380, 10, 10" Padding="20, 0, 20, 20" BackgroundColor="DarkOrange">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Padding="0, 10, 0, 0">
+                                <Label Text="Long Nguyễn" FontSize="Large" TextColor="White" FontAttributes="Bold"></Label>
+                                <Label Text="0 BEAN - Mới" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="EndAndExpand">
+                                <Frame  BackgroundColor="OrangeRed" CornerRadius="10" Margin="0" Padding="0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="User_active.png"></Image>
+                                        <Label Text="Tích điểm" Padding="5,10,5,10" TextColor="White"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                        <Frame BackgroundColor="White" CornerRadius="10" Margin="0,40,0,0" Padding="10">
+                            <Image Source="BarCode.png" HeightRequest="80" WidthRequest="300"></Image>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <Grid BackgroundColor="WhiteSmoke" Margin="0, -15, 0, 0" Padding="0,20,0,30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" Grid.Row="0" BackgroundColor="White" CornerRadius="10" Margin="10,0,0,0">
+                    <custom:CustomSmallButton ButtonText="Đổi ưu đãi" Source="giftbox.png"></custom:CustomSmallButton>
+                </Frame>
+                <Frame Grid.Column="1" Grid.Row="0" BackgroundColor="White" CornerRadius="10" Margin="0,0,10,0">
+                    <custom:CustomSmallButton ButtonText="Phiếu ưu đãi của bạn" Source="voucher.png"></custom:CustomSmallButton>
+                </Frame>
+                <Frame Grid.Column="0" Grid.Row="1" BackgroundColor="White" CornerRadius="10" Margin="10,0,0,0">
+                    <custom:CustomSmallButton ButtonText="Lịch sử giao dịch" Source="coffeebeans.png"></custom:CustomSmallButton>
+                </Frame>
+                <Frame Grid.Column="1" Grid.Row="1" BackgroundColor="White" CornerRadius="10" Margin="0,0,10,0">
+                    <custom:CustomSmallButton ButtonText="Quyền lợi của bạn" Source="privacypolicy.png"></custom:CustomSmallButton>
+                </Frame>
+            </Grid>
+            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -10, 0, 0" Padding="10, 0, 10, 20" BackgroundColor="WhiteSmoke">
+                <Label Text="Phiếu ưu đã của bạn" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
+                <Button Text="Xem tất cả" BackgroundColor="AntiqueWhite" TextColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" FontSize="Small" HeightRequest="40"></Button>
+            </StackLayout>
+            <StackLayout  Margin="0, -10, 0, 0" Padding="5, 0, 5, 20"  VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke">
+                <Frame Margin="5" Padding="5" CornerRadius="10">
+                    <custom:CustomCouponFrame TitleText="-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021" Source="coupon15.png" DateText="10 ngày đến khi hết hạn"></custom:CustomCouponFrame>
+                </Frame>
+                <Frame Margin="5" Padding="5" CornerRadius="10">
+                    <custom:CustomCouponFrame TitleText="-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021" Source="coupon15.png" DateText="10 ngày đến khi hết hạn"></custom:CustomCouponFrame>
+                </Frame>
+                <Frame Margin="5" Padding="0" CornerRadius="10">
+                    <custom:CustomCouponFrame TitleText="-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021" Source="coupon15.png" DateText="10 ngày đến khi hết hạn"></custom:CustomCouponFrame>
+                </Frame>
+            </StackLayout>
+            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -10, 0, 0" Padding="10, 10, 10, 20" BackgroundColor="WhiteSmoke">
+                <Label Text="Đổi ưu đãi" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
+                <Button Text="Xem tất cả" BackgroundColor="AntiqueWhite" TextColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" FontSize="Small" HeightRequest="40"></Button>
+            </StackLayout>
+            <StackLayout  Margin="0, -10, 0, 0" Padding="-5, 0, -5, 20"  VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke">
+                <Frame Padding="20,0,20,0" Margin="0,5,0,0">
+                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
+                </Frame>
+                <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
+                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
+                </Frame>
+                <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
+                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
+                </Frame>
+                <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
+                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
+                </Frame>
+                <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
+                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</base:BasePage>

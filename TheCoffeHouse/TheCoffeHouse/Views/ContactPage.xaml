@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:custom ="clr-namespace:TheCoffeHouse.Custom"
+             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.ContactPage"
+             Title="Liên hệ và góp ý">
+    <StackLayout Padding="-10,0,-10,0">
+        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
+            <custom:CustomButton ButtonText="Tổng đài &#10;18006936" Source="phone.png">
+            </custom:CustomButton>
+        </Frame>
+        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
+            <custom:CustomButton ButtonText="Email &#10;hi@thecoffeehouse.com" Source="email.png">
+            </custom:CustomButton>
+        </Frame>
+        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
+            <custom:CustomButton ButtonText="Website &#10;https://www.thecoffeehouse.com" Source="globe.png">
+            </custom:CustomButton>
+        </Frame>
+        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
+            <custom:CustomButton ButtonText="Facebook &#10;facebook.com/The.Coffee.House.2014" Source="facebook.png">
+            </custom:CustomButton>
+        </Frame>
+        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
+            <custom:CustomButton ButtonText="Gửi góp ý về ứng dụng" Source="notice.png">
+            </custom:CustomButton>
+        </Frame>
+    </StackLayout>
+</base:BasePage>

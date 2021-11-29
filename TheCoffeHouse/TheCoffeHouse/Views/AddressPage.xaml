@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.AddressPage"
+             Title="Địa chỉ đã lưu">
+    <StackLayout Padding="-10,0,-10,0">
+        <Frame BackgroundColor="White" CornerRadius="10">
+            <custom:CustomButton ButtonText="Thêm địa chỉ Nhà" Source="home.png">
+            </custom:CustomButton>
+
+        </Frame>
+
+        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
+            <custom:CustomButton ButtonText="Thêm địa chỉ Công ty" Source="building.png">
+            </custom:CustomButton>
+
+        </Frame>
+
+        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
+            <custom:CustomButton ButtonText="Thêm địa chỉ mới" Source="plus.png">
+            </custom:CustomButton>
+
+        </Frame>
+    </StackLayout> 
+</base:BasePage>

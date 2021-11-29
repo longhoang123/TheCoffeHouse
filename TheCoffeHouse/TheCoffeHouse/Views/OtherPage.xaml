@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+             xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.OtherPage"
+             Title="Khác">
+    <ScrollView>
+        <StackLayout Orientation="Vertical"
+             VerticalOptions="Fill"
+             HorizontalOptions="Fill"   
+             Padding="10" BackgroundColor="WhiteSmoke">
+            <Label Text="Tiện ích" FontSize="Large" FontAttributes="Bold"  TextColor="Black"  Padding="10,10,10,10"></Label>
+            <Frame BackgroundColor="White" Margin="0" CornerRadius="10" BorderColor="Gainsboro">
+                <custom:CustomSmallButton
+                    ButtonText="Lịch sử đơn hàng"
+                    Source="history.png"
+                    Command="{Binding OpenHistoryPage}">
+                </custom:CustomSmallButton>
+            </Frame>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" BackgroundColor="White" Margin="0,5,0,5" CornerRadius="10" BorderColor="Gainsboro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <custom:CustomSmallButton
+                    Source="music.png"
+                    ButtonText="Trình phát nhạc">
+                    </custom:CustomSmallButton>
+                </Frame>
+                <Frame Grid.Column="1" BackgroundColor="White" Margin="0,5,0,5" CornerRadius="10" BorderColor="Gainsboro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <custom:CustomSmallButton
+                    Source="policy.png"
+                    ButtonText="Điều khoản"
+                    Command="{Binding OpenPolicyPage}">
+                    </custom:CustomSmallButton>
+                </Frame>
+            </Grid>
+            <Label Text="Hỗ trợ" FontSize="Large" FontAttributes="Bold"  TextColor="Black" Padding="10,20,10,10"></Label>
+            <StackLayout Padding="0, 0, 0, 80">
+                <Frame BackgroundColor="White" Margin="0" CornerRadius="10" Padding="20,20,20,30">
+                    <custom:CustomButton
+                    Source="star.png"
+                    ButtonText="Đánh giá đơn hàng"
+                    Command="{Binding OpenVotePage}">
+                    </custom:CustomButton>
+                </Frame>
+                <Frame BackgroundColor="White" Margin="0,-20,0,0" CornerRadius="10" Padding="20,30,20,20">
+                    <custom:CustomButton
+                    Source="message.png"
+                    ButtonText="Liên hệ và góp ý"
+                    Command="{Binding OpenContactPage}">
+                    </custom:CustomButton>
+                </Frame>
+                <Label BackgroundColor="DarkGray" WidthRequest="340" HeightRequest="2" Margin="0,-75,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+            </StackLayout>
+            <Label Text="Tài khoản" FontSize="Large" FontAttributes="Bold" TextColor="Black" Padding="10,20,10,10"></Label>
+            <StackLayout Padding="0, 0, 0, 240">
+                <Frame BackgroundColor="White" Margin="0" CornerRadius="10" BorderColor="Gainsboro" Padding="20,20,20,30">
+                    <custom:CustomButton
+                    Source="user.png"
+                    ButtonText="Thông tin cá nhân"
+                    Command="{Binding OpenPersonalInfoPage}">
+                    </custom:CustomButton>
+                </Frame>
+                <Frame BackgroundColor="White"  Margin="0,-20,0,0" CornerRadius="10" Padding="20,30,20,30">
+                    <custom:CustomButton
+                    Source="gps.png"
+                    ButtonText="Địa chỉ đã lưu"
+                    Command="{Binding OpenAddressPage}">
+                    </custom:CustomButton>
+                </Frame>
+                <Frame BackgroundColor="White"  Margin="0,-20,0,0" CornerRadius="10" Padding="20,30,20,30">
+                    <custom:CustomButton
+                    Source="gear.png"
+                    ButtonText="Cài đặt"
+                    Command="{Binding OpenSettingPage}">
+                    </custom:CustomButton>
+                </Frame>
+                <Frame BackgroundColor="White"  Margin="0,-20,0,0" CornerRadius="10" Padding="20,30,20,20">
+                    <custom:CustomButton
+                    Source="logout.png"
+                    ButtonText="Đăng xuất">
+                    </custom:CustomButton>
+                </Frame>
+                <Label BackgroundColor="DarkGray" WidthRequest="340" HeightRequest="2" Margin="0,-75,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                <Label BackgroundColor="DarkGray" WidthRequest="340" HeightRequest="2" Margin="0,-80,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                <Label BackgroundColor="DarkGray" WidthRequest="340" HeightRequest="2" Margin="0,-85,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+            </StackLayout>
+            
+
+        </StackLayout>
+    </ScrollView>
+</base:BasePage>

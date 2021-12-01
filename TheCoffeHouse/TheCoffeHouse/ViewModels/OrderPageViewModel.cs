@@ -13,6 +13,7 @@ using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
+using Xamarin.Forms;
 
 namespace TheCoffeHouse.ViewModels
 {
@@ -27,6 +28,7 @@ namespace TheCoffeHouse.ViewModels
             PageTitle = "Đặt hàng";
             ListDrinks = new ObservableCollection<Drink>();
             ListCategory = new ObservableCollection<string>();
+            ListBanner = new ObservableCollection<ImageSource>();
             //ItemTappedCommand = new DelegateCommand(ItemTapped);
         }
         
@@ -48,11 +50,27 @@ namespace TheCoffeHouse.ViewModels
             ListCategory.Add("Đá xay");
             ListCategory.Add("Bánh snack");
             ListCategory.Add("Combo");
+            for (var i = 0; i < 5; i++)
+            {
+                ListBanner.Add("Tradao.png");
+            }
         }
 
 
 
         #region Properties
+        private ObservableCollection<ImageSource> _listBanner;
+
+        public ObservableCollection<ImageSource> ListBanner
+        {
+            get { return _listBanner; }
+            set
+            {
+                SetProperty(ref _listBanner, value);
+                RaisePropertyChanged("ListBanner");
+            }
+        }
+
         private Drink _selectedDrink; 
 
         public Drink ItemTappedCommand

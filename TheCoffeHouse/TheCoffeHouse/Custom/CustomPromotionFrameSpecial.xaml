@@ -4,10 +4,10 @@
              x:Class="TheCoffeHouse.Custom.CustomPromotionFrameSpecial">
     <ContentView.Content>
         <StackLayout BackgroundColor="White" Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
-            <Image x:Name="ImageButton" Source="User_active.png"  Margin="-10,0,-10,0" WidthRequest="190" HeightRequest="190"></Image>
-            <Label x:Name="Name" Text="Trà đào"  FontSize="Medium" TextColor="Black" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+            <Image x:Name="ImageButton" Source="User_active.png"  Margin="-10,0,-10,10" WidthRequest="190" HeightRequest="140" Scale="1.5"></Image>
+            <Label x:Name="Name" Text="Trà đào"  FontSize="Medium" TextColor="Black" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0"></Label>
             <Label x:Name="Size" Text="size M" TextColor="Black" LineBreakMode="WordWrap" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
-            <Button x:Name="NumPoint" Text="99"  FontSize="Small" TextColor="DarkGreen" BackgroundColor="LimeGreen" CornerRadius="20" WidthRequest="50" HeightRequest="40" IsEnabled="False"></Button>
+            <Button x:Name="NumPoint" Text="99"  FontSize="Small" TextColor="DarkGreen" BackgroundColor="LimeGreen" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="80" CornerRadius="20" HeightRequest="40" IsEnabled="False"></Button>
             <Label Text="BEAN" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
         </StackLayout>
     </ContentView.Content>

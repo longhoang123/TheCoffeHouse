@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
@@ -21,6 +23,13 @@ namespace TheCoffeHouse.ViewModels
         {
             ListCoupon = new ObservableCollection<Coupon>();
             initcoupon();
+            OpenDetailCouponPage = new DelegateCommand(OpenDetailCouponPageExcute);
+        }
+
+        public ICommand OpenDetailCouponPage { get; set; }
+        private async void OpenDetailCouponPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.DetailCouponPage);
         }
 
         private void initcoupon()

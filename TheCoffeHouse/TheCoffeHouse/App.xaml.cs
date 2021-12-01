@@ -65,7 +65,9 @@ namespace TheCoffeHouse
             containerRegistry.RegisterForNavigation<AllCouponPage, AllCouponPageViewModel>(PageManagement.AllCouponPage);
             containerRegistry.RegisterForNavigation<DetailCouponPage, DetailCouponPageViewModel>(PageManagement.DetailCouponPage);
             containerRegistry.RegisterForNavigation<AllPromotionPage, AllPromotionPageViewModel>(PageManagement.AllPromotionPage);
+            containerRegistry.RegisterForNavigation<DetailPromotionPage, DetailPromotionPageViewModel>(PageManagement.DetailPromotionPage);
             containerRegistry.RegisterForNavigation<StorePage, StorePageViewModel>();
+
 
 
             

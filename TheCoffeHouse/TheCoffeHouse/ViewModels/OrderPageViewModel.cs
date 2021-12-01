@@ -13,6 +13,8 @@ using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
+using TheCoffeHouse.Views;
+using Xamarin.Forms;
 
 namespace TheCoffeHouse.ViewModels
 {
@@ -27,6 +29,7 @@ namespace TheCoffeHouse.ViewModels
             PageTitle = "Đặt hàng";
             ListDrinks = new ObservableCollection<Drink>();
             ListCategory = new ObservableCollection<string>();
+            //SelectedDrink = new Drink();
             //ItemTappedCommand = new DelegateCommand(ItemTapped);
         }
         
@@ -53,19 +56,7 @@ namespace TheCoffeHouse.ViewModels
 
 
         #region Properties
-        private Drink _selectedDrink; 
-
-        public Drink ItemTappedCommand
-        {
-            get => _selectedDrink; 
-            set 
-            {
-                SetProperty(ref _selectedDrink, value);
-                RaisePropertyChanged();
-              
-            }
-        }
-
+       
         private ObservableCollection<Drink> _listDrinks;
 
         public ObservableCollection<Drink> ListDrinks
@@ -90,8 +81,26 @@ namespace TheCoffeHouse.ViewModels
             }
         }
         #endregion
-        #region ItemTappedListViewCommand
-       // public DelegateCommand ItemTappedCommand { get; set; }
+        #region BindingSelectedItem
+        private Drink _selectedDrink;
+
+        public Drink SelectedDrink
+        {
+            get => _selectedDrink;
+            set
+            {
+                if (_selectedDrink != value)
+                {
+                    SetProperty(ref _selectedDrink, value);
+                    RaisePropertyChanged();
+                    handleSelectedItem();
+                }
+            }
+        }
+        private async void handleSelectedItem()
+        {
+            await Navigation.NavigateAsync(PageManagement.StorePage);
+        }
 
         #endregion
     }

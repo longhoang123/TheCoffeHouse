@@ -62,7 +62,7 @@
                 
             </StackLayout>
 
-            <ListView ItemsSource="{Binding ListDrinks}" SelectedItem="{Binding  SelectedDrink}"  HasUnevenRows="True" SelectionMode="None" >
+            <ListView ItemsSource="{Binding ListDrinks}" SelectedItem="{Binding SelectedDrink}"  HasUnevenRows="True" >
                 
                 <ListView.ItemTemplate>
                     <DataTemplate>

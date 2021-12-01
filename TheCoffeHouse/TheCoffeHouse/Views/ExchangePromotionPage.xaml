@@ -9,8 +9,8 @@
     <ScrollView>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Margin="5, 10, 5, 5">
-                <Button Text="Tích điểm" CornerRadius="20" BackgroundColor="White" WidthRequest="120"></Button>
-                <Button Text="Đổi ưu đãi" CornerRadius="20" BackgroundColor="White" WidthRequest="120"></Button>
+                <Button Text="Tích điểm" CornerRadius="20" BackgroundColor="White" WidthRequest="120" Command="{Binding OpenCollectPointPage}" HeightRequest="40"></Button>
+                <Button Text="Đổi ưu đãi" CornerRadius="20" BackgroundColor="White" WidthRequest="120" TextColor="DarkGoldenrod" BorderColor="DarkGoldenrod" VerticalOptions="Center" HorizontalOptions="Center" BorderWidth="2" HeightRequest="40"></Button>
             </StackLayout>
             <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0" Padding="10, 10, 10, 20" BackgroundColor="WhiteSmoke">
                 <Label Text="Từ The Coffee House" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
@@ -19,41 +19,44 @@
 
 
             <StackLayout Orientation="Horizontal" Margin="0,-10,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  BackgroundColor="WhiteSmoke">
-                <Frame CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="0">
+                <Frame CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="0" BorderColor="Transparent">
                     <custom:CustomPromotionFrameSpecial NameText="Trà đào" SizeText="Size M" NumPointText="1200" Source="Tradao.jpg"></custom:CustomPromotionFrameSpecial>
                 </Frame>
-                <Frame CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="0">
+                <Frame CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="0" BorderColor="Transparent">
                     <custom:CustomPromotionFrameSpecial NameText="Trà đào" SizeText="Size M" NumPointText="1200" Source="Tradao.jpg"></custom:CustomPromotionFrameSpecial>
                 </Frame>
             </StackLayout>
-            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,-5,0,0" Padding="10, 30, 10, 10" BackgroundColor="WhiteSmoke">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,-5,0,0" Padding="10, 30, 15, 10" BackgroundColor="WhiteSmoke">
                 <Label Text="Từ Đối tác" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
                 <Button Text="Xem tất cả" BackgroundColor="AntiqueWhite" TextColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" FontSize="Small" HeightRequest="40" Command="{Binding OpenAllPromotionPage}"></Button>
             </StackLayout>
 
-            <StackLayout  Margin="0, -10, 0, 0" Padding="10, 0, 10, 20" BackgroundColor="WhiteSmoke" Spacing="0" HeightRequest="520">
+            <StackLayout  Margin="0, -10, 0, 0" Padding="10, 0, 10, 20" BackgroundColor="WhiteSmoke" Spacing="0" HeightRequest="540">
                 <ListView ItemsSource="{Binding ListPromotion}" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame Margin="5" Padding="5" CornerRadius="10">
+                                <Frame Margin="5" Padding="5,10,5,10" CornerRadius="10" BorderColor="Transparent">
                                     <custom:CustomPromotionFrame BrandText="{Binding Brand}" DesText="{Binding Description}" NumPointText="{Binding NumPoint}" Source="coolmate.jpg"></custom:CustomPromotionFrame>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListView.Behaviors>
+                        <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OpenDetailPromotionPage}"/>
+                    </ListView.Behaviors>
                 </ListView>
             </StackLayout>
-            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,-5,0,0" Padding="10, 20, 10, 20" BackgroundColor="WhiteSmoke">
+            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,-40,0,0" Padding="10, 20, 10, 20" BackgroundColor="WhiteSmoke">
                 <Label Text="Bằng danh mục" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
             </StackLayout>
 
-            <StackLayout Padding="0" Margin="-10,0" BackgroundColor="WhiteSmoke" Spacing="0" HeightRequest="300">
+            <StackLayout Padding="0" Margin="-10,0" BackgroundColor="WhiteSmoke" Spacing="0" HeightRequest="320">
                 <ListView ItemsSource="{Binding ListCategory}" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame BackgroundColor="White" Margin="0,-10" Padding="30,30,30,30">
+                                <Frame BackgroundColor="White" Margin="0,-10,0,0" Padding="30,30,30,30" BorderColor="Transparent">
                                     <custom:CustomButton Source="giftbox.png" ButtonText="{Binding TitleCategory}">
                                     </custom:CustomButton>
                                 </Frame>

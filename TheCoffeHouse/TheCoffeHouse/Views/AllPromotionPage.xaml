@@ -6,17 +6,20 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.AllPromotionPage" 
              Title="All Promotion">
-    <StackLayout  Margin="0, -10, 0, 0" Padding="5, 0, 5, 20" BackgroundColor="WhiteSmoke" IsVisible="true">
+    <StackLayout Padding="0, 5, 0, 20" BackgroundColor="WhiteSmoke" IsVisible="true">
         <ListView ItemsSource="{Binding ListPromotion}" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Frame Padding="20,0,20,0" Margin="0,5,0,0">
+                        <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
                             <custom:CustomPromotionFrame BrandText="{Binding Brand}" DesText="{Binding Description}" NumPointText="{Binding NumPoint}" Source="coolmate.jpg"></custom:CustomPromotionFrame>
                         </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OpenDetailPromotionPage}"/>
+            </ListView.Behaviors>
         </ListView>
     </StackLayout>
 </base:BasePage>

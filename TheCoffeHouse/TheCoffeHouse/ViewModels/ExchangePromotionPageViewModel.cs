@@ -26,7 +26,8 @@ namespace TheCoffeHouse.ViewModels
             ListPromotion = new ObservableCollection<Promotion>();
             initcategory();
             OpenAllPromotionPage = new DelegateCommand(OpenAllPromotionPageExcute);
-            
+            OpenDetailPromotionPage = new DelegateCommand(OpenDetailPromotionPageExcute);
+            OpenCollectPointPage = new DelegateCommand(OpenCollectPointPageExcute);
         }
 
         public class Category
@@ -43,11 +44,28 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
+
+        #region OpenPage
+
+        public ICommand OpenCollectPointPage { get; set; }
+        private async void OpenCollectPointPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.CollectPointPage);
+        }
+        
+        public ICommand OpenDetailPromotionPage { get; set; }
+        private async void OpenDetailPromotionPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage);
+        }
+
+
         public ICommand OpenAllPromotionPage { get; set; }
         private async void OpenAllPromotionPageExcute()
         {
             await Navigation.NavigateAsync(PageManagement.AllPromotionPage);
         }
+        #endregion
 
         private ObservableCollection<Category> _listCategory;
 

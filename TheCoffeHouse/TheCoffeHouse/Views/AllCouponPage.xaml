@@ -6,8 +6,8 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.AllCouponPage"
              Title="All Coupon">
-    <StackLayout  Margin="0, -10, 0, 0" Padding="5, 0, 5, 20" BackgroundColor="WhiteSmoke" IsVisible="false">
-            <Label Text="Sắp hết hạn" TextColor="Black" FontSize="Large"></Label>
+    <StackLayout  Margin="0, 20, 0, 20" Padding="10" BackgroundColor="WhiteSmoke">
+            <Label Text="Sắp hết hạn" TextColor="Black" FontSize="Large" Margin="0,10,0,20" FontAttributes="Bold"></Label>
             <ListView HasUnevenRows="True" ItemsSource="{Binding ListCoupon}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -18,6 +18,9 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            <ListView.Behaviors>
+                <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OpenDetailCouponPage}"/>
+            </ListView.Behaviors>
+        </ListView>
         </StackLayout>
 </base:BasePage>

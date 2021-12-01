@@ -25,6 +25,9 @@ namespace TheCoffeHouse.ViewModels
             ListPromotion = new ObservableCollection<Promotion>();
             initcoupon();
             OpenAllCouponPage = new DelegateCommand(OpenAllCouponPageExcute);
+            OpenDetailCouponPage = new DelegateCommand(OpenDetailCouponPageExcute);
+            OpenDetailPromotionPage = new DelegateCommand(OpenDetailPromotionPageExcute);
+            OpenExchangePromotionPage = new DelegateCommand(OpenExchangePromotionPageExcute);
         }
         private void initcoupon()
         {
@@ -34,13 +37,31 @@ namespace TheCoffeHouse.ViewModels
                 ListPromotion.Add(new Promotion { Brand = "Coolmate", Description = "Ưu đãi đến 100k", NumPoint = "99", Image = "coolmate.jpg" });
             }
         }
+
         #region OpenPage
+        
+        public ICommand OpenDetailPromotionPage { get; set; }
+        private async void OpenDetailPromotionPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage);
+        }
+
+        public ICommand OpenExchangePromotionPage { get; set; }
+        private async void OpenExchangePromotionPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.ExchangePromotionPage);
+        }
+
+        public ICommand OpenDetailCouponPage { get; set; }
+        private async void OpenDetailCouponPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.DetailCouponPage);
+        }
+
+
         public ICommand OpenAllCouponPage { get; set; }
         private async void OpenAllCouponPageExcute()
         {
-            //string history = "Your history";
-            //NavigationParameters navParams = new NavigationParameters();
-            //navParams.Add(ParamKey.Username.ToString(), history);
             await Navigation.NavigateAsync(PageManagement.AllCouponPage);
         }
         #endregion

@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
@@ -21,6 +23,7 @@ namespace TheCoffeHouse.ViewModels
         {
             ListPromotion = new ObservableCollection<Promotion>();
             initpromotion();
+            OpenDetailPromotionPage = new DelegateCommand(OpenDetailPromotionPageExcute);
         }
 
         private void initpromotion()
@@ -30,7 +33,11 @@ namespace TheCoffeHouse.ViewModels
                 ListPromotion.Add(new Promotion { Brand = "Coolmate", Description = "Ưu đãi đến 100k", NumPoint = "99", Image = "coolmate.jpg" });
             }
         }
-
+        public ICommand OpenDetailPromotionPage { get; set; }
+        private async void OpenDetailPromotionPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage);
+        }
         #region ListPromotion
         private ObservableCollection<Promotion> _listPromotion;
         public ObservableCollection<Promotion> ListPromotion

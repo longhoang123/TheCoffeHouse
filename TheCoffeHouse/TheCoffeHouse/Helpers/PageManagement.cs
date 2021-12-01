@@ -108,6 +108,7 @@ namespace TheCoffeHouse.Helpers
         public readonly static string AllCouponPage = "AllCouponPage";
         public readonly static string DetailCouponPage = "DetailCouponPage";
         public readonly static string AllPromotionPage = "AllPromotionPage";
+        public readonly static string DetailPromotionPage = "DetailPromotionPage";
         public readonly static string OrderPage = "OrderPage";
         public readonly static string StorePage = "StorePage";
 

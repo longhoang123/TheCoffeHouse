@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base ="clr-namespace:TheCoffeHouse.Views.Base"
+             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.AllCouponPage"
+             Title="All Coupon">
+    <StackLayout  Margin="0, -10, 0, 0" Padding="5, 0, 5, 20" BackgroundColor="WhiteSmoke" IsVisible="false">
+            <Label Text="Sắp hết hạn" TextColor="Black" FontSize="Large"></Label>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding ListCoupon}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="5" Padding="5" CornerRadius="10">
+                                <custom:CustomCouponFrame TitleText="{Binding Title}" Source="coupon15.jpg" DateText="{Binding Date}"></custom:CustomCouponFrame>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+</base:BasePage>

@@ -72,39 +72,38 @@
             </Grid>
             <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -10, 0, 0" Padding="10, 0, 10, 20" BackgroundColor="WhiteSmoke">
                 <Label Text="Phiếu ưu đã của bạn" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
-                <Button Text="Xem tất cả" BackgroundColor="AntiqueWhite" TextColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" FontSize="Small" HeightRequest="40"></Button>
+                <Button Text="Xem tất cả" BackgroundColor="AntiqueWhite" TextColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" FontSize="Small" HeightRequest="40" Command="{Binding OpenAllCouponPage}"></Button>
             </StackLayout>
-            <StackLayout  Margin="0, -10, 0, 0" Padding="5, 0, 5, 20"  VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke">
-                <Frame Margin="5" Padding="5" CornerRadius="10">
-                    <custom:CustomCouponFrame TitleText="-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021" Source="coupon15.png" DateText="10 ngày đến khi hết hạn"></custom:CustomCouponFrame>
-                </Frame>
-                <Frame Margin="5" Padding="5" CornerRadius="10">
-                    <custom:CustomCouponFrame TitleText="-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021" Source="coupon15.png" DateText="10 ngày đến khi hết hạn"></custom:CustomCouponFrame>
-                </Frame>
-                <Frame Margin="5" Padding="0" CornerRadius="10">
-                    <custom:CustomCouponFrame TitleText="-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021" Source="coupon15.png" DateText="10 ngày đến khi hết hạn"></custom:CustomCouponFrame>
-                </Frame>
+
+            <StackLayout  Margin="0, -10, 0, 0" Padding="5, 0, 5, 20" BackgroundColor="WhiteSmoke" HeightRequest="430">
+                <ListView HasUnevenRows="True" ItemsSource="{Binding ListCoupon}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Margin="5" Padding="5" CornerRadius="10">
+                                    <custom:CustomCouponFrame TitleText="{Binding Title}" Source="coupon15.jpg" DateText="{Binding Date}"></custom:CustomCouponFrame>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
             <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -10, 0, 0" Padding="10, 10, 10, 20" BackgroundColor="WhiteSmoke">
                 <Label Text="Đổi ưu đãi" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
                 <Button Text="Xem tất cả" BackgroundColor="AntiqueWhite" TextColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" FontSize="Small" HeightRequest="40"></Button>
             </StackLayout>
-            <StackLayout  Margin="0, -10, 0, 0" Padding="-5, 0, -5, 20"  VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke">
-                <Frame Padding="20,0,20,0" Margin="0,5,0,0">
-                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
-                </Frame>
-                <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
-                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
-                </Frame>
-                <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
-                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
-                </Frame>
-                <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
-                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
-                </Frame>
-                <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
-                    <custom:CustomPromotionFrame BrandText="CoolMate" DesText="Voucher 100k tại Coolmate" NumPointText="99" Source="coolmate.png"></custom:CustomPromotionFrame>
-                </Frame>
+            <StackLayout  Margin="0, -10, 0, 0" Padding="-5, 0, -5, 20" BackgroundColor="WhiteSmoke" HeightRequest="330">
+                <ListView ItemsSource="{Binding ListPromotion}" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="20,0,20,0" Margin="0,5,0,0">
+                                    <custom:CustomPromotionFrame BrandText="{Binding Brand}" DesText="{Binding Description}" NumPointText="{Binding NumPoint}" Source="coolmate.jpg"></custom:CustomPromotionFrame>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </StackLayout>
     </ScrollView>

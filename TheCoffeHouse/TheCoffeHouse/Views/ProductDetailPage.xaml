@@ -5,12 +5,12 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.ProductDetailPage">
     <StackLayout>
-        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
-            <Grid RowDefinitions="4*, 6*" VerticalOptions="Fill">
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+            <Grid RowDefinitions="3*, 7*" VerticalOptions="Fill">
+                <!--Hình sp-->
                 <Frame Padding="0" CornerRadius="10" HasShadow="False" >
                     <Image Source="Tradao.jpg"  />
                 </Frame>
-              
                 <Image
                 Margin="15"
                 HeightRequest="30"
@@ -22,7 +22,9 @@
                             <TapGestureRecognizer Command="{Binding BackCommand}" />
                         </Image.GestureRecognizers>
                     </Image>
+
                 <StackLayout Grid.Row="1" Spacing="10">
+                    <!--Thông tin sản phẩm-->
                     <Frame  Margin="0,-10,0,0" VerticalOptions="Fill" HasShadow="False"  BorderColor="Transparent" Padding="20,10,10,5"  >
                         <Grid RowDefinitions="1*,1*,1*,2*" ColumnDefinitions="3*,1*" RowSpacing="5" ColumnSpacing="0">
                             <Label FontSize="25"  FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start" Text="Cà phê sữa đá"/>
@@ -44,6 +46,7 @@
                                    Text="Cà phê ĐakLak nguyên chất được pha phin truyền thống kết hợp  với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát."/>
                         </Grid>
                     </Frame >
+                    <!--Chọn khuyến mãi-->
                     <Frame HasShadow="False" Padding="20,10,10,20" BorderColor="Transparent">
                         <Grid RowDefinitions="*,*,2*" ColumnDefinitions="*,*">
                             <Label FontSize="Large"  FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start" Text="Chọn khuyến mãi"/>
@@ -56,14 +59,14 @@
                             </Frame>
                         </Grid>
                     </Frame>
-                    <Frame HasShadow="False"  BorderColor="Transparent">
+                    <!--Chọn size-->
+                        <Frame HasShadow="False"  BorderColor="Transparent">
                         <StackLayout>
                             <Grid RowDefinitions="*,*">
                                 <Label Text="Size*" FontAttributes="Bold" FontSize="25" />
                                 <Label Grid.Row="1" Text="Chọn 1 loại size" FontSize="15" />
                             </Grid>
                             <StackLayout Grid.Row="1" Spacing="20">
-
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="Nhỏ" HorizontalOptions="StartAndExpand"/>
                                     <Label Text="+0đ" HorizontalOptions="End"/>
@@ -73,7 +76,6 @@
                                          HeightRequest="1"
                                          HorizontalOptions="Fill" 
                                          />
-                                
                                 <StackLayout Orientation="Horizontal" >
                                     <Label Text="Vừa" HorizontalOptions="StartAndExpand" />
                                     <Label Text="+6.000đ" HorizontalOptions="End"/>
@@ -83,30 +85,38 @@
                                          HeightRequest="1"
                                          HorizontalOptions="Fill" 
                                          />
-
                                 <StackLayout Orientation="Horizontal" >
                                     <Label Text="Lớn" HorizontalOptions="StartAndExpand" />
                                     <Label Text="+10.000đ" HorizontalOptions="End"/>
                                 </StackLayout>
-
-
                             </StackLayout>
-                           
+                        </StackLayout>
+                    </Frame>
+                    <Frame HasShadow="False" BorderColor="Transparent">
+                        <StackLayout>
+                            <Grid RowDefinitions="*,*">
+                                <Label Text="Yêu cầu khác" FontAttributes="Bold" FontSize="25" />
+                                <Label Grid.Row="1" Text="Những tùy chọn khác" FontSize="15" />
+                            </Grid>
+                            <Frame Padding="10" CornerRadius="10">
+                                <Entry Placeholder="Thêm ghi chú"/>
+                            </Frame>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
-               
-               
             </Grid>
         </ScrollView>
         <Frame Padding="0" >
-            <FlexLayout AlignContent="SpaceEvenly" HorizontalOptions="Fill"  HeightRequest="70">
-                <ImageButton  Source="plus.png" Padding="5" CornerRadius="10" WidthRequest="30" HeightRequest="30" BackgroundColor="#f7cd92"/>
-                <ImageButton Source="plus.png" Padding="5" CornerRadius="10" WidthRequest="30" HeightRequest="30" BackgroundColor="#f7cd92"/>
-                <ImageButton  Source="plus.png" Padding="5" CornerRadius="10" WidthRequest="30" HeightRequest="30" BackgroundColor="#f7cd92"/>
-
-            </FlexLayout>
+            <StackLayout Margin="20,0,20,0" Orientation="Horizontal" HorizontalOptions="Fill"  HeightRequest="80" Spacing="15">
+                <ImageButton HorizontalOptions="Center" VerticalOptions="Center"  Source="plus.png" Padding="10" CornerRadius="50" WidthRequest="35" HeightRequest="35" BackgroundColor="#f7cd92"/>
+                <Label  x:Name="quantityPro" Text="1" FontSize="18"
+                        HorizontalOptions="Center" VerticalOptions="Center" 
+                        />
+                <ImageButton x:Name="" HorizontalOptions="Center" VerticalOptions="Center"  Source="plus.png" Padding="10" CornerRadius="50" WidthRequest="35" HeightRequest="35" BackgroundColor="#f7cd92"/>
+                <Frame Padding="0" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Button  Text="18.500đ" BackgroundColor="Orange" TextColor="White"/>
+                </Frame>
+            </StackLayout>
         </Frame>
-       
     </StackLayout>
 </base:BasePage>

@@ -88,7 +88,7 @@
                         <ImageButton CornerRadius="50" BackgroundColor="#f0daaa"  Source="coffee_cup.jpg" WidthRequest="35" HeightRequest="35"/>
                         <Label Text="Cà phê" FontSize="Large" FontAttributes="Bold"/>
                     </StackLayout>
-                    <ListView ItemsSource="{Binding ListDrinks}" SelectedItem="{Binding  SelectedDrink}"  HasUnevenRows="True" SelectionMode="None" >
+                    <ListView ItemsSource="{Binding ListDrinks}" SelectedItem="{Binding  SelectedDrink}"  HasUnevenRows="True"  >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -122,9 +122,9 @@
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                        <ListView.Behaviors>
+                        <!--<ListView.Behaviors>
                             <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"/>
-                        </ListView.Behaviors>
+                        </ListView.Behaviors>-->
                     </ListView>
                 </StackLayout>
 

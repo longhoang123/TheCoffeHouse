@@ -70,7 +70,8 @@ namespace TheCoffeHouse
 
 
 
-            
+
+            containerRegistry.RegisterForNavigation<ProductDetailPage, ProductDetailPageViewModel>();
         }
     }
 }

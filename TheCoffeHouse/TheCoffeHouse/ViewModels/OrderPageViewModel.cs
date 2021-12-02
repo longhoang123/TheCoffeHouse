@@ -62,6 +62,23 @@ namespace TheCoffeHouse.ViewModels
 
 
         #region Properties
+
+        private Drink  _selectedDrink;
+
+        public Drink SelectedDrink
+        {
+            get { return _selectedDrink; }
+            set 
+            { 
+                if(_selectedDrink != value)
+                {
+                    SetProperty(ref _selectedDrink, value);
+                    RaisePropertyChanged("SelectedDrink");
+                    handleSelectedItem();
+                }
+            }
+        }
+
         private ObservableCollection<Drink> _listBanner;
 
         public ObservableCollection<Drink> ListBanner
@@ -74,18 +91,7 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
-        private Drink _selectedDrink; 
-
-        public Drink ItemTappedCommand
-        {
-            get => _selectedDrink; 
-            set 
-            {
-                SetProperty(ref _selectedDrink, value);
-                RaisePropertyChanged();
-              
-            }
-        }
+      
 
         private ObservableCollection<Drink> _listDrinks;
 
@@ -95,7 +101,7 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _listDrinks, value);
-                //RaisePropertyChanged("HelloWord");
+                RaisePropertyChanged("ListDrinks");
             }
         }
 
@@ -107,13 +113,17 @@ namespace TheCoffeHouse.ViewModels
             set 
             {
                 SetProperty(ref _listCategory, value);
-                //RaisePropertyChanged()
+                RaisePropertyChanged("ListCategory");
             }
         }
         #endregion
-        #region ItemTappedListViewCommand
-       // public DelegateCommand ItemTappedCommand { get; set; }
-
+        #region selectedItemListview
+        private async void handleSelectedItem()
+        {
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("DrinkSelected", SelectedDrink);
+            await Navigation.NavigateAsync(PageManagement.ProductDetailPage, navParams);
+        }
         #endregion
     }
 }

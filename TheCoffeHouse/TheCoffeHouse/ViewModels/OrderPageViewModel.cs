@@ -28,7 +28,7 @@ namespace TheCoffeHouse.ViewModels
             PageTitle = "Đặt hàng";
             ListDrinks = new ObservableCollection<Drink>();
             ListCategory = new ObservableCollection<string>();
-            ListBanner = new ObservableCollection<ImageSource>();
+            ListBanner = new ObservableCollection<Drink>();
             //ItemTappedCommand = new DelegateCommand(ItemTapped);
         }
         
@@ -50,18 +50,21 @@ namespace TheCoffeHouse.ViewModels
             ListCategory.Add("Đá xay");
             ListCategory.Add("Bánh snack");
             ListCategory.Add("Combo");
-            for (var i = 0; i < 5; i++)
-            {
-                ListBanner.Add("Tradao.png");
-            }
+
+
+            ListBanner.Add(new Drink { IDDrink = 1, DrinkName = "Cà phê sữa đá", DrinkPrice = 50000, DrinkImage = "Tradao.jpg" });
+            ListBanner.Add(new Drink { IDDrink = 2, DrinkName = "Cà phê sữa nóng", DrinkPrice = 60000, DrinkImage = "Tradao.jpg" });
+            ListBanner.Add(new Drink { IDDrink = 3, DrinkName = "Cà phê đen", DrinkPrice = 70000, DrinkImage = "Tradao.jpg" });
+            ListBanner.Add(new Drink { IDDrink = 4, DrinkName = "Cà phê matcha", DrinkPrice = 40000, DrinkImage = "Tradao.jpg" });
+
         }
 
 
 
         #region Properties
-        private ObservableCollection<ImageSource> _listBanner;
+        private ObservableCollection<Drink> _listBanner;
 
-        public ObservableCollection<ImageSource> ListBanner
+        public ObservableCollection<Drink> ListBanner
         {
             get { return _listBanner; }
             set

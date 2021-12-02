@@ -150,13 +150,13 @@
                                     <Frame Padding="0"  CornerRadius="10">
                                         <Image
                                                     HorizontalOptions="Fill"
-                                                    Source="{Binding .}"
+                                                    Source="{Binding DrinkImage}"
                                                     WidthRequest="150"
                                                     VerticalOptions="Fill" />
                                             
                                     </Frame>
-                                    <Label Text="Trà đà Cam Sả - Đá"/>
-                                    <Label Text="45.000đ"/>
+                                        <Label Text="{Binding DrinkName}"/>
+                                        <Label Text="{Binding DrinkPrice, StringFormat='{0:#.0}'}"/>
                                     <Frame CornerRadius="10" Padding="0">
                                         <Button Text="Chọn" BackgroundColor="Orange" TextColor="White"/>
                                     </Frame>
@@ -169,7 +169,7 @@
                     </StackLayout>
                     <IndicatorView
                                 x:Name="indicatorView"
-                                IndicatorColor="LightGray"
+                                IndicatorColor="White"
                                 IndicatorsShape="Square"
                                 SelectedIndicatorColor="DarkGray" />
                         

@@ -6,17 +6,18 @@
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:prism="http://prismlibrary.com"
     xmlns:tabs="clr-namespace:TheCoffeHouse.Views.Tabs"
+    xmlns:views="clr-namespace:TheCoffeHouse.Views"
     android:TabbedPage.ToolbarPlacement="Bottom"
     prism:ViewModelLocator.AutowireViewModel="True"
     NavigationPage.HasNavigationBar="False"
     SelectedTabColor="#e47905"
     UnselectedTabColor="Black">
     <TabbedPage.Children>
-        <tabs:HomeTabPage Title="Trangchủ" IconImageSource="home.png" />
-        <tabs:HomeTabPage Title="Đặt hàng" IconImageSource="order.png" />
-        <tabs:HomeTabPage Title="Cửa hàng" IconImageSource="shop.png" />
-        <tabs:HomeTabPage Title="Tích điểm" IconImageSource="ticket.png" />
-        <tabs:HomeTabPage Title="Khác" IconImageSource="hamburger.png" />
+        <tabs:HomeTabPage Title="Home" IconImageSource="home.png" />
+        <views:OrderPage Title="Đặt hàng" IconImageSource="order.png" />
+        <views:StorePage Title="Cửa hàng" IconImageSource="shop.png" />
+        <views:CollectPointPage Title="Điểm" IconImageSource="ticket.png" />
+        <views:OtherPage Title="Khác" IconImageSource="hamburger.png" />
     </TabbedPage.Children>
 
 </TabbedPage>

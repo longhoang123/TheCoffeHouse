@@ -5,6 +5,7 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
 
@@ -19,6 +20,12 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
 
+        }
+
+        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedNewTo(parameters);
+            Drink selectedDrink = parameters.GetValue<Drink>("DrinkSelected");
         }
     }
 }

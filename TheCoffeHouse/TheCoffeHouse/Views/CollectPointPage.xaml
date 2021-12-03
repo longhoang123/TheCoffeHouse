@@ -1,113 +1,280 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="TheCoffeHouse.Views.CollectPointPage"
-             Title="Tích điểm">
+<base:BasePage
+    x:Class="TheCoffeHouse.Views.CollectPointPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+    xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+    xmlns:prism="http://prismlibrary.com"
+    Title="Tích điểm"
+    prism:ViewModelLocator.AutowireViewModel="True">
     <ScrollView>
         <StackLayout>
-            <StackLayout Orientation="Horizontal" Margin="5, 10, 5, 5">
-                <Button Text="Tích điểm" CornerRadius="20" BackgroundColor="White" WidthRequest="120" TextColor="DarkGoldenrod" BorderColor="DarkGoldenrod" BorderWidth="2" HeightRequest="40"></Button>
-                <Button Text="Đổi ưu đãi" CornerRadius="20" BackgroundColor="White" WidthRequest="120" Command="{Binding OpenExchangePromotionPage}" HeightRequest="40"></Button>
+            <StackLayout Margin="5,10,5,5" Orientation="Horizontal">
+                <Button
+                    BackgroundColor="White"
+                    BorderColor="DarkGoldenrod"
+                    BorderWidth="2"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    Text="Tích điểm"
+                    TextColor="DarkGoldenrod"
+                    WidthRequest="120" />
+                <Button
+                    BackgroundColor="White"
+                    Command="{Binding OpenExchangePromotionPage}"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    Text="Đổi ưu đãi"
+                    WidthRequest="120" />
             </StackLayout>
-            <StackLayout BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Padding="0,0,0,140">
-                <Frame Margin="10, 190, 10, 10" CornerRadius="10" BorderColor="Gainsboro" Padding="10, 10, 10, 10">
-                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="10,50,10,10">
+            <StackLayout
+                Padding="0,0,0,140"
+                BackgroundColor="WhiteSmoke"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Frame
+                    Margin="10,190,10,10"
+                    Padding="10,10,10,10"
+                    BorderColor="Gainsboro"
+                    CornerRadius="10">
+                    <StackLayout
+                        Padding="10,50,10,10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Mới" FontSize="Small" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontAttributes="Bold"></Label>
-                            <Label Text="Đồng" FontSize="Small" VerticalOptions="Center" HorizontalOptions="EndAndExpand" FontAttributes="Bold"></Label>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                HorizontalOptions="StartAndExpand"
+                                Text="Mới"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                HorizontalOptions="EndAndExpand"
+                                Text="Đồng"
+                                VerticalOptions="Center" />
                         </StackLayout>
-                        <Label BackgroundColor="DarkGoldenrod" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontSize="4"></Label>
-                        <Label Text="Còn 100 BEAN nữa bạn sẽ thăng hạng." VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
-                        <Label Text="Đổi quà không ảnh hưởng tới việc thăng hạng của bạn." VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
-                        <Label Text="Chưa tích điểm" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+                        <Label
+                            BackgroundColor="DarkGoldenrod"
+                            FontSize="4"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand" />
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Còn 100 BEAN nữa bạn sẽ thăng hạng."
+                            VerticalOptions="CenterAndExpand" />
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Đổi quà không ảnh hưởng tới việc thăng hạng của bạn."
+                            VerticalOptions="CenterAndExpand" />
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Chưa tích điểm"
+                            VerticalOptions="CenterAndExpand" />
                     </StackLayout>
                 </Frame>
-                <Frame CornerRadius="10" Margin=" 10,-380, 10, 10" Padding="20, 0, 20, 20" BackgroundColor="DarkOrange" Background="bg_art_coffee.jpg">
+                <Frame
+                    Margin="10,-380,10,10"
+                    Padding="20,0,20,20"
+                    Background="bg_art_coffee.jpg"
+                    BackgroundColor="DarkOrange"
+                    CornerRadius="10">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <StackLayout Padding="0, 10, 0, 0">
-                                <Label Text="Long Nguyễn" FontSize="Large" TextColor="White" FontAttributes="Bold"></Label>
-                                <Label Text="0 BEAN - Mới" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
+                            <StackLayout Padding="0,10,0,0">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    Text="Long Nguyễn"
+                                    TextColor="White" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="0 BEAN - Mới"
+                                    TextColor="White" />
                             </StackLayout>
-                            <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="EndAndExpand">
-                                <Frame  BackgroundColor="OrangeRed" CornerRadius="10" Margin="0" Padding="0">
+                            <StackLayout
+                                HorizontalOptions="EndAndExpand"
+                                Orientation="Horizontal"
+                                VerticalOptions="Start">
+                                <Frame
+                                    Margin="0"
+                                    Padding="0"
+                                    BackgroundColor="OrangeRed"
+                                    CornerRadius="10">
                                     <StackLayout Orientation="Horizontal">
-                                        <Image Source="User_active.png"></Image>
-                                        <Label Text="Tích điểm" Padding="5,10,5,10" TextColor="White"></Label>
+                                        <Image Source="User_active.png" />
+                                        <Label
+                                            Padding="5,10,5,10"
+                                            Text="Tích điểm"
+                                            TextColor="White" />
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
                         </StackLayout>
-                        <Frame BackgroundColor="White" CornerRadius="10" Margin="0,40,0,0" Padding="10" BorderColor="Transparent">
-                            <Image Source="BarCode.png" HeightRequest="80" WidthRequest="300"></Image>
+                        <Frame
+                            Margin="0,40,0,0"
+                            Padding="10"
+                            BackgroundColor="White"
+                            BorderColor="Transparent"
+                            CornerRadius="10">
+                            <Image
+                                HeightRequest="80"
+                                Source="BarCode.png"
+                                WidthRequest="300" />
                         </Frame>
                     </StackLayout>
                 </Frame>
             </StackLayout>
-            <Grid BackgroundColor="WhiteSmoke" Margin="0, -15, 0, 0" Padding="0,20,0,30">
+            <Grid
+                Margin="0,-15,0,0"
+                Padding="0,20,0,30"
+                BackgroundColor="WhiteSmoke">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" Grid.Row="0" BackgroundColor="White" CornerRadius="10" Margin="10,0,0,0" BorderColor="Transparent">
-                    <custom:CustomSmallButton ButtonText="Đổi ưu đãi" Source="giftbox.png"></custom:CustomSmallButton>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="10,0,0,0"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    CornerRadius="10">
+                    <custom:CustomSmallButton ButtonText="Đổi ưu đãi" Source="giftbox.png" />
                 </Frame>
-                <Frame Grid.Column="1" Grid.Row="0" BackgroundColor="White" CornerRadius="10" Margin="0,0,10,0" BorderColor="Transparent">
-                    <custom:CustomSmallButton ButtonText="Phiếu ưu đãi của bạn" Source="voucher.png"></custom:CustomSmallButton>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0,0,10,0"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    CornerRadius="10">
+                    <custom:CustomSmallButton ButtonText="Phiếu ưu đãi của bạn" Source="voucher.png" />
                 </Frame>
-                <Frame Grid.Column="0" Grid.Row="1" BackgroundColor="White" CornerRadius="10" Margin="10,0,0,0" BorderColor="Transparent">
-                    <custom:CustomSmallButton ButtonText="Lịch sử giao dịch" Source="coffeebeans.png"></custom:CustomSmallButton>
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="10,0,0,0"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    CornerRadius="10">
+                    <custom:CustomSmallButton ButtonText="Lịch sử giao dịch" Source="coffeebeans.png" />
                 </Frame>
-                <Frame Grid.Column="1" Grid.Row="1" BackgroundColor="White" CornerRadius="10" Margin="0,0,10,0" BorderColor="Transparent">
-                    <custom:CustomSmallButton ButtonText="Quyền lợi của bạn" Source="privacypolicy.png"></custom:CustomSmallButton>
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,0,10,0"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    CornerRadius="10">
+                    <custom:CustomSmallButton ButtonText="Quyền lợi của bạn" Source="privacypolicy.png" />
                 </Frame>
             </Grid>
-            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -10, 0, 0" Padding="10, 10, 10, 10" BackgroundColor="WhiteSmoke">
-                <Label Text="Phiếu ưu đã của bạn" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
-                <Button Text="Xem tất cả" BackgroundColor="AntiqueWhite" TextColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" FontSize="Small" HeightRequest="40" Command="{Binding OpenAllCouponPage}"></Button>
+            <StackLayout
+                Margin="0,-10,0,0"
+                Padding="10,10,10,10"
+                BackgroundColor="WhiteSmoke"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Phiếu ưu đã của bạn"
+                    TextColor="Black" />
+                <Button
+                    BackgroundColor="AntiqueWhite"
+                    Command="{Binding OpenAllCouponPage}"
+                    CornerRadius="20"
+                    FontSize="Small"
+                    HeightRequest="40"
+                    HorizontalOptions="EndAndExpand"
+                    Text="Xem tất cả"
+                    TextColor="DarkOrange"
+                    VerticalOptions="CenterAndExpand" />
             </StackLayout>
 
-            <StackLayout  Margin="0, -10, 0, 0" Padding="5, 10, 5, 20" BackgroundColor="WhiteSmoke" HeightRequest="430">
+            <StackLayout
+                Margin="0,-10,0,0"
+                Padding="5,10,5,20"
+                BackgroundColor="WhiteSmoke"
+                HeightRequest="430">
                 <ListView HasUnevenRows="True" ItemsSource="{Binding ListCoupon}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame Margin="5" Padding="5" CornerRadius="10" BorderColor="Transparent">
-                                    <custom:CustomCouponFrame TitleText="{Binding Title}" Source="coupon15.jpg" DateText="{Binding Date}"></custom:CustomCouponFrame>
+                                <Frame
+                                    Margin="5"
+                                    Padding="5"
+                                    BorderColor="Transparent"
+                                    CornerRadius="10">
+                                    <custom:CustomCouponFrame
+                                        DateText="{Binding Date}"
+                                        Source="coupon15.jpg"
+                                        TitleText="{Binding Title}" />
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.Behaviors>
-                        <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OpenDetailCouponPage}"/>
+                        <prism:EventToCommandBehavior Command="{Binding OpenDetailCouponPage}" EventName="ItemTapped" />
                     </ListView.Behaviors>
                 </ListView>
             </StackLayout>
-            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0, -10, 0, 0" Padding="10, 10, 10, 10" BackgroundColor="WhiteSmoke">
-                <Label Text="Đổi ưu đãi" FontSize="Large" FontAttributes="Bold" TextColor="Black"></Label>
-                <Button Text="Xem tất cả" BackgroundColor="AntiqueWhite" TextColor="DarkOrange" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" FontSize="Small" HeightRequest="40" Command="{Binding OpenExchangePromotionPage}"></Button>
+            <StackLayout
+                Margin="0,-10,0,0"
+                Padding="10,10,10,10"
+                BackgroundColor="WhiteSmoke"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Đổi ưu đãi"
+                    TextColor="Black" />
+                <Button
+                    BackgroundColor="AntiqueWhite"
+                    Command="{Binding OpenExchangePromotionPage}"
+                    CornerRadius="20"
+                    FontSize="Small"
+                    HeightRequest="40"
+                    HorizontalOptions="EndAndExpand"
+                    Text="Xem tất cả"
+                    TextColor="DarkOrange"
+                    VerticalOptions="CenterAndExpand" />
             </StackLayout>
-            <StackLayout  Margin="0, -10, 0, 0" Padding="-5, 10, -5, 20" BackgroundColor="WhiteSmoke" HeightRequest="300">
-                <ListView ItemsSource="{Binding ListPromotion}" HasUnevenRows="True">
+            <StackLayout
+                Margin="0,-10,0,0"
+                Padding="-5,10,-5,20"
+                BackgroundColor="WhiteSmoke"
+                HeightRequest="300">
+                <ListView HasUnevenRows="True" ItemsSource="{Binding ListPromotion}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame Padding="20,0,20,0" Margin="0,-10,0,0" BorderColor="Transparent">
-                                    <custom:CustomPromotionFrame BrandText="{Binding Brand}" DesText="{Binding Description}" NumPointText="{Binding NumPoint}" Source="coolmate.jpg"></custom:CustomPromotionFrame>
+                                <Frame
+                                    Margin="0,-10,0,0"
+                                    Padding="20,0,20,0"
+                                    BorderColor="Transparent">
+                                    <custom:CustomPromotionFrame
+                                        BrandText="{Binding Brand}"
+                                        DesText="{Binding Description}"
+                                        NumPointText="{Binding NumPoint}"
+                                        Source="coolmate.jpg" />
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.Behaviors>
-                        <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OpenDetailPromotionPage}"/>
+                        <prism:EventToCommandBehavior Command="{Binding OpenDetailPromotionPage}" EventName="ItemTapped" />
                     </ListView.Behaviors>
                 </ListView>
             </StackLayout>

@@ -8,6 +8,7 @@ namespace TheCoffeHouse.Views
         {
             InitializeComponent();
             
+            
         }
     }
 }

@@ -11,6 +11,10 @@
                 <controls:HeaderView Title="Chào bạn mới" />
             </ControlTemplate>
 
+            <ControlTemplate x:Key="OtherPageTemplete">
+                <controls:HeaderView Title="Khác" IsHaveIcon="False" />
+            </ControlTemplate>
+
             <Color x:Key="MainColor">#e47905</Color>
             <Color x:Key="facebook_color">#1976d3</Color>
             <Color x:Key="light_gray">#e8e8e8</Color>

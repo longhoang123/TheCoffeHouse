@@ -1,77 +1,150 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BasePage  xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" 
-                xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="TheCoffeHouse.Views.StorePage"
-                NavigationPage.HasNavigationBar="False"
-                Title="{Binding PageTitle}">
-    <StackLayout >
-        <Frame BorderColor="Gray"  Padding="15,5,15,5" Margin="0" >
+<base:BasePage
+    x:Class="TheCoffeHouse.Views.StorePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding PageTitle}"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False">
+    <StackLayout>
+        <Frame
+            Margin="0"
+            Padding="15,5,15,5"
+            BorderColor="Gray">
             <StackLayout HeightRequest="120">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Cửa hàng" FontSize="25" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="Start" />
-                    <ImageButton Margin="0,4,0,4" Source="notification.png" Padding="5" WidthRequest="50" HeightRequest="40" BorderWidth="0.5" BorderColor="Gray" BackgroundColor="White" 
-                                 CornerRadius="40" HorizontalOptions="EndAndExpand"  />
-                    <ImageButton  Source="notification.png" Padding="10" WidthRequest="50" HeightRequest="40" BorderWidth="0.5" BorderColor="Gray" BackgroundColor="White" 
-                                 CornerRadius="40" HorizontalOptions="End"  />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="Start"
+                        Text="Cửa hàng"
+                        VerticalOptions="CenterAndExpand" />
+                    <ImageButton
+                        Margin="0,4,0,4"
+                        Padding="5"
+                        BackgroundColor="White"
+                        BorderColor="Gray"
+                        BorderWidth="0.5"
+                        CornerRadius="40"
+                        HeightRequest="40"
+                        HorizontalOptions="EndAndExpand"
+                        Source="notification.png"
+                        WidthRequest="50" />
+                    <ImageButton
+                        Padding="10"
+                        BackgroundColor="White"
+                        BorderColor="Gray"
+                        BorderWidth="0.5"
+                        CornerRadius="40"
+                        HeightRequest="40"
+                        HorizontalOptions="End"
+                        Source="notification.png"
+                        WidthRequest="50" />
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
-                    <Frame CornerRadius="5" Padding="0" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand" WidthRequest="270">
-                        <StackLayout Orientation="Horizontal" Padding="4">
-                            <ImageButton HorizontalOptions="CenterAndExpand" Source="Search.png" WidthRequest="18" HeightRequest="18"/>
-                            <Entry TextColor="Gray"  HorizontalOptions="StartAndExpand"  VerticalOptions="Center" Placeholder="Nhập tên đường"/>
+                <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="LightGray"
+                        CornerRadius="5"
+                        HorizontalOptions="StartAndExpand"
+                        WidthRequest="270">
+                        <StackLayout Padding="4" Orientation="Horizontal">
+                            <ImageButton
+                                HeightRequest="18"
+                                HorizontalOptions="CenterAndExpand"
+                                Source="Search.png"
+                                WidthRequest="18" />
+                            <Entry
+                                HorizontalOptions="StartAndExpand"
+                                Placeholder="Nhập tên đường"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
                         </StackLayout>
                     </Frame>
-                    <StackLayout  Orientation="Horizontal" >
-                        <Image Source="map.png" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="20"/>
-                        <Label Text="Bản đồ" Margin="5,0,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="18"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Image
+                            HorizontalOptions="StartAndExpand"
+                            Source="map.png"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="20" />
+                        <Label
+                            Margin="5,0,0,0"
+                            FontSize="18"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Bản đồ"
+                            VerticalOptions="CenterAndExpand" />
                     </StackLayout>
                 </StackLayout>
-                
+
             </StackLayout>
         </Frame>
-        <ScrollView BackgroundColor="LightGray" >
-            <StackLayout Margin="0,15,0,0" >
-                <Label Text="Các cửa hàng khác" FontSize="Large" TextColor="Black" FontAttributes="Bold" Margin="15,5,0,0"/>
-                <ListView x:Name="listStore" ItemsSource="{Binding ListStore}" VerticalScrollBarVisibility="Never"  Margin="15" HasUnevenRows="True"  
-                          >
+        <ScrollView BackgroundColor="LightGray">
+            <StackLayout Margin="0,15,0,0">
+                <Label
+                    Margin="15,5,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="Các cửa hàng khác"
+                    TextColor="Black" />
+                <ListView
+                    x:Name="listStore"
+                    Margin="15"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding ListStore}"
+                    VerticalScrollBarVisibility="Never">
                     <ListView.ItemTemplate>
-                        <DataTemplate >
+                        <DataTemplate>
                             <ViewCell>
-                                <Frame CornerRadius="10" BorderColor="#e3dede" >
+                                <Frame
+                                    Margin="0,10"
+                                    BorderColor="#e3dede"
+                                    CornerRadius="10">
                                     <Grid Padding="5" ColumnSpacing="15">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="2*"/>
-                                            <ColumnDefinition Width="0.5*"/>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="0.5*" />
                                         </Grid.ColumnDefinitions>
-                                        <Image Aspect="AspectFill" Source="{Binding StoreImage}" WidthRequest="95" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center"
-                                        Grid.Row ="0" Grid.Column="0" Grid.RowSpan="4"
-                                       />
-                                        <Label Text="{Binding StoreName}" FontSize="15" VerticalOptions="End"
-                                       Grid.Column="1" Grid.Row="0" 
-                                       />
-                                        <Label Text="{Binding StoreAddress}"
-                                          
-                                       FontSize="18" FontAttributes="Bold"
-                                       Grid.Column="1" Grid.Row="1" 
-                                       />
-                                        <Label Text="{Binding StoreDistance}" 
-                                           VerticalOptions="Start"
-                                       FontSize="15" FontAttributes="Bold"
-                                       Grid.Column="1" Grid.Row="3" 
-                                       />
+                                        <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="100"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding StoreImage}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="95" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="15"
+                                            Text="{Binding StoreName}"
+                                            VerticalOptions="End" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            Text="{Binding StoreAddress}" />
+                                        <Label
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="15"
+                                            Text="{Binding StoreDistance}"
+                                            VerticalOptions="Start" />
                                     </Grid>
                                 </Frame>
-                               
+
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

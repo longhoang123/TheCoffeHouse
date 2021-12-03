@@ -21,9 +21,15 @@ namespace TheCoffeHouse.Controls
                 Source = this,
                 Mode = BindingMode.TwoWay
             });
+            icon.SetBinding(Image.IsVisibleProperty, new Binding
+            {
+                Path = nameof(IsHaveIcon),
+                Source = this,
+                Mode = BindingMode.TwoWay
+            });
         }
 
-        #region Text
+        #region Title
         public static readonly BindableProperty TitleProperty
        = BindableProperty.Create(nameof(Title),
            typeof(string),
@@ -42,6 +48,30 @@ namespace TheCoffeHouse.Controls
             set
             {
                 SetValue(TitleProperty, value);
+            }
+        }
+
+        #endregion
+
+        #region IsHaveIcon
+        public static readonly BindableProperty IsHaveIconProperty
+       = BindableProperty.Create(nameof(IsHaveIcon),
+           typeof(bool),
+           typeof(HeaderView),
+           defaultValue: true,
+           defaultBindingMode: BindingMode.TwoWay);
+
+
+
+        public bool IsHaveIcon
+        {
+            get
+            {
+                return (bool)GetValue(IsHaveIconProperty);
+            }
+            set
+            {
+                SetValue(IsHaveIconProperty, value);
             }
         }
 

@@ -23,12 +23,12 @@ namespace TheCoffeHouse.ViewModels
         {
             PageTitle = "Cửa hàng";
             ListStore = new ObservableCollection<Store>();
+            initData();
 
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
-            initData();
         }
         void initData()
         {
@@ -47,7 +47,7 @@ namespace TheCoffeHouse.ViewModels
         {
             get { return _listStore; }
             set {
-                SetProperty(ref _listStore, value);
+                SetProperty(ref _listStore, value);               
             }
         }
 

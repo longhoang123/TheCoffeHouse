@@ -112,7 +112,7 @@
                 <Label  x:Name="quantityPro" Text="1" FontSize="18"
                         HorizontalOptions="Center" VerticalOptions="Center" 
                         />
-                <ImageButton x:Name="" HorizontalOptions="Center" VerticalOptions="Center"  Source="plus.png" Padding="10" CornerRadius="50" WidthRequest="35" HeightRequest="35" BackgroundColor="#f7cd92"/>
+                <ImageButton x:Name="imageButton" HorizontalOptions="Center" VerticalOptions="Center"  Source="plus.png" Padding="10" CornerRadius="50" WidthRequest="35" HeightRequest="35" BackgroundColor="#f7cd92"/>
                 <Frame Padding="0" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
                     <Button  Text="18.500đ" BackgroundColor="Orange" TextColor="White"/>
                 </Frame>

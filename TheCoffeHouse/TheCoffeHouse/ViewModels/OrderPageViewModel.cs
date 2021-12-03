@@ -30,12 +30,13 @@ namespace TheCoffeHouse.ViewModels
             ListCategory = new ObservableCollection<string>();
             ListBanner = new ObservableCollection<Drink>();
             //ItemTappedCommand = new DelegateCommand(ItemTapped);
+            InitData();
+
         }
-        
+
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
-            InitData();
 
         }
         void InitData()

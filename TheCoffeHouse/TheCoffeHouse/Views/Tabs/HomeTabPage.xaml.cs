@@ -6,7 +6,9 @@ namespace TheCoffeHouse.Views.Tabs
     {
         public HomeTabPage()
         {
+
             InitializeComponent();
+            
         }
     }
 }

@@ -82,7 +82,7 @@
     <EmbeddedResource Update="Views\AddressPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CollectPointPage.xaml">
+    <EmbeddedResource Update="Views\Tabs\CollectPointPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContactPage.xaml">
@@ -94,7 +94,7 @@
     <EmbeddedResource Update="Views\HistoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OrderPage.xaml">
+    <EmbeddedResource Update="Views\Tabs\OrderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PersonalInfoPage.xaml">
@@ -109,7 +109,7 @@
     <EmbeddedResource Update="Views\VotePage.xaml">
 		<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
-    <EmbeddedResource Update="Views\StorePage.xaml">
+    <EmbeddedResource Update="Views\Tabs\StorePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

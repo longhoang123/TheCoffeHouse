@@ -5,7 +5,7 @@
              xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
                prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.DetailPromotionPage">
-    <Grid>
+    <Grid BindableLayout.ItemsSource="{Binding PromotionInfo}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>

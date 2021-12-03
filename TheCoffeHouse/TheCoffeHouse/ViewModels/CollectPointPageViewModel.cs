@@ -26,7 +26,6 @@ namespace TheCoffeHouse.ViewModels
             initcoupon();
             OpenAllCouponPage = new DelegateCommand(OpenAllCouponPageExcute);
             OpenDetailCouponPage = new DelegateCommand(OpenDetailCouponPageExcute);
-            OpenDetailPromotionPage = new DelegateCommand(OpenDetailPromotionPageExcute);
             OpenExchangePromotionPage = new DelegateCommand(OpenExchangePromotionPageExcute);
         }
         private void initcoupon()
@@ -39,11 +38,14 @@ namespace TheCoffeHouse.ViewModels
         }
 
         #region OpenPage
+
+
         
-        public ICommand OpenDetailPromotionPage { get; set; }
         private async void OpenDetailPromotionPageExcute()
         {
-            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage);
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("PromotionSelected", SelectedPromotion);
+            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage, navParams);
         }
 
         public ICommand OpenExchangePromotionPage { get; set; }
@@ -91,6 +93,24 @@ namespace TheCoffeHouse.ViewModels
             }
         }
         #endregion
+
+        #region SelectedPromotion
+        private Promotion _selectedPromotion;
+        public Promotion SelectedPromotion
+        {
+            get => _selectedPromotion;
+            set
+            {
+                if(_selectedPromotion != value)
+                {
+                    SetProperty(ref _selectedPromotion, value);
+                    RaisePropertyChanged("SelectedPromotion");
+                    OpenDetailPromotionPageExcute();
+                }
+            }
+        }
+        #endregion
+
 
     }
 }

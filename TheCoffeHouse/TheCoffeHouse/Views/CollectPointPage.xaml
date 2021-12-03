@@ -256,7 +256,9 @@
                 Padding="-5,10,-5,20"
                 BackgroundColor="WhiteSmoke"
                 HeightRequest="300">
-                <ListView HasUnevenRows="True" ItemsSource="{Binding ListPromotion}">
+                <ListView HasUnevenRows="True" 
+                          ItemsSource="{Binding ListPromotion}"
+                          SelectedItem="{Binding SelectedPromotion}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -273,9 +275,6 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <ListView.Behaviors>
-                        <prism:EventToCommandBehavior Command="{Binding OpenDetailPromotionPage}" EventName="ItemTapped" />
-                    </ListView.Behaviors>
                 </ListView>
             </StackLayout>
         </StackLayout>

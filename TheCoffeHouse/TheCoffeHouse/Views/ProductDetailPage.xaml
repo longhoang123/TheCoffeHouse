@@ -9,7 +9,7 @@
             <Grid RowDefinitions="3*, 7*" VerticalOptions="Fill">
                 <!--Hình sp-->
                 <Frame Padding="0" CornerRadius="10" HasShadow="False" >
-                    <Image Source="Tradao.jpg"  />
+                    <Image x:Name="ImageProduct" Source="{Binding ImagePro}"  />
                 </Frame>
                 <Image
                 Margin="15"
@@ -27,7 +27,7 @@
                     <!--Thông tin sản phẩm-->
                     <Frame  Margin="0,-10,0,0" VerticalOptions="Fill" HasShadow="False"  BorderColor="Transparent" Padding="20,10,10,5"  >
                         <Grid RowDefinitions="1*,1*,1*,2*" ColumnDefinitions="3*,1*" RowSpacing="5" ColumnSpacing="0">
-                            <Label FontSize="25"  FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start" Text="Cà phê sữa đá"/>
+                            <Label FontSize="25"  FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start" Text="{Binding NamePro}"/>
                             <ImageButton Grid.Column="1" 
                                          BackgroundColor="Transparent"
                                          Source="heart.png" 
@@ -39,11 +39,11 @@
                                 <Label Text="35%" Padding="5" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
                             </Frame>
                             <Label Grid.Row="2" x:Name="Price" 
-                                   FontSize="18" Text="18.500đ"/>
+                                   FontSize="18" Text="{Binding PricePro}"/>
                             <Label Grid.Row="3"
                                    Grid.ColumnSpan="2" 
                                    FontSize="15"
-                                   Text="Cà phê ĐakLak nguyên chất được pha phin truyền thống kết hợp  với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát."/>
+                                   Text="{Binding DesPro}"/>
                         </Grid>
                     </Frame >
                     <!--Chọn khuyến mãi-->

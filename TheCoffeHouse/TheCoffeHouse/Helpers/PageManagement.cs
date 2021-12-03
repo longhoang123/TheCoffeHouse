@@ -112,7 +112,7 @@ namespace TheCoffeHouse.Helpers
         public readonly static string OrderPage = "OrderPage";
         public readonly static string StorePage = "StorePage";
         public readonly static string ProductDetailPage = "ProductDetailPage";
-
+        public readonly static string StoreDetailPage = "StoreDetailPage";
 
         #endregion
     }

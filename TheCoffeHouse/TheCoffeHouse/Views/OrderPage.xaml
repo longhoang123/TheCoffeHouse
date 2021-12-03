@@ -58,7 +58,7 @@
         </StackLayout>
         <!--  Content  -->
         <ScrollView BackgroundColor="White">
-            <StackLayout>
+            <StackLayout Spacing="20">
                 <!--  Container category  -->
                 <FlexLayout
                     Margin="20,0,0,5"
@@ -191,9 +191,12 @@
                             Text="Cà phê" />
                     </StackLayout>
                     <ListView
+                        Margin="0,0,0,-80"
+                        SelectionMode="None"
                         HasUnevenRows="True"
                         ItemsSource="{Binding ListDrinks}"
-                        SelectedItem="{Binding SelectedDrink}">
+                        SelectedItem="{Binding SelectedDrink}"
+                        HorizontalOptions="Fill">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -253,7 +256,7 @@
                 </StackLayout>
 
                 <!--  Carousel Đặt gần đây  -->
-                <StackLayout Margin="20,-80,0,0" HeightRequest="350">
+                <StackLayout Margin="20,0,0,0" HeightRequest="370">
                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
 
                         <ImageButton
@@ -268,17 +271,10 @@
                             Text="Đặt gần đây" />
 
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-
-                        <CarouselView
-                            HorizontalOptions="FillAndExpand"
-                            IndicatorView="indicatorView"
-                            ItemsSource="{Binding ListBanner}"
-                            PeekAreaInsets="100">
-                            <CarouselView.ItemsLayout>
-                                <LinearItemsLayout ItemSpacing="30" Orientation="Horizontal" />
-                            </CarouselView.ItemsLayout>
-                            <CarouselView.ItemTemplate>
+                  
+                    <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" >
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding ListBanner}">
+                            <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout Padding="5,0">
                                         <Frame Padding="0" CornerRadius="10">
@@ -286,13 +282,14 @@
                                                 HorizontalOptions="Fill"
                                                 Source="{Binding DrinkImage}"
                                                 VerticalOptions="Fill"
-                                                WidthRequest="150" />
+                                                WidthRequest="180" />
 
                                         </Frame>
-                                        <Label Text="{Binding DrinkName}" />
-                                        <Label Text="{Binding DrinkPrice, StringFormat='{0:#.0}'}" />
-                                        <Frame Padding="0" CornerRadius="10">
+                                        <Label Text="{Binding DrinkName}" FontAttributes="Bold" FontSize="Large" Margin="0,0,0,10" />
+                                        <Label Text="{Binding DrinkPrice, StringFormat='{0:#,0}'}" FontSize="18" />
+                                        <Frame Padding="0" CornerRadius="10" VerticalOptions="Center">
                                             <Button
+                                               
                                                 BackgroundColor="Orange"
                                                 Text="Chọn"
                                                 TextColor="White" />
@@ -300,19 +297,12 @@
 
                                     </StackLayout>
                                 </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>
-
-                    </StackLayout>
-                    <IndicatorView
-                        x:Name="indicatorView"
-                        IndicatorColor="White"
-                        IndicatorsShape="Square"
-                        SelectedIndicatorColor="DarkGray" />
-
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
 
-                <StackLayout Margin="0,0,0,0">
+                <StackLayout  Margin="20,10,0,0">
                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
 
                         <ImageButton

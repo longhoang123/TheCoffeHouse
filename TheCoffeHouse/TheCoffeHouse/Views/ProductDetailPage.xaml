@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BasePage  xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" xmlns="http://xamarin.com/schemas/2014/forms"
+<base:BasePage  xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" 
+                xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:renderer ="clr-namespace:TheCoffeHouse.Renderers"
+            xmlns:local="clr-namespace:Sample.InputKit"
+            xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              x:Class="TheCoffeHouse.Views.ProductDetailPage">
     <StackLayout>
         <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
@@ -62,13 +66,16 @@
                     <!--Chọn size-->
                         <Frame HasShadow="False"  BorderColor="Transparent">
                         <StackLayout>
-                            <Grid RowDefinitions="*,*">
+                            <input:RadioButtonGroupView HorizontalOptions="StartAndExpand">
+                                <Grid RowDefinitions="*,*">
                                 <Label Text="Size*" FontAttributes="Bold" FontSize="25" />
                                 <Label Grid.Row="1" Text="Chọn 1 loại size" FontSize="15" />
                             </Grid>
                             <StackLayout Grid.Row="1" Spacing="20">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Nhỏ" HorizontalOptions="StartAndExpand"/>
+
+                                        <input:RadioButton Color="Orange" TextFontSize="18" Text="Nhỏ" HorizontalOptions="StartAndExpand" />
+                                
                                     <Label Text="+0đ" HorizontalOptions="End"/>
                                 </StackLayout>
                                 <BoxView  
@@ -77,7 +84,9 @@
                                          HorizontalOptions="Fill" 
                                          />
                                 <StackLayout Orientation="Horizontal" >
-                                    <Label Text="Vừa" HorizontalOptions="StartAndExpand" />
+
+                                    <input:RadioButton Color="Orange" TextFontSize="18" HorizontalOptions="StartAndExpand" Text="Vừa" />
+                                 
                                     <Label Text="+6.000đ" HorizontalOptions="End"/>
                                 </StackLayout>
                                 <BoxView 
@@ -86,10 +95,13 @@
                                          HorizontalOptions="Fill" 
                                          />
                                 <StackLayout Orientation="Horizontal" >
-                                    <Label Text="Lớn" HorizontalOptions="StartAndExpand" />
+
+                                        <input:RadioButton Color="Orange" TextFontSize="18"  HorizontalOptions="StartAndExpand" Text="Lớn" />
+                                 
                                     <Label Text="+10.000đ" HorizontalOptions="End"/>
                                 </StackLayout>
                             </StackLayout>
+                            </input:RadioButtonGroupView>
                         </StackLayout>
                     </Frame>
                     <Frame HasShadow="False" BorderColor="Transparent">
@@ -99,7 +111,12 @@
                                 <Label Grid.Row="1" Text="Những tùy chọn khác" FontSize="15" />
                             </Grid>
                             <Frame Padding="10" CornerRadius="10">
-                                <Entry Placeholder="Thêm ghi chú"/>
+                                <renderer:CustomEntry
+                                    Margin="0,0,0,0"    
+                                    Keyboard="Telephone"
+                                    Placeholder="Thêm ghi chú"
+                                    TextColor="Black"
+                                    />
                             </Frame>
                         </StackLayout>
                     </Frame>
@@ -108,13 +125,14 @@
         </ScrollView>
         <Frame Padding="0" >
             <StackLayout Margin="20,0,20,0" Orientation="Horizontal" HorizontalOptions="Fill"  HeightRequest="80" Spacing="15">
-                <ImageButton HorizontalOptions="Center" VerticalOptions="Center"  Source="plus.png" Padding="10" CornerRadius="50" WidthRequest="35" HeightRequest="35" BackgroundColor="#f7cd92"/>
-                <Label  x:Name="quantityPro" Text="1" FontSize="18"
+                <ImageButton HorizontalOptions="Center" VerticalOptions="Center"  Source="minus.png" Padding="10" CornerRadius="50" WidthRequest="40" HeightRequest="40" BackgroundColor="#f7cd92"/>
+                <Label  x:Name="quantityPro" Text="1" FontSize="20" FontAttributes="Bold"
                         HorizontalOptions="Center" VerticalOptions="Center" 
                         />
-                <ImageButton x:Name="imageButton" HorizontalOptions="Center" VerticalOptions="Center"  Source="plus.png" Padding="10" CornerRadius="50" WidthRequest="35" HeightRequest="35" BackgroundColor="#f7cd92"/>
-                <Frame Padding="0" CornerRadius="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
-                    <Button  Text="18.500đ" BackgroundColor="Orange" TextColor="White"/>
+                <ImageButton HorizontalOptions="Center" VerticalOptions="Center"  Source="add.png" Padding="10" CornerRadius="50" WidthRequest="40" HeightRequest="40" BackgroundColor="#f7cd92"/>
+
+                <Frame Padding="0" CornerRadius="10" Margin="10,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Button  Text="18.500đ" BackgroundColor="Orange" FontSize="25" TextColor="White" FontAttributes="Bold"/>
                 </Frame>
             </StackLayout>
         </Frame>

@@ -85,6 +85,9 @@
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.0.0.1909" />
+    <PackageReference Include="Xamarin.Forms.InputKit">
+      <Version>3.7.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainApplication.cs" />
@@ -333,6 +336,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

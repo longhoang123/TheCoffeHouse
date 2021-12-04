@@ -15,6 +15,14 @@
                 <controls:HeaderView Title="Khác" IsHaveIcon="False" />
             </ControlTemplate>
 
+            <ControlTemplate x:Key="OrderPageTemplate">
+                <controls:HeaderOrderPage Title="Danh mục"  />
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="StorePageTemplate">
+                <controls:HeaderStorePage Title="Cửa hàng"  />
+            </ControlTemplate>
+
             <Color x:Key="MainColor">#e47905</Color>
             <Color x:Key="facebook_color">#1976d3</Color>
             <Color x:Key="light_gray">#e8e8e8</Color>

@@ -7,9 +7,10 @@
     xmlns:prism="http://prismlibrary.com"
     Title="{Binding PageTitle}"
     prism:ViewModelLocator.AutowireViewModel="True"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    ControlTemplate="{StaticResource StorePageTemplate}">
     <StackLayout>
-        <Frame
+        <!--<Frame
             Margin="0"
             Padding="15,5,15,5"
             BorderColor="Gray">
@@ -79,7 +80,7 @@
                 </StackLayout>
 
             </StackLayout>
-        </Frame>
+        </Frame>-->
         <ScrollView BackgroundColor="LightGray">
             <StackLayout Margin="0,15,0,0">
                 <Label
@@ -90,7 +91,7 @@
                     TextColor="Black" />
                 <ListView
                     x:Name="listStore"
-                    Margin="15"
+                    Margin="10"
                     HasUnevenRows="True"
                     SelectedItem="{Binding SelectedStored}"
                     ItemsSource="{Binding ListStore}"

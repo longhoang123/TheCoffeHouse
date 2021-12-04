@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage  xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" 
+                xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.StoreDetailPage">
+    <StackLayout>
+        <ScrollView Orientation="Vertical"  >
+            <Grid RowDefinitions="3*, 7*" >
+                <!--Hình sp-->
+                <ScrollView Orientation="Horizontal"  HorizontalScrollBarVisibility="Never" >
+                    <StackLayout Orientation="Horizontal"  Spacing="0.5"  >
+                        <Frame Padding="0">
+                            <Image WidthRequest="300"  Aspect="AspectFill" Source="{Binding ImgStore}"  />
+                        </Frame>
+                        <Frame Padding="0">
+                            <Image WidthRequest="300"  Aspect="AspectFill" Source="{Binding ImgStore}"  />
+                        </Frame>
+
+                    </StackLayout>
+                </ScrollView>
+                <Image
+                Margin="15"
+                HeightRequest="30"
+                HorizontalOptions="End"
+                Source="cancelDetailPro.png"
+                VerticalOptions="Start"
+                WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout Grid.Row="1" >
+                    <StackLayout Padding="20,20,0,0" HorizontalOptions="Start">
+                        <Label Text="THE COFFEE HOUSE"/>
+                        <Label Text="{Binding Store_Name}" FontSize="Large" FontAttributes="Bold"/>
+                        <Label Text="Giờ mở cửa 7:00-21:00"/>
+                    </StackLayout>
+                    <Grid VerticalOptions="FillAndExpand" ColumnDefinitions="*,5*" Padding="20,0,0,0" ColumnSpacing="20">
+                        <StackLayout Spacing="18" >
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill"/>
+                            <ImageButton  BackgroundColor="WhiteSmoke"   Source="ShareAdd.png" Padding="15" WidthRequest="30" HeightRequest="50" VerticalOptions="Center" CornerRadius="15"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill"/>
+                            <ImageButton  BackgroundColor="WhiteSmoke"  Source="heart.png" Padding="15" WidthRequest="30" HeightRequest="50" VerticalOptions="Center" CornerRadius="15"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill"/>
+                            <ImageButton  BackgroundColor="WhiteSmoke"  Source="share.png" Padding="15" WidthRequest="30" HeightRequest="50" VerticalOptions="Center" CornerRadius="15"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill"/>
+                            <ImageButton  BackgroundColor="WhiteSmoke"  Source="phone.png" Padding="15" WidthRequest="30" HeightRequest="50" VerticalOptions="Center" CornerRadius="15"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Spacing="30">
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill"/>
+                            <Label Text="{Binding Store_Add}" FontSize="20" FontAttributes="Bold"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Gainsboro"/>
+                            <Label Text="Thêm vào danh sách yêu thích" FontSize="18"/>
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Gainsboro"/>
+                            <Label Text="Chia sẻ địa chỉ" FontSize="18" />
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Gainsboro"/>
+                            <Label Text="Liên hệ: 18006936" FontSize="18" />
+                            <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Gainsboro"/>
+                        </StackLayout>
+                       
+                    </Grid>
+                    
+                    <BoxView CornerRadius="20" VerticalOptions="Center" Margin="20" HeightRequest="250" BackgroundColor="Gray">
+
+                    </BoxView>
+                    <Frame Padding="0" CornerRadius="20"  VerticalOptions="Center" Margin="20" HeightRequest="70">
+                        <Button FontSize="15" Text="Đặt sản phẩm" FontAttributes="Bold"  BackgroundColor="Orange" TextColor="White" />
+                    </Frame>
+                </StackLayout>
+               
+            </Grid>
+            
+        </ScrollView>
+    </StackLayout>
+</base:BasePage>

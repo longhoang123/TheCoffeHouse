@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
@@ -41,6 +42,24 @@ namespace TheCoffeHouse.ViewModels
 
         }
         #region Properties
+        private Store _selectedStored;
+
+        public Store SelectedStored
+        {
+            get { return _selectedStored; }
+            set 
+            { 
+                if(_selectedStored != value)
+                {
+                    SetProperty(ref _selectedStored, value);
+                    RaisePropertyChanged("SelectedStored");
+                    handleSelectedItem();
+                }
+            }
+        }
+
+       
+
         private ObservableCollection<Store> _listStore;
 
         public ObservableCollection<Store> ListStore
@@ -51,6 +70,14 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
+        #endregion
+        #region selectedItemListview
+        private async void handleSelectedItem()
+        {
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("StoreSelected", SelectedStored);
+            await Navigation.NavigateAsync(PageManagement.StoreDetailPage, navParams);
+        }
         #endregion
     }
 }

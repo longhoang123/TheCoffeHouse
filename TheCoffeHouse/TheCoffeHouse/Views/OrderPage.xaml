@@ -192,7 +192,7 @@
                     </StackLayout>
                     <ListView
                         Margin="0,0,0,-80"
-                        SelectionMode="None"
+                        
                         HasUnevenRows="True"
                         ItemsSource="{Binding ListDrinks}"
                         SelectedItem="{Binding SelectedDrink}"
@@ -272,7 +272,7 @@
 
                     </StackLayout>
                   
-                    <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" >
+                    <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" HorizontalScrollBarVisibility="Never" >
                         <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding ListBanner}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>

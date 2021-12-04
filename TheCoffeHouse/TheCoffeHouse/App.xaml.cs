@@ -66,12 +66,14 @@ namespace TheCoffeHouse
             containerRegistry.RegisterForNavigation<DetailCouponPage, DetailCouponPageViewModel>(PageManagement.DetailCouponPage);
             containerRegistry.RegisterForNavigation<AllPromotionPage, AllPromotionPageViewModel>(PageManagement.AllPromotionPage);
             containerRegistry.RegisterForNavigation<DetailPromotionPage, DetailPromotionPageViewModel>(PageManagement.DetailPromotionPage);
-            containerRegistry.RegisterForNavigation<StorePage, StorePageViewModel>();
+            containerRegistry.RegisterForNavigation<StorePage, StorePageViewModel>(PageManagement.StorePage);
 
 
 
 
-            containerRegistry.RegisterForNavigation<ProductDetailPage, ProductDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<ProductDetailPage, ProductDetailPageViewModel>(PageManagement.ProductDetailPage);
+
+            containerRegistry.RegisterForNavigation<StoreDetailPage, StoreDetailPageViewModel>(PageManagement.StoreDetailPage);
         }
     }
 }

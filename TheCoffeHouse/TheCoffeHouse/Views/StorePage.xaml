@@ -92,6 +92,7 @@
                     x:Name="listStore"
                     Margin="15"
                     HasUnevenRows="True"
+                    SelectedItem="{Binding SelectedStored}"
                     ItemsSource="{Binding ListStore}"
                     VerticalScrollBarVisibility="Never">
                     <ListView.ItemTemplate>

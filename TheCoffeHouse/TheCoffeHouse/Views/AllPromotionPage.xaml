@@ -7,7 +7,9 @@
              x:Class="TheCoffeHouse.Views.AllPromotionPage" 
              Title="All Promotion">
     <StackLayout Padding="0, 5, 0, 20" BackgroundColor="WhiteSmoke" IsVisible="true">
-        <ListView ItemsSource="{Binding ListPromotion}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding ListPromotion}" 
+                  SelectedItem="{Binding SelectedPromotion}"
+                  HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -17,9 +19,6 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <ListView.Behaviors>
-                <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OpenDetailPromotionPage}"/>
-            </ListView.Behaviors>
         </ListView>
     </StackLayout>
 </base:BasePage>

@@ -25,9 +25,8 @@ namespace TheCoffeHouse.ViewModels
             ListPromotion = new ObservableCollection<Promotion>();
             initcoupon();
             OpenAllCouponPage = new DelegateCommand(OpenAllCouponPageExcute);
-            OpenDetailCouponPage = new DelegateCommand(OpenDetailCouponPageExcute);
-            OpenDetailPromotionPage = new DelegateCommand(OpenDetailPromotionPageExcute);
             OpenExchangePromotionPage = new DelegateCommand(OpenExchangePromotionPageExcute);
+            OpenHistoryPage = new DelegateCommand(OpenHistoryPageExcute);
         }
         private void initcoupon()
         {
@@ -39,11 +38,17 @@ namespace TheCoffeHouse.ViewModels
         }
 
         #region OpenPage
-        
-        public ICommand OpenDetailPromotionPage { get; set; }
+        public ICommand OpenHistoryPage { get; set; }
+        private async void OpenHistoryPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.HistoryPage);
+        }
+
         private async void OpenDetailPromotionPageExcute()
         {
-            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage);
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("PromotionSelected", SelectedPromotion);
+            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage, navParams);
         }
 
         public ICommand OpenExchangePromotionPage { get; set; }
@@ -52,20 +57,22 @@ namespace TheCoffeHouse.ViewModels
             await Navigation.NavigateAsync(PageManagement.ExchangePromotionPage);
         }
 
-        public ICommand OpenDetailCouponPage { get; set; }
         private async void OpenDetailCouponPageExcute()
         {
-            await Navigation.NavigateAsync(PageManagement.DetailCouponPage);
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("CouponSelected", SelectedCoupon);
+            await Navigation.NavigateAsync(PageManagement.DetailCouponPage, navParams);
         }
-
-
         public ICommand OpenAllCouponPage { get; set; }
         private async void OpenAllCouponPageExcute()
         {
             await Navigation.NavigateAsync(PageManagement.AllCouponPage);
         }
+
+
+
         #endregion
-        #region ListCoupon
+        #region List
         private ObservableCollection<Coupon> _listCoupon;
         public ObservableCollection<Coupon> ListCoupon
         {
@@ -76,10 +83,7 @@ namespace TheCoffeHouse.ViewModels
                 RaisePropertyChanged("-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021");
             }
         }
-        #endregion
 
-
-        #region ListPromotion
         private ObservableCollection<Promotion> _listPromotion;
         public ObservableCollection<Promotion> ListPromotion
         {
@@ -91,6 +95,39 @@ namespace TheCoffeHouse.ViewModels
             }
         }
         #endregion
+
+        #region Selecteditem
+        private Promotion _selectedPromotion;
+        public Promotion SelectedPromotion
+        {
+            get => _selectedPromotion;
+            set
+            {
+                if(_selectedPromotion != value)
+                {
+                    SetProperty(ref _selectedPromotion, value);
+                    RaisePropertyChanged("SelectedPromotion");
+                    OpenDetailPromotionPageExcute();
+                }
+            }
+        }
+
+        private Coupon _selectedCoupon;
+        public Coupon SelectedCoupon
+        {
+            get => _selectedCoupon;
+            set
+            {
+                if (_selectedCoupon != value)
+                {
+                    SetProperty(ref _selectedCoupon, value);
+                    RaisePropertyChanged("SelectedPromotion");
+                    OpenDetailCouponPageExcute();
+                }
+            }
+        }        
+        #endregion
+
 
     }
 }

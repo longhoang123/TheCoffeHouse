@@ -5,7 +5,7 @@
              xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
                prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.DetailPromotionPage">
-    <Grid>
+    <Grid BindableLayout.ItemsSource="{Binding PromotionInfo}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -14,7 +14,7 @@
                 <StackLayout Padding="20" Margin="0">
                     <Image Source="Voucher200.jpg" Scale="1.2"></Image>
                     <Frame Margin="0,-20,0,0" Padding="0" CornerRadius="10">
-                        <custom:CustomCouponFrame TitleText="Voucher 200.000 VNĐ tại PNJ" Source="giftbox.png" DateText="Sử dụng trong vòng 90 Ngày"></custom:CustomCouponFrame>
+                        <custom:CustomCouponFrame TitleText="Voucher 200k đến từ PNJ" Source="giftbox.png" DateText="Sử dụng trong vòng 90 Ngày"></custom:CustomCouponFrame>
                     </Frame>
                     <Frame CornerRadius="10" Padding="20,15" Margin="0,10,0,20">
                         <StackLayout Orientation="Horizontal">

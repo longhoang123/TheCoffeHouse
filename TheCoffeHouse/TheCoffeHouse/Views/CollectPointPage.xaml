@@ -147,7 +147,7 @@
                     BackgroundColor="White"
                     BorderColor="Transparent"
                     CornerRadius="10">
-                    <custom:CustomSmallButton ButtonText="Đổi ưu đãi" Source="giftbox.png" />
+                    <custom:CustomSmallButton ButtonText="Đổi ưu đãi" Source="giftbox.png" Command="{Binding OpenExchangePromotionPage}"/>
                 </Frame>
                 <Frame
                     Grid.Row="0"
@@ -156,7 +156,7 @@
                     BackgroundColor="White"
                     BorderColor="Transparent"
                     CornerRadius="10">
-                    <custom:CustomSmallButton ButtonText="Phiếu ưu đãi của bạn" Source="voucher.png" />
+                    <custom:CustomSmallButton ButtonText="Phiếu ưu đãi của bạn" Source="voucher.png" Command="{Binding OpenAllCouponPage}"/>
                 </Frame>
                 <Frame
                     Grid.Row="1"
@@ -165,7 +165,7 @@
                     BackgroundColor="White"
                     BorderColor="Transparent"
                     CornerRadius="10">
-                    <custom:CustomSmallButton ButtonText="Lịch sử giao dịch" Source="coffeebeans.png" />
+                    <custom:CustomSmallButton ButtonText="Lịch sử giao dịch" Source="coffeebeans.png" Command="{Binding OpenHistoryPage}"/>
                 </Frame>
                 <Frame
                     Grid.Row="1"
@@ -206,7 +206,9 @@
                 Padding="5,10,5,20"
                 BackgroundColor="WhiteSmoke"
                 HeightRequest="430">
-                <ListView HasUnevenRows="True" ItemsSource="{Binding ListCoupon}">
+                <ListView HasUnevenRows="True" 
+                          ItemsSource="{Binding ListCoupon}"
+                          SelectedItem="{Binding SelectedCoupon}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -223,9 +225,6 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <ListView.Behaviors>
-                        <prism:EventToCommandBehavior Command="{Binding OpenDetailCouponPage}" EventName="ItemTapped" />
-                    </ListView.Behaviors>
                 </ListView>
             </StackLayout>
             <StackLayout
@@ -256,7 +255,9 @@
                 Padding="-5,10,-5,20"
                 BackgroundColor="WhiteSmoke"
                 HeightRequest="300">
-                <ListView HasUnevenRows="True" ItemsSource="{Binding ListPromotion}">
+                <ListView HasUnevenRows="True" 
+                          ItemsSource="{Binding ListPromotion}"
+                          SelectedItem="{Binding SelectedPromotion}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -273,9 +274,6 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <ListView.Behaviors>
-                        <prism:EventToCommandBehavior Command="{Binding OpenDetailPromotionPage}" EventName="ItemTapped" />
-                    </ListView.Behaviors>
                 </ListView>
             </StackLayout>
         </StackLayout>

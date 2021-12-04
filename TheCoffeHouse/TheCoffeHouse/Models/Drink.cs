@@ -10,5 +10,6 @@ namespace TheCoffeHouse.Models
         public string DrinkName { get; set; }
         public int DrinkPrice { get; set; }
         public string DrinkImage { get; set; }
+        public string Size { get; set; }
     }
 }

@@ -24,7 +24,8 @@ namespace TheCoffeHouse.ViewModels
         {
             base.OnNavigatedNewTo(parameters);
             Promotion promotion = parameters.GetValue<Promotion>("PromotionSelected");
-            PromotionInfo = promotion;
+            //_promotion = promotion;
+            //PromotionInfo = promotion;
         }
         private Promotion _promotion;
         public Promotion PromotionInfo
@@ -32,8 +33,12 @@ namespace TheCoffeHouse.ViewModels
             get => _promotion;
             set
             {
-                SetProperty(ref _promotion, value);
-                RaisePropertyChanged("PromotionSelected");
+                if(_promotion!=null)
+                {
+                    SetProperty(ref _promotion, value);
+                    RaisePropertyChanged("PromotionSelected");
+                }
+               
             }
         }
     }

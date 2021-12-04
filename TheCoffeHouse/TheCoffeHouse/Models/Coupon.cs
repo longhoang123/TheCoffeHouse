@@ -9,6 +9,7 @@ namespace TheCoffeHouse.Models
     {
         public string Title { get; set; }
         public ImageSource Image { get; set; }
+        public ImageSource BigImage { get; set; }
         public string Date { get; set; }
     }
 }

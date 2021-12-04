@@ -11,6 +11,7 @@ namespace TheCoffeHouse.Models
         public string Description { get; set; }
         public string NumPoint { get; set; }
         public ImageSource Image { get; set; }
-       
+        public ImageSource BigImage { get; set; }
+
     }
 }

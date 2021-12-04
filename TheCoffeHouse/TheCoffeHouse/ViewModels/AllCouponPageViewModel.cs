@@ -23,13 +23,13 @@ namespace TheCoffeHouse.ViewModels
         {
             ListCoupon = new ObservableCollection<Coupon>();
             initcoupon();
-            OpenDetailCouponPage = new DelegateCommand(OpenDetailCouponPageExcute);
         }
 
-        public ICommand OpenDetailCouponPage { get; set; }
         private async void OpenDetailCouponPageExcute()
         {
-            await Navigation.NavigateAsync(PageManagement.DetailCouponPage);
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("CouponSelected", SelectedCoupon);
+            await Navigation.NavigateAsync(PageManagement.DetailCouponPage, navParams);
         }
 
         private void initcoupon()
@@ -51,6 +51,23 @@ namespace TheCoffeHouse.ViewModels
             }
         }
         #endregion
-        
+        #region Selecteditem
+        private Coupon _selectedCoupon;
+        public Coupon SelectedCoupon
+        {
+            get => _selectedCoupon;
+            set
+            {
+                if (_selectedCoupon != value)
+                {
+                    SetProperty(ref _selectedCoupon, value);
+                    RaisePropertyChanged("SelectedPromotion");
+                    OpenDetailCouponPageExcute();
+                }
+            }
+        }
+        #endregion
+
+
     }
 }

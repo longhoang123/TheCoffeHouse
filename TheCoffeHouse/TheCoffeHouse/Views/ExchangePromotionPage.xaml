@@ -32,7 +32,9 @@
             </StackLayout>
 
             <StackLayout  Margin="0, -10, 0, 0" Padding="10, 0, 10, 20" BackgroundColor="WhiteSmoke" Spacing="0" HeightRequest="540">
-                <ListView ItemsSource="{Binding ListPromotion}" HasUnevenRows="True">
+                <ListView ItemsSource="{Binding ListPromotion}"
+                          SelectedItem="{Binding SelectedPromotion}"
+                          HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

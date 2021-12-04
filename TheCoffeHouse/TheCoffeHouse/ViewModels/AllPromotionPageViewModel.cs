@@ -23,7 +23,6 @@ namespace TheCoffeHouse.ViewModels
         {
             ListPromotion = new ObservableCollection<Promotion>();
             initpromotion();
-            OpenDetailPromotionPage = new DelegateCommand(OpenDetailPromotionPageExcute);
         }
 
         private void initpromotion()
@@ -33,10 +32,11 @@ namespace TheCoffeHouse.ViewModels
                 ListPromotion.Add(new Promotion { Brand = "Coolmate", Description = "Ưu đãi đến 100k", NumPoint = "99", Image = "coolmate.jpg" });
             }
         }
-        public ICommand OpenDetailPromotionPage { get; set; }
         private async void OpenDetailPromotionPageExcute()
         {
-            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage);
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("PromotionSelected", SelectedPromotion);
+            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage, navParams);
         }
         #region ListPromotion
         private ObservableCollection<Promotion> _listPromotion;
@@ -47,6 +47,22 @@ namespace TheCoffeHouse.ViewModels
             {
                 SetProperty(ref _listPromotion, value);
                 RaisePropertyChanged("-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021");
+            }
+        }
+        #endregion
+        #region Selecteditem
+        private Promotion _selectedPromotion;
+        public Promotion SelectedPromotion
+        {
+            get => _selectedPromotion;
+            set
+            {
+                if (_selectedPromotion != value)
+                {
+                    SetProperty(ref _selectedPromotion, value);
+                    RaisePropertyChanged("SelectedPromotion");
+                    OpenDetailPromotionPageExcute();
+                }
             }
         }
         #endregion

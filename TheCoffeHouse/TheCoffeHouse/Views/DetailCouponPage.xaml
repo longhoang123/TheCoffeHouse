@@ -6,7 +6,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.DetailCouponPage">
     <ScrollView>
-        <StackLayout>
+        <StackLayout BindableLayout.ItemsSource="{Binding CouponInfo}">
             <Frame BackgroundColor="White" CornerRadius="40" Padding="20" Margin="10,30,10,30">
                 <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
                     <Label Text="The Coofee House" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center"></Label>

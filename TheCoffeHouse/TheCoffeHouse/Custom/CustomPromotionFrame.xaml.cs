@@ -19,18 +19,7 @@ namespace TheCoffeHouse.Custom
             Brand.SetBinding(Label.TextProperty, new Binding("BrandText", source: this));
             Description.SetBinding(Label.TextProperty, new Binding("DesText", source: this));
             NumPoint.SetBinding(Button.TextProperty, new Binding("NumPointText", source: this));
-            this.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() =>
-                {
-                    Clicked?.Invoke(this, EventArgs.Empty);
-                    if (Command != null)
-                    {
-                        if (Command.CanExecute(CommandParameter))
-                            Command.Execute(CommandParameter);
-                    }
-                })
-            });
+           
         }
         public static readonly BindableProperty NumPointTextProperty =
                 BindableProperty.Create("NumPointText", typeof(string), typeof(CustomPromotionFrame), default(string));

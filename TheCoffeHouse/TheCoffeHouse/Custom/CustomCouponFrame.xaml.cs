@@ -18,18 +18,6 @@ namespace TheCoffeHouse.Custom
             ImageButton.SetBinding(Image.SourceProperty, new Binding("Source", source: this));
             TitleCoupon.SetBinding(Label.TextProperty, new Binding("TitleText", source: this));
             DateCoupon.SetBinding(Label.TextProperty, new Binding("DateText", source: this));
-            this.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() =>
-                {
-                    Clicked?.Invoke(this, EventArgs.Empty);
-                    if (Command != null)
-                    {
-                        if (Command.CanExecute(CommandParameter))
-                            Command.Execute(CommandParameter);
-                    }
-                })
-            });
         }
 
         public static readonly BindableProperty DateTextProperty =

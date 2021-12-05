@@ -10,6 +10,7 @@ namespace TheCoffeHouse.Models
         public int IDOrder { get; set; }
         public int IDPro { get; set; }
         public int Quantity { get; set; }
+        public List<int> Price { get; set; }
         public string Size { get; set; }
         public int Total { get; set; }
     }

@@ -20,6 +20,9 @@
     <Compile Update="Controls\CustomImageButton.xaml.cs">
       <DependentUpon>CustomImageButton.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Controls\HeaderViewother.xaml.cs">
+      <DependentUpon>HeaderViewOther.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Custom\CustomCouponFrame.xaml.cs">
       <DependentUpon>CustomCouponFrame.xaml</DependentUpon>
     </Compile>

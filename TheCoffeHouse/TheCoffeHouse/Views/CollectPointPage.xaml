@@ -7,7 +7,8 @@
     xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
     xmlns:prism="http://prismlibrary.com"
     Title="Tích điểm"
-    prism:ViewModelLocator.AutowireViewModel="True">
+    prism:ViewModelLocator.AutowireViewModel="True"
+    ControlTemplate="{StaticResource CollectPointPageTemplete}">
     <ScrollView>
         <StackLayout>
             <StackLayout Margin="5,10,5,5" Orientation="Horizontal">

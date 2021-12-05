@@ -6,7 +6,8 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.OtherPage"
-             Title="Khác">
+             Title="Khác"
+             ControlTemplate="{StaticResource OtherPageTemplete}">
     <ScrollView>
         <StackLayout Orientation="Vertical"
              VerticalOptions="Fill"

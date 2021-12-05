@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="TheCoffeHouse.Controls.HeaderViewOther"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <Grid
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            RowDefinitions="auto,*"
+            VerticalOptions="FillAndExpand">
+            <Grid Padding="20,10" ColumnDefinitions="auto,*">
+                <StackLayout Orientation="Horizontal">
+                    <Image
+                        x:Name="icon"
+                        HeightRequest="35"
+                        Source="sun.png"
+                        WidthRequest="35" />
+                    <Label
+                        x:Name="label"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Orientation="Horizontal">
+                    <Frame
+                        Padding="10"
+                        CornerRadius="50"
+                        HeightRequest="25"
+                        WidthRequest="25">
+                        <Image Source="ticket_top.png" />
+
+                    </Frame>
+                    <Frame
+                        Padding="10"
+                        CornerRadius="50"
+                        HeightRequest="25"
+                        WidthRequest="25">
+                        <Image Source="notification.png" />
+                    </Frame>
+                </StackLayout>
+            </Grid>
+            <ContentPresenter
+                Grid.Row="1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

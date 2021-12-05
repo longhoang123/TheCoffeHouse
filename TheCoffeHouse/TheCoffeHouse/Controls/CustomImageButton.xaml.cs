@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace TheCoffeHouse.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ButtonLogin : ContentView
+    public partial class CustomImageButton : ContentView
     {
-        public ButtonLogin()
+        public CustomImageButton()
         {
             InitializeComponent();
             label.SetBinding(Label.TextProperty, new Binding
@@ -39,8 +39,7 @@ namespace TheCoffeHouse.Controls
                 Source = this,
                 Mode = BindingMode.TwoWay
             });
-
-
+           
         }
 
        
@@ -49,7 +48,7 @@ namespace TheCoffeHouse.Controls
         public static readonly BindableProperty TextProperty
        = BindableProperty.Create(nameof(Text),
            typeof(string),
-           typeof(ButtonLogin),
+           typeof(CustomImageButton),
            defaultValue: string.Empty,
            defaultBindingMode: BindingMode.TwoWay);
 
@@ -73,7 +72,7 @@ namespace TheCoffeHouse.Controls
         public static readonly BindableProperty BackgroundColorProperty
        = BindableProperty.Create(nameof(BackgroundColor),
            typeof(Color),
-           typeof(ButtonLogin),
+           typeof(CustomImageButton),
            defaultValue: Color.Black,
            defaultBindingMode: BindingMode.TwoWay);
 
@@ -97,7 +96,7 @@ namespace TheCoffeHouse.Controls
         public static readonly BindableProperty TextColorProperty
        = BindableProperty.Create(nameof(TextColor),
            typeof(Color),
-           typeof(ButtonLogin),
+           typeof(CustomImageButton),
            defaultValue: Color.Black,
            defaultBindingMode: BindingMode.TwoWay);
 
@@ -122,7 +121,7 @@ namespace TheCoffeHouse.Controls
         public static readonly BindableProperty ImageSourceProperty
        = BindableProperty.Create(nameof(ButtonImage),
            typeof(string),
-           typeof(ButtonLogin),
+           typeof(CustomImageButton),
            defaultValue: string.Empty,
            defaultBindingMode: BindingMode.TwoWay);
 
@@ -141,5 +140,7 @@ namespace TheCoffeHouse.Controls
         }
 
         #endregion
+
+        
     }
 }

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="TheCoffeHouse.Controls.ContentPageHeaderView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <Grid
+            Padding="20,5"
+            ColumnDefinitions="auto, *, auto"
+            HeightRequest="50"
+            VerticalOptions="Start">
+            <Image
+                HeightRequest="30"
+                Source="left.png"
+                WidthRequest="30">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label
+                x:Name="labelTitle"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="Center" />
+            <Image
+                x:Name="imageRight"
+                Grid.Column="2"
+                HeightRequest="30"
+                WidthRequest="30" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

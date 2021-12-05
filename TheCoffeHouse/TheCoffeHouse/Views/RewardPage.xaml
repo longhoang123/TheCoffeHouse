@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage
+    x:Class="TheCoffeHouse.Views.RewardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+    xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+    xmlns:prism="http://prismlibrary.com"
+    prism:ViewModelLocator.AutowireViewModel="True">
+
+    <base:BasePage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Small_Text" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="Big_Text" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="Image" TargetType="Image">
+                <Setter Property="HeightRequest" Value="120" />
+                <Setter Property="WidthRequest" Value="120" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+                <Setter Property="Margin" Value="0,20,0,10" />
+            </Style>
+        </ResourceDictionary>
+    </base:BasePage.Resources>
+
+    <Grid RowDefinitions="auto, *, auto">
+        <controls:ContentPageHeaderView Title="{Binding PageTitle}" />
+        <ScrollView
+            Grid.Row="1"
+            Padding="15,15,15,40"
+            BackgroundColor="{StaticResource light_gray}">
+            <Frame BackgroundColor="White" CornerRadius="10">
+                <StackLayout>
+                    <Label
+                        FontSize="12"
+                        HorizontalOptions="Center"
+                        Text="THE COFFE HOUSE'S REWARD"
+                        TextColor="{StaticResource dark_gray}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="VỚI THE COFFE HOUSE'S REWARD" />
+
+                    <Image Source="reward_1.jpg" Style="{StaticResource Image}" />
+                    <Label Style="{StaticResource Big_Text}" Text="Tích BEAN dễ dàng - Thăng hạng nhanh hơn" />
+                    <Label Style="{StaticResource Small_Text}" Text="Mô hình thăng hạng thành viên mới dễ dàng hơn" />
+
+                    <Image Source="reward_2.jpg" Style="{StaticResource Image}" />
+                    <Label Style="{StaticResource Big_Text}" Text="Cửa hàng ưu đãi" />
+                    <Label Style="{StaticResource Small_Text}" Text="Thoải mái đổi BEAN để nhận nhiều phần quà cực hấp dẫn!" />
+
+                    <Image Source="reward_3.jpg" Style="{StaticResource Image}" />
+                    <Label Style="{StaticResource Big_Text}" Text="Đặc quyền kim cương" />
+                    <Label Style="{StaticResource Small_Text}" Text="Tận hưởng các đặc quyền chỉ dành riêng cho thành viên Kim Cương" />
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+        <Frame
+            Grid.Row="2"
+            Margin="50,10"
+            Padding="40,10"
+            BackgroundColor="{StaticResource MainColor}"
+            CornerRadius="10"
+            HorizontalOptions="Fill">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenLoginPageCommand}" />
+            </Frame.GestureRecognizers>
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="Đăng ký thành viên"
+                TextColor="White" />
+        </Frame>
+    </Grid>
+
+</base:BasePage>

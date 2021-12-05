@@ -8,10 +8,12 @@
     Title="{Binding PageTitle}"
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="White"
-    NavigationPage.HasBackButton="False">
+    NavigationPage.HasBackButton="False"
+    ControlTemplate="{StaticResource OrderPageTemplate}"
+    >
     <StackLayout>
         <!--  NavBar  -->
-        <StackLayout>
+        <!--<StackLayout>
             <Frame Padding="0">
                 <StackLayout Orientation="Horizontal">
                     <StackLayout
@@ -55,7 +57,7 @@
                     </StackLayout>
                 </StackLayout>
             </Frame>
-        </StackLayout>
+        </StackLayout>-->
         <!--  Content  -->
         <ScrollView BackgroundColor="White">
             <StackLayout Spacing="20">

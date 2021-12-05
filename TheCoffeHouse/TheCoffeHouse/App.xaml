@@ -7,6 +7,10 @@
     xmlns:prism="http://prismlibrary.com">
     <Application.Resources>
         <ResourceDictionary>
+            <ControlTemplate x:Key="ContentPageTemplete">
+                <controls:ContentPageHeaderView Title="The Coffe House's Reward" />
+            </ControlTemplate>
+
             <ControlTemplate x:Key="HomePageTemplete">
                 <controls:HeaderView Title="Chào bạn mới" />
             </ControlTemplate>

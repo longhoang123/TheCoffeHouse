@@ -81,12 +81,12 @@
                             VerticalOptions="Center" />
                     </Grid>
 
-                    <controls:ButtonLogin
+                    <controls:CustomImageButton
                         BackgroundColor="{StaticResource facebook_color}"
                         ButtonImage="facebook.png"
                         Text="Tiếp tục bằng Facebook"
                         TextColor="White" />
-                    <controls:ButtonLogin
+                    <controls:CustomImageButton
                         BackgroundColor="White"
                         ButtonImage="google.png"
                         Text="Tiếp tục bằng Google"

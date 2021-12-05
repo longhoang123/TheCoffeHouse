@@ -46,6 +46,9 @@
                                 Margin="0,40,0,0"
                                 BackgroundColor="White"
                                 CornerRadius="10">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenRewardPageCommand}"/>
+                                </Frame.GestureRecognizers>
                                 <StackLayout Orientation="Horizontal">
                                     <Label HorizontalOptions="Start" Text="The Coffe House's Reward" />
                                     <Image
@@ -66,6 +69,9 @@
                         <Frame Padding="10">
                             <Grid ColumnDefinitions="*,10,*">
                                 <StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenDeliveryCommand}" />
+                                    </StackLayout.GestureRecognizers>
                                     <Image
                                         HeightRequest="50"
                                         HorizontalOptions="Center"
@@ -78,6 +84,9 @@
                                     HeightRequest="50"
                                     Source="ic_line_long.png" />
                                 <StackLayout Grid.Column="2">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenTakeAwayCommand}" />
+                                    </StackLayout.GestureRecognizers>
                                     <Image
                                         HeightRequest="50"
                                         HorizontalOptions="Center"
@@ -112,7 +121,7 @@
                                 SelectedIndicatorColor="DarkGray" />
                         </StackLayout>
 
-                        <StackLayout BindableLayout.ItemsSource="{Binding ListPostUI}">
+                        <StackLayout x:Name="postList" BindableLayout.ItemsSource="{Binding ListPostUI}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <Grid
@@ -121,6 +130,9 @@
                                         ColumnSpacing="10"
                                         RowDefinitions="320">
                                         <StackLayout Margin="0" Padding="0">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenPost1Command, Source={x:Reference Name=postList}}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
                                             <Frame Padding="0" CornerRadius="10">
                                                 <Image
                                                     HorizontalOptions="Fill"
@@ -143,6 +155,9 @@
                                             Margin="0"
                                             Padding="0"
                                             IsVisible="{Binding IsEvenNumber}">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenPost2Command, Source={x:Reference Name=postList}}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
 
                                             <Frame Padding="0" CornerRadius="10">
                                                 <Image

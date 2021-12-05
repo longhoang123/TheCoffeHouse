@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Navigation.TabbedPages;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
@@ -28,9 +29,15 @@ namespace TheCoffeHouse.ViewModels
             ListPostUI = new ObservableCollection<HomePostUIItem>();
 
             OpenLoginPageCommand = new DelegateCommand(OpenLoginPageExecute);
+            OpenDeliveryCommand = new DelegateCommand(OpenDeliveryExecute);
+            OpenRewardPageCommand = new DelegateCommand(OpenRewardPageExecute);
+            OpenPost1Command = new DelegateCommand<HomePostUIItem>(selectedPostItem => OpenPost1Execute(selectedPostItem));
+            OpenPost2Command = new DelegateCommand<HomePostUIItem>(selectedPostItem => OpenPost2Execute(selectedPostItem));
 
 
         }
+
+      
 
 
 
@@ -128,6 +135,40 @@ namespace TheCoffeHouse.ViewModels
         private  void OpenLoginPageExecute()
         {
             Navigation.NavigateAsync(PageManagement.LoginPage);
+        }
+        #endregion
+
+        #region OpenDeliveryCommand
+        public ICommand OpenDeliveryCommand { get; set; }
+        private async void OpenDeliveryExecute()
+        {
+            await Navigation.SelectTabAsync("OrderPage");
+        }
+        #endregion
+
+        #region OpenRewardPageCommand
+        public ICommand OpenRewardPageCommand { get; set; }
+        private async void OpenRewardPageExecute()
+        {
+            await Navigation.NavigateAsync(PageManagement.RewardPage);
+        }
+        #endregion
+
+
+        #region OpenPost1Command
+        public ICommand OpenPost1Command { get; set; }
+        private async void OpenPost1Execute(HomePostUIItem selectedPostItem)
+        {
+            HomePostItem selectedPostInfo = new HomePostItem { Title = selectedPostItem.Title1, Date = selectedPostItem.Date1, Image = selectedPostItem.Image1 };
+         
+        }
+        #endregion
+
+        #region OpenPost2Command
+        public ICommand OpenPost2Command { get; set; }
+        private async void OpenPost2Execute(HomePostUIItem selectedPostItem)
+        {
+            HomePostItem selectedPostInfo = new HomePostItem { Title = selectedPostItem.Title2, Date = selectedPostItem.Date2, Image = selectedPostItem.Image2 };
         }
         #endregion
     }

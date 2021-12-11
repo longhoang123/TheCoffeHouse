@@ -31,6 +31,9 @@
                         CornerRadius="50"
                         HeightRequest="25"
                         WidthRequest="25">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenCollectionPointCommand}" />
+                        </Frame.GestureRecognizers>
                         <Image Source="ticket_top.png" />
 
                     </Frame>
@@ -39,6 +42,9 @@
                         CornerRadius="50"
                         HeightRequest="25"
                         WidthRequest="25">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenNotificationCommand}" />
+                        </Frame.GestureRecognizers>
                         <Image Source="notification.png" />
                     </Frame>
                 </StackLayout>

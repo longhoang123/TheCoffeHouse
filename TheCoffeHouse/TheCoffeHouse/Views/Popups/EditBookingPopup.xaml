@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="TheCoffeHouse.Views.Popups.EditBookingPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+
+    <Grid
+        BackgroundColor="Transparent"
+        HorizontalOptions="FillAndExpand"
+        RowDefinitions="7*,3*"
+        VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+        <Frame
+            Grid.Row="1"
+            Padding="0,15,10,10"
+            BackgroundColor="White"
+            CornerRadius="15">
+            <StackLayout Spacing="10">
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Chọn phương thức đặt hàng"
+                        VerticalOptions="Center" />
+                    <Image
+                        HeightRequest="15"
+                        HorizontalOptions="End"
+                        Source="close.png"
+                        VerticalOptions="Center"
+                        WidthRequest="15">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <Grid ColumnDefinitions="60, *, 80">
+                    <Image Source="ic_delivery.png" VerticalOptions="Center" />
+                    <StackLayout Grid.Column="1" Spacing="2">
+                        <Label FontSize="12" Text="Giao tận nơi" />
+                        <Label x:Name="addressLabel" FontSize="12" />
+                        <Label x:Name="userInfoLabel" FontSize="12" />
+                    </StackLayout>
+                    <Frame
+                        Grid.Column="2"
+                        Padding="15"
+                        BackgroundColor="{StaticResource MainColor}"
+                        CornerRadius="30"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="Sửa"
+                            TextColor="White" />
+                    </Frame>
+                </Grid>
+                <Grid ColumnDefinitions="60, *, 80">
+                    <Image Source="ic_take_away.png" VerticalOptions="Center" />
+                    <StackLayout Grid.Column="1" Spacing="2">
+                        <Label FontSize="12" Text="Tự đến lấy" />
+                        <Label x:Name="shopAddressLabel" FontSize="12" />
+                        <Label x:Name="distanceLabel" FontSize="12" />
+                    </StackLayout>
+                    <Frame
+                        Grid.Column="2"
+                        Padding="15"
+                        BackgroundColor="{StaticResource MainColor}"
+                        CornerRadius="30"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="Sửa"
+                            TextColor="White" />
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</pages:PopupPage>

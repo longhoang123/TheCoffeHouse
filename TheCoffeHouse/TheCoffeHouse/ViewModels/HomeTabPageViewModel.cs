@@ -13,6 +13,7 @@ using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
+using TheCoffeHouse.Views.Popups;
 using Xamarin.Forms;
 
 namespace TheCoffeHouse.ViewModels
@@ -31,10 +32,11 @@ namespace TheCoffeHouse.ViewModels
             OpenLoginPageCommand = new DelegateCommand(OpenLoginPageExecute);
             OpenDeliveryCommand = new DelegateCommand(OpenDeliveryExecute);
             OpenRewardPageCommand = new DelegateCommand(OpenRewardPageExecute);
+            OpenEditBookingPopupCommand = new DelegateCommand(OpenEditBookingPopupExecute);
             OpenPost1Command = new DelegateCommand<HomePostUIItem>(selectedPostItem => OpenPost1Execute(selectedPostItem));
             OpenPost2Command = new DelegateCommand<HomePostUIItem>(selectedPostItem => OpenPost2Execute(selectedPostItem));
 
-
+            Image = "BarCode.png";
         }
 
       
@@ -77,6 +79,17 @@ namespace TheCoffeHouse.ViewModels
             {
                 SetProperty(ref _listPostUI, value);
                 RaisePropertyChanged("ListPostUI");
+            }
+        }
+
+        private string _image;
+
+        public string Image
+        {
+            get { return _image; }
+            set
+            {
+                SetProperty(ref _image, value);
             }
         }
 
@@ -169,6 +182,14 @@ namespace TheCoffeHouse.ViewModels
         private async void OpenPost2Execute(HomePostUIItem selectedPostItem)
         {
             HomePostItem selectedPostInfo = new HomePostItem { Title = selectedPostItem.Title2, Date = selectedPostItem.Date2, Image = selectedPostItem.Image2 };
+        }
+        #endregion
+
+        #region OpenEditBookingPopupCommand
+        public ICommand OpenEditBookingPopupCommand { get; set; }
+        private async void OpenEditBookingPopupExecute()
+        {
+            await EditBookingPopup.Instance.Show("Đại học công nghệ thông tin", "Thạch Hoàng Long", "Thủ đức", "5km");
         }
         #endregion
     }

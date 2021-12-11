@@ -76,5 +76,6 @@ namespace TheCoffeHouse.Controls
         }
 
         #endregion
+
     }
 }

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="TheCoffeHouse.Controls.BottomAddressView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <StackLayout Padding="10" Spacing="10">
+            <StackLayout Orientation="Horizontal">
+                <Image x:Name="image" WidthRequest="20" />
+                <Label x:Name="label" VerticalOptions="Center" />
+                <Image Source="down.png" WidthRequest="15" />
+            </StackLayout>
+            <Label
+                x:Name="labelAddress"
+                FontAttributes="Bold"
+                FontSize="14" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

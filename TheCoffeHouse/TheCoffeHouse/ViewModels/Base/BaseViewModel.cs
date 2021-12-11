@@ -49,6 +49,7 @@ namespace TheCoffeHouse.ViewModels.Base
             if (httpService != null) HttpService = httpService;
             if (sQLiteService != null) SQLiteService = sQLiteService;
             BackCommand = new DelegateCommand(async () => await BackExecute());
+            OpenNotificationCommand = new DelegateCommand(async () => await OpenNotificationExecute());
 
             Instance = this;
             
@@ -153,7 +154,7 @@ namespace TheCoffeHouse.ViewModels.Base
         {
             await CheckNotBusy(async () =>
             {
-                await Navigation.GoBackAsync(null, null, false);
+                await Navigation.GoBackAsync(null, null, true);
             });
         }
 
@@ -219,9 +220,14 @@ namespace TheCoffeHouse.ViewModels.Base
 
         #endregion
 
-     
+        #region OpenNotificationCommand
+        public ICommand OpenNotificationCommand { get; set; }
+        protected virtual async Task OpenNotificationExecute() {
+            await Navigation.NavigateAsync(PageManagement.NotificationPage);
+        }
+        #endregion
 
-        
+
 
 
     }

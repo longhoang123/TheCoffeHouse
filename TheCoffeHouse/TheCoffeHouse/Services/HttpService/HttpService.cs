@@ -11,7 +11,7 @@ using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models.SystemModels;
 using Xamarin.Essentials;
 
-namespace TheCoffeHouse.Services
+namespace TheCoffeHouse.Services.HttpService
 {
     public class HttpService : IHttpService
     {

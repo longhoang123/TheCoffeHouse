@@ -6,6 +6,7 @@
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
     xmlns:prism="http://prismlibrary.com"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     android:TabbedPage.ToolbarPlacement="Bottom"
     prism:ViewModelLocator.AutowireViewModel="True">
 
@@ -20,7 +21,8 @@
                         Padding="0"
                         BackgroundColor="White"
                         CornerRadius="15"
-                        HasShadow="True">
+                        HasShadow="True"
+                        IsVisible="{Binding IsLogedin, Converter={xct:InvertedBoolConverter}}">
                         <Grid>
                             <Image Source="bg_art_coffee.jpg" VerticalOptions="End" />
                             <StackLayout Margin="10" Spacing="10">
@@ -68,10 +70,11 @@
 
                     </Frame>
 
-                    <!--<controls:CollectPointCard
-                        Name="Long"
+                    <controls:CollectPointCard
+                        Name="{Binding User.Name}"
                         BarCode="{Binding Image}"
-                        Bean="100" />-->
+                        Bean="100"
+                        IsVisible="{Binding IsLogedin}" />
 
                     <Frame BackgroundColor="White" CornerRadius="10">
                         <StackLayout Spacing="20">

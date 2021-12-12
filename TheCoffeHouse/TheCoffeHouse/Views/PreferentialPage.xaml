@@ -10,7 +10,7 @@
     <Grid RowDefinitions="auto, *">
         <controls:ContentPageHeaderView Title="{Binding PageTitle}" />
         <ScrollView Grid.Row="1">
-            <WebView Source="https://feed.thecoffeehouse.com/tang-nang-suat-gap-15-voi-goi-work-from-home-freeship-ca-thang" />
+            <WebView Source="{Binding PromoUrl}" />
         </ScrollView>
     </Grid>
 </base:BasePage>

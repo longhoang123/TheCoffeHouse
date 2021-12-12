@@ -28,8 +28,14 @@ namespace TheCoffeHouse.ViewModels.Base
             get => _pageTitle;
             set => SetProperty(ref _pageTitle, value);
         }
+        private bool _isLogedin = false;
 
-        
+        public bool IsLogedin
+        {
+            get => _isLogedin;
+            set => SetProperty(ref _isLogedin, value);
+        }
+
         public INavigationService Navigation { get; private set; }
         public IPageDialogService DialogService { get; private set; }
         public IHttpService HttpService { get; set; }
@@ -226,6 +232,7 @@ namespace TheCoffeHouse.ViewModels.Base
             await Navigation.NavigateAsync(PageManagement.NotificationPage);
         }
         #endregion
+
 
 
 

@@ -33,6 +33,7 @@
 
 
             <Color x:Key="MainColor">#e47905</Color>
+            <Color x:Key="MainColor_Light">#dfb685</Color>
             <Color x:Key="facebook_color">#1976d3</Color>
             <Color x:Key="light_gray">#e8e8e8</Color>
             <Color x:Key="dark_gray">#7e7e80</Color>

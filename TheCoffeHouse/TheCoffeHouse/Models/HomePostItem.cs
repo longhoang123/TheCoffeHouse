@@ -7,9 +7,10 @@ namespace TheCoffeHouse.Models
 {
     public class HomePostItem
     {
+        public string PostID { get; set; }
         public string Title { get; set; }
-        public ImageSource Image { get; set; }
         public DateTime Date { get; set; }
+        public string Image { get; set; }
         public string Url { get; set; }
     }
 }

@@ -28,7 +28,7 @@
                 Margin="0,-20"
                 BackgroundColor="White"
                 CornerRadius="20">
-                <StackLayout Spacing="15">
+                <StackLayout Margin="0,0,0,20" Spacing="15">
                     <Label HorizontalOptions="Center" Text="Chào mừng bạn đến với" />
                     <Image
                         Margin="0,-50"
@@ -40,25 +40,62 @@
                         BorderColor="{StaticResource light_gray}"
                         CornerRadius="10"
                         HasShadow="False">
-                        <StackLayout Orientation="Horizontal">
+                        <Grid ColumnDefinitions="auto, 30, auto, *">
                             <Image
                                 Source="vietnam.png"
                                 VerticalOptions="Center"
                                 WidthRequest="30" />
                             <Label
+                                Grid.Column="1"
                                 Text="+84"
                                 TextColor="{StaticResource dark_gray}"
                                 VerticalOptions="Center" />
-                            <Image HeightRequest="15" Source="line.png" />
+                            <Image
+                                Grid.Column="2"
+                                HeightRequest="15"
+                                Source="line.png" />
                             <renderers:CustomEntry
+                                Grid.Column="3"
                                 Margin="10,0,0,0"
-                                Keyboard="Telephone"
                                 Placeholder="Nhập số điện thoại"
+                                Text="{Binding PhoneNumber}"
                                 TextColor="Black" />
 
-                        </StackLayout>
+                        </Grid>
                     </Frame>
-                    <Frame BackgroundColor="{StaticResource light_gray}" CornerRadius="10">
+                    <Frame
+                        Padding="20"
+                        BorderColor="{StaticResource light_gray}"
+                        CornerRadius="10"
+                        HasShadow="False">
+                        <Grid ColumnDefinitions="auto, 30, auto, *">
+                            <Image
+                                Source="padlock.png"
+                                VerticalOptions="Center"
+                                WidthRequest="30" />
+                            <Label
+                                Grid.Column="1"
+                                Text="***"
+                                TextColor="{StaticResource dark_gray}"
+                                VerticalOptions="Center" />
+                            <Image
+                                Grid.Column="2"
+                                HeightRequest="15"
+                                Source="line.png" />
+                            <renderers:CustomEntry
+                                Grid.Column="3"
+                                Margin="10,0,0,0"
+                                IsPassword="True"
+                                Placeholder="Nhập mật khẩu"
+                                Text="{Binding Password}"
+                                TextColor="Black" />
+
+                        </Grid>
+                    </Frame>
+                    <Frame BackgroundColor="{StaticResource MainColor}" CornerRadius="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LoginCommand}" />
+                        </Frame.GestureRecognizers>
                         <Label
                             HorizontalOptions="Center"
                             Text="Đăng nhập"

@@ -15,7 +15,7 @@
                 <StackLayout Padding="10,0">
                     <Frame
                         Padding="5"
-                        BackgroundColor="{StaticResource MainColor}"
+                        BackgroundColor="{StaticResource MainColor_Light}"
                         BorderColor="White"
                         CornerRadius="5"
                         HeightRequest="25"
@@ -47,7 +47,7 @@
                             Padding="40,10"
                             BackgroundColor="White"
                             CornerRadius="10"
-                            HeightRequest="100">
+                            HeightRequest="80">
                             <Image
                                 x:Name="imageBarCode"
                                 HorizontalOptions="Fill"

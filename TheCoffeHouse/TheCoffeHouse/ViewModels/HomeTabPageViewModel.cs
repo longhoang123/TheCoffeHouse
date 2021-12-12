@@ -9,9 +9,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 using TheCoffeHouse.Views.Popups;
 using Xamarin.Forms;
@@ -93,6 +95,17 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
+        private User _user;
+
+        public User User
+        {
+            get { return _user; }
+            set
+            {
+                SetProperty(ref _user, value);
+            }
+        }
+
         #endregion
 
         public override async void OnNavigatedNewTo(INavigationParameters parameters)
@@ -101,27 +114,50 @@ namespace TheCoffeHouse.ViewModels
             LoadData();
         }
 
+        public override void OnNavigatedBackTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedBackTo(parameters);
+
+            var user = new User();
+
+            if (parameters != null && parameters.Keys.Count() > 0)
+            {
+                if (parameters.TryGetValue(ParamKey.CurrentUser.ToString(), out user))
+                {
+                    User = user;
+                    IsLogedin = true;
+                }
+            }
+        }
+
         private async void LoadData()
         {
-            for(var i = 0; i < 7; i++ )
+            ListPost = await ApiService.GetPosts() ?? new ObservableCollection<HomePostItem>();
+
+            for (var i = 0; i < 7; i++ )
             {
                 ListBanner.Add("home_banner.png");
-                ListPost.Add(new HomePostItem { Title = $"Pick up món ngon, đón Tết an toàn {i}", Image = "Post1.png", Date = new DateTime(2021, 02, 03)});
+               
             }
            
             for(int i = 0; i < ListPost.Count + 1; i += 2)
             {
                 if(i + 1 >= ListPost.Count)
                 {
-                    var item = ListPost[i];
+                    var item = (i + 1) == ListPost.Count ? ListPost[i] : null;
+                    if(item == null)
+                    {
+                        return;
+                    }
                     ListPostUI.Add(new HomePostUIItem
                     {
+                        Url1 = item.Url,
                         Title1 = item.Title,
                         Image1 = item.Image,
                         Date1 = item.Date,
                         IsEvenNumber = false,
-                        
-                    });
+
+                    }) ;
                     return;
                 }
                 var item1 = ListPost[i];
@@ -131,9 +167,12 @@ namespace TheCoffeHouse.ViewModels
                     Title1 = item1.Title,
                     Image1 = item1.Image,
                     Date1 = item1.Date,
+                    Url1 = item1.Url,
                     Title2 = item2.Title,
                     Date2 = item2.Date,
-                    Image2 = item2.Image
+                    Image2 = item2.Image,
+                    Url2 = item2.Url,
+                    
                 });
             }
 
@@ -172,8 +211,10 @@ namespace TheCoffeHouse.ViewModels
         public ICommand OpenPost1Command { get; set; }
         private async void OpenPost1Execute(HomePostUIItem selectedPostItem)
         {
-            HomePostItem selectedPostInfo = new HomePostItem { Title = selectedPostItem.Title1, Date = selectedPostItem.Date1, Image = selectedPostItem.Image1 };
-         
+            NavigationParameters navParam = new NavigationParameters();
+            navParam.Add(ParamKey.SelectedPost.ToString(), selectedPostItem.Url1);
+
+            await Navigation.NavigateAsync(PageManagement.PreferentialPage, navParam);
         }
         #endregion
 
@@ -181,7 +222,10 @@ namespace TheCoffeHouse.ViewModels
         public ICommand OpenPost2Command { get; set; }
         private async void OpenPost2Execute(HomePostUIItem selectedPostItem)
         {
-            HomePostItem selectedPostInfo = new HomePostItem { Title = selectedPostItem.Title2, Date = selectedPostItem.Date2, Image = selectedPostItem.Image2 };
+            NavigationParameters navParam = new NavigationParameters();
+            navParam.Add(ParamKey.SelectedPost.ToString(), selectedPostItem.Url2);
+
+            await Navigation.NavigateAsync(PageManagement.PreferentialPage, navParam);
         }
         #endregion
 

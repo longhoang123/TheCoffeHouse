@@ -8,5 +8,6 @@ namespace TheCoffeHouse.Enums
     {
         CurrentUser,
         Username,
+        SelectedPost
     }
 }

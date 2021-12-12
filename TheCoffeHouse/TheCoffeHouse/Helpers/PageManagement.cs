@@ -109,6 +109,7 @@ namespace TheCoffeHouse.Helpers
         public readonly static string DetailCouponPage = "DetailCouponPage";
         public readonly static string AllPromotionPage = "AllPromotionPage";
         public readonly static string DetailPromotionPage = "DetailPromotionPage";
+        public readonly static string DetailOrderPage = "DetailOrderPage";
         public readonly static string OrderPage = "OrderPage";
         public readonly static string StorePage = "StorePage";
         public readonly static string ProductDetailPage = "ProductDetailPage";
@@ -116,6 +117,7 @@ namespace TheCoffeHouse.Helpers
         public readonly static string RewardPage = "RewardPage";
         public readonly static string PreferentialPage = "PreferentialPage";
         public readonly static string NotificationPage = "NotificationPage";
+        
 
 
         #endregion

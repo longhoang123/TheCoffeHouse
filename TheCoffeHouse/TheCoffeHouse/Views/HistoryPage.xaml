@@ -2,19 +2,20 @@
 <base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+               prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.HistoryPage"
-             Title="Lịch sử đơn hàng">
+             Title="Lịch sử đơn hàng"
+               ControlTemplate="{StaticResource HistoryPageTemplete}">
     <StackLayout>
         <Label Text="Bạn chưa có đơn hàng nào" IsVisible="False" FontSize="Large"></Label>
-        <ListView IsVisible="True" ItemsSource="{Binding ListHistory}">
+        <ListView IsVisible="True" ItemsSource="{Binding ListOrder}" HasUnevenRows="True" SelectedItem="{Binding SelectedOrder}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="{Binding DetailHistoryOrderInfo}"></Label>
-                        </StackLayout>
+                        <Frame Margin="5" Padding="5,10,5,10" CornerRadius="10" BorderColor="Transparent">
+                            <custom:CustomOrderFrame IDOrderText="{Binding IDOrder}" PriceText="{Binding TotalPayment}" Source="coolmate.jpg"></custom:CustomOrderFrame>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

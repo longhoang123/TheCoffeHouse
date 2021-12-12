@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base ="clr-namespace:TheCoffeHouse.Views.Base"
+             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+               prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.DetailOrderPage">
+    <ScrollView>
+        <StackLayout Padding="0,10">
+            <StackLayout BackgroundColor="White" Margin="0,5" Padding="10">
+                <Label Text="Thông tin vận chuyển" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
+                <Label Text="{Binding ShippingMethod}" FontSize="Medium"></Label>
+            </StackLayout>
+            <StackLayout BackgroundColor="White" Margin="0,5" Padding="10">
+                <Label Text="Địa chỉ nhận hàng" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
+                <Label Text="Nguyễn Thanh Long" FontSize="Medium"></Label>
+                <Label Text="{Binding Address}" FontSize="Small"></Label>
+            </StackLayout>
+            <ListView IsVisible="True" ItemsSource="{Binding ListItemOrder}" HasUnevenRows="True" Margin="0,10" HeightRequest="400">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="5" Padding="0,10,0,10" CornerRadius="10" BorderColor="Transparent">
+                                <custom:CustomDetailOrderFrame NameText="{Binding IDPro}" Price="{Binding Price}" Quantity="{Binding Quantity}" Source="coolmate.jpg"></custom:CustomDetailOrderFrame>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout BackgroundColor="White" Margin="0,5" Padding="10">
+                <Label Text="Phương thức thanh toán" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
+                <Label Text="{Binding PaymentMethod}" FontSize="Medium"></Label>
+            </StackLayout>
+            <StackLayout BackgroundColor="White" Margin="0,5" Padding="10">
+                <Label Text="Thành tiền" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
+                <Label Text="{Binding TotalPayment}" FontSize="Medium" TextColor="DarkGoldenrod"></Label>
+            </StackLayout>
+            <Button Text="Hủy đơn hàng" CornerRadius="20" BackgroundColor="Red" Margin="40,10" TextColor="White" FontAttributes="Bold"></Button>
+        </StackLayout>
+    </ScrollView>
+</base:BasePage>

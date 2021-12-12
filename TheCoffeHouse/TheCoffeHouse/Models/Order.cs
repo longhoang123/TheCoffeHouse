@@ -4,8 +4,9 @@ using System.Text;
 
 namespace TheCoffeHouse.Models
 {
-    class Order
+    public class Order
     {
+        public int IDOrder { get; set; }
         public int IDCart { get; set; }
         public int IDUser { get; set; }
         public int Total { get; set; }
@@ -13,6 +14,7 @@ namespace TheCoffeHouse.Models
         public int Point { get; set; }
         public string Address { get; set; }
         public string AddressShop { get; set; }
+        public string Status { get; set; }
         public int Shipping { get; set; }
         public int TotalPayment { get; set; }
     }

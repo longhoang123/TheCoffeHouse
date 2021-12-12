@@ -25,8 +25,14 @@
     <Compile Update="Controls\HeaderViewother.xaml.cs">
       <DependentUpon>HeaderViewOther.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Custom\CustomDetailOrderFrame.xaml.cs">
+      <DependentUpon>CustomDetailOrderFrame.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Custom\CustomCouponFrame.xaml.cs">
       <DependentUpon>CustomCouponFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Custom\CustomOrderFrame.cs">
+      <DependentUpon>CustomOrderFrame.xaml</DependentUpon>
     </Compile>
     <Compile Update="Resources\AppResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -89,6 +95,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DetailCouponPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DetailOrderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DetailPromotionPage.xaml">

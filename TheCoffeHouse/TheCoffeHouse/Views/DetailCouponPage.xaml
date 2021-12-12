@@ -10,7 +10,7 @@
             <Frame BackgroundColor="White" CornerRadius="40" Padding="20" Margin="10,30,10,30">
                 <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
                     <Label Text="The Coofee House" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-                    <Label Text="Ưu đã 30% dơn từ 4 món &#10;(bánh, snack, nước)" FontSize="Medium" Margin="10" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    <Label Text="{Binding Title}" FontSize="Medium" Margin="10" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
                     <Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="400" HeightRequest="2" BackgroundColor="Black" Margin="0,20,0,20"></Label>
                     <Image Source="coupon15.jpg" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="150" WidthRequest="150" Margin="20"></Image>
                     <Label Text="TUNGBUNG" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>

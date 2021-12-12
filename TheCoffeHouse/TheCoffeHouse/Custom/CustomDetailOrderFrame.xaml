@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TheCoffeHouse.Custom.CustomDetailOrderFrame">
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal" BackgroundColor="White" Margin="10" Padding="0,5">
+            <Frame CornerRadius="8" Padding="0" Margin="0">
+                <Image x:Name="Image" Source="User_active.png" WidthRequest="70" HeightRequest="70"></Image>
+            </Frame>
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
+                <Label x:Name="Name" Text="Coolmate"  FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
+                <Label x:Name="QuantityLb" Text="Coolmate 100k" TextColor="Black" LineBreakMode="WordWrap" FontSize="Medium"></Label>
+            </StackLayout>
+            <Label x:Name="PriceLb" Text="99"  FontSize="Small" TextColor="DarkGreen" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"></Label>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

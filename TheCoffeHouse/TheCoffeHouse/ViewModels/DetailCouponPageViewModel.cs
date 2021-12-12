@@ -18,27 +18,33 @@ namespace TheCoffeHouse.ViewModels
             IHttpService httpService = null,
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
-            CouponInfo = new Coupon();
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
-            Coupon coupon = parameters.GetValue<Coupon>("CouponSelected");
-            //_couponinfo = coupon;
-            //CouponInfo = coupon;
+            SelectedCoupon = parameters.GetValue<Coupon>("CouponSelected");
+            Tilte = SelectedCoupon.Title;
         }
-        private Coupon _couponinfo;
-        public Coupon CouponInfo
+
+        private string _title;
+
+        public string Tilte
         {
-            get => _couponinfo;
+            get { return _title; }
             set
             {
-                if (_couponinfo != null)
-                {
-                    SetProperty(ref _couponinfo, value);
-                    RaisePropertyChanged("PromotionSelected");
-                }
-
+                SetProperty(ref _title, value);
+                RaisePropertyChanged("Title");
+            }
+        }
+        private Coupon _selectedCoupon;
+        public Coupon SelectedCoupon
+        {
+            get { return _selectedCoupon; }
+            set
+            {
+                SetProperty(ref _selectedCoupon, value);
+                RaisePropertyChanged("SelectedCoupon");
             }
         }
     }

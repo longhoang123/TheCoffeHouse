@@ -18,27 +18,59 @@ namespace TheCoffeHouse.ViewModels
             IHttpService httpService = null,
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
-            PromotionInfo = new Promotion();
+
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
-            Promotion promotion = parameters.GetValue<Promotion>("PromotionSelected");
-            //_promotion = promotion;
-            //PromotionInfo = promotion;
+            SelectedPromotion = parameters.GetValue<Promotion>("PromotionSelected");
+            TitlePromotion = SelectedPromotion.Brand;
+            ImagePromotion = SelectedPromotion.Image;
+            NumPointPromotion =SelectedPromotion.NumPoint;
         }
-        private Promotion _promotion;
-        public Promotion PromotionInfo
+        private string _titlePromotion;
+
+        public string TitlePromotion
         {
-            get => _promotion;
+            get { return _titlePromotion; }
             set
             {
-                if(_promotion!=null)
-                {
-                    SetProperty(ref _promotion, value);
-                    RaisePropertyChanged("PromotionSelected");
-                }
-               
+                SetProperty(ref _titlePromotion, value);
+                RaisePropertyChanged("Title");
+            }
+        }
+
+        private string _imagePromotion;
+
+        public string ImagePromotion
+        {
+            get { return _imagePromotion; }
+            set
+            {
+                SetProperty(ref _imagePromotion, value);
+                RaisePropertyChanged("Image");
+            }
+        }
+        private string _numPointPromotion;
+
+        public string NumPointPromotion
+        {
+            get { return _numPointPromotion; }
+            set
+            {
+                SetProperty(ref _numPointPromotion, value);
+                RaisePropertyChanged("NumPoint");
+            }
+        }
+
+        private Promotion _selectedPromotion;
+        public Promotion SelectedPromotion
+        {
+            get { return _selectedPromotion; }
+            set
+            {
+                SetProperty(ref _selectedPromotion, value);
+                RaisePropertyChanged("SelectedPromotion");
             }
         }
     }

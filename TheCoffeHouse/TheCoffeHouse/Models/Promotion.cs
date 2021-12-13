@@ -10,8 +10,8 @@ namespace TheCoffeHouse.Models
         public string Brand { get; set; }
         public string Description { get; set; }
         public string NumPoint { get; set; }
-        public ImageSource Image { get; set; }
-        public ImageSource BigImage { get; set; }
+        public string Image { get; set; }
+        public string BigImage { get; set; }
 
     }
 }

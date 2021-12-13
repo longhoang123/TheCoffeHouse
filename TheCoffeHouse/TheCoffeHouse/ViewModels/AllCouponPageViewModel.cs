@@ -36,7 +36,7 @@ namespace TheCoffeHouse.ViewModels
         {
             for (var i = 0; i <= 7; i++)
             {
-                ListCoupon.Add(new Coupon { Title = "-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021", Image = "coupon15.jpg", Date = "Hết hạn sau 10 ngày" });
+                ListCoupon.Add(new Coupon { Code = "TCF15", Title = "-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021", Image = "coupon15.jpg", Date = "Hết hạn sau 10 ngày" });
             }
         }
         #region ListCoupon

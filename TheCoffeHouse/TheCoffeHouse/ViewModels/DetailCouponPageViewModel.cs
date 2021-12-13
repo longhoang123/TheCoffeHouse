@@ -23,20 +23,57 @@ namespace TheCoffeHouse.ViewModels
         {
             base.OnNavigatedNewTo(parameters);
             SelectedCoupon = parameters.GetValue<Coupon>("CouponSelected");
-            Tilte = SelectedCoupon.Title;
+            TitleCoupon = SelectedCoupon.Title;
+            DateCoupon = SelectedCoupon.Date;
+            ImageCoupon = SelectedCoupon.Image;
+            CodeCoupon = SelectedCoupon.Code;
         }
 
-        private string _title;
+        private string _titleCoupon;
 
-        public string Tilte
+        public string TitleCoupon
         {
-            get { return _title; }
+            get { return _titleCoupon; }
             set
             {
-                SetProperty(ref _title, value);
+                SetProperty(ref _titleCoupon, value);
                 RaisePropertyChanged("Title");
             }
         }
+        private string _imageCoupon;
+
+        public string ImageCoupon
+        {
+            get { return _imageCoupon; }
+            set
+            {
+                SetProperty(ref _imageCoupon, value);
+                RaisePropertyChanged("Image");
+            }
+        }
+        private string _dateCoupon;
+
+        public string DateCoupon
+        {
+            get { return _dateCoupon; }
+            set
+            {
+                SetProperty(ref _dateCoupon, value);
+                RaisePropertyChanged("Date");
+            }
+        }
+
+        private string _codeCoupon;
+        public string CodeCoupon
+        {
+            get { return _codeCoupon; }
+            set
+            {
+                SetProperty(ref _codeCoupon, value);
+                RaisePropertyChanged("Code");
+            }
+        }
+
         private Coupon _selectedCoupon;
         public Coupon SelectedCoupon
         {

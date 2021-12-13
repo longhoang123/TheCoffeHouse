@@ -9,23 +9,23 @@
              Title="Liên hệ và góp ý">
     <StackLayout Padding="-10,0,-10,0">
         <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Tổng đài &#10;18006936" Source="phone.png">
+            <custom:CustomButton ButtonText="Tổng đài &#10;18006936" SourceImage="phone.png">
             </custom:CustomButton>
         </Frame>
         <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Email &#10;hi@thecoffeehouse.com" Source="email.png">
+            <custom:CustomButton ButtonText="Email &#10;hi@thecoffeehouse.com" SourceImage="email.png">
             </custom:CustomButton>
         </Frame>
         <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Website &#10;https://www.thecoffeehouse.com" Source="globe.png">
+            <custom:CustomButton ButtonText="Website &#10;https://www.thecoffeehouse.com" SourceImage="globe.png">
             </custom:CustomButton>
         </Frame>
         <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Facebook &#10;facebook.com/The.Coffee.House.2014" Source="facebook.png">
+            <custom:CustomButton ButtonText="Facebook &#10;facebook.com/The.Coffee.House.2014" SourceImage="facebook.png">
             </custom:CustomButton>
         </Frame>
         <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Gửi góp ý về ứng dụng" Source="notice.png">
+            <custom:CustomButton ButtonText="Gửi góp ý về ứng dụng" SourceImage="notice.png">
             </custom:CustomButton>
         </Frame>
     </StackLayout>

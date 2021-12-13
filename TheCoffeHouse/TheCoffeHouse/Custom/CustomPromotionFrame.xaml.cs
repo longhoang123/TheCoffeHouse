@@ -15,7 +15,7 @@ namespace TheCoffeHouse.Custom
         public CustomPromotionFrame()
         {
             InitializeComponent();
-            ImageButton.SetBinding(Image.SourceProperty, new Binding("Source", source: this));
+            ImageButton.SetBinding(Image.SourceProperty, new Binding("SourceImage", source: this));
             Brand.SetBinding(Label.TextProperty, new Binding("BrandText", source: this));
             Description.SetBinding(Label.TextProperty, new Binding("DesText", source: this));
             NumPoint.SetBinding(Button.TextProperty, new Binding("NumPointText", source: this));
@@ -59,12 +59,12 @@ namespace TheCoffeHouse.Custom
             get { return (object)GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
         }
-        public static readonly BindableProperty ImageSourceProperty =
-             BindableProperty.Create("Source", typeof(ImageSource), typeof(CustomCouponFrame), default(ImageSource));
-        public ImageSource Source
+        public static readonly BindableProperty SourceImageProperty =
+             BindableProperty.Create("SourceImage", typeof(string), typeof(CustomPromotionFrame), default(string));
+        public string SourceImage
         {
-            get { return (ImageSource)GetValue(ImageSourceProperty); }
-            set { SetValue(ImageSourceProperty, value); }
+            get { return (string)GetValue(SourceImageProperty); }
+            set { SetValue(SourceImageProperty, value); }
         }
     }
 }

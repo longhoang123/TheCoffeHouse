@@ -20,11 +20,11 @@
                 </StackLayout>
             </Frame>
             <Frame BackgroundColor="White"  Margin="0,-20,0,0" CornerRadius="10" Padding="20,30,20,30">
-                <custom:CustomButton ButtonText="Liên kết tài khoản" Source="link.png">
+                <custom:CustomButton ButtonText="Liên kết tài khoản" SourceImage="link.png">
                 </custom:CustomButton>
             </Frame>
             <Frame BackgroundColor="White"  Margin="0,-20,0,0" CornerRadius="10" Padding="20,30,20,30">
-                <custom:CustomButton ButtonText="Về chúng tôi" Source="info.png">
+                <custom:CustomButton ButtonText="Về chúng tôi" SourceImage="info.png">
                 </custom:CustomButton>
             </Frame>
             <Label BackgroundColor="DarkGray" WidthRequest="340" HeightRequest="2" Margin="0,-90,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>

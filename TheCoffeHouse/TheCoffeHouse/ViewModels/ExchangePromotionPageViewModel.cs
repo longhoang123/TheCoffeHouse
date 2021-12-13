@@ -28,17 +28,11 @@ namespace TheCoffeHouse.ViewModels
             OpenAllPromotionPage = new DelegateCommand(OpenAllPromotionPageExcute);
             OpenCollectPointPage = new DelegateCommand(OpenCollectPointPageExcute);
         }
-
-        public class Category
-        {
-            public string TitleCategory { get; set; }
-            public ImageSource ImageCategory { get; set; }
-        }
         private void initcategory()
         {
             for(var i=0; i <= 3; i++)
             {
-                ListCategory.Add(new Category { TitleCategory = "Tất cả", ImageCategory = "giftbox.png" });
+                ListCategory.Add(new Category { Name = "Tất cả", Image = "giftbox.png" });
                 ListPromotion.Add(new Promotion { Brand = "Coolmate", Description = "Ưu đãi đến 100k", NumPoint = "99", Image = "coolmate.jpg" });
             }
         }
@@ -75,7 +69,7 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _listCategory, value);
-                RaisePropertyChanged("Tất cả");
+                RaisePropertyChanged("ListCategory");
             }
         }
 
@@ -87,7 +81,7 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _listPromotion, value);
-                RaisePropertyChanged("-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021");
+                RaisePropertyChanged("ListPromotion");
             }
         }
         #endregion

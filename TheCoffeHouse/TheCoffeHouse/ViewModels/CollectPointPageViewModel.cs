@@ -32,7 +32,7 @@ namespace TheCoffeHouse.ViewModels
         {
             for (var i = 0; i <= 2; i++)
             {
-                ListCoupon.Add(new Coupon { Title = "-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021", Image = "coupon15.jpg", Date="Hết hạn sau 10 ngày"});
+                ListCoupon.Add(new Coupon {Code="TCF15", Title = "-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021", Image = "coupon15.jpg", Date="Hết hạn sau 10 ngày"});
                 ListPromotion.Add(new Promotion { Brand = "Coolmate", Description = "Ưu đãi đến 100k", NumPoint = "99", Image = "coolmate.jpg" });
             }
         }
@@ -121,7 +121,7 @@ namespace TheCoffeHouse.ViewModels
                 if (_selectedCoupon != value)
                 {
                     SetProperty(ref _selectedCoupon, value);
-                    RaisePropertyChanged("SelectedPromotion");
+                    RaisePropertyChanged("SelectedCoupon");
                     OpenDetailCouponPageExcute();
                 }
             }

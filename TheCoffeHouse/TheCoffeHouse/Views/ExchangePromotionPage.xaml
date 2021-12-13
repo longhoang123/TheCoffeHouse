@@ -39,14 +39,11 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Frame Margin="5" Padding="5,10,5,10" CornerRadius="10" BorderColor="Transparent">
-                                    <custom:CustomPromotionFrame BrandText="{Binding Brand}" DesText="{Binding Description}" NumPointText="{Binding NumPoint}" Source="coolmate.jpg"></custom:CustomPromotionFrame>
+                                    <custom:CustomPromotionFrame BrandText="{Binding Brand}" DesText="{Binding Description}" NumPointText="{Binding NumPoint}" SourceImage="{Binding Image}"></custom:CustomPromotionFrame>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <ListView.Behaviors>
-                        <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OpenDetailPromotionPage}"/>
-                    </ListView.Behaviors>
                 </ListView>
             </StackLayout>
             <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,-40,0,0" Padding="10, 20, 10, 20" BackgroundColor="WhiteSmoke">
@@ -59,7 +56,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Frame BackgroundColor="White" Margin="0,-10,0,0" Padding="30,30,30,30" BorderColor="Transparent">
-                                    <custom:CustomButton Source="giftbox.png" ButtonText="{Binding TitleCategory}">
+                                    <custom:CustomButton SourceImage="{Binding Image}" ButtonText="{Binding Name}">
                                     </custom:CustomButton>
                                 </Frame>
                             </ViewCell>

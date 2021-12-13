@@ -15,7 +15,7 @@ namespace TheCoffeHouse.Custom
         public CustomButton()
         {
             InitializeComponent();
-            ImageButton.SetBinding(Image.SourceProperty, new Binding("Source", source: this));
+            ImageButton.SetBinding(Image.SourceProperty, new Binding("SourceImage", source: this));
             TitleButton.SetBinding(Label.TextProperty, new Binding("ButtonText", source: this));
             this.GestureRecognizers.Add(new TapGestureRecognizer
             {
@@ -52,12 +52,12 @@ namespace TheCoffeHouse.Custom
             get { return (object)GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
         }
-        public static readonly BindableProperty ImageSourceProperty =
-             BindableProperty.Create("Source", typeof(ImageSource), typeof(CustomButton), default(ImageSource));
-        public ImageSource Source
+        public static readonly BindableProperty SourceImageProperty =
+             BindableProperty.Create("SourceImage", typeof(string), typeof(CustomButton), default(string));
+        public string SourceImage
         {
-            get { return (ImageSource)GetValue(ImageSourceProperty); }
-            set { SetValue(ImageSourceProperty, value); }
+            get { return (string)GetValue(SourceImageProperty); }
+            set { SetValue(SourceImageProperty, value); }
         }
     }
 }

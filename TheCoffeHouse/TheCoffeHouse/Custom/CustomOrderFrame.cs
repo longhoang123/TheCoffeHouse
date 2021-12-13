@@ -34,10 +34,10 @@ namespace TheCoffeHouse.Custom
             set { SetValue(IDOrderTextProperty, value); }
         }
         public static readonly BindableProperty ImageSourceProperty =
-             BindableProperty.Create("Source", typeof(ImageSource), typeof(CustomOrderFrame), default(ImageSource));
-        public ImageSource Source
+             BindableProperty.Create("Source", typeof(string), typeof(CustomOrderFrame), default(string));
+        public string Source
         {
-            get { return (ImageSource)GetValue(ImageSourceProperty); }
+            get { return (string)GetValue(ImageSourceProperty); }
             set { SetValue(ImageSourceProperty, value); }
         }
     }

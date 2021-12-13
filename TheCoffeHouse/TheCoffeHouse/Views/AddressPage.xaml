@@ -9,19 +9,19 @@
              Title="Địa chỉ đã lưu">
     <StackLayout Padding="-10,0,-10,0">
         <Frame BackgroundColor="White" CornerRadius="10">
-            <custom:CustomButton ButtonText="Thêm địa chỉ Nhà" Source="home.png">
+            <custom:CustomButton ButtonText="Thêm địa chỉ Nhà" SourceImage="home.png">
             </custom:CustomButton>
 
         </Frame>
 
         <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Thêm địa chỉ Công ty" Source="building.png">
+            <custom:CustomButton ButtonText="Thêm địa chỉ Công ty" SourceImage="building.png">
             </custom:CustomButton>
 
         </Frame>
 
         <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Thêm địa chỉ mới" Source="plus.png">
+            <custom:CustomButton ButtonText="Thêm địa chỉ mới" SourceImage="plus.png">
             </custom:CustomButton>
 
         </Frame>

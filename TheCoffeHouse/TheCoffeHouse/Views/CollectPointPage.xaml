@@ -220,7 +220,7 @@
                                     CornerRadius="10">
                                     <custom:CustomCouponFrame
                                         DateText="{Binding Date}"
-                                        Source="coupon15.jpg"
+                                        SourceImage="{Binding Image}"
                                         TitleText="{Binding Title}" />
                                 </Frame>
                             </ViewCell>
@@ -270,7 +270,7 @@
                                         BrandText="{Binding Brand}"
                                         DesText="{Binding Description}"
                                         NumPointText="{Binding NumPoint}"
-                                        Source="coolmate.jpg" />
+                                        SourceImage="{Binding Image}" />
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>

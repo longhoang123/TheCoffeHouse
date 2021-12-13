@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Services;
@@ -22,6 +23,7 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             LoginCommand = new DelegateCommand(LoginExecute);
+            OpenSignupPageCommand = new DelegateCommand(OpenSignupPageExecute);
         }
 
         
@@ -59,11 +61,23 @@ namespace TheCoffeHouse.ViewModels
             }
             else
             {
+                ConstaintVaribles.IsLogedIn = true;
+                ConstaintVaribles.UserID = user.UserID.ToString();
                 NavigationParameters navParam = new NavigationParameters();
                 navParam.Add(ParamKey.CurrentUser.ToString(), user);
 
                 await Navigation.GoBackAsync(navParam);
             }
+        }
+
+
+        #endregion
+
+        #region OpenSignupPageCommand
+        public ICommand OpenSignupPageCommand { get; set; }
+        private async void OpenSignupPageExecute()
+        {         
+                await Navigation.NavigateAsync(PageManagement.SignupPage);       
         }
 
 

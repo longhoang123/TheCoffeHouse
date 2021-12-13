@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
@@ -125,7 +126,7 @@ namespace TheCoffeHouse.ViewModels
                 if (parameters.TryGetValue(ParamKey.CurrentUser.ToString(), out user))
                 {
                     User = user;
-                    IsLogedin = true;
+                    IsLogedin = ConstaintVaribles.IsLogedIn;
                 }
             }
         }
@@ -194,7 +195,7 @@ namespace TheCoffeHouse.ViewModels
         public ICommand OpenDeliveryCommand { get; set; }
         private async void OpenDeliveryExecute()
         {
-            await Navigation.SelectTabAsync("OrderPage");
+            await Navigation.SelectTabAsync(PageManagement.OrderPage);
         }
         #endregion
 

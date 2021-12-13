@@ -117,7 +117,8 @@ namespace TheCoffeHouse.Helpers
         public readonly static string RewardPage = "RewardPage";
         public readonly static string PreferentialPage = "PreferentialPage";
         public readonly static string NotificationPage = "NotificationPage";
-        
+        public readonly static string SignupPage = "SignupPage";
+
 
 
         #endregion

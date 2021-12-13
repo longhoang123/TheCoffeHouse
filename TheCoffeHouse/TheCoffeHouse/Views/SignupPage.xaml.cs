@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace TheCoffeHouse.Views
 {
-    public partial class LoginPage : BasePage
+    public partial class SignupPage : BasePage
     {
-        public LoginPage()
+        public SignupPage()
         {
             InitializeComponent();
         }

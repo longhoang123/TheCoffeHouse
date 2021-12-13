@@ -12,6 +12,8 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
+using TheCoffeHouse.Constant;
+using NavigationMode = Prism.Navigation.NavigationMode;
 
 namespace TheCoffeHouse.ViewModels.Base
 {
@@ -28,7 +30,7 @@ namespace TheCoffeHouse.ViewModels.Base
             get => _pageTitle;
             set => SetProperty(ref _pageTitle, value);
         }
-        private bool _isLogedin = false;
+        private bool _isLogedin = ConstaintVaribles.IsLogedIn;
 
         public bool IsLogedin
         {
@@ -86,12 +88,20 @@ namespace TheCoffeHouse.ViewModels.Base
 #endif
             if (parameters != null)
             {
-                var navMode = parameters.GetNavigationMode();
-                switch (navMode)
+                try
                 {
-                    case Prism.Navigation.NavigationMode.New: OnNavigatedNewTo(parameters); break;
-                    case Prism.Navigation.NavigationMode.Back: OnNavigatedBackTo(parameters); break;
+                    var navMode = parameters.GetNavigationMode();
+                    switch (navMode)
+                    {
+                        case NavigationMode.New: OnNavigatedNewTo(parameters); break;
+                        case NavigationMode.Back: OnNavigatedBackTo(parameters); break;
+                    }
                 }
+                catch (Exception)
+                {
+                    OnNavigatedNewTo(parameters);
+                }
+                
             }
 
         }

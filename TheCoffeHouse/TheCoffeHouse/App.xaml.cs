@@ -72,7 +72,7 @@ namespace TheCoffeHouse
             containerRegistry.RegisterForNavigation<RewardPage, RewardPageViewModel>(PageManagement.RewardPage);
             containerRegistry.RegisterForNavigation<PreferentialPage, PreferentialPageViewModel>(PageManagement.PreferentialPage);
             containerRegistry.RegisterForNavigation<NotificationPage, NotificationPageViewModel>(PageManagement.NotificationPage);
-            
+            containerRegistry.RegisterForNavigation<SignupPage, SignupPageViewModel>(PageManagement.SignupPage);
         }
     }
 }

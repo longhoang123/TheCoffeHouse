@@ -73,7 +73,7 @@
                     <controls:CollectPointCard
                         Name="{Binding User.Name}"
                         BarCode="{Binding Image}"
-                        Bean="100"
+                        Bean="{Binding User.Bean, StringFormat='{0} Bean - Mới'}"
                         IsVisible="{Binding IsLogedin}" />
 
                     <Frame BackgroundColor="White" CornerRadius="10">

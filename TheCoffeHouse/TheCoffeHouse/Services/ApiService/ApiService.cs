@@ -120,65 +120,56 @@ namespace TheCoffeHouse.Services.ApiService
             }
         }
 
-        //        private static async Task<T> Post<T>(string url, object obj)
-        //        {
-        //            using (var client = NewHttpClientWithHeaders())
-        //            {
-        //                CancellationTokenSource cancellationTokenSource = NewCancellationTokenSource();
-        //                try
-        //                {
-        //                    string jsonData = JsonConvert.SerializeObject(obj);
-        //                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        private static async Task<T> Post<T>(string url, object obj)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    string jsonData = JsonConvert.SerializeObject(obj);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-        //                    var response = await client.PostAsync(url, content, cancellationTokenSource.Token);
+                    var response = await client.PostAsync(url, content);
 
-        //                    if (response.IsSuccessStatusCode)
-        //                    {
-        //                        var json = await response.Content.ReadAsStringAsync();
-        //                        var responseObj = JsonConvert.DeserializeObject<T>(json);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var responseObj = JsonConvert.DeserializeObject<List<T>>(json);
 
-        //                        return responseObj;
-        //                    }
-        //                    else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-        //                    {
-        //                        if (await GetNewAuthTokens())
-        //                        {
-        //                            return await Post<T>(url, obj);
-        //                        }
-
-        //                        return default;
-        //                    }
-        //                    else
-        //                    {
-        //                        return default;
-        //                    }
-        //                }
-        //                catch (TaskCanceledException ex)
-        //                {
-        //#if DEBUG
-        //                    Debug.WriteLine(
-        //                        $"Canceled by Cancellation token when calling HTTP request: method {nameof(Post)}" +
-        //                        $"\nurl: {url}" +
-        //                        $"\nmessage: {ex.Message}");
-        //#endif
-        //                    return default;
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //#if DEBUG
-        //                    Debug.WriteLine(
-        //                        $"Error when calling HTTP request: method {nameof(Post)}" +
-        //                        $"\nurl: {url}" +
-        //                        $"\nmessage: {ex.Message}");
-        //#endif
-        //                    return default;
-        //                }
-        //                finally
-        //                {
-        //                    cancellationTokenSource.Dispose();
-        //                }
-        //            }
-        //        }
+                        return responseObj.First();
+                    }
+                    
+                    else
+                    {
+                        return default;
+                    }
+                }
+                catch (TaskCanceledException ex)
+                {
+#if DEBUG
+                    Debug.WriteLine(
+                        $"Canceled by Cancellation token when calling HTTP request: method {nameof(Post)}" +
+                        $"\nurl: {url}" +
+                        $"\nmessage: {ex.Message}");
+#endif
+                    return default;
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    Debug.WriteLine(
+                        $"Error when calling HTTP request: method {nameof(Post)}" +
+                        $"\nurl: {url}" +
+                        $"\nmessage: {ex.Message}");
+#endif
+                    return default;
+                }
+                finally
+                {
+                    
+                }
+            }
+        }
 
         //        private static async Task<T> PostFile<T>(string url, string fileName, byte[] data)
         //        {
@@ -380,7 +371,7 @@ namespace TheCoffeHouse.Services.ApiService
 
         #endregion
 
-        #region Validate
+        #region ValidateUser
         public static async Task<User> ValidateUser(string phone, string password)
         {
             var url = ApiUrl.ValidateUser(phone, password);
@@ -389,49 +380,21 @@ namespace TheCoffeHouse.Services.ApiService
 
         #endregion
 
+        #region RegisterUser
+        public static async Task<Dictionary<string, int>> RegisterUser(User user)
+        {
+            var url = ApiUrl.RegisterUser();
+            return await Post<Dictionary<string, int>>(url, user);
+        }
 
-        //#region UpdateUser
-
-        //public static async Task<bool> UpdateUser(KassomUser user)
-        //{
-        //    var url = ApiUrl.UpdateUser();
-        //    return await Put<bool>(url, user);
-        //}
-
-        //#endregion
+        #endregion
 
 
 
 
-        //#region GetCourses
 
-        //public static async Task<ObservableCollection<KassomCourseV2>> GetCourses()
-        //{
-        //    var url = ApiUrl.GetCourses();
-        //    return await Get<ObservableCollection<KassomCourseV2>>(url);
-        //}
 
-        //#endregion
 
-        //#region CreateCourse
-
-        //public static async Task<string> CreateCourse(KassomCourseV2 course)
-        //{
-        //    var url = ApiUrl.CreateCourse();
-        //    return await Post<string>(url, course);
-        //}
-
-        //#endregion
-
-        //#region DeleteCourse
-
-        //public static async Task<bool> DeleteCourse(KassomCourseV2 course)
-        //{
-        //    var url = ApiUrl.DeleteCourse(course.CourseGuid);
-        //    return await Delete<bool>(url);
-        //}
-
-        //#endregion
 
 
     }

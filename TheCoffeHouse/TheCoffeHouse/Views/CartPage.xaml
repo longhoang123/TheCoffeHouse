@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage  xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" 
+                xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" 
+             xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.CartPage">
+    <Grid RowDefinitions="auto,*,0.2*">
+        <controls:ContentPageHeaderView Title="{Binding PageTitle}" RightIcon="read.png" />
+        <ScrollView Grid.Row="1">
+            <!--<StackLayout VerticalOptions="CenterAndExpand">
+                <Label HorizontalOptions="Center" Text="Giỏ hàng trống" />
+            </StackLayout>-->
+            <ListView
+                        HasUnevenRows="True" 
+
+                        ItemsSource="{Binding ListDetailCart}"
+                        SelectedItem="{Binding SelectedDrink}"
+                        SelectionMode="None"
+                        BackgroundColor="White"
+                        HorizontalOptions="Fill">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid ColumnSpacing="10" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="0"
+                                            Aspect="AspectFit"
+                                           
+                                          
+                                            Source="{Binding Image}"
+                                            
+                                            WidthRequest="110" />
+                                <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            FontAttributes="Bold"
+                                            FontSize="22"
+                                            Text="{Binding NameItem}"
+                                            VerticalOptions="Center" />
+                                <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            Text="Số lượng:" />
+                                <Label
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            FontSize="20"
+                                            Text="{Binding Quantity}" />
+
+
+                                <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            Text="Size:" />
+                                <Label
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+                                            FontSize="18"                                  
+                                            Text="{Binding Size}" />
+
+                                <Label
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            Text="Tổng giá:" />
+                                <Label
+                                            Grid.Row="3"
+                                            Grid.Column="2"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            Text="{Binding Total, StringFormat='{0:#,0}'}" />
+                                <Button
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Padding="10"
+                                            BackgroundColor="Red"  
+                                            TextColor="White"
+                                            FontSize="18"
+                                            FontAttributes="Bold"
+                                            Margin="0,0,10,10"
+                                            Text="Xóa khỏi giỏ hàng"
+                                            VerticalOptions="Center"
+                                          
+                                            />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <!--<ListView.Behaviors>
+                            <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"/>
+                        </ListView.Behaviors>-->
+            </ListView>
+        </ScrollView>
+        <Frame Grid.Row="2" Padding="0" >
+            <StackLayout Margin="20,0,10,0" Orientation="Horizontal" HorizontalOptions="Fill"  HeightRequest="80" Spacing="15">
+                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                    <Label   Text="Tổng tiền thanh toán" TextColor="Gray" FontSize="20" FontAttributes="Bold"
+                        HorizontalOptions="Center" VerticalOptions="Center" 
+                        />
+                    <Label  x:Name="quantityPro" Text="100000000" FontSize="22" TextColor="Blue" FontAttributes="Bold"
+                        HorizontalOptions="Center" VerticalOptions="Center" 
+                        />
+                </StackLayout>
+              
+                <Frame Padding="0" CornerRadius="10"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Button  Text="Thanh toán" Command="{Binding OpenCartPageCommand}" BackgroundColor="Orange" FontSize="20" TextColor="White" FontAttributes="Bold"/>
+                </Frame>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</base:BasePage>

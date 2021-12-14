@@ -10,6 +10,7 @@ using System.Windows.Input;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
@@ -25,12 +26,10 @@ namespace TheCoffeHouse.ViewModels
             initpromotion();
         }
 
-        private void initpromotion()
+        private async void initpromotion()
         {
-            for (var i = 0; i <= 7; i++)
-            {
-                ListPromotion.Add(new Promotion { Brand = "Coolmate", Description = "Ưu đãi đến 100k", NumPoint = "99", Image = "coolmate.jpg" });
-            }
+            ListPromotion = await ApiService.GetPromotions();
+            //ListPromotion.Add(new Promotion { Brand = "Coolmate", PromotionDes = "Ưu đãi đến 100k", Point = "99", PromotionImage = "coolmate.jpg" });
         }
         private async void OpenDetailPromotionPageExcute()
         {

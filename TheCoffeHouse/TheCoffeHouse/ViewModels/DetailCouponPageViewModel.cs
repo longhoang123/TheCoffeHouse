@@ -24,8 +24,8 @@ namespace TheCoffeHouse.ViewModels
             base.OnNavigatedNewTo(parameters);
             SelectedCoupon = parameters.GetValue<Coupon>("CouponSelected");
             TitleCoupon = SelectedCoupon.Title;
-            DateCoupon = SelectedCoupon.Date;
-            ImageCoupon = SelectedCoupon.Image;
+            DateCoupon = SelectedCoupon.CouponDate;
+            ImageCoupon = SelectedCoupon.CouponImage;
             CodeCoupon = SelectedCoupon.Code;
         }
 

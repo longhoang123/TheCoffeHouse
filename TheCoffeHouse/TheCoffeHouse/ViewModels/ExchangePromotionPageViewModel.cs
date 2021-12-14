@@ -10,6 +10,7 @@ using System.Windows.Input;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 using Xamarin.Forms;
 
@@ -28,18 +29,12 @@ namespace TheCoffeHouse.ViewModels
             OpenAllPromotionPage = new DelegateCommand(OpenAllPromotionPageExcute);
             OpenCollectPointPage = new DelegateCommand(OpenCollectPointPageExcute);
         }
-        private void initcategory()
+        private async void initcategory()
         {
-            for(var i=0; i <= 3; i++)
-            {
-                ListCategory.Add(new Category { Name = "Tất cả", Image = "giftbox.png" });
-                ListPromotion.Add(new Promotion { Brand = "Coolmate", Description = "Ưu đãi đến 100k", NumPoint = "99", Image = "coolmate.jpg" });
-            }
+            ListPromotion = await ApiService.GetPromotions() ?? new ObservableCollection<Promotion>();
+            ListCategory = await ApiService.GetCategory() ?? new ObservableCollection<Category>();
         }
-
-
         #region OpenPage
-
         public ICommand OpenCollectPointPage { get; set; }
         private async void OpenCollectPointPageExcute()
         {

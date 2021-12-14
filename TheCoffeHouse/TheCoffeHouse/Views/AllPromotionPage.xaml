@@ -14,7 +14,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <Frame Padding="20,0,20,0" Margin="0,-5,0,0">
-                            <custom:CustomPromotionFrame BrandText="{Binding Brand}" DesText="{Binding Description}" NumPointText="{Binding NumPoint}" SourceImage="{Binding Image}"></custom:CustomPromotionFrame>
+                            <custom:CustomPromotionFrame BrandText="{Binding Brand}" DesText="{Binding PromotionDes}" NumPointText="{Binding Point}" SourceImage="{Binding PromotionImage}"></custom:CustomPromotionFrame>
                         </Frame>
                     </ViewCell>
                 </DataTemplate>

@@ -389,13 +389,51 @@ namespace TheCoffeHouse.Services.ApiService
 
         #endregion
 
+        #region GetCoupon
+        public static async Task<ObservableCollection<Coupon>> GetCoupons()
+        {
+            var url = ApiUrl.GetCoupons();
+            return await GetList<ObservableCollection<Coupon>>(url);
+        }
 
+        #endregion
+        #region GetCouponByCode
+        public static async Task<Coupon> GetCouponByCode(string code)
+        {
+            var url = ApiUrl.GetCouponByCode(code);
+            return await Get<Coupon>(url);
+        }
 
+        #endregion
+        #region GetPromotion
+        public static async Task<ObservableCollection<Promotion>> GetPromotions()
+        {
+            var url = ApiUrl.GetPromotions();
+            return await GetList<ObservableCollection<Promotion>>(url);
+        }
+        #endregion
+        #region GetPromotionById
+        public static async Task<Promotion> GetPromotionById(int id)
+        {
+            var url = ApiUrl.GetPromotionById(id);
+            return await Get<Promotion>(url);
+        }
 
+        #endregion
+        #region GetCategory
+        public static async Task<ObservableCollection<Category>> GetCategory()
+        {
+            var url = ApiUrl.GetCategory();
+            return await GetList<ObservableCollection<Category>>(url);
+        }
+        #endregion
+        #region GetCategoryById
+        public static async Task<Category> GetCategoryById(int id)
+        {
+            var url = ApiUrl.GetCategoryById(id);
+            return await Get<Category>(url);
+        }
 
-
-
-
-
+        #endregion
     }
 }

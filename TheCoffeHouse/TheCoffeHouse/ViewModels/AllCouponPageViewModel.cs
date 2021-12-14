@@ -10,6 +10,7 @@ using System.Windows.Input;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
@@ -32,12 +33,9 @@ namespace TheCoffeHouse.ViewModels
             await Navigation.NavigateAsync(PageManagement.DetailCouponPage, navParams);
         }
 
-        private void initcoupon()
+        private async void initcoupon()
         {
-            for (var i = 0; i <= 7; i++)
-            {
-                ListCoupon.Add(new Coupon { Code = "TCF15", Title = "-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021", Image = "coupon15.jpg", Date = "Hết hạn sau 10 ngày" });
-            }
+            ListCoupon = await ApiService.GetCoupons();
         }
         #region ListCoupon
         private ObservableCollection<Coupon> _listCoupon;
@@ -47,7 +45,7 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _listCoupon, value);
-                RaisePropertyChanged("-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021");
+                RaisePropertyChanged("ListCoupon");
             }
         }
         #endregion

@@ -24,9 +24,9 @@ namespace TheCoffeHouse.ViewModels
         {
             base.OnNavigatedNewTo(parameters);
             SelectedPromotion = parameters.GetValue<Promotion>("PromotionSelected");
-            TitlePromotion = SelectedPromotion.Brand;
-            ImagePromotion = SelectedPromotion.Image;
-            NumPointPromotion =SelectedPromotion.NumPoint;
+            TitlePromotion = SelectedPromotion.PromotionDes;
+            ImagePromotion = SelectedPromotion.PromotionImage;
+            NumPointPromotion =SelectedPromotion.Point;
         }
         private string _titlePromotion;
 

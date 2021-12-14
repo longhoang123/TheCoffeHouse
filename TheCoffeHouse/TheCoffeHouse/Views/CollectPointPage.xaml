@@ -219,8 +219,8 @@
                                     BorderColor="Transparent"
                                     CornerRadius="10">
                                     <custom:CustomCouponFrame
-                                        DateText="{Binding Date}"
-                                        SourceImage="{Binding Image}"
+                                        DateText="{Binding CouponDate}"
+                                        SourceImage="{Binding CouponImage}"
                                         TitleText="{Binding Title}" />
                                 </Frame>
                             </ViewCell>
@@ -268,9 +268,9 @@
                                     BorderColor="Transparent">
                                     <custom:CustomPromotionFrame
                                         BrandText="{Binding Brand}"
-                                        DesText="{Binding Description}"
-                                        NumPointText="{Binding NumPoint}"
-                                        SourceImage="{Binding Image}" />
+                                        DesText="{Binding PromotionDes}"
+                                        NumPointText="{Binding Point}"
+                                        SourceImage="{Binding PromotionImage}" />
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>

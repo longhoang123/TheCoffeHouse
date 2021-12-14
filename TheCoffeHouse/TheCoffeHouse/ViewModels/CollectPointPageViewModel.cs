@@ -10,6 +10,7 @@ using System.Windows.Input;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
@@ -28,15 +29,11 @@ namespace TheCoffeHouse.ViewModels
             OpenExchangePromotionPage = new DelegateCommand(OpenExchangePromotionPageExcute);
             OpenHistoryPage = new DelegateCommand(OpenHistoryPageExcute);
         }
-        private void initcoupon()
+        private async void initcoupon()
         {
-            for (var i = 0; i <= 2; i++)
-            {
-                ListCoupon.Add(new Coupon {Code="TCF15", Title = "-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021", Image = "coupon15.jpg", Date="Hết hạn sau 10 ngày"});
-                ListPromotion.Add(new Promotion { Brand = "Coolmate", Description = "Ưu đãi đến 100k", NumPoint = "99", Image = "coolmate.jpg" });
-            }
+            ListCoupon = await ApiService.GetCoupons() ?? new ObservableCollection<Coupon>();
+            ListPromotion= await ApiService.GetPromotions() ?? new ObservableCollection<Promotion>();
         }
-
         #region OpenPage
         public ICommand OpenHistoryPage { get; set; }
         private async void OpenHistoryPageExcute()
@@ -68,9 +65,6 @@ namespace TheCoffeHouse.ViewModels
         {
             await Navigation.NavigateAsync(PageManagement.AllCouponPage);
         }
-
-
-
         #endregion
         #region List
         private ObservableCollection<Coupon> _listCoupon;
@@ -80,7 +74,7 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _listCoupon, value);
-                RaisePropertyChanged("-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021");
+                RaisePropertyChanged("ListCoupon");
             }
         }
 
@@ -91,7 +85,7 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _listPromotion, value);
-                RaisePropertyChanged("-Giảm giá 15% tất cả sản phẩm mua từ ngày 11/11/2021");
+                RaisePropertyChanged("ListPromotion");
             }
         }
         #endregion

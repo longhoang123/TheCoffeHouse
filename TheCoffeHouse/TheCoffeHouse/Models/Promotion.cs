@@ -7,11 +7,12 @@ namespace TheCoffeHouse.Models
 {
     public class Promotion
     {
+        public int IDPromotion { get; set; }
         public string Brand { get; set; }
-        public string Description { get; set; }
-        public string NumPoint { get; set; }
-        public string Image { get; set; }
-        public string BigImage { get; set; }
+        public string PromotionDes { get; set; }
+        public string Point { get; set; }
+        public string PromotionImage { get; set; }
+        public string PromotionBigImage { get; set; }
 
     }
 }

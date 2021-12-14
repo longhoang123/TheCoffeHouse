@@ -4,7 +4,7 @@ namespace TheCoffeHouse.Services.ApiService
 {
     public static class ApiUrl
     {
-        public static string BaseUrl = "http://192.168.1.17/thecoffehouseapi/api/";
+        public static string BaseUrl = "http://www.tchie307.somee.com/api/";
         public static string Link(string endpoint)
         {
             return $"{BaseUrl}{endpoint}";
@@ -27,5 +27,32 @@ namespace TheCoffeHouse.Services.ApiService
         {
             return Link($"/UserProfileController/RegisterUser");
         }
+
+        #region Thanh Long
+        public static string GetCoupons()
+        {
+            return Link($"CouponController/GetCoupon");
+        }
+        public static string GetCouponByCode(string code)
+        {
+            return Link($"CouponController/GetCouponByCode?Code={code}");
+        }
+        public static string GetPromotions()
+        {
+            return Link($"PromotionController/GetPromotion");
+        }
+        public static string GetPromotionById(int Id)
+        {
+            return Link($"PromotionController/GetPromotionById? Id = {Id}");
+        }
+        public static string GetCategory()
+        {
+            return Link($"api/CategoryController/GetCategory");
+        }
+        public static string GetCategoryById(int Id)
+        {
+            return Link($"api/CategoryController/GetCategoryById?Id={Id}");
+        }
+        #endregion
     }
 }

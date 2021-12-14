@@ -5,6 +5,8 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
@@ -19,7 +21,7 @@ namespace TheCoffeHouse.ViewModels
             IHttpService httpService = null,
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
-           
+            OpenCartPageCommand = new DelegateCommand(OpenCartPageExecute);
         }
      
         public override void OnNavigatedNewTo(INavigationParameters parameters)
@@ -90,6 +92,13 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
+        #endregion
+        #region OpenCartPageCommand
+        public ICommand OpenCartPageCommand { get; set; }
+        private void OpenCartPageExecute()
+        {
+            Navigation.NavigateAsync(PageManagement.CartPage);
+        }
         #endregion
     }
 }

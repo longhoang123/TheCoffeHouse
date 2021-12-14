@@ -132,7 +132,7 @@
                 <ImageButton HorizontalOptions="Center" VerticalOptions="Center"  Source="add.png" Padding="10" CornerRadius="50" WidthRequest="40" HeightRequest="40" BackgroundColor="#f7cd92"/>
 
                 <Frame Padding="0" CornerRadius="10" Margin="10,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
-                    <Button  Text="18.500đ" BackgroundColor="Orange" FontSize="25" TextColor="White" FontAttributes="Bold"/>
+                    <Button  Text="{Binding PricePro}" Command="{Binding OpenCartPageCommand}" BackgroundColor="Orange" FontSize="25" TextColor="White" FontAttributes="Bold"/>
                 </Frame>
             </StackLayout>
         </Frame>

@@ -54,5 +54,15 @@ namespace TheCoffeHouse.Services.ApiService
             return Link($"api/CategoryController/GetCategoryById?Id={Id}");
         }
         #endregion
+        #region Cart
+        public static string GetCartByIDUser(int IDUser)
+        {
+            return Link($"CartController/GetCartByIDCust?IDUser={IDUser}");
+        }
+        public static string CreateCartByIDCust()
+        {
+            return Link($"CartController/CreateCartByIDCust");
+        }
+        #endregion
     }
 }

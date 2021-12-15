@@ -435,5 +435,20 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
+        #region GetCartByIDUser
+        public static async Task<Cart> GetCartByIDUser(int IDUser)
+        {
+            var url = ApiUrl.GetCartByIDUser(IDUser);
+            return await Get<Cart>(url);
+        }
+        #endregion
+        # region CreateCartByIDUser
+        public static async Task<Dictionary<string, int>> CreateCartByIDCust(Cart cart)
+        {
+            var url = ApiUrl.CreateCartByIDCust();
+            return await Post<Dictionary<string, int>>(url, cart);
+        }
+
+        #endregion
     }
 }

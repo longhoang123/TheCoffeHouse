@@ -9,6 +9,7 @@ using System.Windows.Input;
 using TheCoffeHouse.Constant;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
+using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
@@ -65,7 +66,17 @@ namespace TheCoffeHouse.ViewModels
                 ConstaintVaribles.UserID = user.UserID.ToString();
                 NavigationParameters navParam = new NavigationParameters();
                 navParam.Add(ParamKey.CurrentUser.ToString(), user);
-
+                // Cart when login
+                var cart = await ApiService.GetCartByIDUser(user.UserID);
+                if(cart == null)
+                {
+                    var cartCreated = await ApiService.CreateCartByIDCust(new Cart { IDUser= user.UserID,QuantityItem=0,TotalPrice=0 });
+                    ConstaintVaribles.IDCart = cartCreated["IDCart"];
+                }
+                else
+                {
+                    ConstaintVaribles.IDCart = cart.IDCart;
+                }
                 await Navigation.GoBackAsync(navParam);
             }
         }

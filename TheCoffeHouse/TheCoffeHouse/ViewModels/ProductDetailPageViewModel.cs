@@ -22,6 +22,11 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             OpenCartPageCommand = new DelegateCommand(OpenCartPageExecute);
+            minusCommand = new DelegateCommand(minusExecute);
+            plusCommand = new DelegateCommand(plusExecute);
+            CheckedSizeNhoCmd = new DelegateCommand(CheckedSizeNhoExe);
+            CheckedSizeVuaCmd = new DelegateCommand(CheckedSizeVuaExe);
+            CheckedSizeLonCmd = new DelegateCommand(CheckedSizeLonExe);
         }
      
         public override void OnNavigatedNewTo(INavigationParameters parameters)
@@ -30,11 +35,63 @@ namespace TheCoffeHouse.ViewModels
             selectedDrink = parameters.GetValue<Drink>("DrinkSelected");
             NamePro = selectedDrink.DrinkName;
             ImagePro = selectedDrink.DrinkImage;
-            PricePro = selectedDrink.DrinkPrice.ToString();
+            PricePro = selectedDrink.DrinkPrice;
             DesPro = "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.";
+            QuantityDetailCart = 1;
+            PriceTotal= selectedDrink.DrinkPrice;
+            BonusPriceSize = 0;
         }
 
+        #region Properties RadioButton
+        private int _BonusPriceSize;
+
+        public int BonusPriceSize
+        {
+            get { return _BonusPriceSize; }
+            set {
+                SetProperty(ref _BonusPriceSize, value);
+                RaisePropertyChanged("BonusPriceSize");
+            }
+        }
+
+        #endregion
         #region Properties
+
+        private bool _AllowCommand;
+
+        public bool AllowCommand
+        {
+            get { return _AllowCommand; }
+            set
+            {
+                SetProperty(ref _AllowCommand, value);
+                RaisePropertyChanged("AllowCommand");
+            }
+        }
+        private int _PriceTotal;
+
+        public int PriceTotal
+        {
+            get { return _PriceTotal; }
+            set
+            {
+                SetProperty(ref _PriceTotal, value);
+                RaisePropertyChanged("PriceTotal");
+            }
+        }
+
+        private int _QuantityDetailCart;
+
+        public int QuantityDetailCart
+        {
+            get { return _QuantityDetailCart; }
+            set
+            {
+                SetProperty(ref _QuantityDetailCart, value);
+                RaisePropertyChanged("QuantityDetailCart");
+            }
+        }
+
 
         private string _NamePro;
 
@@ -48,9 +105,9 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
-        private string _PricePro;
+        private int _PricePro;
 
-        public string PricePro
+        public int PricePro
         {
             get { return _PricePro; }
             set
@@ -98,6 +155,59 @@ namespace TheCoffeHouse.ViewModels
         private void OpenCartPageExecute()
         {
             Navigation.NavigateAsync(PageManagement.CartPage);
+        }
+        #endregion
+        #region minusCommand
+        public ICommand minusCommand { get; set; }
+        private void minusExecute()
+        {
+            if(QuantityDetailCart > 1)
+            {
+                QuantityDetailCart = QuantityDetailCart - 1;
+                PriceTotal = selectedDrink.DrinkPrice * QuantityDetailCart;
+            }
+            else
+            {
+                AllowCommand = false;
+            }
+           
+        }
+        #endregion
+        #region plusCommand
+        public ICommand plusCommand { get; set; }
+        private void plusExecute()
+        {
+            QuantityDetailCart = QuantityDetailCart + 1;
+            PriceTotal = (selectedDrink.DrinkPrice) * QuantityDetailCart;
+            AllowCommand = true;
+        }
+        #endregion
+        #region CheckedSizeNhoCmd
+        public ICommand CheckedSizeNhoCmd { get; set; }
+        private void CheckedSizeNhoExe()
+        {
+            BonusPriceSize = 0;
+            selectedDrink.DrinkPrice = PricePro + BonusPriceSize;
+            PriceTotal = (selectedDrink.DrinkPrice) * QuantityDetailCart;
+
+        }
+        #endregion
+        #region CheckedSizeVuaCmd
+        public ICommand CheckedSizeVuaCmd { get; set; }
+        private void CheckedSizeVuaExe()
+        {
+            BonusPriceSize = 6000;
+            selectedDrink.DrinkPrice = PricePro + BonusPriceSize;
+            PriceTotal = (selectedDrink.DrinkPrice) * QuantityDetailCart;
+        }
+        #endregion
+        #region CheckedSizeLonCmd
+        public ICommand CheckedSizeLonCmd { get; set; }
+        private void CheckedSizeLonExe()
+        {
+            BonusPriceSize = 10000;
+            selectedDrink.DrinkPrice = PricePro + BonusPriceSize;
+            PriceTotal = (selectedDrink.DrinkPrice) * QuantityDetailCart;
         }
         #endregion
     }

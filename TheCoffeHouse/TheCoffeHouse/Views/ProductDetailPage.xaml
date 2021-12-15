@@ -5,7 +5,6 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:renderer ="clr-namespace:TheCoffeHouse.Renderers"
-            xmlns:local="clr-namespace:Sample.InputKit"
             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              x:Class="TheCoffeHouse.Views.ProductDetailPage">
     <StackLayout>
@@ -74,7 +73,7 @@
                             <StackLayout Grid.Row="1" Spacing="20">
                                 <StackLayout Orientation="Horizontal">
 
-                                        <input:RadioButton Color="Orange" TextFontSize="18" Text="Nhỏ" HorizontalOptions="StartAndExpand" />
+                                        <input:RadioButton Color="Orange" IsChecked="True" ClickCommand="{Binding CheckedSizeNhoCmd}" TextFontSize="18" Text="Nhỏ" HorizontalOptions="StartAndExpand" />
                                 
                                     <Label Text="+0đ" HorizontalOptions="End"/>
                                 </StackLayout>
@@ -85,7 +84,7 @@
                                          />
                                 <StackLayout Orientation="Horizontal" >
 
-                                    <input:RadioButton Color="Orange" TextFontSize="18" HorizontalOptions="StartAndExpand" Text="Vừa" />
+                                    <input:RadioButton Color="Orange" ClickCommand="{Binding CheckedSizeVuaCmd}" TextFontSize="18" HorizontalOptions="StartAndExpand" Text="Vừa" />
                                  
                                     <Label Text="+6.000đ" HorizontalOptions="End"/>
                                 </StackLayout>
@@ -96,7 +95,7 @@
                                          />
                                 <StackLayout Orientation="Horizontal" >
 
-                                        <input:RadioButton Color="Orange" TextFontSize="18"  HorizontalOptions="StartAndExpand" Text="Lớn" />
+                                        <input:RadioButton Color="Orange" ClickCommand="{Binding CheckedSizeLonCmd}" TextFontSize="18"  HorizontalOptions="StartAndExpand" Text="Lớn" />
                                  
                                     <Label Text="+10.000đ" HorizontalOptions="End"/>
                                 </StackLayout>
@@ -125,14 +124,14 @@
         </ScrollView>
         <Frame Padding="0" >
             <StackLayout Margin="20,0,20,0" Orientation="Horizontal" HorizontalOptions="Fill"  HeightRequest="80" Spacing="15">
-                <ImageButton HorizontalOptions="Center" VerticalOptions="Center"  Source="minus.png" Padding="10" CornerRadius="50" WidthRequest="40" HeightRequest="40" BackgroundColor="#f7cd92"/>
-                <Label  x:Name="quantityPro" Text="1" FontSize="20" FontAttributes="Bold"
+                <ImageButton Command="{Binding minusCommand}" HorizontalOptions="Center" VerticalOptions="Center"  Source="minus.png" Padding="10" CornerRadius="50" WidthRequest="40" HeightRequest="40" BackgroundColor="#f7cd92"/>
+                <Label  x:Name="quantityPro" Text="{Binding QuantityDetailCart}" IsEnabled="{Binding AllowCommand}" FontSize="20" FontAttributes="Bold"
                         HorizontalOptions="Center" VerticalOptions="Center" 
                         />
-                <ImageButton HorizontalOptions="Center" VerticalOptions="Center"  Source="add.png" Padding="10" CornerRadius="50" WidthRequest="40" HeightRequest="40" BackgroundColor="#f7cd92"/>
+                <ImageButton Command="{Binding plusCommand}" HorizontalOptions="Center" VerticalOptions="Center"  Source="add.png" Padding="10" CornerRadius="50" WidthRequest="40" HeightRequest="40" BackgroundColor="#f7cd92"/>
 
                 <Frame Padding="0" CornerRadius="10" Margin="10,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
-                    <Button  Text="{Binding PricePro}" Command="{Binding OpenCartPageCommand}" BackgroundColor="Orange" FontSize="25" TextColor="White" FontAttributes="Bold"/>
+                    <Button  Text="{Binding PriceTotal}" Command="{Binding OpenCartPageCommand}" BackgroundColor="Orange" FontSize="25" TextColor="White" FontAttributes="Bold"/>
                 </Frame>
             </StackLayout>
         </Frame>

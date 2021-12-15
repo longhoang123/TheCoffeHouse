@@ -7,7 +7,7 @@ namespace TheCoffeHouse.Models
     public class Category
     {
         public int IDCate { get; set; }
-        public string Name { get; set; }
-        public string Image { get; set; }
+        public string CateName { get; set; }
+        public string CateImage { get; set; }
     }
 }

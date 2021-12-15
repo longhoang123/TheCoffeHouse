@@ -379,7 +379,6 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
-
         #region RegisterUser
         public static async Task<Dictionary<string, int>> RegisterUser(User user)
         {
@@ -388,7 +387,6 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
-
         #region GetCoupon
         public static async Task<ObservableCollection<Coupon>> GetCoupons()
         {
@@ -434,6 +432,34 @@ namespace TheCoffeHouse.Services.ApiService
             return await Get<Category>(url);
         }
 
+        #endregion
+        #region GetDrink
+        public static async Task<ObservableCollection<Drink>> GetDrink()
+        {
+            var url = ApiUrl.GetDrink();
+            return await GetList<ObservableCollection<Drink>>(url);
+        }
+        #endregion
+        #region GetDrinkById
+        public static async Task<Drink> GetDrinkById(int id)
+        {
+            var url = ApiUrl.GetDrinkById(id);
+            return await Get<Drink>(url);
+        }
+        #endregion
+        #region GetDrinkByCate
+        public static async Task<ObservableCollection<Drink>> GetDrinkByCate(int id)
+        {
+            var url = ApiUrl.GetDrinkByCate(id);
+            return await Get<ObservableCollection<Drink>>(url);
+        }
+        #endregion
+        #region GetDrinkImageById
+        public static async Task<ObservableCollection<DrinkImage>> GetDrinkImageById(int id)
+        {
+            var url = ApiUrl.GetDrinkImageById(id);
+            return await Get<ObservableCollection<DrinkImage>>(url);
+        }
         #endregion
     }
 }

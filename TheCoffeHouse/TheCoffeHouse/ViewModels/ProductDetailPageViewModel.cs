@@ -34,7 +34,7 @@ namespace TheCoffeHouse.ViewModels
             base.OnNavigatedNewTo(parameters);
             selectedDrink = parameters.GetValue<Drink>("DrinkSelected");
             NamePro = selectedDrink.DrinkName;
-            ImagePro = selectedDrink.DrinkImage;
+            //ImagePro = selectedDrink.DrinkImage;
             PricePro = selectedDrink.DrinkPrice;
             DesPro = "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.";
             QuantityDetailCart = 1;

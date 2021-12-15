@@ -47,11 +47,27 @@ namespace TheCoffeHouse.Services.ApiService
         }
         public static string GetCategory()
         {
-            return Link($"api/CategoryController/GetCategory");
+            return Link($"CategoryController/GetCategory");
         }
         public static string GetCategoryById(int Id)
         {
-            return Link($"api/CategoryController/GetCategoryById?Id={Id}");
+            return Link($"CategoryController/GetCategoryById?Id={Id}");
+        }
+        public static string GetDrink()
+        {
+            return Link($"DrinkController/GetDrink");
+        }
+        public static string GetDrinkById(int Id)
+        {
+            return Link($"DrinkController/GetDrinkById?Id={Id}");
+        }
+        public static string GetDrinkByCate(int Id)
+        {
+            return Link($"DrinkController/GetDrinkByCate?Id={Id}");
+        }
+        public static string GetDrinkImageById(int Id)
+        {
+            return Link($"DrinkImageController/ReadDrinkImageById?Id={Id}");
         }
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace TheCoffeHouse.Models
@@ -10,8 +11,8 @@ namespace TheCoffeHouse.Models
         public int IDCate { get; set; }
         public string DrinkName { get; set; }
         public int DrinkPrice { get; set; }
-        public string DrinkImage { get; set; }
+        public ObservableCollection<string> DrinkImage { get; set; }
         public string Size { get; set; }
-        public string Description { get; set; }
+        public string DrinkDescription { get; set; }
     }
 }

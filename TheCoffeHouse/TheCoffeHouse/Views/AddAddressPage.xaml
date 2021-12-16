@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base ="clr-namespace:TheCoffeHouse.Views.Base"
+             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+               prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.AddAddressPage">
+    <Grid RowDefinitions="*">
+        <ScrollView>
+            <Grid RowDefinitions="auto, auto,auto">
+                <controls:ContentPageHeaderView Title="{Binding PageTitle}" />
+                <Frame Grid.Row="1" BackgroundColor="White" Padding="10" BorderColor="Transparent" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="Tên địa chỉ" FontAttributes="Bold"></Label>
+                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
+                            <Entry Text="Nhà" IsEnabled="False"></Entry>
+                        </Frame>
+                        <Label Text="Địa chỉ*" FontAttributes="Bold"></Label>
+                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
+                            <Entry Placeholder="Nhập địa chỉ"></Entry>
+                        </Frame>
+                        <Label Text="Tòa nhà, số tầng" FontAttributes="Bold"></Label>
+                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
+                            <Entry Placeholder="Tên tòa nhà, số tầng"></Entry>
+                        </Frame>
+                        <Label Text="Cổng" FontAttributes="Bold"></Label>
+                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
+                            <Entry Placeholder="Cổng"></Entry>
+                        </Frame>
+                        <Label Text="Ghi chú khác" FontAttributes="Bold"></Label>
+                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
+                            <Entry Placeholder="Hướng dẫn giao hàng"></Entry>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="2" BackgroundColor="White" Margin="0,5,0,10" Padding="10" BorderColor="Transparent" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="Tên người nhận*" FontAttributes="Bold"></Label>
+                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
+                            <Entry Text="Long Nguyễn" IsEnabled="False"></Entry>
+                        </Frame>
+                        <Label Text="Số điện thoại*" FontAttributes="Bold"></Label>
+                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5,0,5,80" HasShadow="False">
+                            <Entry Placeholder="0388813493" MaxLength="10" Keyboard="Telephone"></Entry>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+        <Frame VerticalOptions="End" BackgroundColor="White" Padding="15">
+            <Button Text="Xong" CornerRadius="20" BackgroundColor="DarkGoldenrod" HeightRequest="55" VerticalOptions="Center"></Button>
+        </Frame>
+    </Grid>
+</base:BasePage>

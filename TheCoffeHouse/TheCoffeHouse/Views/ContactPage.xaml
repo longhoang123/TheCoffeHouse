@@ -3,30 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:custom ="clr-namespace:TheCoffeHouse.Custom"
              xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="TheCoffeHouse.Views.ContactPage"
-             Title="Liên hệ và góp ý">
-    <StackLayout Padding="-10,0,-10,0">
-        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Tổng đài &#10;18006936" SourceImage="phone.png">
-            </custom:CustomButton>
+             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+               prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.ContactPage">
+    <Grid RowDefinitions="auto, auto">
+        <controls:ContentPageHeaderView Title="Liên hệ và góp ý" />
+        <Frame Grid.Row="1" BackgroundColor="White" Margin="-10,0" Padding="20,10,20,0" BorderColor="Transparent" HasShadow="True">
+            <StackLayout>
+                <custom:CustomButton ButtonText="Tổng đài &#10;18006936" SourceImage="phone.png">
+                </custom:CustomButton>
+                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                <custom:CustomButton ButtonText="Email &#10;hi@thecoffeehouse.com" SourceImage="email.png">
+                </custom:CustomButton>
+                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                <custom:CustomButton ButtonText="Website &#10;https://www.thecoffeehouse.com" SourceImage="globe.png">
+                </custom:CustomButton>
+                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                <custom:CustomButton ButtonText="Facebook &#10;facebook.com/The.Coffee.House.2014" SourceImage="facebook.png">
+                </custom:CustomButton>
+                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                <custom:CustomButton ButtonText="Gửi góp ý về ứng dụng" SourceImage="notice.png">
+                </custom:CustomButton>
+                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-20,10,-20,0" HeightRequest="1"></Label>
+            </StackLayout>
         </Frame>
-        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Email &#10;hi@thecoffeehouse.com" SourceImage="email.png">
-            </custom:CustomButton>
-        </Frame>
-        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Website &#10;https://www.thecoffeehouse.com" SourceImage="globe.png">
-            </custom:CustomButton>
-        </Frame>
-        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Facebook &#10;facebook.com/The.Coffee.House.2014" SourceImage="facebook.png">
-            </custom:CustomButton>
-        </Frame>
-        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Gửi góp ý về ứng dụng" SourceImage="notice.png">
-            </custom:CustomButton>
-        </Frame>
-    </StackLayout>
+    </Grid>
 </base:BasePage>

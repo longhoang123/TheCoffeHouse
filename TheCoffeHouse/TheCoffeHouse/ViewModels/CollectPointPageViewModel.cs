@@ -28,6 +28,7 @@ namespace TheCoffeHouse.ViewModels
             OpenAllCouponPage = new DelegateCommand(OpenAllCouponPageExcute);
             OpenExchangePromotionPage = new DelegateCommand(OpenExchangePromotionPageExcute);
             OpenHistoryPage = new DelegateCommand(OpenHistoryPageExcute);
+            OpenPrivacyPolicyPage = new DelegateCommand(OpenPrivacyPolicyPageExcute);
         }
         private async void initcoupon()
         {
@@ -40,7 +41,12 @@ namespace TheCoffeHouse.ViewModels
         {
             await Navigation.NavigateAsync(PageManagement.HistoryPage);
         }
-
+        public ICommand OpenPrivacyPolicyPage { get; set; }
+        private async void OpenPrivacyPolicyPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.RewardPage);
+        }
+        
         private async void OpenDetailPromotionPageExcute()
         {
             NavigationParameters navParams = new NavigationParameters();

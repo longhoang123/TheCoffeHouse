@@ -82,51 +82,56 @@
                     Background="bg_art_coffee.jpg"
                     BackgroundColor="DarkOrange"
                     CornerRadius="10">
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <StackLayout Padding="0,10,0,0">
-                                <Label
+                    <Grid RowDefinitions="*">
+                        <Image Source="bg_pointpage.png" Margin="-20,0,-20,-20" HeightRequest="200" WidthRequest="200" Scale="1.8"></Image>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Padding="0,10,0,0">
+                                    <Label
                                     FontAttributes="Bold"
                                     FontSize="Large"
                                     Text="Long Nguyễn"
                                     TextColor="White" />
-                                <Label
+                                    <Label
                                     FontAttributes="Bold"
                                     FontSize="Medium"
                                     Text="0 BEAN - Mới"
                                     TextColor="White" />
-                            </StackLayout>
-                            <StackLayout
+                                </StackLayout>
+                                <StackLayout
                                 HorizontalOptions="EndAndExpand"
                                 Orientation="Horizontal"
                                 VerticalOptions="Start">
-                                <Frame
-                                    Margin="0"
+                                    <Frame
+                                    Margin="0,-8,0,0"
                                     Padding="0"
-                                    BackgroundColor="OrangeRed"
-                                    CornerRadius="10">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image Source="User_active.png" />
-                                        <Label
-                                            Padding="5,10,5,10"
+                                    BackgroundColor="DarkOrange"
+                                    CornerRadius="10"
+                                    HasShadow="False"
+                                    BorderColor="DarkGray">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="arrow_down.png" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="16" HeightRequest="16" Margin="12,0,6,0" Opacity="0.5"></Image>
+                                            <Label
+                                            Padding="0,12,12,12"
                                             Text="Tích điểm"
                                             TextColor="White" />
-                                    </StackLayout>
-                                </Frame>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                        <Frame
+                            <Frame
                             Margin="0,40,0,0"
                             Padding="10"
                             BackgroundColor="White"
                             BorderColor="Transparent"
                             CornerRadius="10">
-                            <Image
+                                <Image
                                 HeightRequest="80"
                                 Source="BarCode.png"
                                 WidthRequest="300" />
-                        </Frame>
-                    </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
                 </Frame>
             </StackLayout>
             <Grid
@@ -175,7 +180,7 @@
                     BackgroundColor="White"
                     BorderColor="Transparent"
                     CornerRadius="10">
-                    <custom:CustomSmallButton ButtonText="Quyền lợi của bạn" Source="privacypolicy.png" />
+                    <custom:CustomSmallButton ButtonText="Quyền lợi của bạn" Source="privacypolicy.png" Command="{Binding OpenPrivacyPolicyPage}"/>
                 </Frame>
             </Grid>
             <StackLayout

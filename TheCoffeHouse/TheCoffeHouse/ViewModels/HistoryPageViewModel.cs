@@ -21,6 +21,7 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             ListOrder = new ObservableCollection<Order>();
+            PageTitle = "Lịch sử đơn hàng";
             init();
         }
         #region ListHistoryInit

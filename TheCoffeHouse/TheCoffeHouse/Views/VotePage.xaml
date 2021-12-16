@@ -2,11 +2,14 @@
 <base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="TheCoffeHouse.Views.VotePage"
-             Title="Trang đánh giá">
-    <StackLayout>
-        <Label Text="Trang Vote"></Label>
-    </StackLayout>
+             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+               prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.VotePage">
+    <Grid RowDefinitions="auto, *">
+        <controls:ContentPageHeaderView Title="Đánh giá" />
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="coffee_cup.jpg"></Image>
+            <Label Text="Chưa có đơn hàng nào hoàn tất" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+        </StackLayout>
+    </Grid>
 </base:BasePage>

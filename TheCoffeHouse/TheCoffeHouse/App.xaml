@@ -30,9 +30,6 @@
             <ControlTemplate x:Key="OtherPageTemplete">
                 <controls:HeaderViewOther Title="Khác" IsHaveIcon="False" />
             </ControlTemplate>
-            <ControlTemplate x:Key="HistoryPageTemplete">
-                <controls:HeaderViewOther Title="Lịch sử" IsHaveIcon="False" />
-            </ControlTemplate>
 
 
             <Color x:Key="MainColor">#e47905</Color>

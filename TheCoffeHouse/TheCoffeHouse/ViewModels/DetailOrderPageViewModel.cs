@@ -25,6 +25,7 @@ namespace TheCoffeHouse.ViewModels
             PaymentMethod = "Thanh toán khi nhận hàng";
             Address = "Số 51, Ấp 2, Lương Phú, Giồng Trôm, Bến Tre";
             TotalPayment = "150.000 VNĐ";
+            PageTitle = "Chi tiết đơn hàng";
         }
         private void init()
         {

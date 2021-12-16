@@ -3,27 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
              xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+               prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.AddressPage"
              Title="Địa chỉ đã lưu">
-    <StackLayout Padding="-10,0,-10,0">
-        <Frame BackgroundColor="White" CornerRadius="10">
-            <custom:CustomButton ButtonText="Thêm địa chỉ Nhà" SourceImage="home.png">
-            </custom:CustomButton>
-
+    <Grid RowDefinitions="auto, auto">
+        <controls:ContentPageHeaderView Title="Địa chỉ đã lưu" />
+        <Frame Grid.Row="1" BackgroundColor="White" Margin="-10,0" Padding="20,10,20,0" BorderColor="Transparent" HasShadow="True">
+            <StackLayout>
+                <custom:CustomButton ButtonText="Thêm địa chỉ Nhà" SourceImage="home.png" Command="{Binding OpenAddAddressPage}">
+                </custom:CustomButton>
+                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                <custom:CustomButton ButtonText="Thêm địa chỉ Công ty" SourceImage="building.png" Command="{Binding OpenAddAddressPage}">
+                </custom:CustomButton>
+                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                <custom:CustomButton ButtonText="Thêm địa chỉ mới" SourceImage="plus.png" Command="{Binding OpenAddAddressPage}">
+                </custom:CustomButton>
+                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-20,10,-20,0" HeightRequest="1"></Label>
+        </StackLayout>
         </Frame>
-
-        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Thêm địa chỉ Công ty" SourceImage="building.png">
-            </custom:CustomButton>
-
-        </Frame>
-
-        <Frame BackgroundColor="White" Margin="0,-4,0,0" CornerRadius="10">
-            <custom:CustomButton ButtonText="Thêm địa chỉ mới" SourceImage="plus.png">
-            </custom:CustomButton>
-
-        </Frame>
-    </StackLayout> 
+    </Grid>
 </base:BasePage>

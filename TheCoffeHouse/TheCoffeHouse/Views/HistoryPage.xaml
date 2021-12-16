@@ -2,12 +2,12 @@
 <base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
                prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="TheCoffeHouse.Views.HistoryPage"
-             Title="Lịch sử đơn hàng"
-               ControlTemplate="{StaticResource HistoryPageTemplete}">
-    <StackLayout>
+             x:Class="TheCoffeHouse.Views.HistoryPage">
+    <Grid RowDefinitions="auto, *">
+        <controls:ContentPageHeaderView Title="{Binding PageTitle}" />
+    <StackLayout Grid.Row="1">
         <Label Text="Bạn chưa có đơn hàng nào" IsVisible="False" FontSize="Large"></Label>
         <ListView IsVisible="True" ItemsSource="{Binding ListOrder}" HasUnevenRows="True" SelectedItem="{Binding SelectedOrder}">
             <ListView.ItemTemplate>
@@ -21,4 +21,5 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
+    </Grid>
 </base:BasePage>

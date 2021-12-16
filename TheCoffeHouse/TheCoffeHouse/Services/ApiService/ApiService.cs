@@ -232,65 +232,65 @@ namespace TheCoffeHouse.Services.ApiService
         //            }
         //        }
 
-        //        private static async Task<T> Put<T>(string url, object obj)
-        //        {
-        //            using(var client = NewHttpClientWithHeaders())
-        //            {
-        //                CancellationTokenSource cancellationTokenSource = NewCancellationTokenSource();
-        //                try
-        //                {
-        //                    string jsonData = JsonConvert.SerializeObject(obj);
-        //                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        private static async Task<T> Put<T>(string url, object obj)
+        {
+            using (var client = new HttpClient())
+            {
+                //CancellationTokenSource cancellationTokenSource = NewCancellationTokenSource();
+                try
+                {
+                    string jsonData = JsonConvert.SerializeObject(obj);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-        //                    var response = await client.PutAsync(url, content, cancellationTokenSource.Token);
+                    var response = await client.PutAsync(url, content);
 
-        //                    if (response.IsSuccessStatusCode)
-        //                    {
-        //                        var json = await response.Content.ReadAsStringAsync();
-        //                        var responseObj = JsonConvert.DeserializeObject<T>(json);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var responseObj = JsonConvert.DeserializeObject<T>(json);
 
-        //                        return responseObj;
-        //                    }
-        //                    else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-        //                    {
-        //                        if (await GetNewAuthTokens())
-        //                        {
-        //                            return await Put<T>(url, obj);
-        //                        }
+                        return responseObj;
+                    }
+                    //else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    //{
+                    //    if (await GetNewAuthTokens())
+                    //    {
+                    //        return await Put<T>(url, obj);
+                    //    }
 
-        //                        return default;
-        //                    }
-        //                    else
-        //                    {
-        //                        return default;
-        //                    }
-        //                }
-        //                catch (TaskCanceledException ex)
-        //                {
-        //#if DEBUG
-        //                    Debug.WriteLine(
-        //                        $"Canceled by Cancellation token when calling HTTP request: method {nameof(Put)}" +
-        //                        $"\nurl: {url}" +
-        //                        $"\nmessage: {ex.Message}");
-        //#endif
-        //                    return default;
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //#if DEBUG
-        //                    Debug.WriteLine(
-        //                        $"Error when calling HTTP request: method {nameof(Put)}" +
-        //                        $"\nurl: {url}" +
-        //                        $"\nmessage: {ex.Message}");
-        //#endif
-        //                    return default;
-        //                }
-        //                finally
-        //                {
-        //                    cancellationTokenSource.Dispose();
-        //                }
-        //            }
-        //        }
+                    //    return default;
+                    //}
+                    else
+                    {
+                        return default;
+                    }
+                }
+                catch (TaskCanceledException ex)
+                {
+#if DEBUG
+                    Debug.WriteLine(
+                        $"Canceled by Cancellation token when calling HTTP request: method {nameof(Put)}" +
+                        $"\nurl: {url}" +
+                        $"\nmessage: {ex.Message}");
+#endif
+                    return default;
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    Debug.WriteLine(
+                        $"Error when calling HTTP request: method {nameof(Put)}" +
+                        $"\nurl: {url}" +
+                        $"\nmessage: {ex.Message}");
+#endif
+                    return default;
+                }
+                finally
+                {
+                    //cancellationTokenSource.Dispose();
+                }
+            }
+        }
 
 
         //        private static async Task<T> Delete<T>(string url)
@@ -379,7 +379,6 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
-
         #region RegisterUser
         public static async Task<Dictionary<string, int>> RegisterUser(User user)
         {
@@ -388,7 +387,6 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
-
         #region GetCoupon
         public static async Task<ObservableCollection<Coupon>> GetCoupons()
         {
@@ -435,20 +433,83 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
-        #region GetCartByIDUser
-        public static async Task<Cart> GetCartByIDUser(int IDUser)
+        #region GetDrink
+        public static async Task<ObservableCollection<Drink>> GetDrink()
         {
-            var url = ApiUrl.GetCartByIDUser(IDUser);
-            return await Get<Cart>(url);
+            var url = ApiUrl.GetDrink();
+            return await GetList<ObservableCollection<Drink>>(url);
         }
         #endregion
-        # region CreateCartByIDUser
-        public static async Task<Dictionary<string, int>> CreateCartByIDCust(Cart cart)
+        #region GetDrinkById
+        public static async Task<Drink> GetDrinkById(int id)
         {
-            var url = ApiUrl.CreateCartByIDCust();
-            return await Post<Dictionary<string, int>>(url, cart);
+            var url = ApiUrl.GetDrinkById(id);
+            return await Get<Drink>(url);
         }
+        #endregion
+        #region GetDrinkByCate
+        public static async Task<ObservableCollection<Drink>> GetDrinkByCate(int id)
+        {
+            var url = ApiUrl.GetDrinkByCate(id);
+            return await Get<ObservableCollection<Drink>>(url);
+        }
+        #endregion
+        #region GetDrinkImageById
+        public static async Task<ObservableCollection<DrinkImage>> GetDrinkImageById(int id)
+        {
+            var url = ApiUrl.GetDrinkImageById(id);
+            return await Get<ObservableCollection<DrinkImage>>(url);
+        }
+        #endregion
 
+        #region Cart
+            #region GetCartByIDUser
+            public static async Task<Cart> GetCartByIDUser(int IDUser)
+            {
+                var url = ApiUrl.GetCartByIDUser(IDUser);
+                return await Get<Cart>(url);
+            }
+            #endregion
+            # region CreateCartByIDUser
+            public static async Task<Dictionary<string, int>> CreateCartByIDCust(Cart cart)
+            {
+                var url = ApiUrl.CreateCartByIDCust();
+                return await Post<Dictionary<string, int>>(url, cart);
+            }
+            #endregion
+            #region UpdateCartByIDUser  
+            public static async Task<Dictionary<string, int>> UpdateCartByIDCust(Cart cart)
+            {
+                var url = ApiUrl.UpdateCartByIDCust();
+                return await Put<Dictionary<string, int>>(url, cart);
+            }
+            #endregion
         #endregion
+
+        #region DetailCart
+            #region AddToCart
+            public static async Task<Dictionary<string, object>> AddToCart(DetailCart detail)
+            {
+                var url = ApiUrl.AddToCart();
+                return await Put<Dictionary<string, object>>(url, detail);
+            }
+            #endregion
+            #region Get All Item in Cart
+            public static async Task<ObservableCollection<DetailCart>> GetAllDetailCart(int IDCart)
+            {
+                var url = ApiUrl.GetAllDetailCart(IDCart);
+                return await Get<ObservableCollection<DetailCart>>(url);
+            }
+            #endregion
+            #region Delete DetailCart in Cart
+            public static async Task<Dictionary<string, int>> DeleteItemCart(int IDDetailCart)
+            {
+                var url = ApiUrl.GetAllDetailCart(IDDetailCart);
+                return await Post<Dictionary<string, int>>(url, IDDetailCart);
+            }
+            #endregion
+        #endregion
+
+
     }
 }

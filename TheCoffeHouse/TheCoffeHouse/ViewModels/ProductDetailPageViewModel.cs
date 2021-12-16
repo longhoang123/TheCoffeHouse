@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
@@ -34,7 +35,7 @@ namespace TheCoffeHouse.ViewModels
             base.OnNavigatedNewTo(parameters);
             selectedDrink = parameters.GetValue<Drink>("DrinkSelected");
             NamePro = selectedDrink.DrinkName;
-            ImagePro = selectedDrink.DrinkImage;
+            //ImagePro = selectedDrink.DrinkImage;
             PricePro = selectedDrink.DrinkPrice;
             DesPro = "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.";
             QuantityDetailCart = 1;
@@ -154,7 +155,16 @@ namespace TheCoffeHouse.ViewModels
         public ICommand OpenCartPageCommand { get; set; }
         private void OpenCartPageExecute()
         {
-            Navigation.NavigateAsync(PageManagement.CartPage);
+            if(ConstaintVaribles.IDCart != 0)
+            {
+                Navigation.NavigateAsync(PageManagement.CartPage);
+            }
+            else
+            {
+                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng đăng nhập trước khi mua hàng", "OK");
+                Navigation.NavigateAsync(PageManagement.LoginPage);
+            }
+           
         }
         #endregion
         #region minusCommand

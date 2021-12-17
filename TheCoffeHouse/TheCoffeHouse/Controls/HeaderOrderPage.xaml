@@ -37,19 +37,41 @@
                     Grid.Column="1"
                     HorizontalOptions="End"
                     Orientation="Horizontal">
-                        <ImageButton
+                        <Frame
+                        Padding="10"
+                        CornerRadius="50"
+                        HeightRequest="25"
+                        WidthRequest="25">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenSearchPageCommand}" />
+                            </Frame.GestureRecognizers>
+                            <Image Source="Search.png" />
+
+                        </Frame>
+                        <!--<ImageButton
                             CornerRadius="50"
                             BackgroundColor="Transparent"
                             HeightRequest="18"
                             Source="Search.png"
                             WidthRequest="18"
-                        />
-                        <ImageButton
+                        />-->
+                        <Frame
+                        Padding="10"
+                        CornerRadius="50"
+                        HeightRequest="25"
+                        WidthRequest="25">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenCartPageCommand}" />
+                            </Frame.GestureRecognizers>
+                            <Image Source="heart.png" />
+
+                        </Frame>
+                        <!--<ImageButton
                             BackgroundColor="Transparent"
                             Margin="20,0,0,0"
                             HeightRequest="18"
                             Source="heart.png"
-                            WidthRequest="18" />
+                            WidthRequest="18" />-->
                     </StackLayout>
               
                 

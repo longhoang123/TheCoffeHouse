@@ -6,8 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
@@ -22,16 +25,60 @@ namespace TheCoffeHouse.ViewModels
         {
             PageTitle = "Giỏ hàng";
             ListDetailCart = new ObservableCollection<DetailCart>();
+            DeleteItemCartCommand = new DelegateCommand<DetailCart>(selectedItem => DeleteItemCartExec(selectedItem));
+          
+
+        }
+        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedNewTo(parameters);
             initData();
         }
-        void initData()
+        async void initData()
         {
-            ListDetailCart.Add(new DetailCart { IDDetailCart = 1, IDCart = 1, IDDrink = 1, NameItem = "Cà phê sữa đá", PriceItem = 50000, Quantity = 1, Size = "Nhỏ", Total = 50000, Image = "coffee_cup.jpg" });
-            ListDetailCart.Add(new DetailCart { IDDetailCart = 1, IDCart = 1, IDDrink = 1, NameItem = "Cà phê sữa đá", PriceItem = 50000, Quantity = 1, Size = "Nhỏ", Total = 50000, Image = "coffee_cup.jpg" });
-            ListDetailCart.Add(new DetailCart { IDDetailCart = 1, IDCart = 1, IDDrink = 1, NameItem = "Cà phê sữa đá", PriceItem = 50000, Quantity = 1, Size = "Nhỏ", Total = 50000, Image = "coffee_cup.jpg" });
-            ListDetailCart.Add(new DetailCart { IDDetailCart = 1, IDCart = 1, IDDrink = 1, NameItem = "Cà phê sữa đá", PriceItem = 50000, Quantity = 1, Size = "Nhỏ", Total = 50000, Image = "coffee_cup.jpg" });
+            Cart cart = new Cart();
+            if (ConstaintVaribles.IDCart != 0)
+            {
+                ListDetailCart = await ApiService.GetAllDetailCart(ConstaintVaribles.IDCart);
+            }
+            if(ConstaintVaribles.UserID != null)
+            {
+                cart = await ApiService.GetCartByIDUser(Convert.ToInt32(ConstaintVaribles.UserID));
+            }
+            TotalPriceCart = cart.TotalPrice;
+            if(TotalPriceCart == 0 || ListDetailCart.Count == 0)
+            {
+                isEmpty = true;
+            }
+            else
+            {
+                isEmpty = false;
+            }
+            
         }
         #region Properties
+        private bool _isEmpty;
+
+        public bool isEmpty
+        {
+            get { return _isEmpty; }
+            set {
+                SetProperty(ref _isEmpty, value);
+                RaisePropertyChanged("isEmpty");
+            }
+        }
+
+        private int _TotalPriceCart;
+
+        public int TotalPriceCart
+        {
+            get { return _TotalPriceCart; }
+            set {
+                SetProperty(ref _TotalPriceCart, value);
+                RaisePropertyChanged("TotalPriceCart");
+            }
+        }
+
         private ObservableCollection<DetailCart> _listDetailCart;
 
         public ObservableCollection<DetailCart> ListDetailCart
@@ -42,6 +89,21 @@ namespace TheCoffeHouse.ViewModels
                 SetProperty(ref _listDetailCart, value);
                 RaisePropertyChanged("ListDetailCart");
             }
+        }
+
+        #endregion
+        #region DeleteItemCartCommand
+        public ICommand DeleteItemCartCommand { get; set; }
+
+        public async void DeleteItemCartExec(DetailCart selectedItem)
+        {
+            var itemDeleted =  await ApiService.DeleteItemCart(selectedItem.IDDetailCart);
+            if(itemDeleted != null)
+            {
+                initData();
+                await App.Current.MainPage.DisplayAlert("Thông báo", $"Đã xóa sản phẩm {selectedItem.NameItem} khỏi giỏ hàng ", "OK");
+            }
+
         }
 
         #endregion

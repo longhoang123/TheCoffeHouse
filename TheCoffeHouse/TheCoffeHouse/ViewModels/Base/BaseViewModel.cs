@@ -58,7 +58,7 @@ namespace TheCoffeHouse.ViewModels.Base
             if (sQLiteService != null) SQLiteService = sQLiteService;
             BackCommand = new DelegateCommand(async () => await BackExecute());
             OpenNotificationCommand = new DelegateCommand(async () => await OpenNotificationExecute());
-
+            OpenCartPageCommand = new DelegateCommand(async () => await OpenCartPageExec());
             Instance = this;
             
         }
@@ -242,7 +242,13 @@ namespace TheCoffeHouse.ViewModels.Base
             await Navigation.NavigateAsync(PageManagement.NotificationPage);
         }
         #endregion
-
+        #region OpenCartPageCommand
+        public ICommand OpenCartPageCommand { get; set; }
+        protected virtual async Task OpenCartPageExec()
+        {
+            await Navigation.NavigateAsync(PageManagement.CartPage);
+        }
+        #endregion
 
 
 

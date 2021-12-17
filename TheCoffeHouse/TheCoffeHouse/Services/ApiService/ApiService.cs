@@ -488,24 +488,24 @@ namespace TheCoffeHouse.Services.ApiService
 
         #region DetailCart
             #region AddToCart
-            public static async Task<Dictionary<string, object>> AddToCart(DetailCart detail)
+            public static async Task<Dictionary<string, int>> AddToCart(DetailCart detail)
             {
                 var url = ApiUrl.AddToCart();
-                return await Put<Dictionary<string, object>>(url, detail);
+                return await Post<Dictionary<string, int>>(url, detail);
             }
             #endregion
             #region Get All Item in Cart
             public static async Task<ObservableCollection<DetailCart>> GetAllDetailCart(int IDCart)
             {
                 var url = ApiUrl.GetAllDetailCart(IDCart);
-                return await Get<ObservableCollection<DetailCart>>(url);
+                return await GetList<ObservableCollection<DetailCart>>(url);
             }
             #endregion
             #region Delete DetailCart in Cart
-            public static async Task<Dictionary<string, int>> DeleteItemCart(int IDDetailCart)
+            public static async Task<DetailCart> DeleteItemCart(int IDDetailCart)
             {
-                var url = ApiUrl.GetAllDetailCart(IDDetailCart);
-                return await Post<Dictionary<string, int>>(url, IDDetailCart);
+                var url = ApiUrl.DeleteItemCart(IDDetailCart);
+                return await Get<DetailCart>(url);
             }
             #endregion
         #endregion

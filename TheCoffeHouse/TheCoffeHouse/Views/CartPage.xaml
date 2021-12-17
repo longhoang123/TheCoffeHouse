@@ -4,17 +4,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com" 
              xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.CartPage">
     <Grid RowDefinitions="auto,*,0.2*">
         <controls:ContentPageHeaderView Title="{Binding PageTitle}" RightIcon="read.png" />
         <ScrollView Grid.Row="1">
-            <!--<StackLayout VerticalOptions="CenterAndExpand">
-                <Label HorizontalOptions="Center" Text="Giỏ hàng trống" />
-            </StackLayout>-->
+            <StackLayout BackgroundColor="White">
+                <StackLayout VerticalOptions="CenterAndExpand" 
+                             IsVisible="{Binding isEmpty}"
+                             >
+                <Label HorizontalOptions="Center" FontAttributes="Bold" TextColor="Orange" FontSize="20" Text="Giỏ hàng trống" />
+                </StackLayout>
             <ListView
+                        IsVisible="{Binding isEmpty,Converter={xct:InvertedBoolConverter}}"
+                        x:Name="ListItemCart"
                         HasUnevenRows="True" 
-
                         ItemsSource="{Binding ListDetailCart}"
                         SelectedItem="{Binding SelectedDrink}"
                         SelectionMode="None"
@@ -40,19 +45,24 @@
                                             Grid.Row="0"
                                             Grid.RowSpan="4"
                                             Grid.Column="0"
-                                            Aspect="AspectFit"
-                                           
-                                          
-                                            Source="{Binding Image}"
-                                            
+                                            Aspect="AspectFit"   
+                                            Source="{Binding Image}"                                
                                             WidthRequest="110" />
                                 <Label
                                             Grid.Row="0"
-                                            Grid.Column="1"
-                                            Grid.ColumnSpan="2"
+                                            Grid.Column="1" 
                                             FontAttributes="Bold"
                                             FontSize="22"
                                             Text="{Binding NameItem}"
+                                            VerticalOptions="Center" />
+                                <Label
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            TextColor="OrangeRed" 
+                                            FontSize="18"
+                                            HorizontalTextAlignment="End"
+                                            Margin="0,0,10,0"
+                                            Text="{Binding PriceItem,StringFormat='{0:#,0}'}"
                                             VerticalOptions="Center" />
                                 <Label
                                             Grid.Row="1"
@@ -64,7 +74,6 @@
                                             Grid.Column="2"
                                             FontSize="20"
                                             Text="{Binding Quantity}" />
-
 
                                 <Label
                                             Grid.Row="2"
@@ -99,8 +108,9 @@
                                             FontAttributes="Bold"
                                             Margin="0,0,10,10"
                                             Text="Xóa khỏi giỏ hàng"
-                                            VerticalOptions="Center"
-                                          
+                                            VerticalOptions="Center" 
+                                            Command="{Binding Path=BindingContext.DeleteItemCartCommand, Source={x:Reference ListItemCart}}"
+                                            CommandParameter="{Binding .}"
                                             />
                             </Grid>
                         </ViewCell>
@@ -110,14 +120,15 @@
                             <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"/>
                         </ListView.Behaviors>-->
             </ListView>
+            </StackLayout>
         </ScrollView>
-        <Frame Grid.Row="2" Padding="0" >
+        <Frame Grid.Row="2" Padding="0" IsVisible="{Binding isEmpty,Converter={xct:InvertedBoolConverter}}" >
             <StackLayout Margin="20,0,10,0" Orientation="Horizontal" HorizontalOptions="Fill"  HeightRequest="80" Spacing="15">
                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                     <Label   Text="Tổng tiền thanh toán" TextColor="Gray" FontSize="20" FontAttributes="Bold"
                         HorizontalOptions="Center" VerticalOptions="Center" 
                         />
-                    <Label  x:Name="quantityPro" Text="100000000" FontSize="22" TextColor="Blue" FontAttributes="Bold"
+                    <Label  x:Name="quantityPro" Text="{Binding TotalPriceCart,StringFormat='{0:#,0}'}" FontSize="22" TextColor="Blue" FontAttributes="Bold"
                         HorizontalOptions="Center" VerticalOptions="Center" 
                         />
                 </StackLayout>

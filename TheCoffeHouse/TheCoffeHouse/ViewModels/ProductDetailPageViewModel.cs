@@ -10,6 +10,7 @@ using TheCoffeHouse.Constant;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
@@ -28,6 +29,7 @@ namespace TheCoffeHouse.ViewModels
             CheckedSizeNhoCmd = new DelegateCommand(CheckedSizeNhoExe);
             CheckedSizeVuaCmd = new DelegateCommand(CheckedSizeVuaExe);
             CheckedSizeLonCmd = new DelegateCommand(CheckedSizeLonExe);
+            SizeItem = "Nhỏ";
         }
      
         public override void OnNavigatedNewTo(INavigationParameters parameters)
@@ -37,7 +39,7 @@ namespace TheCoffeHouse.ViewModels
             NamePro = selectedDrink.DrinkName;
             //ImagePro = selectedDrink.DrinkImage;
             PricePro = selectedDrink.DrinkPrice;
-            DesPro = "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.";
+            DesPro = selectedDrink.DrinkDescription;
             QuantityDetailCart = 1;
             PriceTotal= selectedDrink.DrinkPrice;
             BonusPriceSize = 0;
@@ -54,6 +56,7 @@ namespace TheCoffeHouse.ViewModels
                 RaisePropertyChanged("BonusPriceSize");
             }
         }
+        string SizeItem = "";
 
         #endregion
         #region Properties
@@ -153,16 +156,27 @@ namespace TheCoffeHouse.ViewModels
         #endregion
         #region OpenCartPageCommand
         public ICommand OpenCartPageCommand { get; set; }
-        private void OpenCartPageExecute()
+        private async void OpenCartPageExecute()
         {
             if(ConstaintVaribles.IDCart != 0)
             {
-                Navigation.NavigateAsync(PageManagement.CartPage);
+                // Add To Cart:
+                DetailCart detailCart = new DetailCart();
+                detailCart.IDCart = ConstaintVaribles.IDCart;
+                detailCart.IDDrink = selectedDrink.IDDrink;
+                detailCart.NameItem = selectedDrink.DrinkName;
+                detailCart.PriceItem = selectedDrink.DrinkPrice;
+                detailCart.Quantity = QuantityDetailCart;
+                detailCart.Size = SizeItem;
+                detailCart.Total = PriceTotal;
+                detailCart.Image = "coffee_cup.jpg";
+                await ApiService.AddToCart(detailCart);
+                await Navigation.NavigateAsync(PageManagement.CartPage);
             }
             else
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng đăng nhập trước khi mua hàng", "OK");
-                Navigation.NavigateAsync(PageManagement.LoginPage);
+                await App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng đăng nhập trước khi mua hàng", "OK");
+                await Navigation.NavigateAsync(PageManagement.LoginPage);
             }
            
         }
@@ -199,7 +213,7 @@ namespace TheCoffeHouse.ViewModels
             BonusPriceSize = 0;
             selectedDrink.DrinkPrice = PricePro + BonusPriceSize;
             PriceTotal = (selectedDrink.DrinkPrice) * QuantityDetailCart;
-
+            SizeItem = "Nhỏ";
         }
         #endregion
         #region CheckedSizeVuaCmd
@@ -209,6 +223,7 @@ namespace TheCoffeHouse.ViewModels
             BonusPriceSize = 6000;
             selectedDrink.DrinkPrice = PricePro + BonusPriceSize;
             PriceTotal = (selectedDrink.DrinkPrice) * QuantityDetailCart;
+            SizeItem = "Vừa";
         }
         #endregion
         #region CheckedSizeLonCmd
@@ -218,6 +233,7 @@ namespace TheCoffeHouse.ViewModels
             BonusPriceSize = 10000;
             selectedDrink.DrinkPrice = PricePro + BonusPriceSize;
             PriceTotal = (selectedDrink.DrinkPrice) * QuantityDetailCart;
+            SizeItem = "Lớn";
         }
         #endregion
     }

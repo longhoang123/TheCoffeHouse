@@ -37,7 +37,7 @@ namespace TheCoffeHouse.ViewModels
             base.OnNavigatedNewTo(parameters);
             selectedDrink = parameters.GetValue<Drink>("DrinkSelected");
             NamePro = selectedDrink.DrinkName;
-            //ImagePro = selectedDrink.DrinkImage;
+            ImagePro = selectedDrink.DrinkImage;
             PricePro = selectedDrink.DrinkPrice;
             DesPro = selectedDrink.DrinkDescription;
             QuantityDetailCart = 1;

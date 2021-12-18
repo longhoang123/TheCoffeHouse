@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
@@ -28,8 +29,9 @@ namespace TheCoffeHouse.ViewModels
         {
             PageTitle = "Đặt hàng";
             ListDrinks = new ObservableCollection<Drink>();
-            ListCategory = new ObservableCollection<string>();
+            //ListCategory = new ObservableCollection<string>();
             ListBanner = new ObservableCollection<Drink>();
+            ListCategory = new ObservableCollection<Category>();
             //ItemTappedCommand = new DelegateCommand(ItemTapped);
             InitData();
 
@@ -42,37 +44,38 @@ namespace TheCoffeHouse.ViewModels
         }
         async void InitData()
         {
-            ListDrinks = await ApiService.GetDrink();
-            //for(int i = 0; i<= ListDrinks.Count;i++)
-            //{
-            //    ObservableCollection<DrinkImage> images = new ObservableCollection<DrinkImage>();
-            //      // Hàm await trong loop đang bị lỗi chưa tìm được cách fix
-            //    images = await ApiService.GetDrinkImageById(Convert.ToInt32(ListDrinks[i].IDDrink));
-            //    foreach (DrinkImage image in images)
-            //    {
-            //        ListDrinks[i].DrinkImage.Add(image.ImageData);
-            //    }
-            //}
-            //ListDrinks.Add(new Drink { IDDrink = 1, DrinkName = "Cà phê sữa đá", DrinkPrice = 50000, DrinkImage = "coffee_cup.jpg" });
-            //ListDrinks.Add(new Drink { IDDrink = 2, DrinkName = "Cà phê sữa nóng", DrinkPrice = 60000, DrinkImage = "coffee_cup.jpg" });
-            //ListDrinks.Add(new Drink { IDDrink = 3, DrinkName = "Cà phê đen", DrinkPrice = 70000, DrinkImage = "coffee_cup.jpg" });
-            //ListDrinks.Add(new Drink { IDDrink = 4, DrinkName = "Cà phê matcha", DrinkPrice = 40000, DrinkImage = "coffee_cup.jpg" });
+            ObservableCollection<Drink> ListDrinksTmp = new ObservableCollection<Drink>();
+            ListDrinksTmp = await ApiService.GetDrink();
 
-                //ListCategory.Add("Cà phê");
-                //ListCategory.Add("Trà trái cây");
-                //ListCategory.Add("Đá xay");
-                //ListCategory.Add("Bánh snack");
-                //ListCategory.Add("Combo");
+            for (int i = 0; i < ListDrinksTmp.Count; i++)
+            {
+                int ID = ListDrinksTmp[i].IDDrink;
+                ObservableCollection<DrinkImage> images = new ObservableCollection<DrinkImage>();
+                images = await ApiService.GetDrinkImageById(ID);
+                if (images.Count > 0)
+                {
+                    ListDrinksTmp[i].DrinkImage = images[0].ImageData;
+                    //foreach (DrinkImage image in images)
+                    //{
+                    //    ListDrinks[i].DrinkImage.Add(image.ImageData);
+                    //}
+                }
+
+            }
+            ListDrinks = ListDrinksTmp;
+
+            ListCategory = await ApiService.GetCategory();
 
 
-                //ListBanner.Add(new Drink { IDDrink = 1, DrinkName = "Cà phê sữa đá", DrinkPrice = 50000, DrinkImage = "Tradao.jpg" });
-                //ListBanner.Add(new Drink { IDDrink = 2, DrinkName = "Cà phê sữa nóng", DrinkPrice = 60000, DrinkImage = "Tradao.jpg" });
-                //ListBanner.Add(new Drink { IDDrink = 3, DrinkName = "Cà phê đen", DrinkPrice = 70000, DrinkImage = "Tradao.jpg" });
-                //ListBanner.Add(new Drink { IDDrink = 4, DrinkName = "Cà phê matcha", DrinkPrice = 40000, DrinkImage = "Tradao.jpg" });
+
+            //ListBanner.Add(new Drink { IDDrink = 1, DrinkName = "Cà phê sữa đá", DrinkPrice = 50000, DrinkImage = "Tradao.jpg" });
+            //ListBanner.Add(new Drink { IDDrink = 2, DrinkName = "Cà phê sữa nóng", DrinkPrice = 60000, DrinkImage = "Tradao.jpg" });
+            //ListBanner.Add(new Drink { IDDrink = 3, DrinkName = "Cà phê đen", DrinkPrice = 70000, DrinkImage = "Tradao.jpg" });
+            //ListBanner.Add(new Drink { IDDrink = 4, DrinkName = "Cà phê matcha", DrinkPrice = 40000, DrinkImage = "Tradao.jpg" });
 
         }
 
-
+   
 
         #region Properties
 
@@ -118,9 +121,9 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
-        private ObservableCollection<string> _listCategory;
+        private ObservableCollection<Category> _listCategory;
 
-        public ObservableCollection<string> ListCategory
+        public ObservableCollection<Category> ListCategory
         {
             get { return _listCategory; }
             set 

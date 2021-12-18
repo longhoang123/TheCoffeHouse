@@ -15,7 +15,7 @@
         <controls:HeaderOrderPage Title="Danh Mục" />
         <!--  Content  -->
         <ScrollView BackgroundColor="White">
-            <StackLayout Spacing="20">
+            <StackLayout Spacing="20" >
                 <!--  Container category  -->
                 <FlexLayout
                     Margin="20,0,0,5"
@@ -24,86 +24,31 @@
                     Direction="Row"
                     HorizontalOptions="StartAndExpand"
                     JustifyContent="SpaceBetween"
-                    Wrap="Wrap">
-                    <!--<ListView ItemsSource="{Binding ListCategory}" HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    </ListView>-->
-                    <StackLayout
-                        Margin="0,10,20,10"
-                        HorizontalOptions="Center"
-                        Orientation="Vertical"
-                        VerticalOptions="Center">
-                        <ImageButton
-                            Padding="5"
-                            BackgroundColor="#f0daaa"
-                            CornerRadius="50"
-                            HeightRequest="70"
-                            Source="coffee_cup.jpg"
-                            WidthRequest="70" />
-                        <Label HorizontalOptions="Center" Text="Cà phê" />
-                    </StackLayout>
-                    <StackLayout
-                        Margin="0,10,20,10"
-                        HorizontalOptions="Center"
-                        Orientation="Vertical"
-                        VerticalOptions="Center">
-                        <ImageButton
-                            Padding="5"
-                            BackgroundColor="#f0daaa"
-                            CornerRadius="50"
-                            HeightRequest="70"
-                            Source="coffee_cup.jpg"
-                            WidthRequest="70" />
-                        <Label HorizontalOptions="Center" Text="Đá xay" />
-                    </StackLayout>
-                    <StackLayout
-                        Margin="0,10,20,10"
-                        HorizontalOptions="Center"
-                        Orientation="Vertical"
-                        VerticalOptions="Center">
-                        <ImageButton
-                            Padding="5"
-                            BackgroundColor="#f0daaa"
-                            CornerRadius="50"
-                            HeightRequest="70"
-                            Source="coffee_cup.jpg"
-                            WidthRequest="70" />
-                        <Label HorizontalOptions="Center" Text="Trà xanh" />
-                    </StackLayout>
-                    <StackLayout
-                        Margin="0,10,20,10"
-                        HorizontalOptions="Center"
-                        Orientation="Vertical"
-                        VerticalOptions="Center">
-                        <ImageButton
-                            Padding="5"
-                            BackgroundColor="#f0daaa"
-                            CornerRadius="50"
-                            HeightRequest="70"
-                            Source="coffee_cup.jpg"
-                            WidthRequest="70" />
-                        <Label HorizontalOptions="Center" Text="Snack" />
-                    </StackLayout>
-                    <StackLayout
-                        Margin="0,10,20,10"
-                        HorizontalOptions="Center"
-                        Orientation="Vertical"
-                        VerticalOptions="Center">
-                        <ImageButton
-                            Padding="5"
-                            BackgroundColor="#f0daaa"
-                            CornerRadius="50"
-                            HeightRequest="70"
-                            Source="coffee_cup.jpg"
-                            WidthRequest="70" />
-                        <Label HorizontalOptions="Center" Text="Combo" />
-                    </StackLayout>
+                    Wrap="Wrap"
+                    BindableLayout.ItemsSource="{Binding ListCategory}"
+                    >
+                  
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout
+                            Margin="0,10,20,10"
+                            HorizontalOptions="Center"
+                            Orientation="Vertical"
+                            VerticalOptions="Center">
+                                    <ImageButton
+                                Padding="5"
+                                BackgroundColor="#f0daaa"
+                                CornerRadius="50"
+                                HeightRequest="70"
+                                Source="{Binding CateImage}"
+                                WidthRequest="70" />    
+                                    <Label HorizontalOptions="Center" Text="{Binding CateName}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                  
+                   
+                   
                 </FlexLayout>
 
                 <!--  Title each category  -->

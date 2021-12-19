@@ -14,6 +14,10 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using TheCoffeHouse.Constant;
 using NavigationMode = Prism.Navigation.NavigationMode;
+using Prism.Navigation.TabbedPages;
+using Plugin.Media.Abstractions;
+using Xamarin.Forms;
+using System.IO;
 
 namespace TheCoffeHouse.ViewModels.Base
 {
@@ -58,6 +62,7 @@ namespace TheCoffeHouse.ViewModels.Base
             if (sQLiteService != null) SQLiteService = sQLiteService;
             BackCommand = new DelegateCommand(async () => await BackExecute());
             OpenNotificationCommand = new DelegateCommand(async () => await OpenNotificationExecute());
+            OpenCollectionPointCommand = new DelegateCommand(async () => await OpenCollectionPointExecute());
             OpenCartPageCommand = new DelegateCommand(async () => await OpenCartPageExec());
             Instance = this;
             
@@ -242,6 +247,17 @@ namespace TheCoffeHouse.ViewModels.Base
             await Navigation.NavigateAsync(PageManagement.NotificationPage);
         }
         #endregion
+
+        #region OpenCollectionPointCommand
+        public ICommand OpenCollectionPointCommand { get; set; }
+        protected virtual async Task OpenCollectionPointExecute()
+        {
+            await Navigation.SelectTabAsync(PageManagement.CollectPointPage);
+            await Navigation.NavigateAsync(PageManagement.AllCouponPage);
+
+        }
+        #endregion
+
         #region OpenCartPageCommand
         public ICommand OpenCartPageCommand { get; set; }
         protected virtual async Task OpenCartPageExec()
@@ -250,8 +266,22 @@ namespace TheCoffeHouse.ViewModels.Base
         }
         #endregion
 
+        #region ConvertToBase64
+        public async Task<string> ConvertToBase64(MediaFile photo)
+        {
+            var stream = photo.GetStream();
+            var bytes = new byte[stream.Length];
+            await stream.ReadAsync(bytes, 0, (int)stream.Length);
+            return Convert.ToBase64String(bytes);          
+        }
+        #endregion
 
-
-
+        #region ConvertToBase64
+        public ImageSource ConvertFromBase64(string base64Image)
+        {
+            byte[] Base64Stream = Convert.FromBase64String(base64Image);
+            return ImageSource.FromStream(() => new MemoryStream(Base64Stream));
+        }
     }
+        #endregion
 }

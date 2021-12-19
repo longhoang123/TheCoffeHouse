@@ -96,6 +96,28 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
+        private string _bottomTitle = "Giao tận nơi";
+
+        public string BottomTitle
+        {
+            get { return _bottomTitle; }
+            set
+            {
+                SetProperty(ref _bottomTitle, value);
+            }
+        }
+
+        private string _bottomAddress = "Chọn địa chỉ của bạn";
+
+        public string BottomAddress
+        {
+            get { return _bottomAddress; }
+            set
+            {
+                SetProperty(ref _bottomAddress, value);
+            }
+        }
+
         private User _user;
 
         public User User
@@ -104,6 +126,17 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _user, value);
+            }
+        }
+
+        private Store _selectedStore;
+
+        public Store SelectedStore
+        {
+            get { return _selectedStore; }
+            set
+            {
+                SetProperty(ref _selectedStore, value);
             }
         }
 
@@ -128,17 +161,20 @@ namespace TheCoffeHouse.ViewModels
                     User = user;
                     IsLogedin = ConstaintVaribles.IsLogedIn;
                 }
+                SelectedStore = parameters.GetValue<Store>(ParamKey.StoreSelected.ToString()) ?? new Store{ StoreAddress = "Chọn cửa hàng để đến lấy"};
+                BottomTitle = "Đến lấy tại";
+                BottomAddress = SelectedStore.StoreAddress;
             }
         }
 
         private async void LoadData()
         {
             ListPost = await ApiService.GetPosts() ?? new ObservableCollection<HomePostItem>();
+            SelectedStore = new Store { StoreAddress = "Chọn cửa hàng để đến lấy", StoreDistance = "" };
 
-            for (var i = 0; i < 7; i++ )
+            foreach (var post in ListPost)
             {
-                ListBanner.Add("home_banner.png");
-               
+                ListBanner.Add(post.Image);
             }
            
             for(int i = 0; i < ListPost.Count + 1; i += 2)
@@ -176,7 +212,6 @@ namespace TheCoffeHouse.ViewModels
                     
                 });
             }
-
 
 
 
@@ -234,8 +269,27 @@ namespace TheCoffeHouse.ViewModels
         public ICommand OpenEditBookingPopupCommand { get; set; }
         private async void OpenEditBookingPopupExecute()
         {
-            await EditBookingPopup.Instance.Show("Đại học công nghệ thông tin", "Thạch Hoàng Long", "Thủ đức", "5km");
+            await EditBookingPopup.Instance.Show("Đại học công nghệ thông tin", "Thạch Hoàng Long", SelectedStore.StoreAddress, SelectedStore.StoreDistance, () => OpenStoreFunc(), () => OpenAddressFunc());
         }
+
+        #region OpenStoreFunc
+
+        public Task OpenStoreFunc()
+        {
+            NavigationParameters navParam = new NavigationParameters();
+            navParam.Add(ParamKey.IsNavigateFromMainPage.ToString(), true);
+            return Navigation.NavigateAsync(PageManagement.StorePage, navParam);
+        }
+        #endregion
+
+        #region OpenAddressFunc
+
+        public Task OpenAddressFunc()
+        {
+            return Navigation.NavigateAsync(PageManagement.AddressPage);
+        }
+        #endregion
+
         #endregion
     }
 }

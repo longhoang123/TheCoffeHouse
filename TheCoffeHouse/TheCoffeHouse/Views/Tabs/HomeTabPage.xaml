@@ -199,9 +199,9 @@
             </Grid>
         </ScrollView>
         <controls:BottomAddressView
-            Title="Giao đến"
+            Title="{Binding BottomTitle}"
             Grid.Row="2"
-            Address="Đại học công nghệ thông tin, Khu phố 5, Linh Trung, Thủ Đức"
+            Address="{Binding BottomAddress}"
             Command="{Binding OpenEditBookingPopupCommand}"
             ImageSource="ic_delivery.png" />
     </Grid>

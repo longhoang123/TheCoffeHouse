@@ -120,6 +120,7 @@ namespace TheCoffeHouse.Helpers
         public readonly static string SignupPage = "SignupPage";
         public readonly static string CartPage = "CartPage";
         public readonly static string AddAddressPage = "AddAddressPage";
+        public readonly static string AdminPage = "AdminPage";
 
 
 

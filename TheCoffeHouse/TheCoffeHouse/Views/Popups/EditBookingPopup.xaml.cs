@@ -26,6 +26,9 @@ namespace TheCoffeHouse.Views.Popups
 
         protected TaskCompletionSource<bool> Proccess;
 
+        private Func<Task> editAddressEvent;
+        private Func<Task> editStoreEvent;
+
 
         public static EditBookingPopup Instance => _instance ?? (_instance = new EditBookingPopup());
 
@@ -33,7 +36,7 @@ namespace TheCoffeHouse.Views.Popups
 
         #region Show
 
-        public async Task<bool> Show(string address, string userInfo, string shopAddress, string distance)
+        public async Task<bool> Show(string address, string userInfo, string shopAddress , string distance, Func<Task> editTakeawayEvent = null, Func<Task> editPickupEvent = null)
         {
             if (IsAppearing)
                 return false;
@@ -43,6 +46,10 @@ namespace TheCoffeHouse.Views.Popups
             userInfoLabel.Text = userInfo;
             shopAddressLabel.Text = shopAddress;
             distanceLabel.Text = distance;
+
+            editAddressEvent = editPickupEvent;
+            editStoreEvent = editTakeawayEvent;
+
             Proccess = new TaskCompletionSource<bool>();
 
             Device.BeginInvokeOnMainThread(async () =>
@@ -94,5 +101,27 @@ namespace TheCoffeHouse.Views.Popups
         }
 
         #endregion
+
+        private async void EditTakeawayTapped(object sender, EventArgs e)
+        {
+            await Hide();
+            IsAppearing = false;
+            if (editStoreEvent != null)
+            {
+                await editStoreEvent();
+                editStoreEvent = null;
+            }
+        }
+
+        private async void EditPickupTapped(object sender, EventArgs e)
+        {
+            await Hide();
+            IsAppearing = false;
+            if (editAddressEvent != null)
+            {
+                await editAddressEvent();
+                editAddressEvent = null;
+            }
+        }
     }
 }

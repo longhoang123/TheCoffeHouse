@@ -2,7 +2,7 @@
 <base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls" xmlns:renderers="clr-namespace:TheCoffeHouse.Renderers"
                prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.PersonalInfoPage"
                Title="Thông tin cá nhân">
@@ -10,34 +10,39 @@
         <controls:ContentPageHeaderView Title="Thông tin cá nhân" />
         <ScrollView Grid.Row="1">
             <StackLayout Padding="10">
-                <Frame CornerRadius="100" BackgroundColor="White" Padding="20,5,20,5" Margin="5" HasShadow="False" WidthRequest="80" HeightRequest="100" HorizontalOptions="Center">
-                    <Image Margin="-20" Source="bg_login.jpg"></Image>
+                <Frame CornerRadius="100" BackgroundColor="White" Padding="20,5" Margin="5" HasShadow="False" WidthRequest="80" HeightRequest="100" HorizontalOptions="Center">
+                    <Image Margin="-20" Source="bg_login.jpg">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
                 </Frame>
-                <Frame CornerRadius="10" BackgroundColor="White" Padding="20,5,20,5" Margin="5" HasShadow="False">
-                    <Entry Placeholder="Nguyễn"></Entry>
+                <Frame CornerRadius="10" BackgroundColor="White" Padding="20,10" Margin="5" HasShadow="False">
+                    <renderers:CustomEntry Placeholder="Nguyễn" TextColor="Black" Text="{Binding FirstName}"></renderers:CustomEntry>
                 </Frame>
-                <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5" HasShadow="False">
-                    <Entry Placeholder="Long"></Entry>
+                <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,10" Margin="5" HasShadow="False">
+                    <renderers:CustomEntry Placeholder="Long" TextColor="Black" Text="{Binding LastName}"></renderers:CustomEntry>
                 </Frame>
-                <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5" HasShadow="False">
-                    <Entry Placeholder="Email" Keyboard="Email"></Entry>
+                <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,10" Margin="5" HasShadow="False">
+                    <renderers:CustomEntry Placeholder="Email" TextColor="Black" Keyboard="Email" Text="{Binding Email}"></renderers:CustomEntry>
                 </Frame>
-                <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5" HasShadow="False">
-                    <Entry Placeholder="0388813493" Keyboard="Telephone" MaxLength="10"></Entry>
+                <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,10" Margin="5" HasShadow="False">
+                    <renderers:CustomEntry Placeholder="0388813493" TextColor="Black" Keyboard="Telephone" MaxLength="10" Text="{Binding PhoneNumber}"></renderers:CustomEntry>
                 </Frame>
                 <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5" HasShadow="False">
                     <DatePicker></DatePicker>
-                </Frame>
+                </Frame>    
                 <Frame CornerRadius="10" BackgroundColor="White"  Padding="20,5,20,5" Margin="5" HasShadow="False">
-                    <Picker SelectedItem="1">
+                    <Picker>
                         <Picker.Items>
                             <x:String>Nam</x:String>
                             <x:String>Nữ</x:String>
                             <x:String>Khác</x:String>
                         </Picker.Items>
+                        <Picker.SelectedIndex>0</Picker.SelectedIndex>
                     </Picker>
                 </Frame>
-                <Button Text="Cập nhật tài khoản" BackgroundColor="DarkGoldenrod" TextColor="White" CornerRadius="10"  Margin="5"></Button>
+                <Button Text="Cập nhật tài khoản" BackgroundColor="DarkGoldenrod" TextColor="White" CornerRadius="10"  Margin="5" Command="{Binding UpdateInfoCommand}"></Button>
             </StackLayout>
         </ScrollView>
     </Grid>

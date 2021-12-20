@@ -121,8 +121,7 @@ namespace TheCoffeHouse.Helpers
         public readonly static string CartPage = "CartPage";
         public readonly static string AddAddressPage = "AddAddressPage";
         public readonly static string AdminPage = "AdminPage";
-
-
+        public readonly static string AdminMasterPage = "AdminMasterPage";
 
         #endregion
     }

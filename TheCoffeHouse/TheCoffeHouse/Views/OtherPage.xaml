@@ -82,8 +82,15 @@
                     </custom:CustomButton>
                     <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
                     <custom:CustomButton
+                    SourceImage="user.png"
+                    ButtonText="Admin"
+                    Command="{Binding OpenAdminPage}">
+                    </custom:CustomButton>
+                    <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                    <custom:CustomButton
                     SourceImage="logout.png"
-                    ButtonText="Đăng xuất">
+                    ButtonText="Đăng xuất"
+                        Command="{Binding Logout}">
                     </custom:CustomButton>
                 </StackLayout>
             </Frame>

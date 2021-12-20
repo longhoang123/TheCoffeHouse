@@ -9,6 +9,7 @@ namespace TheCoffeHouse.Models
     {
         public string Code { get; set; }
         public string Title { get; set; }
+        public int CouponDiscount { get; set; }
         public string CouponImage { get; set; }
         public string CouponBigImage { get; set; }
         public string CouponDate { get; set; }

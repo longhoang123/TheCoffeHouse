@@ -114,9 +114,9 @@ namespace TheCoffeHouse.ViewModels
         #endregion
         #region OpenPaymentPageCommand
         public ICommand OpenPaymentPageCommand { get; set; }
-        public void OpenPaymentPageExec()
+        public async void OpenPaymentPageExec()
         {
-            Navigation.NavigateAsync(PageManagement.PaymentPage);
+            await Navigation.NavigateAsync(PageManagement.PaymentPage);
         }
         #endregion
     }

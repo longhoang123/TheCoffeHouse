@@ -75,6 +75,7 @@ namespace TheCoffeHouse
             containerRegistry.RegisterForNavigation<NotificationPage, NotificationPageViewModel>(PageManagement.NotificationPage);
             containerRegistry.RegisterForNavigation<SignupPage, SignupPageViewModel>(PageManagement.SignupPage);
             containerRegistry.RegisterForNavigation<CartPage, CartPageViewModel>(PageManagement.CartPage);
+            containerRegistry.RegisterForNavigation<PaymentPage, PaymentPageViewModel>(PageManagement.PaymentPage);
             containerRegistry.RegisterForNavigation<AddAddressPage, AddAddressPageViewModel>(PageManagement.AddAddressPage);
             containerRegistry.RegisterForNavigation<AdminPage, AdminPageViewModel>(PageManagement.AdminPage);
             containerRegistry.RegisterForNavigation<AdminMasterPage, AdminMasterPageViewModel>(PageManagement.AdminMasterPage);

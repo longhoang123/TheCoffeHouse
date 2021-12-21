@@ -135,7 +135,7 @@
                                             Grid.Row="1"
                                             Grid.Column="1"
                                             FontSize="15"
-                                            Text="{Binding DrinkPrice, StringFormat='{0:#,0}'}" />
+                                            Text="{Binding DrinkPrice, StringFormat='{0:#,0}đ'}" />
                                         <ImageButton
                                             Grid.Row="2"
                                             Grid.Column="2"

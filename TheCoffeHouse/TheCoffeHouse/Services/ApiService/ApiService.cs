@@ -371,6 +371,14 @@ namespace TheCoffeHouse.Services.ApiService
 
         #endregion
 
+        #region GetUserByID
+        public static async Task<User> GetUserByID(int userID)
+        {
+            var url = ApiUrl.GetUserByID(userID);
+            return await Get<User>(url);
+        }
+
+        #endregion
         #region ValidateUser
         public static async Task<User> ValidateUser(string phone, string password)
         {
@@ -507,9 +515,32 @@ namespace TheCoffeHouse.Services.ApiService
                 var url = ApiUrl.DeleteItemCart(IDDetailCart);
                 return await Get<DetailCart>(url);
             }
-            #endregion
+        #endregion
         #endregion
 
+        #region Order
+            #region Create Order
+            public static async Task<Dictionary<string, int>> CreateOrder(Order order)
+            {
+                var url = ApiUrl.CreateOrder();
+                return await Post<Dictionary<string, int>>(url, order);
+            }
+            #endregion
+            #region GetDetailOrderByIdOrder
+            public static async Task<ObservableCollection<DetailOrder>> GetDetailOrderByIdOrder(int IDOrder)
+            {
+                var url = ApiUrl.GetDetailOrderByIdOrder(IDOrder);
+                return await GetList< ObservableCollection<DetailOrder>>(url);
+            }
+            #endregion
 
+            #region GetAllOrderByIduser
+            public static async Task<ObservableCollection<Order>> GetAllOrderByIduser(int IDuser)
+                {
+                var url = ApiUrl.GetAllOrderByIduser(IDuser);
+                return await GetList<ObservableCollection<Order>>(url);
+            }
+            #endregion
+        #endregion
     }
 }

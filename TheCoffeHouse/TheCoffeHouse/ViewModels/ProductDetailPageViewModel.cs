@@ -169,7 +169,7 @@ namespace TheCoffeHouse.ViewModels
                 detailCart.Quantity = QuantityDetailCart;
                 detailCart.Size = SizeItem;
                 detailCart.Total = PriceTotal;
-                detailCart.Image = "coffee_cup.jpg";
+                detailCart.Image = ImagePro;
                 await ApiService.AddToCart(detailCart);
                 await Navigation.NavigateAsync(PageManagement.CartPage);
             }

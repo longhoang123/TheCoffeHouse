@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <prism:PrismApplication
     x:Class="TheCoffeHouse.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -37,6 +37,7 @@
             <Color x:Key="facebook_color">#1976d3</Color>
             <Color x:Key="light_gray">#e8e8e8</Color>
             <Color x:Key="dark_gray">#7e7e80</Color>
+            <Color x:Key="MainColor_Payment">Orange</Color>
 
 
             <Style ApplyToDerivedTypes="True" TargetType="Label">

@@ -6,9 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
@@ -26,11 +28,13 @@ namespace TheCoffeHouse.ViewModels
         }
         #region ListHistoryInit
         //Thêm danh sách lịch sử order từ db
-        private void init()
+        private async void init()
         {
-            ListOrder.Add(new Order { IDOrder = 1, TotalPayment= 150000 });
-            ListOrder.Add(new Order { IDOrder = 2, TotalPayment = 150000 });
-            ListOrder.Add(new Order { IDOrder = 3, TotalPayment = 150000 });
+            if(ConstaintVaribles.UserID != null)
+            {
+                ListOrder = await ApiService.GetAllOrderByIduser(Convert.ToInt32(ConstaintVaribles.UserID));
+            }
+
         }
         #endregion
         #region Properties

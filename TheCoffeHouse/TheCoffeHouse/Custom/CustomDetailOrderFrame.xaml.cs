@@ -19,13 +19,22 @@ namespace TheCoffeHouse.Custom
             Name.SetBinding(Label.TextProperty, new Binding("NameText", source: this));
             QuantityLb.SetBinding(Label.TextProperty, new Binding("Quantity", source: this));
             PriceLb.SetBinding(Button.TextProperty, new Binding("PriceText", source: this));
+            SizeLb.SetBinding(Button.TextProperty, new Binding("Size", source: this));
         }
-        public static readonly BindableProperty PriceProperty =
-                BindableProperty.Create("Price", typeof(string), typeof(CustomPromotionFrame), default(string));
-        public string Price
+        public static readonly BindableProperty SizeProperty =
+               BindableProperty.Create("Size", typeof(string), typeof(CustomPromotionFrame), default(string));
+        public string Size
         {
-            get { return (string)GetValue(PriceProperty); }
-            set { SetValue(PriceProperty, value); }
+            get { return (string)GetValue(SizeProperty); }
+            set { SetValue(SizeProperty, value); }
+        }
+
+        public static readonly BindableProperty PriceTextProperty =
+                BindableProperty.Create("PriceText", typeof(string), typeof(CustomPromotionFrame), default(string));
+        public string PriceText
+        {
+            get { return (string)GetValue(PriceTextProperty); }
+            set { SetValue(PriceTextProperty, value); }
         }
 
         public static readonly BindableProperty QuantityProperty =
@@ -43,12 +52,19 @@ namespace TheCoffeHouse.Custom
             get { return (string)GetValue(NameTextProperty); }
             set { SetValue(NameTextProperty, value); }
         }
-        public static readonly BindableProperty ImageSourceProperty =
-             BindableProperty.Create("Source", typeof(ImageSource), typeof(CustomCouponFrame), default(ImageSource));
-        public ImageSource Source
+        //public static readonly BindableProperty ImageSourceProperty =
+        //     BindableProperty.Create("Source", typeof(ImageSource), typeof(CustomCouponFrame), default(ImageSource));
+        //public ImageSource Source
+        //{
+        //    get { return (ImageSource)GetValue(ImageSourceProperty); }
+        //    set { SetValue(ImageSourceProperty, value); }
+        //}
+        public static readonly BindableProperty SourceProperty =
+             BindableProperty.Create("Source", typeof(string), typeof(CustomPromotionFrame), default(string));
+        public string Source
         {
-            get { return (ImageSource)GetValue(ImageSourceProperty); }
-            set { SetValue(ImageSourceProperty, value); }
+            get { return (string)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
         }
     }
 }

@@ -14,7 +14,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <Frame Margin="5" Padding="5,10,5,10" CornerRadius="10" BorderColor="Transparent">
-                            <custom:CustomOrderFrame IDOrderText="{Binding IDOrder}" PriceText="{Binding TotalPayment}" Source="coolmate.jpg"></custom:CustomOrderFrame>
+                                <custom:CustomOrderFrame DateOrdertext="{Binding DateOrder,StringFormat='{0:MMMM dd, yyyy}'}" IDOrderText="{Binding IDOrder}" PriceText="{Binding TotalPayment,StringFormat='{0:#,0}đ'}" Source="coolmate.jpg"></custom:CustomOrderFrame>
                         </Frame>
                     </ViewCell>
                 </DataTemplate>

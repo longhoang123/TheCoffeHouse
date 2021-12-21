@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using TheCoffeHouse.Constant;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.Services.ApiService;
@@ -26,12 +27,17 @@ namespace TheCoffeHouse.ViewModels
             PageTitle = "Giỏ hàng";
             ListDetailCart = new ObservableCollection<DetailCart>();
             DeleteItemCartCommand = new DelegateCommand<DetailCart>(selectedItem => DeleteItemCartExec(selectedItem));
-          
+            OpenPaymentPageCommand = new DelegateCommand(OpenPaymentPageExec);
 
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
+            initData();
+        }
+        public override void OnNavigatedBackTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedBackTo(parameters);
             initData();
         }
         async void initData()
@@ -105,7 +111,13 @@ namespace TheCoffeHouse.ViewModels
             }
 
         }
-
+        #endregion
+        #region OpenPaymentPageCommand
+        public ICommand OpenPaymentPageCommand { get; set; }
+        public void OpenPaymentPageExec()
+        {
+            Navigation.NavigateAsync(PageManagement.PaymentPage);
+        }
         #endregion
     }
 }

@@ -42,7 +42,7 @@
                                 <Label Text="35%" Padding="5" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
                             </Frame>
                             <Label Grid.Row="2" x:Name="Price" 
-                                   FontSize="18" Text="{Binding PricePro}"/>
+                                   FontSize="18" Text="{Binding PricePro,StringFormat='{0:#,0}đ'}"/>
                             <Label Grid.Row="3"
                                    Grid.ColumnSpan="2" 
                                    FontSize="15"
@@ -131,7 +131,7 @@
                 <ImageButton Command="{Binding plusCommand}" HorizontalOptions="Center" VerticalOptions="Center"  Source="add.png" Padding="10" CornerRadius="50" WidthRequest="40" HeightRequest="40" BackgroundColor="#f7cd92"/>
 
                 <Frame Padding="0" CornerRadius="10" Margin="10,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
-                    <Button  Text="{Binding PriceTotal}" Command="{Binding OpenCartPageCommand}" BackgroundColor="Orange" FontSize="25" TextColor="White" FontAttributes="Bold"/>
+                    <Button  Text="{Binding PriceTotal,StringFormat='{0:#,0}đ'}" Command="{Binding OpenCartPageCommand}" BackgroundColor="Orange" FontSize="25" TextColor="White" FontAttributes="Bold"/>
                 </Frame>
             </StackLayout>
         </Frame>

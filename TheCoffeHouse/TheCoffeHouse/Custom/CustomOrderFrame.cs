@@ -18,7 +18,16 @@ namespace TheCoffeHouse.Custom
             Image.SetBinding(Image.SourceProperty, new Binding("Source", source: this));
             IDOrder.SetBinding(Label.TextProperty, new Binding("IDOrderText", source: this));
             Price.SetBinding(Label.TextProperty, new Binding("PriceText", source: this));
+            DateOrder.SetBinding(Label.TextProperty, new Binding("DateOrdertext", source: this));
         }
+        public static readonly BindableProperty DateOrdertextProperty =
+               BindableProperty.Create("DateOrdertext", typeof(string), typeof(CustomOrderFrame), default(string));
+        public string DateOrdertext
+        {
+            get { return (string)GetValue(DateOrdertextProperty); }
+            set { SetValue(DateOrdertextProperty, value); }
+        }
+
         public static readonly BindableProperty PriceTextProperty =
                 BindableProperty.Create("PriceText", typeof(string), typeof(CustomOrderFrame), default(string));
         public string PriceText

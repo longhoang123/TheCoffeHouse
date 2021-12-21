@@ -18,7 +18,10 @@ namespace TheCoffeHouse.Services.ApiService
         {
             return Link($"PromoPostController/?postID={postID}");
         }
-
+        public static string GetUserByID(int userID)
+        {
+            return Link($"UserProfileController/GetUserByID?userID={userID}");
+        }
         public static string ValidateUser(string phone, string password)
         {
             return Link($"UserProfileController/ValidateUser/?phone={phone}&password={password}");
@@ -96,6 +99,20 @@ namespace TheCoffeHouse.Services.ApiService
         public static string DeleteItemCart(int IDDetailCart)
         {
             return Link($"DetailCartController/DeleteItemCart?IDDetailCart={IDDetailCart}");
+        }
+        #endregion
+        #region Order
+        public static string CreateOrder()
+        {
+            return Link($"OrderController/CreateOrder");
+        }
+        public static string GetDetailOrderByIdOrder(int IDOrder)
+        {
+            return Link($"OrderController/GetDetailOrderByIDOrder?IDOrder={IDOrder}");
+        }
+        public static string GetAllOrderByIduser(int IDUser)
+        {
+            return Link($"OrderController/GetAllOrderByIDUser?IDUser={IDUser}");
         }
         #endregion
     }

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage  xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" 
+                xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" 
+                xmlns:controls="clr-namespace:TheCoffeHouse.Controls" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                prism:ViewModelLocator.AutowireViewModel="True" 
+             x:Class="TheCoffeHouse.Views.PaymentPage">
+    <Grid RowDefinitions="auto,*,0.2*">
+        <controls:ContentPageHeaderView Title="{Binding PageTitle}" RightIcon="read.png" />
+        <ScrollView Grid.Row="1" BackgroundColor="White">
+            <StackLayout Padding="10" Spacing="15">
+                
+                <Label Text="Thông tin của bạn" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
+                <Frame CornerRadius="10"  >
+                    <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
+                        <Label FontAttributes="Bold" VerticalOptions="Center"  FontSize="18" Text="Tên khách hàng:"/>
+                        <Entry Grid.Column="1" Text="{Binding UserName}"/>
+                        <Label FontAttributes="Bold" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" FontSize="18" Text="Số điện thoại:"/>
+                        <Entry Grid.Row="1" Grid.Column="1" FontSize="18" Text="{Binding PhoneNumber}"/>
+                    </Grid>
+                </Frame>
+                
+                <Label Text="Thông tin giỏ hàng" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
+                <Frame CornerRadius="10">
+                    <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
+                        <Label FontAttributes="Bold"  FontSize="18" Text="Số sản phẩm:"/>
+                        <Label  FontSize="18"  Grid.Column="1" Text="{Binding QuantityItem}"/>
+                        <Label FontAttributes="Bold" Grid.Row="1" Grid.Column="0" FontSize="18" Text="Tổng tiền:"/>
+                        <Label Grid.Row="1" Grid.Column="1" FontSize="18" TextColor="Red" Text="{Binding TotalPrice,StringFormat='{0:#,0}đ'}"/>
+                    </Grid>
+                </Frame>
+
+                <Label Text="Áp dụng Chương trình khuyến mãi" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
+                <Frame CornerRadius="10">
+                    <Grid RowDefinitions="*,*,*" >
+                        <Label HorizontalOptions="Center" FontAttributes="Bold"  VerticalOptions="Center" FontSize="18"  Text="Nhập mã khuyến mãi(nếu có):"/>
+                        <Entry Grid.Row="1" Text="{Binding DiscountCode}" Placeholder="Nhập mã" VerticalOptions="Center" FontSize="18"  />
+                        <Label IsVisible="{Binding isDiscount}" FontAttributes="Italic"  VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="0" FontSize="18" Text="{Binding StringDiscount}"/>
+                        
+                    </Grid>
+                </Frame>
+
+              
+
+                <Label Text="Chọn phương thức thanh toán" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
+                <Frame CornerRadius="10">
+                    <Grid RowDefinitions="*,*" RowSpacing="10" ColumnDefinitions="*,0.5*" >
+                            <RadioButton IsChecked="{Binding isDirectMoney}"  VerticalOptions="CenterAndExpand" Grid.ColumnSpan="2" Grid.Row="0" Content="Thanh toán bằng tiền mặt"/>
+
+                            <RadioButton IsChecked="{Binding isOnline }" Grid.Row="1" VerticalOptions="CenterAndExpand"  Content="Thanh toán online"/>
+                        <Button IsVisible="{Binding isOnline}" Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="EndAndExpand" Grid.Column="0" FontAttributes="Bold" TextColor="White" BackgroundColor="Blue" Text="Thanh toán ngay"/>
+
+                    </Grid>
+                </Frame>
+                <Label Text="Chọn phương thức nhận hàng" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
+                <Frame CornerRadius="10">
+                    <StackLayout>
+                        <RadioButton   IsChecked="{Binding isAtStore}" VerticalOptions="CenterAndExpand" Content="Nhận tại cửa hàng"/>
+                        <Picker IsVisible="{Binding isAtStore}"  Title="Chọn cửa hàng" ItemsSource="{Binding ListStore}" ItemDisplayBinding="{Binding StoreName}"/>
+                        <RadioButton IsChecked="{Binding isAtHome}" VerticalOptions="CenterAndExpand"  Content="Giao hàng tận tay"/>
+                        <Entry IsVisible="{Binding isAtHome}" Placeholder="Nhập địa chỉ của bạn"/>
+                        <Label IsVisible="{Binding isAtHome}" FontSize="15" Text="Phí giao hàng: 30.000vnđ"/>
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+            
+        </ScrollView>
+
+        <Frame Grid.Row="2" Padding="0">
+            <StackLayout Margin="20,0,10,0" Orientation="Horizontal" HorizontalOptions="Fill"  HeightRequest="80" Spacing="15">
+                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                    <Label   Text="Tiền thanh toán" TextColor="Gray" FontSize="20" FontAttributes="Bold"
+                        HorizontalOptions="Center" VerticalOptions="Center" 
+                        />
+                    <Label  x:Name="quantityPro" Text="{Binding TotalPriceCart,StringFormat='{0:#,0}đ'}" FontSize="22" TextColor="Blue" FontAttributes="Bold"
+                        HorizontalOptions="Center" VerticalOptions="Center" 
+                        />
+                </StackLayout>
+
+                <Frame Padding="0" CornerRadius="10"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Button  Text="Đặt hàng" IsEnabled="{Binding isEnable}" Command="{Binding OrderCommand}" BackgroundColor="Green" FontSize="20" TextColor="White" FontAttributes="Bold"/>
+                </Frame>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</base:BasePage>

@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Plugin.Media;
 using Prism;
 using Prism.Ioc;
 
@@ -14,13 +15,14 @@ namespace TheCoffeHouse.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            CrossMedia.Current.Initialize();
             base.OnCreate(savedInstanceState);
 
             Rg.Plugins.Popup.Popup.Init(this);
 
             Plugin.InputKit.Platforms.Droid.Config.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
         }
 

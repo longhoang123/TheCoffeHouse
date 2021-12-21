@@ -10,6 +10,8 @@ namespace TheCoffeHouse.Models
         public int IDPromotion { get; set; }
         public string Brand { get; set; }
         public string PromotionDes { get; set; }
+        public string PromotionCode { get; set; }
+        public int PromotionDiscount { get; set; }
         public string Point { get; set; }
         public string PromotionImage { get; set; }
         public string PromotionBigImage { get; set; }

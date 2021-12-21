@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
@@ -29,6 +30,10 @@ namespace TheCoffeHouse.ViewModels
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
+            if (parameters != null && parameters.Keys.Count() > 0)
+            {
+                isNavFromMain = parameters.GetValue<bool>(ParamKey.IsNavigateFromMainPage.ToString());
+            }
             base.OnNavigatedNewTo(parameters);
         }
         void initData()
@@ -42,6 +47,7 @@ namespace TheCoffeHouse.ViewModels
 
         }
         #region Properties
+        private bool isNavFromMain = false;
         private Store _selectedStored;
 
         public Store SelectedStored
@@ -75,8 +81,16 @@ namespace TheCoffeHouse.ViewModels
         private async void handleSelectedItem()
         {
             NavigationParameters navParams = new NavigationParameters();
-            navParams.Add("StoreSelected", SelectedStored);
-            await Navigation.NavigateAsync(PageManagement.StoreDetailPage, navParams);
+            navParams.Add(ParamKey.StoreSelected.ToString(), SelectedStored);
+
+            if(isNavFromMain)
+            {
+                await Navigation.GoBackAsync(navParams);
+            } else
+            {
+                await Navigation.NavigateAsync(PageManagement.StoreDetailPage, navParams);
+
+            }
         }
         #endregion
     }

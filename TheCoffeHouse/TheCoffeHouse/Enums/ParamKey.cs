@@ -8,6 +8,8 @@ namespace TheCoffeHouse.Enums
     {
         CurrentUser,
         Username,
-        SelectedPost
+        SelectedPost,
+        IsNavigateFromMainPage,
+        StoreSelected,
     }
 }

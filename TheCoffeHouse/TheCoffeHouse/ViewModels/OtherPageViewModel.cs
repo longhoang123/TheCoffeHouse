@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Services;
@@ -30,6 +31,8 @@ namespace TheCoffeHouse.ViewModels
             OpenPersonalInfoPage = new DelegateCommand(OpenPersonalInfoPageExcute);
             OpenAddressPage = new DelegateCommand(OpenAddressPageExcute);
             OpenSettingPage = new DelegateCommand(OpenSettingPageExcute);
+            OpenAdminPage = new DelegateCommand(OpenAdminPageExcute);
+            Logout = new DelegateCommand(LogoutExcute);
         }
 
         #region OpenPage
@@ -73,6 +76,19 @@ namespace TheCoffeHouse.ViewModels
         private async void OpenSettingPageExcute()
         {
             await Navigation.NavigateAsync(PageManagement.SettingPage);
+        }
+        public ICommand OpenAdminPage { get; set; }
+        private async void OpenAdminPageExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.AdminMasterPage);
+        }
+        public ICommand Logout { get; set; }
+        private async void LogoutExcute()
+        {
+            ConstaintVaribles.IsLogedIn = false;
+            ConstaintVaribles.UserID = "";
+            ConstaintVaribles.IDCart = 0;
+            await Navigation.NavigateAsync(PageManagement.LoginPage);
         }
         #endregion
     }

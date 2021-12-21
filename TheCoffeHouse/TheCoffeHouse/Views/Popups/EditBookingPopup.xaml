@@ -8,7 +8,7 @@
     <Grid
         BackgroundColor="Transparent"
         HorizontalOptions="FillAndExpand"
-        RowDefinitions="7*,3*"
+        RowDefinitions="7*,2*"
         VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout.GestureRecognizers>
@@ -51,6 +51,9 @@
                         BackgroundColor="{StaticResource MainColor}"
                         CornerRadius="30"
                         VerticalOptions="CenterAndExpand">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="EditPickupTapped" />
+                        </Frame.GestureRecognizers>
                         <Label
                             HorizontalOptions="Center"
                             Text="Sửa"
@@ -70,6 +73,9 @@
                         BackgroundColor="{StaticResource MainColor}"
                         CornerRadius="30"
                         VerticalOptions="CenterAndExpand">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="EditTakeawayTapped" />
+                        </Frame.GestureRecognizers>
                         <Label
                             HorizontalOptions="Center"
                             Text="Sửa"

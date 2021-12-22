@@ -67,7 +67,7 @@
 
                     </BoxView>
                     <Frame Padding="0" CornerRadius="20"  VerticalOptions="Center" Margin="20" HeightRequest="70">
-                        <Button FontSize="15" Text="Đặt sản phẩm" FontAttributes="Bold"  BackgroundColor="Orange" TextColor="White" />
+                        <Button FontSize="15" Text="Đặt sản phẩm" Command="{Binding ChooseStoreCommand}" FontAttributes="Bold"  BackgroundColor="Orange" TextColor="White" />
                     </Frame>
                 </StackLayout>
                

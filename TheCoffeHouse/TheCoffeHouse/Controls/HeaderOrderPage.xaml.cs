@@ -13,6 +13,12 @@ namespace TheCoffeHouse.Controls
                 Source = this,
                 Mode = BindingMode.TwoWay
             });
+            qtyItemInCart.SetBinding(Label.TextProperty, new Binding
+            {
+                Path = nameof(Qtity),
+                Source = this,
+                Mode = BindingMode.TwoWay
+            });
         }
         #region Title
         public static readonly BindableProperty TitleProperty
@@ -21,9 +27,6 @@ namespace TheCoffeHouse.Controls
            typeof(HeaderView),
            defaultValue: string.Empty,
            defaultBindingMode: BindingMode.TwoWay);
-
-
-
         public string Title
         {
             get
@@ -36,6 +39,25 @@ namespace TheCoffeHouse.Controls
             }
         }
 
+        #endregion
+        #region Qtity
+        public static readonly BindableProperty QtityProperty
+      = BindableProperty.Create(nameof(Qtity),
+          typeof(string),
+          typeof(HeaderView),
+          defaultValue: string.Empty,
+          defaultBindingMode: BindingMode.TwoWay);
+        public string Qtity
+        {
+            get
+            {
+                return GetValue(QtityProperty)?.ToString();
+            }
+            set
+            {
+                SetValue(QtityProperty, value);
+            }
+        }
         #endregion
     }
 }

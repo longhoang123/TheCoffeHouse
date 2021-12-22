@@ -162,6 +162,7 @@ namespace TheCoffeHouse.ViewModels
                     IsLogedin = ConstaintVaribles.IsLogedIn;
                 }
                 SelectedStore = parameters.GetValue<Store>(ParamKey.StoreSelected.ToString()) ?? new Store{ StoreAddress = "Chọn cửa hàng để đến lấy"};
+                ConstaintVaribles.IDStore = SelectedStore.IDStore;
                 BottomTitle = "Đến lấy tại";
                 BottomAddress = SelectedStore.StoreAddress;
             }

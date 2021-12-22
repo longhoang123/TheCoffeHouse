@@ -16,7 +16,7 @@
             </ControlTemplate>
 
             <ControlTemplate x:Key="OrderPageTemplate">
-                <controls:HeaderOrderPage Title="Danh mục" />
+                <controls:HeaderOrderPage Title="Danh mục"  />
             </ControlTemplate>
 
             <ControlTemplate x:Key="StorePageTemplate">

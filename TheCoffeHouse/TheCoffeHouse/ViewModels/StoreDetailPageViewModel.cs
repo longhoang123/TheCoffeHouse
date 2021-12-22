@@ -5,6 +5,9 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using TheCoffeHouse.Enums;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
@@ -21,11 +24,15 @@ namespace TheCoffeHouse.ViewModels
 
             )
         {
-
+            ChooseStoreCommand = new DelegateCommand(ChooseStoreExec);
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
+            if (parameters != null && parameters.Keys.Count() > 0)
+            {
+                isNavFromPayment = parameters.GetValue<bool>(ParamKey.IsNavigateFromPaymentPage.ToString());
+            }
             SelectedStore = parameters.GetValue<Store>("StoreSelected");
             ImgStore = SelectedStore.StoreImage;
             Store_Add = SelectedStore.StoreAddress;
@@ -33,6 +40,7 @@ namespace TheCoffeHouse.ViewModels
 
         }
         #region Properties
+        private bool isNavFromPayment = false;
         private string _Store_Name;
 
         public string Store_Name
@@ -64,6 +72,18 @@ namespace TheCoffeHouse.ViewModels
             set { SetProperty(ref _SelectedStore, value); }
         }
 
+        #endregion
+        #region ChooseStoreCommand
+        public ICommand ChooseStoreCommand { get; set; }
+        private async void ChooseStoreExec()
+        {
+            if (isNavFromPayment)
+            {
+                NavigationParameters navParams = new NavigationParameters();
+                navParams.Add(ParamKey.StoreSelected.ToString(), SelectedStore);
+                await Navigation.NavigateAsync($"../../../{PageManagement.PaymentPage}", navParams);
+            }
+        }
         #endregion
     }
 }

@@ -76,6 +76,7 @@ namespace TheCoffeHouse.ViewModels
                 else
                 {
                     ConstaintVaribles.IDCart = cart.IDCart;
+                    OrderPageViewModel.instance.initQty();
                 }
                 await Navigation.GoBackAsync(navParam);
             }

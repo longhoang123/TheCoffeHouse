@@ -55,23 +55,22 @@
                             Source="Search.png"
                             WidthRequest="18"
                         />-->
-                        <Frame
+                        <Grid RowDefinitions="*" Margin="0,0,15,0" ColumnDefinitions="*" >
+                            <Frame
                         Padding="10"
                         CornerRadius="50"
                         HeightRequest="25"
-                        WidthRequest="25">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenCartPageCommand}" />
-                            </Frame.GestureRecognizers>
-                            <Image Source="heart.png" />
+                        WidthRequest="25"
+                                HasShadow="False" BorderColor="Transparent">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenCartPageCommand}" />
+                                </Frame.GestureRecognizers>
+                                <Image  Source="carts.png" />
+                            </Frame>
+                            <Label x:Name="qtyItemInCart" Margin="35,-10,0,0"  FontSize="Large" TextColor="Red" FontAttributes="Bold" />
 
-                        </Frame>
-                        <!--<ImageButton
-                            BackgroundColor="Transparent"
-                            Margin="20,0,0,0"
-                            HeightRequest="18"
-                            Source="heart.png"
-                            WidthRequest="18" />-->
+                        </Grid>
+                       
                     </StackLayout>
               
                 

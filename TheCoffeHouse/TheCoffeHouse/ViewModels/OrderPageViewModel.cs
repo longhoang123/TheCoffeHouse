@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
@@ -21,6 +22,7 @@ namespace TheCoffeHouse.ViewModels
 {
     public class OrderPageViewModel : BaseViewModel
     {
+      
         public OrderPageViewModel(
             INavigationService navigationService = null,
             IPageDialogService dialogService = null,
@@ -34,14 +36,16 @@ namespace TheCoffeHouse.ViewModels
             ListCategory = new ObservableCollection<Category>();
             //ItemTappedCommand = new DelegateCommand(ItemTapped);
             InitData();
+            instance = this;
 
         }
-
+        public static OrderPageViewModel instance;
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
-
         }
+       
+       
         async void InitData()
         {
             ObservableCollection<Drink> ListDrinksTmp = new ObservableCollection<Drink>();
@@ -65,7 +69,7 @@ namespace TheCoffeHouse.ViewModels
             ListDrinks = ListDrinksTmp;
 
             ListCategory = await ApiService.GetCategory();
-
+            initQty();
 
 
             //ListBanner.Add(new Drink { IDDrink = 1, DrinkName = "Cà phê sữa đá", DrinkPrice = 50000, DrinkImage = "Tradao.jpg" });
@@ -75,9 +79,18 @@ namespace TheCoffeHouse.ViewModels
 
         }
 
-   
+
 
         #region Properties
+
+        private int _Qtity;
+
+        public int Qtity
+        {
+            get { return _Qtity; }
+            set { SetProperty(ref _Qtity, value); }
+        }
+
 
         private Drink  _selectedDrink;
 
@@ -139,6 +152,18 @@ namespace TheCoffeHouse.ViewModels
             NavigationParameters navParams = new NavigationParameters();
             navParams.Add("DrinkSelected", SelectedDrink);
             await Navigation.NavigateAsync(PageManagement.ProductDetailPage, navParams);
+        }
+        #endregion
+        #region initQuantityItemInCart
+        public async void initQty()
+        {
+            Qtity = 0;
+            Cart cart = new Cart();
+            if (ConstaintVaribles.UserID != null)
+            {
+                cart = await ApiService.GetCartByIDUser(Convert.ToInt32(ConstaintVaribles.UserID));
+                Qtity = cart.QuantityItem;
+            }
         }
         #endregion
     }

@@ -9,5 +9,6 @@ namespace TheCoffeHouse.Constant
         public static bool IsLogedIn = false;
         public static string UserID;
         public static int IDCart;
+        public static int IDStore;
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using TheCoffeHouse.Constant;
+using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
@@ -35,6 +36,7 @@ namespace TheCoffeHouse.ViewModels
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
+           
             selectedDrink = parameters.GetValue<Drink>("DrinkSelected");
             NamePro = selectedDrink.DrinkName;
             ImagePro = selectedDrink.DrinkImage;
@@ -60,7 +62,7 @@ namespace TheCoffeHouse.ViewModels
 
         #endregion
         #region Properties
-
+       
         private bool _AllowCommand;
 
         public bool AllowCommand
@@ -169,9 +171,10 @@ namespace TheCoffeHouse.ViewModels
                 detailCart.Quantity = QuantityDetailCart;
                 detailCart.Size = SizeItem;
                 detailCart.Total = PriceTotal;
-                detailCart.Image = ImagePro;
+                detailCart.Image = ImagePro;           
                 await ApiService.AddToCart(detailCart);
                 await Navigation.NavigateAsync(PageManagement.CartPage);
+                OrderPageViewModel.instance.initQty();
             }
             else
             {

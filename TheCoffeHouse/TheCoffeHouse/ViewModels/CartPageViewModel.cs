@@ -108,6 +108,7 @@ namespace TheCoffeHouse.ViewModels
             {
                 initData();
                 await App.Current.MainPage.DisplayAlert("Thông báo", $"Đã xóa sản phẩm {selectedItem.NameItem} khỏi giỏ hàng ", "OK");
+                OrderPageViewModel.instance.initQty();
             }
 
         }

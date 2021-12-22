@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using TheCoffeHouse.Constant;
+using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
@@ -27,24 +28,21 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             PageTitle = "Thanh toán";
-            ListStore = new ObservableCollection<Store>();
+
             OrderCommand = new DelegateCommand(OrderExec);
+            OpenStorePageCommand = new DelegateCommand(OpenStorePageExec);
             initData();
         }
         int Discount = 0;
         int Shipping = 0;
         Cart cart;
-         async void initData()
+        async void initData()
         {
-            ListStore.Add(new Store { IDStore = 1, StoreName = "THE COFFEE HOUSE", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-            ListStore.Add(new Store { IDStore = 2, StoreName = "THE COFFEE HOUSE", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-            ListStore.Add(new Store { IDStore = 3, StoreName = "THE COFFEE HOUSE", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-            ListStore.Add(new Store { IDStore = 4, StoreName = "THE COFFEE HOUSE", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
             var user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
             UserName = user.Name;
             PhoneNumber = user.Phone;
             cart = await ApiService.GetCartByIDUser(Convert.ToInt32(ConstaintVaribles.UserID));
-            if(cart.TotalPrice != 0)
+            if (cart.TotalPrice != 0)
             {
                 isEnable = true;
             }
@@ -60,21 +58,51 @@ namespace TheCoffeHouse.ViewModels
             isAtStore = true;
             isDirect = true;
             TotalPriceCart = cart.TotalPrice;
-           
-
+            if(ConstaintVaribles.IDStore != 0)
+            {
+                StoreName = ConstaintVaribles.IDStore.ToString();
+            }
+            else
+            {
+                StoreName = SelectedStore.StoreName;
+            }
+         
+        }
+        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        {
+            SelectedStore = new Store { StoreName = "Chọn cửa hàng", StoreAddress = "Chọn cửa hàng để đến lấy" };
+            base.OnNavigatedNewTo(parameters);
+            if (parameters != null && parameters.Keys.Count() > 0)
+            {
+                SelectedStore = parameters.GetValue<Store>(ParamKey.StoreSelected.ToString()) ?? new Store {StoreName="Chọn cửa hàng", StoreAddress = "Chọn cửa hàng để đến lấy" };
+                ConstaintVaribles.IDStore = SelectedStore.IDStore;
+            }
+            initData();
         }
         public override void OnNavigatedBackTo(INavigationParameters parameters)
         {
             base.OnNavigatedBackTo(parameters);
-            initData();
+
         }
         #region Properties
+        Store SelectedStore = new Store();
+
+        private string _StoreName;
+
+        public string StoreName
+        {
+            get { return _StoreName; }
+            set { SetProperty(ref _StoreName, value); }
+        }
+
+
         private bool _isEnable;
 
         public bool isEnable
         {
             get { return _isEnable; }
-            set {
+            set
+            {
                 SetProperty(ref _isEnable, value);
             }
         }
@@ -84,7 +112,8 @@ namespace TheCoffeHouse.ViewModels
         public int TotalPriceCart
         {
             get { return _TotalPriceCart; }
-            set {
+            set
+            {
                 SetProperty(ref _TotalPriceCart, value);
             }
         }
@@ -110,13 +139,13 @@ namespace TheCoffeHouse.ViewModels
             {
                 SetProperty(ref _isAtStore, value);
                 isDirect = false;
-                
-                if(_isAtStore == true)
+
+                if (_isAtStore == true)
                 {
                     Shipping = 0;
                     TotalPriceCart = cart.TotalPrice - cart.TotalPrice * Discount / 100 + Shipping;
                 }
-               
+
             }
         }
 
@@ -129,12 +158,12 @@ namespace TheCoffeHouse.ViewModels
             {
                 SetProperty(ref _isAtHome, value);
                 isDirect = true;
-                if(_isAtHome == true)
+                if (_isAtHome == true)
                 {
                     Shipping = 30000;
                     TotalPriceCart = cart.TotalPrice - cart.TotalPrice * Discount / 100 + Shipping;
                 }
-               
+
             }
         }
 
@@ -146,7 +175,7 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _isDirectMoney, value);
-               
+
             }
         }
         private bool _isOnline;
@@ -157,7 +186,7 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _isOnline, value);
-                
+
             }
         }
 
@@ -170,12 +199,12 @@ namespace TheCoffeHouse.ViewModels
                 if (_DiscountCode != value)
                 {
                     SetProperty(ref _DiscountCode, value);
-                    if(_DiscountCode == "CODE10%")
+                    if (_DiscountCode == "CODE10%")
                     {
                         isDiscount = true;
                         StringDiscount = "Bạn được giảm giá 10%";
                         Discount = 10;
-                        
+
                     }
                     else
                     {
@@ -250,16 +279,6 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
-        private ObservableCollection<Store> _listStore;
-
-        public ObservableCollection<Store> ListStore
-        {
-            get { return _listStore; }
-            set
-            {
-                SetProperty(ref _listStore, value);
-            }
-        }
 
         #endregion
         #region OrderCommand
@@ -269,45 +288,68 @@ namespace TheCoffeHouse.ViewModels
         {
             string methodPayment = "";
             string methodReceive = "";
+            bool isChecked = true;
             Order order = new Order();
             if (isDirectMoney == true)
             {
-                 methodPayment = "Thanh toán bằng tiền mặt";
+                methodPayment = "Thanh toán bằng tiền mặt";
             }
             else
             {
-                 methodPayment = "Thanh toán online";
+                methodPayment = "Thanh toán online";
             }
-           if(isAtStore == true)
+            if (isAtStore == true)
             {
                 methodReceive = "Nhận tại cửa hàng";
                 order.Shipping = 0;
-               
+                if (ConstaintVaribles.IDStore == 0)
+                {
+                    await App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng chọn cửa hàng để nhận sản phẩm", "OK");
+                    isChecked = false;
+                }
+                else
+                {
+                    order.IDStore = ConstaintVaribles.IDStore;
+                    isChecked = true;
+                }
             }
             else
             {
                 methodReceive = "Nhận tận tay";
                 order.Shipping = 30000;
-               
+
             }
-           
+
             order.IDCart = ConstaintVaribles.IDCart;
             order.IDUser = Convert.ToInt32(ConstaintVaribles.UserID);
-            order.IDStore = 1;
+
             order.Discount = Discount;
-          
+
             order.StatusOrder = "Đã đặt hàng";
             order.PaymentMethod = methodPayment;
             order.DeliveryMethod = "Chuyển nhanh";
             order.DateOrder = DateTime.Now;
-       
-            await ApiService.CreateOrder(order);
-            await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn đã đặt hàng thành công", "OK");
-            await Navigation.NavigateAsync(PageManagement.HistoryPage);
-            //await Navigation.NavigateAsync("NavigationPage/TabContainerPage?selectedTab=OtherPage");
+            if (isChecked)
+            {
+                await ApiService.CreateOrder(order);
+                OrderPageViewModel.instance.initQty();
+                await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn đã đặt hàng thành công", "OK");
+                //App.instance.naviToOtherPage();
+                await Navigation.NavigateAsync($"../../../{PageManagement.HistoryPage}");               
+            }
+
 
         }
 
+        #endregion
+        #region OpenStorePageCommand
+        public ICommand OpenStorePageCommand { get; set; }
+        private void OpenStorePageExec()
+        {
+            NavigationParameters navParam = new NavigationParameters();
+            navParam.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
+            Navigation.NavigateAsync(PageManagement.StorePage, navParam);
+        }
         #endregion
     }
 }

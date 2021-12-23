@@ -459,7 +459,7 @@ namespace TheCoffeHouse.Services.ApiService
         public static async Task<ObservableCollection<Drink>> GetDrinkByCate(int id)
         {
             var url = ApiUrl.GetDrinkByCate(id);
-            return await Get<ObservableCollection<Drink>>(url);
+            return await GetList<ObservableCollection<Drink>>(url);
         }
         #endregion
         #region GetDrinkImageById

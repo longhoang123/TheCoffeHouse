@@ -26,29 +26,33 @@
                     JustifyContent="SpaceBetween"
                     Wrap="Wrap"
                     BindableLayout.ItemsSource="{Binding ListCategory}"
+                    x:Name="postList"
                     >
-                  
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout
                             Margin="0,10,20,10"
                             HorizontalOptions="Center"
                             Orientation="Vertical"
                             VerticalOptions="Center">
-                                    <ImageButton
-                                Padding="5"
+                                <Frame CornerRadius="50"  WidthRequest="70" HeightRequest="70" Padding="0">
+                                    <Image
+                                Margin="-5"
                                 BackgroundColor="#f0daaa"
-                                CornerRadius="50"
-                                HeightRequest="70"
                                 Source="{Binding CateImage}"
-                                WidthRequest="70" />    
-                                    <Label HorizontalOptions="Center" Text="{Binding CateName}" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                  
-                   
-                   
+                                />
+                                </Frame>
+                                <Label HorizontalOptions="Center" Text="{Binding CateName}" />
+                            <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectedCateCommand, Source={x:Reference Name=postList}}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+
+
                 </FlexLayout>
 
                 <!--  Title each category  -->
@@ -74,47 +78,51 @@
                         HeightRequest="190"
                         Source="bannerPR.png" />
                 </StackLayout>
-
                 <!--  List category  -->
-                <StackLayout>
-                    <StackLayout
+                <ListView  HasUnevenRows="True"
+                        ItemsSource="{Binding ListCateDrinks}"
+                        SelectedItem="{Binding SelectedCateDrink}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout
                         Margin="20,10,0,0"
                         HorizontalOptions="StartAndExpand"
                         Orientation="Horizontal">
-                        <ImageButton
+                                        <ImageButton
                             BackgroundColor="#f0daaa"
                             CornerRadius="50"
                             HeightRequest="35"
-                            Source="coffee_cup.jpg"
+                            Source="{Binding CategoryImage}"
                             WidthRequest="35" />
-                        <Label
+                                        <Label
                             FontAttributes="Bold"
                             FontSize="Large"
-                            Text="Cà phê" />
-                    </StackLayout>
-                    <ListView
-                        Margin="0,0,0,-80"
-                        
-                        HasUnevenRows="True"
-                        ItemsSource="{Binding ListDrinks}"
-                        SelectedItem="{Binding SelectedDrink}"
-                        HorizontalOptions="Fill">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="0.5*" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <Image
+                            Text="{Binding CategoryName}" />
+                                    </StackLayout>
+                                    <ListView
+                            Margin="0,0,0,-80"                       
+                            HasUnevenRows="True"
+                            ItemsSource="{Binding ListDrinkInfo}"
+                            SelectedItem="{Binding SelectedDrink}"
+                            HorizontalOptions="Fill">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="0.5*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="2*" />
+                                                            <ColumnDefinition Width="2*" />
+                                                            <ColumnDefinition />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image
                                             Grid.Row="0"
                                             Grid.RowSpan="4"
                                             Grid.Column="0"
@@ -124,19 +132,19 @@
                                             Source="{Binding DrinkImage}"
                                             VerticalOptions="Center"
                                             WidthRequest="100" />
-                                        <Label
+                                                        <Label
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             FontAttributes="Bold"
                                             FontSize="18"
                                             Text="{Binding DrinkName}"
                                             VerticalOptions="Center" />
-                                        <Label
+                                                        <Label
                                             Grid.Row="1"
                                             Grid.Column="1"
                                             FontSize="15"
                                             Text="{Binding DrinkPrice, StringFormat='{0:#,0}đ'}" />
-                                        <ImageButton
+                                                        <ImageButton
                                             Grid.Row="2"
                                             Grid.Column="2"
                                             Padding="10"
@@ -147,16 +155,16 @@
                                             Source="plus.png"
                                             VerticalOptions="Center"
                                             WidthRequest="35" />
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <!--<ListView.Behaviors>
-                            <prism:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"/>
-                        </ListView.Behaviors>-->
-                    </ListView>
-                </StackLayout>
-
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 <!--  Carousel Đặt gần đây  -->
                 <StackLayout Margin="20,0,0,0" HeightRequest="370">
                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">

@@ -30,7 +30,6 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             PageTitle = "Đặt hàng";
-            ListDrinks = new ObservableCollection<Drink>();
             //ListCategory = new ObservableCollection<string>();
             ListBanner = new ObservableCollection<Drink>();
             ListCategory = new ObservableCollection<Category>();
@@ -151,20 +150,6 @@ namespace TheCoffeHouse.ViewModels
             {
                 SetProperty(ref _listBanner, value);
                 RaisePropertyChanged("ListBanner");
-            }
-        }
-
-      
-
-        private ObservableCollection<Drink> _listDrinks;
-
-        public ObservableCollection<Drink> ListDrinks
-        {
-            get => _listDrinks;
-            set
-            {
-                SetProperty(ref _listDrinks, value);
-                RaisePropertyChanged("ListDrinks");
             }
         }
 

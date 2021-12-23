@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" xmlns:controls="clr-namespace:TheCoffeHouse.Controls" xmlns:renderers="clr-namespace:TheCoffeHouse.Renderers"
+               prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.SearchDrinkPage">
+    <Grid RowDefinitions="auto, *">
+        <controls:ContentPageHeaderView Title="Tìm kiếm" />
+        <StackLayout Grid.Row="1">
+            <Frame
+                        Margin="20,5"
+                        Padding="20,5"
+                        BackgroundColor="LightGray"
+                        BorderColor="Transparent"
+                        CornerRadius="5"
+                        HorizontalOptions="FillAndExpand">
+                <StackLayout Padding="5" Orientation="Horizontal">
+                    <renderers:CustomEntry
+                                HorizontalOptions="CenterAndExpand"
+                                Placeholder="Nhập sản phẩm"
+                        TextColor="Black"
+                        Text="{Binding SearchKey}"
+                               />
+                    <ImageButton
+                                HeightRequest="18"
+                                HorizontalOptions="EndAndExpand"
+                                Margin="30,0,0,0"
+                                Source="Search.png"
+                                WidthRequest="18" 
+                                Command="{Binding SearchCommand}"/>
+                </StackLayout>
+            </Frame>
+            <ListView
+                            Margin="0,0,0,-80"                       
+                            HasUnevenRows="True"
+                            ItemsSource="{Binding ListDrinks}"
+                            SelectedItem="{Binding SelectedDrink}"
+                            HorizontalOptions="Fill">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="0.5*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="100"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding DrinkImage}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="100" />
+                                <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            Text="{Binding DrinkName}"
+                                            VerticalOptions="Center" />
+                                <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="15"
+                                            Text="{Binding DrinkPrice, StringFormat='{0:#,0}đ'}" />
+                                <ImageButton
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+                                            Padding="10"
+                                            BackgroundColor="Orange"
+                                            CornerRadius="50"
+                                            HeightRequest="35"
+                                            HorizontalOptions="Center"
+                                            Source="plus.png"
+                                            VerticalOptions="Center"
+                                            WidthRequest="35" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </Grid>
+</base:BasePage>

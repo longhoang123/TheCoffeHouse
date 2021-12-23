@@ -123,7 +123,7 @@ namespace TheCoffeHouse.Helpers
         public readonly static string AdminPage = "AdminPage";
         public readonly static string AdminMasterPage = "AdminMasterPage";
         public readonly static string PaymentPage = "PaymentPage";
-
+        public readonly static string SearchDrinkPage = "SearchDrinkPage";
 
         #endregion
     }

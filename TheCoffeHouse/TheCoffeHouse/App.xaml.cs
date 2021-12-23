@@ -79,6 +79,7 @@ namespace TheCoffeHouse
             containerRegistry.RegisterForNavigation<AddAddressPage, AddAddressPageViewModel>(PageManagement.AddAddressPage);
             containerRegistry.RegisterForNavigation<AdminPage, AdminPageViewModel>(PageManagement.AdminPage);
             containerRegistry.RegisterForNavigation<AdminMasterPage, AdminMasterPageViewModel>(PageManagement.AdminMasterPage);
+            containerRegistry.RegisterForNavigation<SearchDrinkPage, SearchDrinkPageViewModel>(PageManagement.SearchDrinkPage);
         }
     }
 }

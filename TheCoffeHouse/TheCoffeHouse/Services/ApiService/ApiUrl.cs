@@ -68,6 +68,10 @@ namespace TheCoffeHouse.Services.ApiService
         {
             return Link($"DrinkController/GetDrinkByCate?Id={Id}");
         }
+        public static string GetDrinkByKey(string key)
+        {
+            return Link($"DrinkController/GetDrinkByKey?key={key}");
+        }
         public static string GetDrinkImageById(int Id)
         {
             return Link($"DrinkImageController/ReadDrinkImageById?Id={Id}");

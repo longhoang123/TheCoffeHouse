@@ -10,6 +10,7 @@ using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
@@ -36,16 +37,22 @@ namespace TheCoffeHouse.ViewModels
                 isNavFromPayment  = parameters.GetValue<bool>(ParamKey.IsNavigateFromPaymentPage.ToString());
             }
             base.OnNavigatedNewTo(parameters);
+           
         }
-        void initData()
+        async void initData()
         {
-            ListStore.Add(new Store { IDStore = 1, StoreName = "THE COFFEE HOUSE", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-            ListStore.Add(new Store { IDStore = 2, StoreName = "THE COFFEE HOUSE 1", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-            ListStore.Add(new Store { IDStore = 3, StoreName = "THE COFFEE HOUSE 2", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-            ListStore.Add(new Store { IDStore = 4, StoreName = "THE COFFEE HOUSE 3", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-            ListStore.Add(new Store { IDStore = 5, StoreName = "THE COFFEE HOUSE 4", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-            ListStore.Add(new Store { IDStore = 6, StoreName = "THE COFFEE HOUSE 5", StoreImage = "coffeeHouse", StoreAddress = "86 Cao Thắng", StoreDistance = "cách đây 0.01km" });
-
+            ObservableCollection<Store> storestmp = new ObservableCollection<Store>();
+            storestmp = await ApiService.GetAllStore();
+           
+            for (int i = 0; i< storestmp.Count; i++)
+            {
+                ObservableCollection<StoreImage> storeImages = await ApiService.GetImageByIDStore(storestmp[i].IDStore);
+                if(storeImages.Count > 0)
+                {
+                    storestmp[i].StoreImage = storeImages[0].StoreImageData;
+                }
+            }
+            ListStore = storestmp;
         }
         #region Properties
         private bool isNavFromMain = false;

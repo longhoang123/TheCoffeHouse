@@ -118,6 +118,69 @@ namespace TheCoffeHouse.Services.ApiService
         {
             return Link($"OrderController/GetAllOrderByIDUser?IDUser={IDUser}");
         }
+        public static string UpdateStatusOrder(int IDOrder, string StatusOrder)
+        {
+            return Link($"OrderController/UpdateStatusOrder?IDOrder={IDOrder}&StatusOrder={StatusOrder}");
+        }
+        #endregion
+
+        #region Store
+        #region Create Store
+        public static string CreateStore()
+        {
+            return Link($"StoreController/CreateStore");
+        }
+        #endregion
+
+        #region Update Store
+        public static string UpdateStore()
+        {
+            return Link($"StoreController/UpdateStore");
+        }
+        #endregion
+
+        #region Delete Store
+        public static string DeleteStore(int IDStore)
+        {
+            return Link($"StoreController/DeleteStore?IDStore={IDStore}");
+        }
+        #endregion
+
+        #region CreateStoreImage
+        public static string CreateStoreImage()
+        {
+            return Link($"StoreController/CreateStoreImage");
+        }
+        #endregion
+
+        #region UpdateStoreImage
+        public static string UpdateStoreImage()
+        {
+            return Link($"StoreController/UpdateStoreImage");
+        }
+        #endregion
+
+        #region GetAllStore
+        public static string GetAllStore()
+        {
+            return Link($"StoreController/GetAllStore");
+        }
+        #endregion
+
+        #region GetImageByIDStore
+        public static string GetImageByIDStore(int IDStore)
+        {
+            return Link($"StoreController/GetImageByIDStore?IDStore={IDStore}");
+        }
+        #endregion
+
+        #region GetStoreByKey
+        public static string GetStoreByKey(string key)
+        {
+            return Link($"StoreController/GetStoreByKey?key={key}");
+        }
+        #endregion
+
         #endregion
     }
 }

@@ -10,14 +10,14 @@
             <Grid RowDefinitions="3*, 7*" >
                 <!--Hình sp-->
                 <ScrollView Orientation="Horizontal"  HorizontalScrollBarVisibility="Never" >
-                    <StackLayout Orientation="Horizontal"  Spacing="0.5"  >
-                        <Frame Padding="0">
-                            <Image WidthRequest="300"  Aspect="AspectFill" Source="{Binding ImgStore}"  />
-                        </Frame>
-                        <Frame Padding="0">
-                            <Image WidthRequest="300"  Aspect="AspectFill" Source="{Binding ImgStore}"  />
-                        </Frame>
-
+                    <StackLayout Orientation="Horizontal"  Spacing="0.5" BindableLayout.ItemsSource="{Binding ListImage}"  >
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="0">
+                                    <Image WidthRequest="300"  Aspect="AspectFill" Source="{Binding StoreImageData}"  />
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
                     </StackLayout>
                 </ScrollView>
                 <Image

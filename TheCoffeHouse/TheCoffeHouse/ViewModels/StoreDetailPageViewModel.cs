@@ -4,12 +4,14 @@ using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
+using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
 
 namespace TheCoffeHouse.ViewModels
@@ -26,20 +28,31 @@ namespace TheCoffeHouse.ViewModels
         {
             ChooseStoreCommand = new DelegateCommand(ChooseStoreExec);
         }
-        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        public override async void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
             if (parameters != null && parameters.Keys.Count() > 0)
             {
                 isNavFromPayment = parameters.GetValue<bool>(ParamKey.IsNavigateFromPaymentPage.ToString());
             }
-            SelectedStore = parameters.GetValue<Store>("StoreSelected");
-            ImgStore = SelectedStore.StoreImage;
+            SelectedStore = parameters.GetValue<Store>("StoreSelected");           
             Store_Add = SelectedStore.StoreAddress;
             Store_Name = SelectedStore.StoreName;
+            ListImage = await ApiService.GetImageByIDStore(SelectedStore.IDStore);
 
         }
         #region Properties
+
+        private ObservableCollection<StoreImage> _ListImage;
+
+        public ObservableCollection<StoreImage> ListImage
+        {
+            get { return _ListImage; }
+            set {
+                SetProperty(ref _ListImage, value);
+            }
+        }
+
         private bool isNavFromPayment = false;
         private string _Store_Name;
 

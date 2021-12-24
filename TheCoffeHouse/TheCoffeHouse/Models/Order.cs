@@ -10,6 +10,11 @@ namespace TheCoffeHouse.Models
         public int IDCart { get; set; }
         public int IDUser { get; set; }
         public int IDStore { get; set; }
+        public string UserName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string AddressUser { get; set; }
+        public string StoreName { get; set; }
+        public string StoreAddress { get; set; }
         public int Total { get; set; }
         public int QuantityItem { get; set; }
         public int Discount { get; set; }
@@ -18,8 +23,6 @@ namespace TheCoffeHouse.Models
         public string StatusOrder { get; set; }
         public string PaymentMethod { get; set; }
         public int TotalPayment { get; set; }
-        public string Address { get; set; }
-        public string AddressShop { get; set; }
         public string DeliveryMethod { get; set; }
         public DateTime DateOrder { get; set; }
     }

@@ -20,7 +20,7 @@ namespace TheCoffeHouse.Services.ApiService
         public const int DEFAULT_TIME_OUT_SECONDS = 20;
         #endregion
 
-        
+
 
         #region BaseRequest
 
@@ -28,7 +28,7 @@ namespace TheCoffeHouse.Services.ApiService
         {
             using (var client = new HttpClient())
             {
-                
+
                 try
                 {
                     var response = await client.GetAsync(url);
@@ -39,7 +39,7 @@ namespace TheCoffeHouse.Services.ApiService
                         var responseObj = JsonConvert.DeserializeObject<List<T>>(json);
 
                         return responseObj.First();
-                    }                    
+                    }
                     else
                     {
                         return default;
@@ -67,7 +67,7 @@ namespace TheCoffeHouse.Services.ApiService
                 }
                 finally
                 {
-                    
+
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace TheCoffeHouse.Services.ApiService
 
                         return responseObj.First();
                     }
-                    
+
                     else
                     {
                         return default;
@@ -166,7 +166,7 @@ namespace TheCoffeHouse.Services.ApiService
                 }
                 finally
                 {
-                    
+
                 }
             }
         }
@@ -478,76 +478,141 @@ namespace TheCoffeHouse.Services.ApiService
         #endregion
 
         #region Cart
-            #region GetCartByIDUser
-            public static async Task<Cart> GetCartByIDUser(int IDUser)
-            {
-                var url = ApiUrl.GetCartByIDUser(IDUser);
-                return await Get<Cart>(url);
-            }
-            #endregion
-            # region CreateCartByIDUser
-            public static async Task<Dictionary<string, int>> CreateCartByIDCust(Cart cart)
-            {
-                var url = ApiUrl.CreateCartByIDCust();
-                return await Post<Dictionary<string, int>>(url, cart);
-            }
-            #endregion
-            #region UpdateCartByIDUser  
-            public static async Task<Dictionary<string, int>> UpdateCartByIDCust(Cart cart)
-            {
-                var url = ApiUrl.UpdateCartByIDCust();
-                return await Put<Dictionary<string, int>>(url, cart);
-            }
-            #endregion
+        #region GetCartByIDUser
+        public static async Task<Cart> GetCartByIDUser(int IDUser)
+        {
+            var url = ApiUrl.GetCartByIDUser(IDUser);
+            return await Get<Cart>(url);
+        }
+        #endregion
+        #region CreateCartByIDUser
+        public static async Task<Dictionary<string, int>> CreateCartByIDCust(Cart cart)
+        {
+            var url = ApiUrl.CreateCartByIDCust();
+            return await Post<Dictionary<string, int>>(url, cart);
+        }
+        #endregion
+        #region UpdateCartByIDUser  
+        public static async Task<Dictionary<string, int>> UpdateCartByIDCust(Cart cart)
+        {
+            var url = ApiUrl.UpdateCartByIDCust();
+            return await Put<Dictionary<string, int>>(url, cart);
+        }
+        #endregion
         #endregion
 
         #region DetailCart
-            #region AddToCart
-            public static async Task<Dictionary<string, int>> AddToCart(DetailCart detail)
-            {
-                var url = ApiUrl.AddToCart();
-                return await Post<Dictionary<string, int>>(url, detail);
-            }
-            #endregion
-            #region Get All Item in Cart
-            public static async Task<ObservableCollection<DetailCart>> GetAllDetailCart(int IDCart)
-            {
-                var url = ApiUrl.GetAllDetailCart(IDCart);
-                return await GetList<ObservableCollection<DetailCart>>(url);
-            }
-            #endregion
-            #region Delete DetailCart in Cart
-            public static async Task<DetailCart> DeleteItemCart(int IDDetailCart)
-            {
-                var url = ApiUrl.DeleteItemCart(IDDetailCart);
-                return await Get<DetailCart>(url);
-            }
+        #region AddToCart
+        public static async Task<Dictionary<string, int>> AddToCart(DetailCart detail)
+        {
+            var url = ApiUrl.AddToCart();
+            return await Post<Dictionary<string, int>>(url, detail);
+        }
+        #endregion
+        #region Get All Item in Cart
+        public static async Task<ObservableCollection<DetailCart>> GetAllDetailCart(int IDCart)
+        {
+            var url = ApiUrl.GetAllDetailCart(IDCart);
+            return await GetList<ObservableCollection<DetailCart>>(url);
+        }
+        #endregion
+        #region Delete DetailCart in Cart
+        public static async Task<DetailCart> DeleteItemCart(int IDDetailCart)
+        {
+            var url = ApiUrl.DeleteItemCart(IDDetailCart);
+            return await Get<DetailCart>(url);
+        }
         #endregion
         #endregion
 
         #region Order
-            #region Create Order
-            public static async Task<Dictionary<string, int>> CreateOrder(Order order)
-            {
-                var url = ApiUrl.CreateOrder();
-                return await Post<Dictionary<string, int>>(url, order);
-            }
-            #endregion
-            #region GetDetailOrderByIdOrder
-            public static async Task<ObservableCollection<DetailOrder>> GetDetailOrderByIdOrder(int IDOrder)
-            {
-                var url = ApiUrl.GetDetailOrderByIdOrder(IDOrder);
-                return await GetList< ObservableCollection<DetailOrder>>(url);
-            }
-            #endregion
+        #region Create Order
+        public static async Task<Dictionary<string, int>> CreateOrder(Order order)
+        {
+            var url = ApiUrl.CreateOrder();
+            return await Post<Dictionary<string, int>>(url, order);
+        }
+        #endregion
+        #region GetDetailOrderByIdOrder
+        public static async Task<ObservableCollection<DetailOrder>> GetDetailOrderByIdOrder(int IDOrder)
+        {
+            var url = ApiUrl.GetDetailOrderByIdOrder(IDOrder);
+            return await GetList<ObservableCollection<DetailOrder>>(url);
+        }
+        #endregion
 
-            #region GetAllOrderByIduser
-            public static async Task<ObservableCollection<Order>> GetAllOrderByIduser(int IDuser)
-                {
-                var url = ApiUrl.GetAllOrderByIduser(IDuser);
-                return await GetList<ObservableCollection<Order>>(url);
-            }
-            #endregion
+        #region GetAllOrderByIduser
+        public static async Task<ObservableCollection<Order>> GetAllOrderByIduser(int IDuser)
+        {
+            var url = ApiUrl.GetAllOrderByIduser(IDuser);
+            return await GetList<ObservableCollection<Order>>(url);
+        }
+        #endregion
+
+        #region UpdateStatusOrder
+        public static async Task<ObservableCollection<Order>> UpdateStatusOrder(int IDOrder, string StatusOrder)
+        {
+            var url = ApiUrl.UpdateStatusOrder(IDOrder, StatusOrder);
+            return await Get<ObservableCollection<Order>>(url);
+        }
+        #endregion
+        #endregion
+
+        #region Store
+        #region CreateStore
+        public static async Task<Dictionary<string, int>> CreateStore(Store store)
+        {
+            var url = ApiUrl.CreateStore();
+            return await Post<Dictionary<string, int>>(url, store);
+        }
+        #endregion
+        #region UpdateStore
+        public static async Task<Dictionary<string, int>> UpdateStore(Store store)
+        {
+            var url = ApiUrl.UpdateStore();
+            return await Put<Dictionary<string, int>>(url, store);
+        }
+        #endregion
+        #region DeleteStore
+        public static async Task<Store> DeleteStore(int IDStore)
+        {
+            var url = ApiUrl.DeleteStore(IDStore);
+            return await Get<Store>(url);
+        }
+        #endregion
+        #region GetAllStore
+        public static async Task<ObservableCollection<Store>> GetAllStore()
+        {
+            var url = ApiUrl.GetAllStore();
+            return await GetList<ObservableCollection<Store>>(url);
+        }
+        #endregion
+
+        #region GetStoreByKey
+        public static async Task<Store> GetStoreByKey(string key)
+        {
+            var url = ApiUrl.GetStoreByKey(key);
+            return await GetList<Store>(url);
+        }
+        #endregion
+
+        #region StoreImage
+        public static async Task<Dictionary<string, int>> CreateStoreImage(StoreImage storeImage)
+        {
+            var url = ApiUrl.CreateStoreImage();
+            return await Post<Dictionary<string, int>>(url, storeImage);
+        }
+        public static async Task<Dictionary<string, int>> UpdateStoreImage(StoreImage storeImage)
+        {
+            var url = ApiUrl.UpdateStoreImage();
+            return await Put<Dictionary<string, int>>(url, storeImage);
+        }
+        public static async Task<ObservableCollection<StoreImage>> GetImageByIDStore(int IDStore)
+        {
+            var url = ApiUrl.GetImageByIDStore(IDStore);
+            return await GetList<ObservableCollection<StoreImage>>(url);
+        }
+        #endregion
         #endregion
     }
 }

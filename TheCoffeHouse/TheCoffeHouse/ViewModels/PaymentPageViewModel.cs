@@ -31,6 +31,8 @@ namespace TheCoffeHouse.ViewModels
 
             OrderCommand = new DelegateCommand(OrderExec);
             OpenStorePageCommand = new DelegateCommand(OpenStorePageExec);
+            ChooseCodeCouponCommand = new DelegateCommand(ChooseCodeCouponExec);
+            DeleteCouponCommand = new DelegateCommand(DeleteCouponExec);
             initData();
         }
         int Discount = 0;
@@ -53,31 +55,66 @@ namespace TheCoffeHouse.ViewModels
             TotalPrice = cart.TotalPrice;
             QuantityItem = cart.QuantityItem;
             isDiscount = false;
-            Discount = 0;
+            //Discount = 0;
             isDirectMoney = true;
             isAtStore = true;
             isDirect = true;
-            TotalPriceCart = cart.TotalPrice;
-            if(ConstaintVaribles.IDStore != 0)
+
+            if(ConstaintVaribles.Coupon != null)
             {
-                StoreName = ConstaintVaribles.IDStore.ToString();
+                Discount = ConstaintVaribles.Coupon.CouponDiscount;
+                CouponImage = ConstaintVaribles.Coupon.CouponImage;
+                Code = ConstaintVaribles.Coupon.Code;
+                CouponDiscount = ConstaintVaribles.Coupon.CouponDiscount;
+                hasCoupon = true;
+            }
+            ConstaintVaribles.TotalPrice = cart.TotalPrice;
+            TotalPriceCart = ConstaintVaribles.TotalPrice - ConstaintVaribles.TotalPrice * Discount / 100 + Shipping;
+
+            if (ConstaintVaribles.Store != null)
+            {
+                StoreName = ConstaintVaribles.Store.StoreName.ToString();
             }
             else
             {
-                StoreName = SelectedStore.StoreName;
+                StoreName = "Chọn cửa hàng";
             }
          
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
-            SelectedStore = new Store { StoreName = "Chọn cửa hàng", StoreAddress = "Chọn cửa hàng để đến lấy" };
             base.OnNavigatedNewTo(parameters);
+            //SelectedStore = new Store { StoreName = "Chọn cửa hàng", StoreAddress = "Chọn cửa hàng để đến lấy" };
+            Coupon SelectedCoupon = new Coupon();
+           
             if (parameters != null && parameters.Keys.Count() > 0)
             {
-                SelectedStore = parameters.GetValue<Store>(ParamKey.StoreSelected.ToString()) ?? new Store {StoreName="Chọn cửa hàng", StoreAddress = "Chọn cửa hàng để đến lấy" };
-                ConstaintVaribles.IDStore = SelectedStore.IDStore;
+                if (parameters.TryGetValue(ParamKey.StoreSelected.ToString(), out SelectedStore))
+                {
+                   // SelectedStore = parameters.GetValue<Store>(ParamKey.StoreSelected.ToString());
+                    ConstaintVaribles.Store = SelectedStore;
+                }
+
+                SelectedCoupon = parameters.GetValue<Coupon>(ParamKey.CouponSelected.ToString());
+                if(SelectedCoupon != null)
+                {
+                    ConstaintVaribles.Coupon = SelectedCoupon;
+                    Discount = SelectedCoupon.CouponDiscount;
+                    CouponImage = SelectedCoupon.CouponImage;
+                    Code = SelectedCoupon.Code;
+                    CouponDiscount = SelectedCoupon.CouponDiscount;
+                    hasCoupon = true;
+                    //TotalPriceCart = ConstaintVaribles.TotalPrice - ConstaintVaribles.TotalPrice * Discount / 100 + Shipping;
+                }
+                else
+                {
+                    Discount = 0;
+                    //TotalPriceCart = cart.TotalPrice - cart.TotalPrice * Discount / 100 + Shipping;
+                    hasCoupon = false;
+                } 
             }
-            initData();
+          
+          
         }
         public override void OnNavigatedBackTo(INavigationParameters parameters)
         {
@@ -86,6 +123,29 @@ namespace TheCoffeHouse.ViewModels
         }
         #region Properties
         Store SelectedStore = new Store();
+        private int _CouponDiscount;
+
+        public int CouponDiscount
+        {
+            get { return _CouponDiscount; }
+            set { SetProperty(ref _CouponDiscount, value); }
+        }
+
+        private string _Code;
+
+        public string Code
+        {
+            get { return _Code; }
+            set { SetProperty(ref _Code, value); }
+        }
+
+        private string _CouponImage;
+
+        public string CouponImage
+        {
+            get { return _CouponImage; }
+            set { SetProperty(ref _CouponImage, value); }
+        }
 
         private string _StoreName;
 
@@ -95,6 +155,16 @@ namespace TheCoffeHouse.ViewModels
             set { SetProperty(ref _StoreName, value); }
         }
 
+        private bool _hasCoupon = false;
+
+        public bool hasCoupon
+        {
+            get { return _hasCoupon; }
+            set
+            {
+                SetProperty(ref _hasCoupon, value);
+            }
+        }
 
         private bool _isEnable;
 
@@ -279,6 +349,14 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
+        private string _AddressUser;
+
+        public string AddressUser
+        {
+            get { return _AddressUser; }
+            set { SetProperty(ref _AddressUser, value); }
+        }
+
 
         #endregion
         #region OrderCommand
@@ -302,14 +380,17 @@ namespace TheCoffeHouse.ViewModels
             {
                 methodReceive = "Nhận tại cửa hàng";
                 order.Shipping = 0;
-                if (ConstaintVaribles.IDStore == 0)
+                if (ConstaintVaribles.Store == null)
                 {
                     await App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng chọn cửa hàng để nhận sản phẩm", "OK");
+                   
                     isChecked = false;
                 }
                 else
                 {
-                    order.IDStore = ConstaintVaribles.IDStore;
+                    order.IDStore = ConstaintVaribles.Store.IDStore;
+                    order.StoreName = ConstaintVaribles.Store.StoreName;
+                    order.StoreAddress = ConstaintVaribles.Store.StoreAddress;
                     isChecked = true;
                 }
             }
@@ -317,12 +398,13 @@ namespace TheCoffeHouse.ViewModels
             {
                 methodReceive = "Nhận tận tay";
                 order.Shipping = 30000;
-
+                order.AddressUser = AddressUser;
             }
 
             order.IDCart = ConstaintVaribles.IDCart;
             order.IDUser = Convert.ToInt32(ConstaintVaribles.UserID);
-
+            order.UserName = UserName;
+            order.PhoneNumber = PhoneNumber;
             order.Discount = Discount;
 
             order.StatusOrder = "Đã đặt hàng";
@@ -349,6 +431,25 @@ namespace TheCoffeHouse.ViewModels
             NavigationParameters navParam = new NavigationParameters();
             navParam.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
             Navigation.NavigateAsync(PageManagement.StorePage, navParam);
+        }
+        #endregion
+        #region ChooseCodeCoupon
+        public ICommand ChooseCodeCouponCommand { get; set; }
+        private void ChooseCodeCouponExec()
+        {
+            NavigationParameters navParam = new NavigationParameters();
+            navParam.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
+            Navigation.NavigateAsync(PageManagement.CollectPointPage, navParam);
+        }
+        #endregion
+        #region DeleteCouponCommand
+        public ICommand DeleteCouponCommand { get; set; }
+        private void DeleteCouponExec()
+        {
+            ConstaintVaribles.Coupon = null;
+            hasCoupon = false;
+            Discount = 0;
+            TotalPriceCart = cart.TotalPrice - cart.TotalPrice * Discount / 100 + Shipping;
         }
         #endregion
     }

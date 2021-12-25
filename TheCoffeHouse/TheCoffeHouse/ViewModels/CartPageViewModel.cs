@@ -118,6 +118,7 @@ namespace TheCoffeHouse.ViewModels
         public async void OpenPaymentPageExec()
         {
             await Navigation.NavigateAsync(PageManagement.PaymentPage);
+            ConstaintVaribles.Coupon = null;
         }
         #endregion
     }

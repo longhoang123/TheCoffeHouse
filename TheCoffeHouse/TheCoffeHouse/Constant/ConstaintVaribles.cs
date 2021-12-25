@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TheCoffeHouse.Models;
 
 namespace TheCoffeHouse.Constant
 {
@@ -10,5 +11,8 @@ namespace TheCoffeHouse.Constant
         public static string UserID;
         public static int IDCart;
         public static int IDStore;
+        public static int TotalPrice;
+        public static Coupon Coupon;
+        public static Store Store;
     }
 }

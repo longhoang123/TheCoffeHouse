@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.Services.ApiService;
@@ -83,7 +84,29 @@ namespace TheCoffeHouse.ViewModels
                 SetProperty(ref _searchKey, value);
             }
         }
-        #endregion
+        private Drink _selectedDrink;
 
+        public Drink SelectedDrink
+        {
+            get { return _selectedDrink; }
+            set
+            {
+                if (_selectedDrink != value)
+                {
+                    SetProperty(ref _selectedDrink, value);
+                    RaisePropertyChanged("SelectedDrink");
+                    handleSelectedItem();
+                }
+            }
+        }
+        #endregion
+        #region selectedItemListview
+        private async void handleSelectedItem()
+        {
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("DrinkSelected", SelectedDrink);
+            await Navigation.NavigateAsync(PageManagement.ProductDetailPage, navParams);
+        }
+        #endregion
     }
 }

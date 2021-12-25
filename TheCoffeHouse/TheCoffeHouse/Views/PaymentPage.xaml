@@ -10,7 +10,7 @@
         <controls:ContentPageHeaderView Title="{Binding PageTitle}" RightIcon="read.png" />
         <ScrollView Grid.Row="1" BackgroundColor="White">
             <StackLayout Padding="10" Spacing="15">
-                
+
                 <Label Text="Thông tin của bạn" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
                 <Frame CornerRadius="10"  >
                     <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
@@ -20,7 +20,7 @@
                         <Entry Grid.Row="1" Grid.Column="1" FontSize="18" Text="{Binding PhoneNumber}"/>
                     </Grid>
                 </Frame>
-                
+
                 <Label Text="Thông tin giỏ hàng" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
                 <Frame CornerRadius="10">
                     <Grid RowDefinitions="*,*" ColumnDefinitions="*,*">
@@ -33,22 +33,40 @@
 
                 <Label Text="Áp dụng Chương trình khuyến mãi" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
                 <Frame CornerRadius="10">
-                    <Grid RowDefinitions="*,*,*" >
-                        <Label HorizontalOptions="Center" FontAttributes="Bold"  VerticalOptions="Center" FontSize="18"  Text="Nhập mã khuyến mãi(nếu có):"/>
-                        <Entry Grid.Row="1" Text="{Binding DiscountCode}" Placeholder="Nhập mã" VerticalOptions="Center" FontSize="18"  />
-                        <Label IsVisible="{Binding isDiscount}" FontAttributes="Italic"  VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="0" FontSize="18" Text="{Binding StringDiscount}"/>
-                        
-                    </Grid>
+                    <StackLayout  >
+
+                        <Label HorizontalOptions="Center" FontAttributes="Bold"  VerticalOptions="Center" FontSize="18"  Text="Chọn mã khuyến mãi(nếu có):"/>
+                        <Frame HorizontalOptions="Center" CornerRadius="10" Padding="0">
+                            <Button Command="{Binding ChooseCodeCouponCommand}"  Text="Chọn mã tại đây" FontAttributes="Bold" BackgroundColor="Orange" TextColor="White"/>
+                        </Frame>
+
+                        <Grid IsVisible="{Binding hasCoupon}" BackgroundColor="White" ColumnDefinitions="*,2*,0.75*" Padding="8" >
+
+                            <Image Aspect="AspectFit" WidthRequest="70" Source="{Binding CouponImage}"  HorizontalOptions="StartAndExpand" VerticalOptions="Center" ></Image>
+                            <StackLayout Grid.Column="1" >
+                                <Label  Text="{Binding Code}"  HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="Black"  ></Label>
+                                <Grid ColumnDefinitions="2*,*" >
+                                    <Label FontAttributes="Bold" Text="Mã giảm giá(%): " VerticalOptions="Center"  />
+                                    <Label FontAttributes="Bold" Grid.Column="1" Text="{Binding CouponDiscount}"  VerticalOptions="Center" TextColor="Black"  ></Label>
+                                </Grid>
+                            </StackLayout>
+                            <Button Command="{Binding DeleteCouponCommand}" Padding="0" FontAttributes="Bold" Grid.Column="2" Text="Xóa" TextColor="White" FontSize="12"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Red"  />
+
+                        </Grid>
+
+                        <!--<Entry Grid.Row="1" Text="{Binding DiscountCode}" Placeholder="Nhập mã" VerticalOptions="Center" FontSize="18"  />-->
+                        <!--<Label IsVisible="{Binding isDiscount}" FontAttributes="Italic"  VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="2" Grid.Column="0" FontSize="18" Text="{Binding StringDiscount}"/>-->
+                    </StackLayout>
                 </Frame>
 
-              
+
 
                 <Label Text="Chọn phương thức thanh toán" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
                 <Frame CornerRadius="10">
                     <Grid RowDefinitions="*,*" RowSpacing="10" ColumnDefinitions="*,0.5*" >
-                            <RadioButton IsChecked="{Binding isDirectMoney}"  VerticalOptions="CenterAndExpand" Grid.ColumnSpan="2" Grid.Row="0" Content="Thanh toán bằng tiền mặt"/>
+                        <RadioButton IsChecked="{Binding isDirectMoney}"  VerticalOptions="CenterAndExpand" Grid.ColumnSpan="2" Grid.Row="0" Content="Thanh toán bằng tiền mặt"/>
 
-                            <RadioButton IsChecked="{Binding isOnline }" Grid.Row="1" VerticalOptions="CenterAndExpand"  Content="Thanh toán online"/>
+                        <RadioButton IsChecked="{Binding isOnline }" Grid.Row="1" VerticalOptions="CenterAndExpand"  Content="Thanh toán online"/>
                         <Button IsVisible="{Binding isOnline}" Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="EndAndExpand" Grid.Column="0" FontAttributes="Bold" TextColor="White" BackgroundColor="Blue" Text="Thanh toán ngay"/>
 
                     </Grid>
@@ -65,13 +83,13 @@
                         </Grid>
                         <BoxView HeightRequest="1" BackgroundColor="Gray" />
                         <RadioButton  IsChecked="{Binding isAtHome}" VerticalOptions="CenterAndExpand"  Content="Giao hàng tận tay"/>
-                        <Entry IsVisible="{Binding isAtHome}" Placeholder="Nhập địa chỉ của bạn"/>
+                        <Entry IsVisible="{Binding isAtHome}" Text="{Binding AddressUser}" Placeholder="Nhập địa chỉ của bạn"/>
                         <Label IsVisible="{Binding isAtHome}" FontSize="15" Text="Phí giao hàng: 30.000vnđ"/>
                     </StackLayout>
 
                 </Frame>
             </StackLayout>
-            
+
         </ScrollView>
 
         <Frame BackgroundColor="Orange" Grid.Row="2" Padding="0">

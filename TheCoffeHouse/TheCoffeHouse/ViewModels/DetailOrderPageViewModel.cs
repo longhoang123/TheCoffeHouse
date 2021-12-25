@@ -48,6 +48,17 @@ namespace TheCoffeHouse.ViewModels
             Shipping = order.Shipping.ToString();
             Point = order.Point.ToString();
             QuantityItem = order.QuantityItem;
+            if(order.AddressUser != null)
+            {
+                isAtStore = false;
+                AddressUser = order.AddressUser;
+            }
+            else
+            {
+                isAtStore = true;
+                StoreName = order.StoreName;
+                StoreAddress = order.StoreAddress;
+            }
             init();
 
         }
@@ -66,6 +77,40 @@ namespace TheCoffeHouse.ViewModels
             }
         }
         #region Properties
+
+        private string _StoreAddress;
+
+        public string StoreAddress
+        {
+            get { return _StoreAddress; }
+            set { SetProperty(ref _StoreAddress, value); }
+        }
+
+        private string _StoreName;
+
+        public string StoreName
+        {
+            get { return _StoreName; }
+            set { SetProperty(ref _StoreName, value); }
+        }
+
+
+        private string _AddressUser;
+
+        public string AddressUser
+        {
+            get { return _AddressUser; }
+            set { SetProperty(ref _AddressUser, value); }
+        }
+
+
+        private bool _isAtStore;
+
+        public bool isAtStore
+        {
+            get { return _isAtStore; }
+            set { SetProperty(ref _isAtStore, value); }
+        }
 
         private int _quantityItem;
 

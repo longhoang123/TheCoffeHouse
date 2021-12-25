@@ -15,7 +15,7 @@
                     <Image Source="{Binding ImageCoupon}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="150" WidthRequest="150" Margin="20"></Image>
                     <Label Text="{Binding CodeCoupon}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
                     <Label Text="Sao chép" VerticalOptions="Center" HorizontalOptions="Center" TextColor="DarkCyan"></Label>
-                    <Button Text="Đặt hàng ngay" TextColor="White" BackgroundColor="DimGray" FontSize="Medium" FontAttributes="Bold" CornerRadius="20" WidthRequest="220" VerticalOptions="Center" HorizontalOptions="Center" Margin="20"></Button>
+                    <Button Text="Đặt hàng ngay" Command="{Binding UseCouponCommand}" TextColor="White" BackgroundColor="DimGray" FontSize="Medium" FontAttributes="Bold" CornerRadius="20" WidthRequest="220" VerticalOptions="Center" HorizontalOptions="Center" Margin="20"></Button>
                     <Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="400" HeightRequest="2" BackgroundColor="Black" Margin="0,20,0,20"></Label>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Ngày hết hạn:" VerticalOptions="StartAndExpand" HorizontalOptions="Center"></Label>

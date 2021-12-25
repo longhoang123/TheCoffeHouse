@@ -34,7 +34,7 @@ namespace TheCoffeHouse.ViewModels.Base
             get => _pageTitle;
             set => SetProperty(ref _pageTitle, value);
         }
-        private bool _isLogedin = ConstaintVaribles.IsLogedIn;
+        private bool _isLogedin = false;
 
         public bool IsLogedin
         {

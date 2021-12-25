@@ -62,22 +62,22 @@ namespace TheCoffeHouse.ViewModels
             }
             else
             {
-                ConstaintVaribles.IsLogedIn = true;
+                ConstaintVaribles.IsLogedIn = true;                
                 ConstaintVaribles.UserID = user.UserID.ToString();
                 NavigationParameters navParam = new NavigationParameters();
                 navParam.Add(ParamKey.CurrentUser.ToString(), user);
                 // Cart when login
-                var cart = await ApiService.GetCartByIDUser(user.UserID);
-                if(cart == null)
-                {
-                    var cartCreated = await ApiService.CreateCartByIDCust(new Cart { IDUser= user.UserID,QuantityItem=0,TotalPrice=0 });
-                    ConstaintVaribles.IDCart = cartCreated["IDCart"];
-                }
-                else
-                {
-                    ConstaintVaribles.IDCart = cart.IDCart;
-                    OrderPageViewModel.instance.initQty();
-                }
+                //var cart = await ApiService.GetCartByIDUser(user.UserID);
+                //if(cart == null)
+                //{
+                //    var cartCreated = await ApiService.CreateCartByIDCust(new Cart { IDUser= user.UserID,QuantityItem=0,TotalPrice=0 });
+                //    ConstaintVaribles.IDCart = cartCreated["IDCart"];
+                //}
+                //else
+                //{
+                //    ConstaintVaribles.IDCart = cart.IDCart;
+                //    OrderPageViewModel.instance.initQty();
+                //}
                 await Navigation.GoBackAsync(navParam);
             }
         }

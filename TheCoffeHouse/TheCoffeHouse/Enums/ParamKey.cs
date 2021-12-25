@@ -11,6 +11,7 @@ namespace TheCoffeHouse.Enums
         SelectedPost,
         IsNavigateFromMainPage,
         StoreSelected,
+        CouponSelected,
         IsNavigateFromPaymentPage,
     }
 }

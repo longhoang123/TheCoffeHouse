@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using TheCoffeHouse.Constant;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
@@ -22,9 +23,8 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             ListItemOrder = new ObservableCollection<DetailOrder>();
-         
-          
             PageTitle = "Chi tiết đơn hàng";
+            CancelOrderCommand = new DelegateCommand(CancelOrderExec);
         }
         Order order;
         private async void init()
@@ -48,6 +48,17 @@ namespace TheCoffeHouse.ViewModels
             Shipping = order.Shipping.ToString();
             Point = order.Point.ToString();
             QuantityItem = order.QuantityItem;
+            if(order.AddressUser != null)
+            {
+                isAtStore = false;
+                AddressUser = order.AddressUser;
+            }
+            else
+            {
+                isAtStore = true;
+                StoreName = order.StoreName;
+                StoreAddress = order.StoreAddress;
+            }
             init();
 
         }
@@ -66,6 +77,40 @@ namespace TheCoffeHouse.ViewModels
             }
         }
         #region Properties
+
+        private string _StoreAddress;
+
+        public string StoreAddress
+        {
+            get { return _StoreAddress; }
+            set { SetProperty(ref _StoreAddress, value); }
+        }
+
+        private string _StoreName;
+
+        public string StoreName
+        {
+            get { return _StoreName; }
+            set { SetProperty(ref _StoreName, value); }
+        }
+
+
+        private string _AddressUser;
+
+        public string AddressUser
+        {
+            get { return _AddressUser; }
+            set { SetProperty(ref _AddressUser, value); }
+        }
+
+
+        private bool _isAtStore;
+
+        public bool isAtStore
+        {
+            get { return _isAtStore; }
+            set { SetProperty(ref _isAtStore, value); }
+        }
 
         private int _quantityItem;
 
@@ -177,6 +222,31 @@ namespace TheCoffeHouse.ViewModels
             {
                 SetProperty(ref _totalPayment, value);
                 RaisePropertyChanged("TotalPayment");
+            }
+        }
+        private bool _isCancelEnable = true ;
+
+        public bool isCancelEnable
+        {
+            get { return _isCancelEnable; }
+            set { SetProperty(ref _isCancelEnable, value); }
+        }
+
+        #endregion
+        #region CancelOrderCommand
+        public ICommand CancelOrderCommand { get; set; }
+        private async void CancelOrderExec()
+        {
+            var res = await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn có muốn hủy đơn hàng này?", "Ok", "Cancel");
+            if (res)
+            {
+               var result =  await ApiService.UpdateStatusOrder(order.IDOrder, "Đã hủy đơn");
+                if(result != null)
+                {
+                    StatusOrder = result.StatusOrder;
+                    isCancelEnable = false;
+                    HistoryPageViewModel.instance.init();
+                }
             }
         }
         #endregion

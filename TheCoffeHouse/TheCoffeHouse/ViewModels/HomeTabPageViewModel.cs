@@ -42,13 +42,14 @@ namespace TheCoffeHouse.ViewModels
             Image = "BarCode.png";
         }
 
-      
+
 
 
 
 
 
         #region Properties
+        Store Storetmp = new Store();
         private ObservableCollection<ImageSource> _listBanner;
 
         public ObservableCollection<ImageSource> ListBanner
@@ -145,12 +146,14 @@ namespace TheCoffeHouse.ViewModels
         public override async void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
+            IsLogedin = ConstaintVaribles.IsLogedIn;
             LoadData();
         }
 
         public override void OnNavigatedBackTo(INavigationParameters parameters)
         {
             base.OnNavigatedBackTo(parameters);
+            IsLogedin = ConstaintVaribles.IsLogedIn;
 
             var user = new User();
 
@@ -158,11 +161,14 @@ namespace TheCoffeHouse.ViewModels
             {
                 if (parameters.TryGetValue(ParamKey.CurrentUser.ToString(), out user))
                 {
-                    User = user;
-                    IsLogedin = ConstaintVaribles.IsLogedIn;
+                    User = user;                   
+                }
+                if (parameters.TryGetValue(ParamKey.StoreSelected.ToString(), out Storetmp))
+                {
+                    ConstaintVaribles.Store = Storetmp;
                 }
                 SelectedStore = parameters.GetValue<Store>(ParamKey.StoreSelected.ToString()) ?? new Store{ StoreAddress = "Chọn cửa hàng để đến lấy"};
-                ConstaintVaribles.IDStore = SelectedStore.IDStore;
+                //ConstaintVaribles.IDStore = SelectedStore.IDStore;             
                 BottomTitle = "Đến lấy tại";
                 BottomAddress = SelectedStore.StoreAddress;
             }

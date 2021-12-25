@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
@@ -35,6 +36,18 @@ namespace TheCoffeHouse.ViewModels
             ListCoupon = await ApiService.GetCoupons() ?? new ObservableCollection<Coupon>();
             ListPromotion= await ApiService.GetPromotions() ?? new ObservableCollection<Promotion>();
         }
+        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        {
+            if (parameters != null && parameters.Keys.Count() > 0)
+            {
+                isNavFromPayment = parameters.GetValue<bool>(ParamKey.IsNavigateFromPaymentPage.ToString());
+            }
+            base.OnNavigatedNewTo(parameters);
+
+        }
+        #region Properties
+        bool isNavFromPayment = false;
+        #endregion
         #region OpenPage
         public ICommand OpenHistoryPage { get; set; }
         private async void OpenHistoryPageExcute()
@@ -64,6 +77,10 @@ namespace TheCoffeHouse.ViewModels
         {
             NavigationParameters navParams = new NavigationParameters();
             navParams.Add("CouponSelected", SelectedCoupon);
+            if (isNavFromPayment)
+            {
+                navParams.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
+            }
             await Navigation.NavigateAsync(PageManagement.DetailCouponPage, navParams);
         }
         public ICommand OpenAllCouponPage { get; set; }

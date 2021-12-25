@@ -550,10 +550,10 @@ namespace TheCoffeHouse.Services.ApiService
         #endregion
 
         #region UpdateStatusOrder
-        public static async Task<ObservableCollection<Order>> UpdateStatusOrder(int IDOrder, string StatusOrder)
+        public static async Task<Order> UpdateStatusOrder(int IDOrder, string StatusOrder)
         {
             var url = ApiUrl.UpdateStatusOrder(IDOrder, StatusOrder);
-            return await Get<ObservableCollection<Order>>(url);
+            return await Get<Order>(url);
         }
         #endregion
         #endregion

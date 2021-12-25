@@ -2,7 +2,7 @@
 <base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base ="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom" xmlns:controls="clr-namespace:TheCoffeHouse.Controls" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.DetailOrderPage">
     <Grid RowDefinitions="auto, auto, auto">
@@ -17,15 +17,16 @@
                 <Label Text="Thông tin vận chuyển" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
                 <Label Text="{Binding ShippingMethod}" FontSize="Medium"></Label>
             </StackLayout>
-            <StackLayout BackgroundColor="White" Margin="0,5" Padding="10">
-                <Label Text="Địa chỉ nhận hàng" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
+                <StackLayout IsVisible="{Binding isAtStore,Converter={xct:InvertedBoolConverter}}" BackgroundColor="White" Margin="0,5" Padding="10">
+                <Label Text="Thông tin nhận hàng" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
                 <Label Text="{Binding userName}" FontSize="Medium"></Label>
                 <Label Text="{Binding PhoneNumber}" FontSize="Medium"></Label>
-                <Label Text="{Binding Address}" FontSize="Medium"></Label>
-            </StackLayout>
-                <StackLayout BackgroundColor="White" Margin="0,5" Padding="10">
+                <Label Text="{Binding AddressUser}" FontSize="Medium"></Label>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding isAtStore}" BackgroundColor="White" Margin="0,5" Padding="10">
                     <Label Text="Nhận tại cửa hàng" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
-                    <Label Text="Cửa hàng 86 Coffee" FontSize="Medium"></Label>
+                    <Label Text="{Binding StoreName}" FontSize="Medium"></Label>
+                    <Label Text="{Binding StoreAddress}" FontSize="Medium"></Label>
                 </StackLayout>
                 <Grid ColumnDefinitions="1.5*,*,0.5*">
                     <Label Margin="10,0,0,0" Text="Thông tin đơn hàng:" TextColor="OrangeRed" FontSize="Medium" FontAttributes="Bold"/>
@@ -86,7 +87,7 @@
                 <Label Text="Thành tiền" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
                     <Label Text="{Binding TotalPayment,StringFormat='{0:#,0}đ'}" FontSize="Medium" TextColor="DarkGoldenrod"></Label>
             </StackLayout>
-            <Button Text="Hủy đơn hàng" CornerRadius="20" BackgroundColor="Red" Margin="40,10" TextColor="White" FontAttributes="Bold"></Button>
+                <Button IsEnabled="{Binding isCancelEnable}" Text="Hủy đơn hàng" Command="{Binding CancelOrderCommand}"  CornerRadius="20" BackgroundColor="Red" Margin="40,10" TextColor="White" FontAttributes="Bold"></Button>
         </StackLayout>
     </ScrollView>
     </Grid>

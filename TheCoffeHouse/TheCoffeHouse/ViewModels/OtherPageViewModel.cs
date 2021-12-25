@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Navigation.TabbedPages;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,8 @@ namespace TheCoffeHouse.ViewModels
             ConstaintVaribles.IsLogedIn = false;
             ConstaintVaribles.UserID = "";
             ConstaintVaribles.IDCart = 0;
-            await Navigation.NavigateAsync(PageManagement.LoginPage);
+            await Navigation.SelectTabAsync(PageManagement.HomeTabPage);
+           
         }
         #endregion
     }

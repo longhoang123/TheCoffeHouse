@@ -40,6 +40,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\Popups\DetailPromotionPopup.xaml.cs">
+      <DependentUpon>DetailPromotionPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TabContainerPage.xaml.cs">
       <DependentUpon>TabContainerPage.xaml</DependentUpon>
     </Compile>

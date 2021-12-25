@@ -81,7 +81,7 @@
                 <!--  List category  -->
                 <ListView  HasUnevenRows="True"
                         ItemsSource="{Binding ListCateDrinks}"
-                        SelectedItem="{Binding SelectedCateDrink}">
+                        SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

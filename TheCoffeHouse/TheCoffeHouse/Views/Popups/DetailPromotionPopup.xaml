@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="TheCoffeHouse.Views.Popups.DetailPromotionPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+
+    <Grid
+        BackgroundColor="Transparent"
+        HorizontalOptions="FillAndExpand"
+        RowDefinitions="*,1.5*,*"
+        VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+        <Frame
+            Grid.Row="1"
+            Padding="15"
+            BackgroundColor="White"
+            CornerRadius="15"
+            Margin="15,0">
+            <StackLayout Spacing="10" HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontSize="Title"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Mã giảm giá"
+                        VerticalOptions="Center" />
+                    <Image
+                        HeightRequest="15"
+                        HorizontalOptions="End"
+                        Source="close.png"
+                        VerticalOptions="Center"
+                        WidthRequest="15">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <Label Text="Chúc mừng bạn vừa đổi mã giảm giá, thông tin chi tiết bạn vui lòng xem trong email" FontSize="Small" HorizontalTextAlignment="Center"/>
+                <Label x:Name="brandLabel" FontSize="Medium" />
+                <Label x:Name="codeLabel" FontSize="Medium" />
+                <Label x:Name="discountLabel" FontSize="Small" />
+                <Label x:Name="descriptionLabel" FontSize="Small" />
+            </StackLayout>
+        </Frame>
+    </Grid>
+</pages:PopupPage>

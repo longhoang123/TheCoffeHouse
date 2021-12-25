@@ -5,9 +5,13 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.ViewModels.Base;
+using TheCoffeHouse.Views.Popups;
+using Xamarin.Essentials;
 
 namespace TheCoffeHouse.ViewModels
 {
@@ -18,7 +22,7 @@ namespace TheCoffeHouse.ViewModels
             IHttpService httpService = null,
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
-
+            ChangePromotion = new DelegateCommand(ChangePromotionExcute);
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
@@ -28,6 +32,7 @@ namespace TheCoffeHouse.ViewModels
             ImagePromotion = SelectedPromotion.PromotionImage;
             NumPointPromotion =SelectedPromotion.Point;
         }
+        #region Properties
         private string _titlePromotion;
 
         public string TitlePromotion
@@ -73,5 +78,15 @@ namespace TheCoffeHouse.ViewModels
                 RaisePropertyChanged("SelectedPromotion");
             }
         }
+        #endregion
+        #region ChangePromotion
+        public ICommand ChangePromotion { get; set; }
+        private async void ChangePromotionExcute()
+        {
+            await DetailPromotionPopup.Instance.Show(SelectedPromotion.Brand, SelectedPromotion.PromotionCode, SelectedPromotion.PromotionDiscount.ToString(), SelectedPromotion.PromotionDes);
+            //SendMailExtension.SendEmail("Mã giảm giá","Chúc mừng bạn đã nhận được một mã giảm giá\n"+ "Mã giảm giá của bạn là: " + SelectedPromotion.PromotionCode+"\n"+SelectedPromotion.PromotionDes, "nguyenlong2k14@gmail.com");
+        }
+        #endregion
+        
     }
 }

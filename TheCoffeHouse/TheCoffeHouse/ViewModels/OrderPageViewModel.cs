@@ -109,21 +109,6 @@ namespace TheCoffeHouse.ViewModels
                 }
             }
         }
-        private CateDrink _selectedCateDrink;
-
-        public CateDrink SelectedCateDrink
-        {
-            get { return _selectedCateDrink; }
-            set
-            {
-                if (_selectedCateDrink != value)
-                {
-                    SetProperty(ref _selectedCateDrink, value);
-                    RaisePropertyChanged("SelectedCateDrink");
-                    handleSelectedItem();
-                }
-            }
-        }
 
         private Category _selectedCate;
 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using TheCoffeHouse.Constant;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
@@ -22,9 +23,8 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             ListItemOrder = new ObservableCollection<DetailOrder>();
-         
-          
             PageTitle = "Chi tiết đơn hàng";
+            CancelOrderCommand = new DelegateCommand(CancelOrderExec);
         }
         Order order;
         private async void init()
@@ -222,6 +222,31 @@ namespace TheCoffeHouse.ViewModels
             {
                 SetProperty(ref _totalPayment, value);
                 RaisePropertyChanged("TotalPayment");
+            }
+        }
+        private bool _isCancelEnable = true ;
+
+        public bool isCancelEnable
+        {
+            get { return _isCancelEnable; }
+            set { SetProperty(ref _isCancelEnable, value); }
+        }
+
+        #endregion
+        #region CancelOrderCommand
+        public ICommand CancelOrderCommand { get; set; }
+        private async void CancelOrderExec()
+        {
+            var res = await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn có muốn hủy đơn hàng này?", "Ok", "Cancel");
+            if (res)
+            {
+               var result =  await ApiService.UpdateStatusOrder(order.IDOrder, "Đã hủy đơn");
+                if(result != null)
+                {
+                    StatusOrder = result.StatusOrder;
+                    isCancelEnable = false;
+                    HistoryPageViewModel.instance.init();
+                }
             }
         }
         #endregion

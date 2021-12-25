@@ -87,7 +87,7 @@
                 <Label Text="Thành tiền" FontSize="Medium" TextColor="Black" FontAttributes="Bold"></Label>
                     <Label Text="{Binding TotalPayment,StringFormat='{0:#,0}đ'}" FontSize="Medium" TextColor="DarkGoldenrod"></Label>
             </StackLayout>
-            <Button Text="Hủy đơn hàng" CornerRadius="20" BackgroundColor="Red" Margin="40,10" TextColor="White" FontAttributes="Bold"></Button>
+                <Button IsEnabled="{Binding isCancelEnable}" Text="Hủy đơn hàng" Command="{Binding CancelOrderCommand}"  CornerRadius="20" BackgroundColor="Red" Margin="40,10" TextColor="White" FontAttributes="Bold"></Button>
         </StackLayout>
     </ScrollView>
     </Grid>

@@ -24,11 +24,13 @@ namespace TheCoffeHouse.ViewModels
         {
             ListOrder = new ObservableCollection<Order>();
             PageTitle = "Lịch sử đơn hàng";
+            instance = this;
             init();
         }
+        public static HistoryPageViewModel instance;
         #region ListHistoryInit
         //Thêm danh sách lịch sử order từ db
-        private async void init()
+        public async void init()
         {
             if(ConstaintVaribles.UserID != null)
             {

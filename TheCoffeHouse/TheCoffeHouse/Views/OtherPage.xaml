@@ -1,98 +1,164 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="TheCoffeHouse.Views.OtherPage"
-             Title="Khác"
-             NavigationPage.HasNavigationBar="False"
-             ControlTemplate="{StaticResource OtherPageTemplete}">
+<base:BasePage
+    x:Class="TheCoffeHouse.Views.OtherPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+    xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+    xmlns:prism="http://prismlibrary.com"
+    Title="Khác"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    ControlTemplate="{StaticResource OtherPageTemplete}"
+    NavigationPage.HasNavigationBar="False">
     <ScrollView>
-        <StackLayout Orientation="Vertical"
-             VerticalOptions="Fill"
-             HorizontalOptions="Fill"   
-             Padding="10" BackgroundColor="WhiteSmoke">
-            <Label Text="Tiện ích" FontSize="Large" FontAttributes="Bold"  TextColor="Black"  Padding="10,10,10,10"></Label>
-            <Frame BackgroundColor="White" Margin="0" CornerRadius="10" BorderColor="Transparent" HasShadow="True">
+        <StackLayout
+            Padding="10"
+            BackgroundColor="WhiteSmoke"
+            HorizontalOptions="Fill"
+            Orientation="Vertical"
+            VerticalOptions="Fill">
+            <Label
+                Padding="10,10,10,10"
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="Tiện ích"
+                TextColor="Black" />
+            <Frame
+                Margin="0"
+                BackgroundColor="White"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HasShadow="True">
                 <custom:CustomSmallButton
                     ButtonText="Lịch sử đơn hàng"
-                    Source="history.png"
-                    Command="{Binding OpenHistoryPage}">
-                </custom:CustomSmallButton>
+                    Command="{Binding OpenHistoryPage}"
+                    Source="history.png" />
             </Frame>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" BackgroundColor="White" Margin="0,5,0,5" CornerRadius="10" BorderColor="Transparent" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <custom:CustomSmallButton
-                    Source="music.png"
-                    ButtonText="Trình phát nhạc">
-                    </custom:CustomSmallButton>
+                <Frame
+                    Grid.Column="0"
+                    Margin="0,5,0,5"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    CornerRadius="10"
+                    HasShadow="True"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <custom:CustomSmallButton ButtonText="Trình phát nhạc" Source="music.png" />
                 </Frame>
-                <Frame Grid.Column="1" BackgroundColor="White" Margin="0,5,0,5" CornerRadius="10" BorderColor="Transparent" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Frame
+                    Grid.Column="1"
+                    Margin="0,5,0,5"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    CornerRadius="10"
+                    HasShadow="True"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
                     <custom:CustomSmallButton
-                    Source="policy.png"
-                    ButtonText="Điều khoản"
-                    Command="{Binding OpenPolicyPage}">
-                    </custom:CustomSmallButton>
+                        ButtonText="Điều khoản"
+                        Command="{Binding OpenPolicyPage}"
+                        Source="policy.png" />
                 </Frame>
             </Grid>
-            <Label Text="Hỗ trợ" FontSize="Large" FontAttributes="Bold"  TextColor="Black" Padding="10,20,10,10"></Label>
+            <Label
+                Padding="10,20,10,10"
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="Hỗ trợ"
+                TextColor="Black" />
 
-            <Frame BackgroundColor="White" Margin="0" CornerRadius="10" Padding="20" BorderColor="Transparent" HasShadow="True">
-                <StackLayout  HorizontalOptions="Fill" VerticalOptions="Fill">
+            <Frame
+                Margin="0"
+                Padding="20"
+                BackgroundColor="White"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HasShadow="True">
+                <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
                     <custom:CustomButton
-                    SourceImage="star.png"
-                    ButtonText="Đánh giá đơn hàng"
-                    Command="{Binding OpenVotePage}">
-                    </custom:CustomButton>
-                    <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                        ButtonText="Đánh giá đơn hàng"
+                        Command="{Binding OpenVotePage}"
+                        SourceImage="star.png" />
+                    <Label
+                        Margin="0,10"
+                        BackgroundColor="DarkGray"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand" />
                     <custom:CustomButton
-                    SourceImage="message.png"
-                    ButtonText="Liên hệ và góp ý"
-                    Command="{Binding OpenContactPage}">
-                    </custom:CustomButton>
+                        ButtonText="Liên hệ và góp ý"
+                        Command="{Binding OpenContactPage}"
+                        SourceImage="message.png" />
                 </StackLayout>
             </Frame>
 
 
-            <Label Text="Tài khoản" FontSize="Large" FontAttributes="Bold" TextColor="Black" Padding="10,20,10,10"></Label>
+            <Label
+                Padding="10,20,10,10"
+                FontAttributes="Bold"
+                FontSize="Large"
+                IsVisible="{Binding IsLogedin}"
+                Text="Tài khoản"
+                TextColor="Black" />
 
-            <Frame BackgroundColor="White" Margin="0" CornerRadius="10" Padding="20" BorderColor="Transparent" HasShadow="True">
+            <Frame
+                Margin="0"
+                Padding="20"
+                BackgroundColor="White"
+                BorderColor="Transparent"
+                CornerRadius="10"
+                HasShadow="True"
+                IsVisible="{Binding IsLogedin}">
                 <StackLayout>
                     <custom:CustomButton
-                    SourceImage="user.png"
-                    ButtonText="Thông tin cá nhân"
-                    Command="{Binding OpenPersonalInfoPage}">
-                    </custom:CustomButton>
-                    <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                        ButtonText="Thông tin cá nhân"
+                        Command="{Binding OpenPersonalInfoPage}"
+                        SourceImage="user.png" />
+                    <Label
+                        Margin="0,10"
+                        BackgroundColor="DarkGray"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand" />
                     <custom:CustomButton
-                    SourceImage="gps.png"
-                    ButtonText="Địa chỉ đã lưu"
-                    Command="{Binding OpenAddressPage}">
-                    </custom:CustomButton>
-                    <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                        ButtonText="Địa chỉ đã lưu"
+                        Command="{Binding OpenAddressPage}"
+                        SourceImage="gps.png" />
+                    <Label
+                        Margin="0,10"
+                        BackgroundColor="DarkGray"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand" />
                     <custom:CustomButton
-                    SourceImage="gear.png"
-                    ButtonText="Cài đặt"
-                    Command="{Binding OpenSettingPage}">
-                    </custom:CustomButton>
-                    <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                        ButtonText="Cài đặt"
+                        Command="{Binding OpenSettingPage}"
+                        SourceImage="gear.png" />
+                    <Label
+                        Margin="0,10"
+                        BackgroundColor="DarkGray"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand" />
                     <custom:CustomButton
-                    SourceImage="user.png"
-                    ButtonText="Admin"
-                    Command="{Binding OpenAdminPage}">
-                    </custom:CustomButton>
-                    <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
+                        ButtonText="Admin"
+                        Command="{Binding OpenAdminPage}"
+                        SourceImage="user.png" />
+                    <Label
+                        Margin="0,10"
+                        BackgroundColor="DarkGray"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand" />
                     <custom:CustomButton
-                    SourceImage="logout.png"
-                    ButtonText="Đăng xuất"
-                        Command="{Binding Logout}">
-                    </custom:CustomButton>
+                        ButtonText="Đăng xuất"
+                        Command="{Binding Logout}"
+                        SourceImage="logout.png" />
                 </StackLayout>
             </Frame>
         </StackLayout>

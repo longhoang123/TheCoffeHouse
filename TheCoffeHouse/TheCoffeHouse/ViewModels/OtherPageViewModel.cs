@@ -36,6 +36,12 @@ namespace TheCoffeHouse.ViewModels
             Logout = new DelegateCommand(LogoutExcute);
         }
 
+        #region Properties
+
+        private static OtherPageViewModel _instance;
+        public static OtherPageViewModel Instance => _instance ?? (_instance = new OtherPageViewModel());
+        #endregion
+
         #region OpenPage
         public ICommand OpenHistoryPage { get; set; }
         private async void OpenHistoryPageExcute()
@@ -93,5 +99,18 @@ namespace TheCoffeHouse.ViewModels
            
         }
         #endregion
+
+        public override void OnAppear()
+        {
+            base.OnAppear();
+            IsLogedin = ConstaintVaribles.IsLogedIn;
+        }
+
+        public override void OnNavigatedBackTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedBackTo(parameters);
+            IsLogedin = ConstaintVaribles.IsLogedIn;
+        }
+
     }
 }

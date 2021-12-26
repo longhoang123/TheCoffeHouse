@@ -39,7 +39,7 @@ namespace TheCoffeHouse.ViewModels.Base
         public bool IsLogedin
         {
             get => _isLogedin;
-            set => SetProperty(ref _isLogedin, value);
+            set { SetProperty(ref _isLogedin, value); RaisePropertyChanged("IsLogedin"); }
         }
 
         public INavigationService Navigation { get; private set; }
@@ -291,6 +291,9 @@ namespace TheCoffeHouse.ViewModels.Base
             byte[] Base64Stream = Convert.FromBase64String(base64Image);
             return ImageSource.FromStream(() => new MemoryStream(Base64Stream));
         }
+        
     }
-        #endregion
+    #endregion
+
+
 }

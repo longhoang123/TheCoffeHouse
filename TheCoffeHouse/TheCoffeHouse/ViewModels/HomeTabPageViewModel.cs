@@ -49,6 +49,9 @@ namespace TheCoffeHouse.ViewModels
 
 
         #region Properties
+
+        private static HomeTabPageViewModel _instance;
+        public static HomeTabPageViewModel Instance => _instance ?? (_instance = new HomeTabPageViewModel());
         Store Storetmp = new Store();
         private ObservableCollection<ImageSource> _listBanner;
 
@@ -143,6 +146,9 @@ namespace TheCoffeHouse.ViewModels
 
         #endregion
 
+
+
+       
         public override async void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
@@ -153,10 +159,8 @@ namespace TheCoffeHouse.ViewModels
         public override void OnNavigatedBackTo(INavigationParameters parameters)
         {
             base.OnNavigatedBackTo(parameters);
-            IsLogedin = ConstaintVaribles.IsLogedIn;
-
             var user = new User();
-
+            IsLogedin = ConstaintVaribles.IsLogedIn;
             if (parameters != null && parameters.Keys.Count() > 0)
             {
                 if (parameters.TryGetValue(ParamKey.CurrentUser.ToString(), out user))
@@ -298,5 +302,7 @@ namespace TheCoffeHouse.ViewModels
         #endregion
 
         #endregion
+
+        
     }
 }

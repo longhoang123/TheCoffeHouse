@@ -4,7 +4,8 @@ namespace TheCoffeHouse.Services.ApiService
 {
     public static class ApiUrl
     {
-        public static string BaseUrl = "http://www.tchie307.somee.com/api/";
+        //public static string BaseUrl = "http://www.tchie307.somee.com/api/";
+        public static string BaseUrl = "http://192.168.1.13/thecoffehouseapi/api/";
         public static string Link(string endpoint)
         {
             return $"{BaseUrl}{endpoint}";

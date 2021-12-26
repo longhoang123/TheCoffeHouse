@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\ToastMessage\ToastiOS.cs" />
     <Compile Include="SQLite_iOS.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -233,8 +234,6 @@
       <Name>TheCoffeHouse</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Renderers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

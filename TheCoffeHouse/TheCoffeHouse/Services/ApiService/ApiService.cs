@@ -292,6 +292,66 @@ namespace TheCoffeHouse.Services.ApiService
             }
         }
 
+        private static async Task<T> PutAsync<T>(string url, object obj)
+        {
+            using (var client = new HttpClient())
+            {
+                //CancellationTokenSource cancellationTokenSource = NewCancellationTokenSource();
+                try
+                {
+                    string jsonData = JsonConvert.SerializeObject(obj);
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    var response = await client.PutAsync(url, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var responseObj = JsonConvert.DeserializeObject<List<T>>(json);
+
+                        return responseObj.First();
+                    }
+                    //else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    //{
+                    //    if (await GetNewAuthTokens())
+                    //    {
+                    //        return await Put<T>(url, obj);
+                    //    }
+
+                    //    return default;
+                    //}
+                    else
+                    {
+                        return default;
+                    }
+                }
+                catch (TaskCanceledException ex)
+                {
+#if DEBUG
+                    Debug.WriteLine(
+                        $"Canceled by Cancellation token when calling HTTP request: method {nameof(Put)}" +
+                        $"\nurl: {url}" +
+                        $"\nmessage: {ex.Message}");
+#endif
+                    return default;
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    Debug.WriteLine(
+                        $"Error when calling HTTP request: method {nameof(Put)}" +
+                        $"\nurl: {url}" +
+                        $"\nmessage: {ex.Message}");
+#endif
+                    return default;
+                }
+                finally
+                {
+                    //cancellationTokenSource.Dispose();
+                }
+            }
+        }
+
 
         //        private static async Task<T> Delete<T>(string url)
         //        {
@@ -384,6 +444,14 @@ namespace TheCoffeHouse.Services.ApiService
         {
             var url = ApiUrl.ValidateUser(phone, password);
             return await Get<User>(url);
+        }
+
+        #endregion
+        #region UpdateUser
+        public static async Task<Dictionary<string, int>> UpdateUser(User user)
+        {
+            var url = ApiUrl.UpdateUser();
+            return await PutAsync<Dictionary<string, int>>(url, user);
         }
 
         #endregion

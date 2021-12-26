@@ -31,6 +31,10 @@ namespace TheCoffeHouse.Services.ApiService
         {
             return Link($"/UserProfileController/RegisterUser");
         }
+        public static string UpdateUser()
+        {
+            return Link($"/UserProfileController/UpdateUser");
+        }
 
         #region Thanh Long
         public static string GetCoupons()

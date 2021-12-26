@@ -9,10 +9,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Models;
+using TheCoffeHouse.Renderers.ToastMessage;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
+using TheCoffeHouse.Views.Popups;
+using Xamarin.Forms;
 
 namespace TheCoffeHouse.ViewModels
 {
@@ -37,38 +41,20 @@ namespace TheCoffeHouse.ViewModels
                 SetProperty(ref _phoneNumber, value);
             }
         }
-        private string _password;
+        
 
-        public string Password
+        private string _name;
+
+        public string Name
         {
-            get { return _password; }
+            get { return _name; }
             set
             {
-                SetProperty(ref _password, value);
+                SetProperty(ref _name, value);
             }
         }
 
-        private string _firstName;
-
-        public string FirstName
-        {
-            get { return _firstName; }
-            set
-            {
-                SetProperty(ref _firstName, value);
-            }
-        }
-
-        private string _lastName;
-
-        public string LastName
-        {
-            get { return _lastName; }
-            set
-            {
-                SetProperty(ref _lastName, value);
-            }
-        }
+        
 
         private string _email;
 
@@ -82,9 +68,9 @@ namespace TheCoffeHouse.ViewModels
         }
 
 
-        private string _avatar;
+        private ImageSource _avatar;
 
-        public string Avatar
+        public ImageSource Avatar
         {
             get { return _avatar; }
             set
@@ -93,15 +79,68 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
+        private string _avatarBase64;
+
+        public string AvatarBase64
+        {
+            get { return _avatarBase64; }
+            set
+            {
+                SetProperty(ref _avatarBase64, value);
+            }
+        }
+
+        private DateTime _birthDate;
+
+        public DateTime BirthDate
+        {
+            get { return _birthDate; }
+            set
+            {
+                SetProperty(ref _birthDate, value);
+            }
+        }
+        private int _gender;
+
+        public int Gender
+        {
+            get { return _gender; }
+            set
+            {
+                SetProperty(ref _gender, value);
+            }
+        }
+
+        private User _user;
+
+        public User User
+        {
+            get { return _user; }
+            set
+            {
+                SetProperty(ref _user, value);
+            }
+        }
+
         #endregion
         #region Command
         public ICommand UpdateInfoCommand { get; set; }
         private async void UpdateInfoCommandExcute()
         {
-            User user = new User();
-            user.Name = FirstName + LastName;
+            var user = new User();
+            user.UserID = int.Parse(ConstaintVaribles.UserID);
+            user.Name = Name;
             user.Phone = PhoneNumber;
-            var avatar = Avatar;
+            user.Email = Email;
+            user.Avatar = AvatarBase64 ?? User.Avatar;
+            user.Birthdate = BirthDate;
+            user.Gender = Gender;
+            var result = await ApiService.UpdateUser(user);
+            if(result != null)
+            {
+                DependencyService.Get<Toast>().Show("Update succesfully");
+                await Navigation.GoBackAsync();
+            }
         }
         public ICommand ChangeAvatarCommand { get; set; }
         private async Task ChangeAvatarCommandExcute()
@@ -109,7 +148,8 @@ namespace TheCoffeHouse.ViewModels
             await CheckNotBusy(async () =>
             {
                 var mediafile = await PickPhoto();
-                Avatar = await ConvertToBase64(mediafile);
+                Avatar = ImageSource.FromStream(mediafile.GetStream);
+                AvatarBase64 = await ConvertToBase64(mediafile);
             });
         }
 
@@ -126,5 +166,24 @@ namespace TheCoffeHouse.ViewModels
         }
 
         #endregion
+
+        public override async void OnNavigatedNewTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedNewTo(parameters);
+            await LoadingPopup.Instance.Show();
+            await FetchData();
+            await LoadingPopup.Instance.Hide();
+        }
+
+        private async Task FetchData()
+        {
+            User = await ApiService.GetUserByID(int.Parse(ConstaintVaribles.UserID)) ?? new User();
+            Avatar = ConvertFromBase64(User.Avatar);
+            Name = User.Name;
+            PhoneNumber = User.Phone;
+            Email = User.Email ?? "";
+            BirthDate = User.Birthdate == null ? DateTime.Now : (DateTime)User.Birthdate;
+            Gender = User.Gender == null ? 0 : (int)User.Gender;
+        }
     }
 }

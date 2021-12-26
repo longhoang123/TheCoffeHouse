@@ -193,8 +193,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Renderers\" />
-  </ItemGroup>
-
 </Project>

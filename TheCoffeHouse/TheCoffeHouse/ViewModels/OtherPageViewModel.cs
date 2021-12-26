@@ -92,9 +92,15 @@ namespace TheCoffeHouse.ViewModels
         public ICommand Logout { get; set; }
         private async void LogoutExcute()
         {
-            ConstaintVaribles.IsLogedIn = false;
-            ConstaintVaribles.UserID = "";
+            ConstaintVaribles.IsLogedIn = false;  
+            ConstaintVaribles.UserID = null;
+            ConstaintVaribles.user = null;
+            ConstaintVaribles.IDStore = 0;
+            ConstaintVaribles.Store = null;
+            ConstaintVaribles.TotalPrice = 0;
+            ConstaintVaribles.Coupon = null;
             ConstaintVaribles.IDCart = 0;
+            HomeTabPageViewModel.instance.setisLogin();
             await Navigation.SelectTabAsync(PageManagement.HomeTabPage);
            
         }

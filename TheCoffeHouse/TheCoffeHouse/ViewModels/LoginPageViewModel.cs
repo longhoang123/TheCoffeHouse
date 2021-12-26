@@ -65,8 +65,11 @@ namespace TheCoffeHouse.ViewModels
                 ConstaintVaribles.IsLogedIn = true;
 
                 ConstaintVaribles.UserID = user.UserID.ToString();
+                ConstaintVaribles.user = user; 
+                HomeTabPageViewModel.instance.setisLogin();
                 NavigationParameters navParam = new NavigationParameters();
                 navParam.Add(ParamKey.CurrentUser.ToString(), user);
+                
                 //Cart when login
                var cart = await ApiService.GetCartByIDUser(user.UserID);
                 if (cart == null)
@@ -79,6 +82,7 @@ namespace TheCoffeHouse.ViewModels
                     ConstaintVaribles.IDCart = cart.IDCart;
                     OrderPageViewModel.instance.initQty();
                 }
+                
                 await Navigation.GoBackAsync(navParam);
             }
         }

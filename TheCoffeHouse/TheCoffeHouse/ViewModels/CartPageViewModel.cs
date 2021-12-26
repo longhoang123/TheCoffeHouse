@@ -50,8 +50,9 @@ namespace TheCoffeHouse.ViewModels
             if(ConstaintVaribles.UserID != null)
             {
                 cart = await ApiService.GetCartByIDUser(Convert.ToInt32(ConstaintVaribles.UserID));
+                TotalPriceCart = cart.TotalPrice;
             }
-            TotalPriceCart = cart.TotalPrice;
+            
             if(TotalPriceCart == 0 || ListDetailCart.Count == 0)
             {
                 isEmpty = true;

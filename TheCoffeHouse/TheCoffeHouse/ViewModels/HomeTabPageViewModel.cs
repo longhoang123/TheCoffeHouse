@@ -40,8 +40,17 @@ namespace TheCoffeHouse.ViewModels
             OpenPost2Command = new DelegateCommand<HomePostUIItem>(selectedPostItem => OpenPost2Execute(selectedPostItem));
 
             Image = "BarCode.png";
+            instance = this;
         }
-
+        public static HomeTabPageViewModel instance;
+        public void setisLogin()
+        {
+            IsLogedin = ConstaintVaribles.IsLogedIn;
+            if(ConstaintVaribles.user != null)
+            {
+                User = ConstaintVaribles.user;
+            }
+        }
 
 
 

@@ -55,16 +55,16 @@ namespace TheCoffeHouse.ViewModels
             
             if(TotalPriceCart == 0 || ListDetailCart.Count == 0)
             {
-                isEmpty = true;
+                isEmpty = false;
             }
             else
             {
-                isEmpty = false;
+                isEmpty = true;
             }
             
         }
         #region Properties
-        private bool _isEmpty;
+        private bool _isEmpty=false;
 
         public bool isEmpty
         {

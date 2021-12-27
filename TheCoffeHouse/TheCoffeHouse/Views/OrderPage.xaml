@@ -9,6 +9,7 @@
     prism:ViewModelLocator.AutowireViewModel="True"
     BackgroundColor="White"
     NavigationPage.HasBackButton="False"
+    x:Name="orderpage"
     >
     <StackLayout>
         <!--  NavBar  -->
@@ -44,11 +45,11 @@
                                 />
                                 </Frame>
                                 <Label HorizontalOptions="Center" Text="{Binding CateName}" />
-                            <StackLayout.GestureRecognizers>
+                                <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectedCateCommand, Source={x:Reference Name=postList}}" CommandParameter="{Binding .}" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
-                            
+
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
 
@@ -79,7 +80,7 @@
                         Source="bannerPR.png" />
                 </StackLayout>
                 <!--  List category  -->
-                <ListView  HasUnevenRows="True"
+                <!--<ListView  HasUnevenRows="True"
                         ItemsSource="{Binding ListCateDrinks}"
                         SelectionMode="None">
                     <ListView.ItemTemplate>
@@ -164,7 +165,93 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
+                <StackLayout BindableLayout.ItemsSource="{Binding ListCateDrinks}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                              
+                                <StackLayout
+                        Margin="20,10,0,0"
+                        HorizontalOptions="StartAndExpand"
+                        Orientation="Horizontal">
+                                    <ImageButton
+                            BackgroundColor="#f0daaa"
+                            CornerRadius="50"
+                            HeightRequest="35"
+                            Source="{Binding CategoryImage}"
+                            WidthRequest="35" />
+                                    <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            Text="{Binding CategoryName}" />
+                                </StackLayout>
+                                <StackLayout x:Name="lst_drink" BindableLayout.ItemsSource="{Binding ListDrinkInfo}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="0.5*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="100"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding DrinkImage}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="100" />
+                                                <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            Text="{Binding DrinkName}"
+                                            VerticalOptions="Center" />
+                                                <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="15"
+                                            Text="{Binding DrinkPrice, StringFormat='{0:#,0}đ'}" />
+                                                <ImageButton
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+                                            Padding="10"
+                                            BackgroundColor="Orange"
+                                            CornerRadius="50"
+                                            HeightRequest="35"
+                                            HorizontalOptions="Center"
+                                            Source="plus.png"
+                                            VerticalOptions="Center"
+                                            WidthRequest="35"
+                                            />
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectedDrinkCommand, Source={x:Reference orderpage}}" CommandParameter="{Binding .}" />
+                                                </Grid.GestureRecognizers>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+
+                                </StackLayout>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
                 <!--  Carousel Đặt gần đây  -->
                 <StackLayout Margin="20,0,0,0" HeightRequest="370">
                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
@@ -181,7 +268,7 @@
                             Text="Đặt gần đây" />
 
                     </StackLayout>
-                  
+
                     <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" HorizontalScrollBarVisibility="Never" >
                         <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding ListBanner}">
                             <BindableLayout.ItemTemplate>
@@ -212,83 +299,7 @@
                     </ScrollView>
                 </StackLayout>
 
-                <StackLayout  Margin="20,10,0,0">
-                    <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-
-                        <ImageButton
-                            BackgroundColor="#f0daaa"
-                            CornerRadius="50"
-                            HeightRequest="35"
-                            Source="coffee_cup.jpg"
-                            WidthRequest="35" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Large"
-                            Text="Cà phê" />
-
-                    </StackLayout>
-                    <ListView
-                        HasUnevenRows="True"
-                        ItemsSource="{Binding ListDrinks}"
-                        SelectedItem="{Binding SelectedDrink}"
-                        SelectionMode="None">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="0.5*" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <Image
-                                            Grid.Row="0"
-                                            Grid.RowSpan="4"
-                                            Grid.Column="0"
-                                            Aspect="AspectFill"
-                                            HeightRequest="100"
-                                            HorizontalOptions="Center"
-                                            Source="{Binding DrinkImage}"
-                                            VerticalOptions="Center"
-                                            WidthRequest="100" />
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            FontAttributes="Bold"
-                                            FontSize="18"
-                                            Text="{Binding DrinkName}"
-                                            VerticalOptions="Center" />
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            FontSize="15"
-                                            Text="{Binding DrinkPrice, StringFormat='{0:#,0}'}" />
-                                        <ImageButton
-                                            Grid.Row="2"
-                                            Grid.Column="2"
-                                            Padding="10"
-                                            BackgroundColor="Orange"
-                                            CornerRadius="50"
-                                            HeightRequest="35"
-                                            HorizontalOptions="Center"
-                                            Source="plus.png"
-                                            VerticalOptions="Center"
-                                            WidthRequest="35" />
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        <ListView.Behaviors>
-                            <prism:EventToCommandBehavior Command="{Binding ItemTappedCommand}" EventName="ItemTapped" />
-                        </ListView.Behaviors>
-                    </ListView>
-                </StackLayout>
+               
 
             </StackLayout>
         </ScrollView>

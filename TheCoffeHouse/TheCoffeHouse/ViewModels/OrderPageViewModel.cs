@@ -22,7 +22,7 @@ namespace TheCoffeHouse.ViewModels
 {
     public class OrderPageViewModel : BaseViewModel
     {
-      
+
         public OrderPageViewModel(
             INavigationService navigationService = null,
             IPageDialogService dialogService = null,
@@ -36,6 +36,8 @@ namespace TheCoffeHouse.ViewModels
             ListCateDrinks = new ObservableCollection<CateDrink>();
             //ItemTappedCommand = new DelegateCommand(ItemTapped);
             SelectedCateCommand = new DelegateCommand<Category>(SelectedCate => SelectedCateCommandExcute(SelectedCate));
+            SelectedDrinkCommand = new DelegateCommand<Drink>(SelectedDrink => SelectedDrinkCommandExcute(SelectedDrink));
+            SelectedCategoryCommand = new DelegateCommand(SelectedCategoryExec);
             InitData();
             instance = this;
 
@@ -45,17 +47,19 @@ namespace TheCoffeHouse.ViewModels
         {
             base.OnNavigatedNewTo(parameters);
         }
-       
-       
+
+
         async void InitData()
         {
             ObservableCollection<Drink> ListDrinksTmp = new ObservableCollection<Drink>();
+            ObservableCollection<Category> ListCateTmp = new ObservableCollection<Category>();
             ListCategory = await ApiService.GetCategory();
+            ListCateTmp = ListCategory;
             ListCategory.Add(new Category { IDCate = 9999, CateImage = "Coffee_cup.jpg", CateName = "Tất cả" });
             ObservableCollection<CateDrink> ListCateDrinksTmp = new ObservableCollection<CateDrink>();
-            for (int i = 0; i < ListCategory.Count; i++)
+            for (int i = 0; i < ListCateTmp.Count; i++)
             {
-                int ID = ListCategory[i].IDCate;
+                int ID = ListCateTmp[i].IDCate;
                 ListDrinksTmp = await ApiService.GetDrinkByCate(ID);
                 for (int j = 0; j < ListDrinksTmp.Count; j++)
                 {
@@ -67,10 +71,10 @@ namespace TheCoffeHouse.ViewModels
                         ListDrinksTmp[j].DrinkImage = images[0].ImageData;
                     }
                 }
-                ListCateDrinksTmp.Add(new CateDrink { CategoryName = ListCategory[i].CateName, CategoryImage = ListCategory[i].CateImage, ListDrinkInfo = ListDrinksTmp });
+                ListCateDrinksTmp.Add(new CateDrink { CategoryName = ListCateTmp[i].CateName, CategoryImage = ListCateTmp[i].CateImage, ListDrinkInfo = ListDrinksTmp });
             }
             ListCateDrinks = ListCateDrinksTmp;
-           
+
 
             initQty();
 
@@ -94,14 +98,14 @@ namespace TheCoffeHouse.ViewModels
         }
 
 
-        private Drink  _selectedDrink;
+        private Drink _selectedDrink;
 
         public Drink SelectedDrink
         {
             get { return _selectedDrink; }
-            set 
-            { 
-                if(_selectedDrink != value)
+            set
+            {
+                if (_selectedDrink != value)
                 {
                     SetProperty(ref _selectedDrink, value);
                     RaisePropertyChanged("SelectedDrink");
@@ -143,7 +147,7 @@ namespace TheCoffeHouse.ViewModels
         public ObservableCollection<Category> ListCategory
         {
             get { return _listCategory; }
-            set 
+            set
             {
                 SetProperty(ref _listCategory, value);
                 RaisePropertyChanged("ListCategory");
@@ -199,20 +203,20 @@ namespace TheCoffeHouse.ViewModels
                 }
                 ListCateDrinks = ListCateDrinksTmp;
             }
-            else if (category!=null)
+            else if (category != null)
             {
                 ObservableCollection<CateDrink> ListCateDrinksTmp = new ObservableCollection<CateDrink>();
                 ListDrinksTmp = await ApiService.GetDrinkByCate(category.IDCate);
                 for (int j = 0; j < ListDrinksTmp.Count; j++)
+                {
+                    int ID = ListDrinksTmp[j].IDDrink;
+                    ObservableCollection<DrinkImage> images = new ObservableCollection<DrinkImage>();
+                    images = await ApiService.GetDrinkImageById(ID);
+                    if (images.Count > 0)
                     {
-                        int ID = ListDrinksTmp[j].IDDrink;
-                        ObservableCollection<DrinkImage> images = new ObservableCollection<DrinkImage>();
-                        images = await ApiService.GetDrinkImageById(ID);
-                        if (images.Count > 0)
-                        {
-                            ListDrinksTmp[j].DrinkImage = images[0].ImageData;
-                        }
+                        ListDrinksTmp[j].DrinkImage = images[0].ImageData;
                     }
+                }
                 ListCateDrinksTmp.Add(new CateDrink { CategoryName = category.CateName, CategoryImage = category.CateImage, ListDrinkInfo = ListDrinksTmp });
                 ListCateDrinks = ListCateDrinksTmp;
             }
@@ -238,5 +242,19 @@ namespace TheCoffeHouse.ViewModels
             public ObservableCollection<Drink> ListDrinkInfo { get; set; }
         }
         #endregion
+        #region SelectedDrinkCommand
+        public ICommand SelectedDrinkCommand { get; set; }
+        private async void SelectedDrinkCommandExcute(Drink drink)
+        {
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("DrinkSelected", drink);
+            await Navigation.NavigateAsync(PageManagement.ProductDetailPage, navParams);
+        }
+        #endregion
+        public ICommand SelectedCategoryCommand { get; set; }
+        private void SelectedCategoryExec()
+        {
+           
+        }
     }
 }

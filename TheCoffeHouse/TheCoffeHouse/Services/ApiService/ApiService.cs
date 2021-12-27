@@ -463,6 +463,9 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
+
+
+        #region Coupon
         #region GetCoupon
         public static async Task<ObservableCollection<Coupon>> GetCoupons()
         {
@@ -479,6 +482,9 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
+        #endregion
+
+        #region Promotion
         #region GetPromotion
         public static async Task<ObservableCollection<Promotion>> GetPromotions()
         {
@@ -494,6 +500,9 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
+        #endregion
+
+        #region Category
         #region GetCategory
         public static async Task<ObservableCollection<Category>> GetCategory()
         {
@@ -509,6 +518,9 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
+        #endregion
+
+        #region Drink
         #region GetDrink
         public static async Task<ObservableCollection<Drink>> GetDrink()
         {
@@ -544,6 +556,8 @@ namespace TheCoffeHouse.Services.ApiService
             return await GetList<ObservableCollection<DrinkImage>>(url);
         }
         #endregion
+        #endregion
+
 
         #region Cart
         #region GetCartByIDUser

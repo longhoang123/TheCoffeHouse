@@ -90,12 +90,12 @@
                                     <Label
                                     FontAttributes="Bold"
                                     FontSize="Large"
-                                    Text="Long Nguyễn"
+                                    Text="{Binding User.Name}"
                                     TextColor="White" />
                                     <Label
                                     FontAttributes="Bold"
                                     FontSize="Medium"
-                                    Text="0 BEAN - Mới"
+                                    Text="{Binding User.Bean, StringFormat='{0} Bean - Mới'}"
                                     TextColor="White" />
                                 </StackLayout>
                                 <StackLayout

@@ -50,7 +50,7 @@
                     </StackLayout>
                     <Label Text="lấy voucher này" TextColor="White" FontSize="Medium"></Label>
                 </StackLayout>
-                <Button Text="Đổi ưu đãi" Command="{Binding ChangePromotion}" FontAttributes="Bold" TextColor="DarkGoldenrod" BackgroundColor="AntiqueWhite" CornerRadius="30" HorizontalOptions="EndAndExpand" WidthRequest="140" HeightRequest="60" Margin="5"></Button>
+                <Button Text="Đổi ưu đãi" Command="{Binding ChangePromotion}" IsEnabled="{Binding PromotionEnable}" FontAttributes="Bold" TextColor="DarkGoldenrod" BackgroundColor="AntiqueWhite" CornerRadius="30" HorizontalOptions="EndAndExpand" WidthRequest="140" HeightRequest="60" Margin="5"></Button>
             </StackLayout>
         </Frame>
     </Grid>

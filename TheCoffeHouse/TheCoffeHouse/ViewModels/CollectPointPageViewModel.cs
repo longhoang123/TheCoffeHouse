@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
@@ -30,23 +31,53 @@ namespace TheCoffeHouse.ViewModels
             OpenExchangePromotionPage = new DelegateCommand(OpenExchangePromotionPageExcute);
             OpenHistoryPage = new DelegateCommand(OpenHistoryPageExcute);
             OpenPrivacyPolicyPage = new DelegateCommand(OpenPrivacyPolicyPageExcute);
+            instance = this;
         }
+        public static CollectPointPageViewModel instance;
         private async void initcoupon()
         {
             ListCoupon = await ApiService.GetCoupons() ?? new ObservableCollection<Coupon>();
-            ListPromotion= await ApiService.GetPromotions() ?? new ObservableCollection<Promotion>();
+            ListPromotion = await ApiService.GetPromotions() ?? new ObservableCollection<Promotion>();
         }
-        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        public async void inituser()
         {
-            if (parameters != null && parameters.Keys.Count() > 0)
-            {
-                isNavFromPayment = parameters.GetValue<bool>(ParamKey.IsNavigateFromPaymentPage.ToString());
-            }
-            base.OnNavigatedNewTo(parameters);
-
+            User = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
         }
         #region Properties
         bool isNavFromPayment = false;
+
+        private ObservableCollection<Coupon> _listCoupon;
+        public ObservableCollection<Coupon> ListCoupon
+        {
+            get => _listCoupon;
+            set
+            {
+                SetProperty(ref _listCoupon, value);
+                RaisePropertyChanged("ListCoupon");
+            }
+        }
+
+        private ObservableCollection<Promotion> _listPromotion;
+        public ObservableCollection<Promotion> ListPromotion
+        {
+            get => _listPromotion;
+            set
+            {
+                SetProperty(ref _listPromotion, value);
+                RaisePropertyChanged("ListPromotion");
+            }
+        }
+        private User _user;
+
+        public User User
+        {
+            get { return _user; }
+            set
+            {
+                SetProperty(ref _user, value);
+                RaisePropertyChanged("User");
+            }
+        }
         #endregion
         #region OpenPage
         public ICommand OpenHistoryPage { get; set; }
@@ -87,29 +118,6 @@ namespace TheCoffeHouse.ViewModels
         private async void OpenAllCouponPageExcute()
         {
             await Navigation.NavigateAsync(PageManagement.AllCouponPage);
-        }
-        #endregion
-        #region List
-        private ObservableCollection<Coupon> _listCoupon;
-        public ObservableCollection<Coupon> ListCoupon
-        {
-            get => _listCoupon;
-            set
-            {
-                SetProperty(ref _listCoupon, value);
-                RaisePropertyChanged("ListCoupon");
-            }
-        }
-
-        private ObservableCollection<Promotion> _listPromotion;
-        public ObservableCollection<Promotion> ListPromotion
-        {
-            get => _listPromotion;
-            set
-            {
-                SetProperty(ref _listPromotion, value);
-                RaisePropertyChanged("ListPromotion");
-            }
         }
         #endregion
 

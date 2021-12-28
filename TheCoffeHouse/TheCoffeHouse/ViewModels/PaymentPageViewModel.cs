@@ -417,7 +417,7 @@ namespace TheCoffeHouse.ViewModels
                 OrderPageViewModel.instance.initQty();
                 await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn đã đặt hàng thành công", "OK");
                 //App.instance.naviToOtherPage();
-                await Navigation.NavigateAsync($"../../../{PageManagement.HistoryPage}");               
+                await Navigation.NavigateAsync($"../../{PageManagement.HistoryPage}");               
             }
 
 
@@ -439,7 +439,7 @@ namespace TheCoffeHouse.ViewModels
         {
             NavigationParameters navParam = new NavigationParameters();
             navParam.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
-            Navigation.NavigateAsync(PageManagement.CollectPointPage, navParam);
+            Navigation.NavigateAsync(PageManagement.AllCouponPage, navParam);
         }
         #endregion
         #region DeleteCouponCommand

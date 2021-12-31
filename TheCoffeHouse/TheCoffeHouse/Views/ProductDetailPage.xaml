@@ -11,9 +11,17 @@
         <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
             <Grid RowDefinitions="3*, 7*" VerticalOptions="Fill">
                 <!--Hình sp-->
-                <Frame Padding="0" CornerRadius="10" HasShadow="False" >
-                    <Image x:Name="ImageProduct" Source="{Binding ImagePro}"  />
-                </Frame>
+                <ScrollView Orientation="Horizontal"  HorizontalScrollBarVisibility="Never" >
+                    <StackLayout Orientation="Horizontal"  Spacing="0.5" BindableLayout.ItemsSource="{Binding ListImage}"  >
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="0">
+                                    <Image WidthRequest="300"  Aspect="AspectFill" Source="{Binding ImageData}"  />
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
                 <Image
                 Margin="15"
                 HeightRequest="30"

@@ -4,6 +4,7 @@ using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using TheCoffeHouse.Constant;
@@ -33,13 +34,14 @@ namespace TheCoffeHouse.ViewModels
             SizeItem = "Nhỏ";
         }
      
-        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        public override async void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
            
             selectedDrink = parameters.GetValue<Drink>("DrinkSelected");
             NamePro = selectedDrink.DrinkName;
             ImagePro = selectedDrink.DrinkImage;
+            ListImage = await ApiService.GetDrinkImageById(Convert.ToInt32(selectedDrink.IDDrink));
             PricePro = selectedDrink.DrinkPrice;
             DesPro = selectedDrink.DrinkDescription;
             QuantityDetailCart = 1;
@@ -143,14 +145,26 @@ namespace TheCoffeHouse.ViewModels
                 RaisePropertyChanged("selectedDrink");
             }
         }
-        private string _ImagePro;
+
+        private ObservableCollection<DrinkImage> _ListImage;
+
+        public ObservableCollection<DrinkImage> ListImage
+        {
+            get { return _ListImage; }
+            set
+            {
+                SetProperty(ref _ListImage, value);
+            }
+        }
+
+        private string _imagePro;
 
         public string ImagePro
         {
-            get { return _ImagePro; }
+            get { return _imagePro; }
             set
             {
-                    SetProperty(ref _ImagePro, value);
+                    SetProperty(ref _imagePro, value);
                     RaisePropertyChanged(ImagePro);
             }
         }

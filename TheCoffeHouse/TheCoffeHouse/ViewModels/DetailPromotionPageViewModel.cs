@@ -130,7 +130,7 @@ namespace TheCoffeHouse.ViewModels
             user.Bean -= Convert.ToInt32(NumPointPromotion);
             await ApiService.UpdateUser(user); 
             await DetailPromotionPopup.Instance.Show(SelectedPromotion.Brand, SelectedPromotion.PromotionCode, SelectedPromotion.PromotionDiscount.ToString(), SelectedPromotion.PromotionDes);
-            //SendMailExtension.SendEmail("Mã giảm giá","Chúc mừng bạn đã nhận được một mã giảm giá\n"+ "Mã giảm giá của bạn là: " + SelectedPromotion.PromotionCode+"\n"+SelectedPromotion.PromotionDes, "nguyenlong2k14@gmail.com");
+            SendMailExtension.SendEmail("Mã giảm giá","Chúc mừng bạn đã nhận được một mã giảm giá\n"+ "Mã giảm giá của bạn là: " + SelectedPromotion.PromotionCode+"\n"+SelectedPromotion.PromotionDes, "nguyenlong2k14@gmail.com");
         }
         #endregion
         

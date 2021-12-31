@@ -70,11 +70,82 @@
 
                     </Frame>
 
-                    <controls:CollectPointCard
+                    <!--<controls:CollectPointCard
                         Name="{Binding User.Name}"
                         BarCode="{Binding Image}"
                         Bean="{Binding User.Bean, StringFormat='{0} Bean - Mới'}"
-                        IsVisible="{Binding IsLogedin}" />
+                        IsVisible="{Binding IsLogedin}" />-->
+
+                    <Frame
+                        Margin="20,40"
+                        Padding="20,0,20,20"
+                        Background="bg_art_coffee.jpg"
+                        BackgroundColor="DarkOrange"
+                        CornerRadius="10"
+                        IsVisible="{Binding IsLogedin}">
+                        <Grid RowDefinitions="*">
+                            <Image
+                                Margin="-20,0,-20,-20"
+                                HeightRequest="200"
+                                Scale="1.8"
+                                Source="bg_pointpage.png"
+                                WidthRequest="200" />
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Padding="0,10,0,0">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="Large"
+                                            Text="{Binding User.Name}"
+                                            TextColor="White" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="Medium"
+                                            Text="{Binding User.Bean, StringFormat='{0} Bean - Mới'}"
+                                            TextColor="White" />
+                                    </StackLayout>
+                                    <StackLayout
+                                        HorizontalOptions="EndAndExpand"
+                                        Orientation="Horizontal"
+                                        VerticalOptions="Start">
+                                        <Frame
+                                            Margin="0,-8,0,0"
+                                            Padding="0"
+                                            BackgroundColor="DarkOrange"
+                                            BorderColor="DarkGray"
+                                            CornerRadius="10"
+                                            HasShadow="False">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image
+                                                    Margin="12,0,6,0"
+                                                    HeightRequest="16"
+                                                    HorizontalOptions="Center"
+                                                    Opacity="0.5"
+                                                    Source="arrow_down.png"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="16" />
+                                                <Label
+                                                    Padding="0,12,12,12"
+                                                    Text="Tích điểm"
+                                                    TextColor="White" />
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Frame
+                                    Margin="0,40,0,0"
+                                    Padding="10"
+                                    BackgroundColor="White"
+                                    BorderColor="Transparent"
+                                    CornerRadius="10">
+                                    <Image
+                                        HeightRequest="80"
+                                        Source="BarCode.png"
+                                        WidthRequest="300" />
+                                </Frame>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
 
                     <Frame BackgroundColor="White" CornerRadius="10">
                         <StackLayout Spacing="20">

@@ -34,6 +34,7 @@ namespace TheCoffeHouse.ViewModels
 
             OpenLoginPageCommand = new DelegateCommand(OpenLoginPageExecute);
             OpenDeliveryCommand = new DelegateCommand(OpenDeliveryExecute);
+            OpenTakeAwayCommand = new DelegateCommand(OpenTakeAwayExecute);
             OpenRewardPageCommand = new DelegateCommand(OpenRewardPageExecute);
             OpenEditBookingPopupCommand = new DelegateCommand(OpenEditBookingPopupExecute);
             OpenPost1Command = new DelegateCommand<HomePostUIItem>(selectedPostItem => OpenPost1Execute(selectedPostItem));
@@ -251,6 +252,14 @@ namespace TheCoffeHouse.ViewModels
         private async void OpenDeliveryExecute()
         {
             await Navigation.SelectTabAsync(PageManagement.OrderPage);
+        }
+        #endregion
+
+        #region OpenTakeAwayCommand
+        public ICommand OpenTakeAwayCommand { get; set; }
+        private async void OpenTakeAwayExecute()
+        {
+            await Navigation.SelectTabAsync(PageManagement.StorePage);
         }
         #endregion
 

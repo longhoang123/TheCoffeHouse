@@ -54,7 +54,7 @@ namespace TheCoffeHouse.ViewModels
             ObservableCollection<Drink> ListDrinksTmp = new ObservableCollection<Drink>();
             ObservableCollection<Category> ListCateTmp = new ObservableCollection<Category>();
             ListCategory = await ApiService.GetCategory();
-            ListCateTmp = ListCategory;
+            ListCateTmp = await ApiService.GetCategory();
             ListCategory.Add(new Category { IDCate = 9999, CateImage = "Coffee_cup.jpg", CateName = "Tất cả" });
             ObservableCollection<CateDrink> ListCateDrinksTmp = new ObservableCollection<CateDrink>();
             for (int i = 0; i < ListCateTmp.Count; i++)

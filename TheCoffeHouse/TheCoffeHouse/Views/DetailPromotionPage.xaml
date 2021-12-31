@@ -2,15 +2,17 @@
 <base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
                prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.DetailPromotionPage">
     <Grid BindableLayout.ItemsSource="{Binding PromotionInfo}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollView  Grid.Row="0" Margin="0,0,0,-40">
-            <Frame CornerRadius="40" BackgroundColor="White" Margin="0,20,0,0" Padding="0,0,0,160">
+        <controls:ContentPageHeaderView Title="Chi tiết khuyến mãi"/>
+        <ScrollView  Grid.Row="1" Margin="0,0,0,-40">
+            <Frame CornerRadius="40" BackgroundColor="White" Margin="0,0,0,0" Padding="0,0,0,160">
                 <StackLayout Padding="20" Margin="0">
                     <Image Source="{Binding ImagePromotion}" Scale="1.2"></Image>
                     <Frame Margin="0,-20,0,0" Padding="0" CornerRadius="10">
@@ -40,7 +42,7 @@
                 </StackLayout>
             </Frame>
         </ScrollView>
-        <Frame CornerRadius="20" Margin="20,0,20,30" BackgroundColor="DarkGoldenrod" Grid.Row="0" HeightRequest="55" WidthRequest="600" VerticalOptions="End">
+        <Frame CornerRadius="20" Margin="20,0,20,30" BackgroundColor="DarkGoldenrod" Grid.Row="1" HeightRequest="55" WidthRequest="600" VerticalOptions="End">
             <StackLayout Orientation="Horizontal">
                 <StackLayout VerticalOptions="Start">
                     <StackLayout Orientation="Horizontal">

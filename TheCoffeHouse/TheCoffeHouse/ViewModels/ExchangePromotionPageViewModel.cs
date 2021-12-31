@@ -25,14 +25,37 @@ namespace TheCoffeHouse.ViewModels
         {
             ListCategory = new ObservableCollection<Category>();
             ListPromotion = new ObservableCollection<Promotion>();
+            ListSpecialPromotion = new ObservableCollection<Promotion>();
             initcategory();
             OpenAllPromotionPage = new DelegateCommand(OpenAllPromotionPageExcute);
             OpenCollectPointPage = new DelegateCommand(OpenCollectPointPageExcute);
+            SelectedSpecialPromotionCommand = new DelegateCommand<Promotion>(SelectedPromotion => SelectedSpecialPromotionCommandExcute(SelectedPromotion));
         }
         private async void initcategory()
         {
             ListPromotion = await ApiService.GetPromotions() ?? new ObservableCollection<Promotion>();
             ListCategory = await ApiService.GetCategory() ?? new ObservableCollection<Category>();
+            int max = 0;
+            int submax = -1;
+            for(int i=0;i<ListPromotion.Count;i++)
+            {
+                if(Convert.ToInt32(ListPromotion[i].Point)>=max)
+                {
+                    submax = max;
+                    max = Convert.ToInt32(ListPromotion[i].Point);
+                }
+            }
+            for (int i = 0; i < ListPromotion.Count; i++)
+            {
+                if(Convert.ToInt32(ListPromotion[i].Point)==max || Convert.ToInt32(ListPromotion[i].Point)==submax)
+                {
+                    ListSpecialPromotion.Add(ListPromotion[i]);
+                }
+                if(ListSpecialPromotion.Count==2)
+                {
+                    break;
+                }
+            }
         }
         #region OpenPage
         public ICommand OpenCollectPointPage { get; set; }
@@ -48,6 +71,13 @@ namespace TheCoffeHouse.ViewModels
             await Navigation.NavigateAsync(PageManagement.DetailPromotionPage, navParams);
         }
 
+        public ICommand SelectedSpecialPromotionCommand { get; set; }
+        private async void SelectedSpecialPromotionCommandExcute(Promotion promotion)
+        {
+            NavigationParameters navParams = new NavigationParameters();
+            navParams.Add("PromotionSelected", promotion);
+            await Navigation.NavigateAsync(PageManagement.DetailPromotionPage, navParams);
+        }
 
         public ICommand OpenAllPromotionPage { get; set; }
         private async void OpenAllPromotionPageExcute()
@@ -77,6 +107,17 @@ namespace TheCoffeHouse.ViewModels
             {
                 SetProperty(ref _listPromotion, value);
                 RaisePropertyChanged("ListPromotion");
+            }
+        }
+
+        private ObservableCollection<Promotion> _listSpecialPromotion;
+        public ObservableCollection<Promotion> ListSpecialPromotion
+        {
+            get => _listSpecialPromotion;
+            set
+            {
+                SetProperty(ref _listSpecialPromotion, value);
+                RaisePropertyChanged("ListSpecialPromotion");
             }
         }
         #endregion

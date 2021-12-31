@@ -15,7 +15,7 @@ namespace TheCoffeHouse.Custom
         public CustomPromotionFrameSpecial()
         {
             InitializeComponent();
-            ImageButton.SetBinding(Image.SourceProperty, new Binding("Source", source: this));
+            ImageButton.SetBinding(Image.SourceProperty, new Binding("SourceImage", source: this));
             Name.SetBinding(Label.TextProperty, new Binding("NameText", source: this));
             Size.SetBinding(Label.TextProperty, new Binding("SizeText", source: this));
             NumPoint.SetBinding(Button.TextProperty, new Binding("NumPointText", source: this));
@@ -29,42 +29,27 @@ namespace TheCoffeHouse.Custom
             set { SetValue(NumPointTextProperty, value); }
         }
 
-        public static readonly BindableProperty DesTextProperty =
+        public static readonly BindableProperty SizeTextProperty =
            BindableProperty.Create("SizeText", typeof(string), typeof(CustomPromotionFrameSpecial), default(string));
         public string SizeText
         {
-            get { return (string)GetValue(DesTextProperty); }
-            set { SetValue(DesTextProperty, value); }
+            get { return (string)GetValue(SizeTextProperty); }
+            set { SetValue(SizeTextProperty, value); }
         }
 
-        public static readonly BindableProperty BrandTextProperty =
+        public static readonly BindableProperty NameTextProperty =
             BindableProperty.Create("NameText", typeof(string), typeof(CustomPromotionFrameSpecial), default(string));
         public string NameText
         {
-            get { return (string)GetValue(BrandTextProperty); }
-            set { SetValue(BrandTextProperty, value); }
+            get { return (string)GetValue(NameTextProperty); }
+            set { SetValue(NameTextProperty, value); }
         }
-        public event EventHandler Clicked;
-        public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(CustomPromotionFrameSpecial), null);
-        public ICommand Command
+        public static readonly BindableProperty SourceImageProperty =
+             BindableProperty.Create("SourceImage", typeof(string), typeof(CustomPromotionFrameSpecial), default(string));
+        public string SourceImage
         {
-            get { return (ICommand)GetValue(CommandProperty); }
-            set { SetValue(CommandProperty, value); }
-        }
-        public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(CustomPromotionFrameSpecial), null);
-        public object CommandParameter
-        {
-            get { return (object)GetValue(CommandParameterProperty); }
-            set { SetValue(CommandParameterProperty, value); }
-        }
-        public static readonly BindableProperty ImageSourceProperty =
-             BindableProperty.Create("Source", typeof(ImageSource), typeof(CustomPromotionFrameSpecial), default(ImageSource));
-        public ImageSource Source
-        {
-            get { return (ImageSource)GetValue(ImageSourceProperty); }
-            set { SetValue(ImageSourceProperty, value); }
+            get { return (string)GetValue(SourceImageProperty); }
+            set { SetValue(SourceImageProperty, value); }
         }
     }
 }

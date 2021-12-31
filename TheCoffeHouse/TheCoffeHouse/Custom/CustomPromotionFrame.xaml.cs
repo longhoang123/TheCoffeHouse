@@ -44,21 +44,6 @@ namespace TheCoffeHouse.Custom
             get { return (string)GetValue(BrandTextProperty); }
             set { SetValue(BrandTextProperty, value); }
         }
-        public event EventHandler Clicked;
-        public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(CustomPromotionFrame), null);
-        public ICommand Command
-        {
-            get { return (ICommand)GetValue(CommandProperty); }
-            set { SetValue(CommandProperty, value); }
-        }
-        public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(CustomPromotionFrame), null);
-        public object CommandParameter
-        {
-            get { return (object)GetValue(CommandParameterProperty); }
-            set { SetValue(CommandParameterProperty, value); }
-        }
         public static readonly BindableProperty SourceImageProperty =
              BindableProperty.Create("SourceImage", typeof(string), typeof(CustomPromotionFrame), default(string));
         public string SourceImage

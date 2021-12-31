@@ -2,11 +2,13 @@
 <base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base ="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:prism="http://prismlibrary.com" xmlns:custom="clr-namespace:TheCoffeHouse.Custom" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+               prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.AllCouponPage"
              Title="All Coupon">
-    <StackLayout  Margin="0, 20, 0, 20" Padding="10" BackgroundColor="WhiteSmoke">
+    <Grid RowDefinitions="auto, *">
+        <controls:ContentPageHeaderView Title="Tất cả mã giảm giá" />
+        <StackLayout  Margin="0, 0, 0, 20" Padding="10" BackgroundColor="WhiteSmoke" Grid.Row="1">
             <Label Text="Sắp hết hạn" TextColor="Black" FontSize="Large" Margin="0,10,0,20" FontAttributes="Bold"></Label>
         <ListView HasUnevenRows="True" 
                   ItemsSource="{Binding ListCoupon}" 
@@ -22,4 +24,5 @@
             </ListView.ItemTemplate>
         </ListView>
         </StackLayout>
+    </Grid>
 </base:BasePage>

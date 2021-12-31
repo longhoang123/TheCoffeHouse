@@ -2,12 +2,14 @@
 <base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base ="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+               prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.DetailCouponPage">
-    <ScrollView>
+    <Grid RowDefinitions="auto, *">
+        <controls:ContentPageHeaderView Title="Chi tiết mã giảm giá" />
+        <ScrollView Grid.Row="1">
         <StackLayout BindableLayout.ItemsSource="{Binding CouponInfo}">
-            <Frame BackgroundColor="White" CornerRadius="40" Padding="20" Margin="10,30,10,30">
+            <Frame BackgroundColor="White" CornerRadius="40" Padding="20" Margin="10,0,10,30">
                 <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
                     <Label Text="The Coofee House" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                     <Label Text="{Binding TitleCoupon}" FontSize="Medium" Margin="10" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
@@ -27,4 +29,5 @@
             </Frame>
         </StackLayout>
     </ScrollView>
+    </Grid>
 </base:BasePage>

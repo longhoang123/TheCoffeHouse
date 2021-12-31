@@ -59,6 +59,14 @@ namespace TheCoffeHouse.ViewModels
                 StoreName = order.StoreName;
                 StoreAddress = order.StoreAddress;
             }
+            if(order.StatusOrder== "Đã hủy đơn")
+            {
+                isCancelEnable = false;
+            }
+            else
+            {
+                isCancelEnable = true;
+            }
             init();
 
         }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
 using TheCoffeHouse.Services;
@@ -25,11 +26,23 @@ namespace TheCoffeHouse.ViewModels
             ListCoupon = new ObservableCollection<Coupon>();
             initcoupon();
         }
-
+        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedNewTo(parameters);
+            if (parameters != null && parameters.Keys.Count() > 0)
+            {
+                isNavFromPayment = parameters.GetValue<bool>(ParamKey.IsNavigateFromPaymentPage.ToString());
+            }
+        }
+        bool isNavFromPayment = false;
         private async void OpenDetailCouponPageExcute()
         {
             NavigationParameters navParams = new NavigationParameters();
             navParams.Add("CouponSelected", SelectedCoupon);
+            if (isNavFromPayment)
+            {
+                navParams.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
+            }
             await Navigation.NavigateAsync(PageManagement.DetailCouponPage, navParams);
         }
 

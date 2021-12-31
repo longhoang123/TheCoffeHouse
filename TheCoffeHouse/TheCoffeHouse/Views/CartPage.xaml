@@ -12,12 +12,12 @@
         <ScrollView Grid.Row="1">
             <StackLayout BackgroundColor="White">
                 <StackLayout VerticalOptions="CenterAndExpand" 
-                             IsVisible="{Binding isEmpty}"
+                             IsVisible="{Binding isEmpty,Converter={xct:InvertedBoolConverter}}"
                              >
                 <Label HorizontalOptions="Center" FontAttributes="Bold" TextColor="Orange" FontSize="20" Text="Giỏ hàng trống" />
                 </StackLayout>
             <ListView
-                        IsVisible="{Binding isEmpty,Converter={xct:InvertedBoolConverter}}"
+                        IsVisible="{Binding isEmpty}"
                         x:Name="ListItemCart"
                         HasUnevenRows="True" 
                         ItemsSource="{Binding ListDetailCart}"
@@ -122,7 +122,7 @@
             </ListView>
             </StackLayout>
         </ScrollView>
-        <Frame Grid.Row="2" Padding="0" IsVisible="{Binding isEmpty,Converter={xct:InvertedBoolConverter}}" >
+        <Frame Grid.Row="2" Padding="0" IsVisible="{Binding isEmpty}" >
             <StackLayout Margin="20,0,10,0" Orientation="Horizontal" HorizontalOptions="Fill"  HeightRequest="80" Spacing="15">
                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                     <Label   Text="Tổng tiền thanh toán" TextColor="Gray" FontSize="20" FontAttributes="Bold"

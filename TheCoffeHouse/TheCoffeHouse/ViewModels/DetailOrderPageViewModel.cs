@@ -254,6 +254,17 @@ namespace TheCoffeHouse.ViewModels
                     StatusOrder = result.StatusOrder;
                     isCancelEnable = false;
                     HistoryPageViewModel.instance.init();
+                    var user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
+                    int CurrentBean = 0;
+                    if (user != null)
+                    {
+                        CurrentBean = Convert.ToInt32(user.Bean);
+                        CurrentBean -= order.Point;
+                        await ApiService.UpdateUserBean(user.UserID, CurrentBean);
+                        ConstaintVaribles.user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
+                        HomeTabPageViewModel.instance.setisLogin();
+                        CollectPointPageViewModel.instance.inituser();
+                    }
                 }
             }
         }

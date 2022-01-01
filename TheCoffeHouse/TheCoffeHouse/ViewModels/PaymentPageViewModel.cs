@@ -414,9 +414,19 @@ namespace TheCoffeHouse.ViewModels
             if (isChecked)
             {
                 await ApiService.CreateOrder(order);
+                var user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
+                int CurrentBean = 0;
+                if (user != null)
+                {
+                    CurrentBean = Convert.ToInt32(user.Bean);
+                    CurrentBean += TotalPriceCart * 10 / 100;
+                    await ApiService.UpdateUserBean(user.UserID, CurrentBean);
+                    ConstaintVaribles.user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
+                    HomeTabPageViewModel.instance.setisLogin();
+                    CollectPointPageViewModel.instance.inituser();
+                }
                 OrderPageViewModel.instance.initQty();
                 await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn đã đặt hàng thành công", "OK");
-                //App.instance.naviToOtherPage();
                 await Navigation.NavigateAsync($"../../{PageManagement.HistoryPage}");               
             }
 
@@ -450,6 +460,7 @@ namespace TheCoffeHouse.ViewModels
             hasCoupon = false;
             Discount = 0;
             TotalPriceCart = cart.TotalPrice - cart.TotalPrice * Discount / 100 + Shipping;
+
         }
         #endregion
     }

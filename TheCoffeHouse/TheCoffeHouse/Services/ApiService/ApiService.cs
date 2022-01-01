@@ -455,6 +455,16 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
+
+        #region UpdateUserBean
+        public static async Task<User> UpdateUserBean(int userID, int Bean)
+        {
+            var url = ApiUrl.UpdateUserBean(userID, Bean);
+            return await Get<User>(url);
+        }
+
+        #endregion
+
         #region RegisterUser
         public static async Task<Dictionary<string, int>> RegisterUser(User user)
         {

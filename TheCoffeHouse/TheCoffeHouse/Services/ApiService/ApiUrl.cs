@@ -35,9 +35,9 @@ namespace TheCoffeHouse.Services.ApiService
         {
             return Link($"/UserProfileController/UpdateUser");
         }
-        public static string UpdateUserBean()
+        public static string UpdateUserBean(int userID, int Bean)
         {
-            return Link($"/UserProfileController/UpdateUserBean");
+            return Link($"/UserProfileController/UpdateUserBean?userID={userID}&bean={Bean}");
         }
 
         #region Thanh Long

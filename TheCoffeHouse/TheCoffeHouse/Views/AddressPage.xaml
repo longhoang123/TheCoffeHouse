@@ -1,26 +1,170 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
-             xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
-               prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="TheCoffeHouse.Views.AddressPage"
-             Title="Địa chỉ đã lưu">
-    <Grid RowDefinitions="auto, auto">
+<base:BasePage
+    x:Class="TheCoffeHouse.Views.AddressPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+    xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+    xmlns:custom="clr-namespace:TheCoffeHouse.Custom"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    Title="Địa chỉ đã lưu"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <Grid BackgroundColor="White" RowDefinitions="auto, auto">
         <controls:ContentPageHeaderView Title="Địa chỉ đã lưu" />
-        <Frame Grid.Row="1" BackgroundColor="White" Margin="-10,0" Padding="20,10,20,0" BorderColor="Transparent" HasShadow="True">
-            <StackLayout>
-                <custom:CustomButton ButtonText="Thêm địa chỉ Nhà" SourceImage="home.png" Command="{Binding OpenAddAddressPage}">
-                </custom:CustomButton>
-                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
-                <custom:CustomButton ButtonText="Thêm địa chỉ Công ty" SourceImage="building.png" Command="{Binding OpenAddAddressPage}">
-                </custom:CustomButton>
-                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,10" HeightRequest="1"></Label>
-                <custom:CustomButton ButtonText="Thêm địa chỉ mới" SourceImage="plus.png" Command="{Binding OpenAddAddressPage}">
-                </custom:CustomButton>
-                <Label BackgroundColor="DarkGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="-20,10,-20,0" HeightRequest="1"></Label>
-        </StackLayout>
-        </Frame>
+        <ScrollView
+            Grid.Row="1"
+            Margin="-10,0"
+            BackgroundColor="White">
+            <Frame
+                Padding="20,10,20,0"
+                BackgroundColor="White"
+                BorderColor="Transparent"
+                HasShadow="True">
+                <StackLayout>
+                    <Frame
+                        Padding="10"
+                        BorderColor="Black"
+                        CornerRadius="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenHomeAddress}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal">
+                            <Image
+                                HeightRequest="24"
+                                Source="home.png"
+                                VerticalOptions="Center"
+                                WidthRequest="24" />
+                            <Label
+                                FontSize="Medium"
+                                Text="Địa chỉ Nhà"
+                                VerticalOptions="Center" />
+                            <Image
+                                HeightRequest="16"
+                                HorizontalOptions="EndAndExpand"
+                                IsVisible="{Binding IsHomeAddressVisible, Converter={xct:InvertedBoolConverter}}"
+                                Source="arrow_down.png"
+                                WidthRequest="16" />
+                            <Image
+                                HeightRequest="16"
+                                HorizontalOptions="EndAndExpand"
+                                IsVisible="{Binding IsHomeAddressVisible}"
+                                Source="arrow_up.png"
+                                WidthRequest="16" />
+                        </StackLayout>
+                    </Frame>
+
+                    <StackLayout
+                        x:Name="homeAddresses"
+                        Padding="10,10"
+                        BindableLayout.ItemsSource="{Binding ListHomeAddresses}"
+                        IsVisible="{Binding IsHomeAddressVisible}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Margin="0,5"
+                                    BorderColor="{StaticResource MainColor}"
+                                    CornerRadius="10">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.AddressSelectedCommand, Source={x:Reference Name=homeAddresses}}" CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
+                                    <Grid
+                                        ColumnDefinitions="2*,3*"
+                                        RowDefinitions="auto,auto,auto"
+                                        RowSpacing="2">
+                                        <Label
+                                            Grid.ColumnSpan="2"
+                                            FontAttributes="Bold"
+                                            Text="{Binding Name}" />
+                                        <Label Grid.Row="1" Text="{Binding ReceiverName, StringFormat='Tên: {0}'}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding ReceiverPhone, StringFormat='SĐT: {0}'}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding AddressString, StringFormat='Địa chỉ: {0}'}" />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+
+                    <Frame
+                        Padding="10"
+                        BorderColor="Black"
+                        CornerRadius="5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenCompanyAddress}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal">
+                            <Image
+                                HeightRequest="24"
+                                Source="building.png"
+                                VerticalOptions="Center"
+                                WidthRequest="24" />
+                            <Label
+                                FontSize="Medium"
+                                Text="Địa chỉ Công ty"
+                                VerticalOptions="Center" />
+                            <Image
+                                HeightRequest="16"
+                                HorizontalOptions="EndAndExpand"
+                                IsVisible="{Binding IsCompanyAddressVisible, Converter={xct:InvertedBoolConverter}}"
+                                Source="arrow_down.png"
+                                WidthRequest="16" />
+                            <Image
+                                HeightRequest="16"
+                                HorizontalOptions="EndAndExpand"
+                                IsVisible="{Binding IsCompanyAddressVisible}"
+                                Source="arrow_up.png"
+                                WidthRequest="16" />
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout
+                        x:Name="companyAddresses"
+                        Padding="10,10"
+                        BindableLayout.ItemsSource="{Binding ListCompanyAddresses}"
+                        IsVisible="{Binding IsCompanyAddressVisible}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Margin="0,5"
+                                    BorderColor="{StaticResource MainColor}"
+                                    CornerRadius="10">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.AddressSelectedCommand, Source={x:Reference Name=companyAddresses}}" CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
+                                    <Grid
+                                        ColumnDefinitions="*,*"
+                                        RowDefinitions="auto,auto,auto"
+                                        RowSpacing="2">
+                                        <Label
+                                            Grid.ColumnSpan="2"
+                                            FontAttributes="Bold"
+                                            Text="{Binding Name}" />
+                                        <Label Grid.Row="1" Text="{Binding ReceiverName, StringFormat='Tên: {0}'}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding ReceiverPhone, StringFormat='SĐT: {0}'}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding AddressString, StringFormat='Địa chỉ: {0}'}" />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <custom:CustomButton
+                        ButtonText="Thêm địa chỉ mới"
+                        Command="{Binding OpenAddAddressPage}"
+                        SourceImage="plus.png" />
+
+                </StackLayout>
+            </Frame>
+        </ScrollView>
     </Grid>
 </base:BasePage>

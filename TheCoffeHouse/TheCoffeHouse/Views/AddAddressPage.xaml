@@ -1,54 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:base ="clr-namespace:TheCoffeHouse.Views.Base"
-             xmlns:prism="http://prismlibrary.com" xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
-               prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="TheCoffeHouse.Views.AddAddressPage">
+<base:BasePage
+    x:Class="TheCoffeHouse.Views.AddAddressPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:TheCoffeHouse.Views.Base"
+    xmlns:controls="clr-namespace:TheCoffeHouse.Controls"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:renderer="clr-namespace:TheCoffeHouse.Renderers"
+    xmlns:xct="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    prism:ViewModelLocator.AutowireViewModel="True">
+
+    <base:BasePage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="InputFrame" TargetType="Frame">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="10,0" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HasShadow" Value="False" />
+            </Style>
+            <Style x:Key="InputEntry" TargetType="Entry">
+                <Setter Property="Margin" Value="0,10" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </base:BasePage.Resources>
+
     <Grid RowDefinitions="*">
         <ScrollView>
             <Grid RowDefinitions="auto, auto,auto">
                 <controls:ContentPageHeaderView Title="{Binding PageTitle}" />
-                <Frame Grid.Row="1" BackgroundColor="White" Padding="10" BorderColor="Transparent" HasShadow="True">
+                <Frame
+                    Grid.Row="1"
+                    Padding="10"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    HasShadow="True">
                     <StackLayout>
-                        <Label Text="Tên địa chỉ" FontAttributes="Bold"></Label>
-                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
-                            <Entry Text="Nhà" IsEnabled="False"></Entry>
+                        <Label FontAttributes="Bold" Text="Tên địa chỉ*" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <renderer:CustomEntry
+                                Placeholder="Nhập tên địa chỉ"
+                                Style="{StaticResource InputEntry}"
+                                Text="{Binding Name}" />
                         </Frame>
-                        <Label Text="Địa chỉ*" FontAttributes="Bold"></Label>
-                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
-                            <Entry Placeholder="Nhập địa chỉ"></Entry>
+                        <Label FontAttributes="Bold" Text="Loại địa chỉ" />
+                        <xct:RadioButtonGroupView
+                            SelectedIndex="{Binding IsHomeType}"
+                            Margin="10,0"
+                            Orientation="Horizontal"
+                            Spacing="40">
+                            <xct:RadioButton
+                                IsChecked="true"
+                                CircleColor="{StaticResource MainColor}"
+                                CircleSize="-100"
+                                Text="Nhà"
+                                TextFontSize="14" />
+                            <xct:RadioButton
+                                CircleColor="{StaticResource MainColor}"
+                                CircleSize="-100"
+                                Text="Công ty"
+                                TextFontSize="14" />
+                        </xct:RadioButtonGroupView>
+                        <Label FontAttributes="Bold" Text="Địa chỉ*" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <renderer:CustomEntry
+                                Placeholder="Nhập địa chỉ"
+                                Style="{StaticResource InputEntry}"
+                                Text="{Binding AddressDetail}" />
                         </Frame>
-                        <Label Text="Tòa nhà, số tầng" FontAttributes="Bold"></Label>
-                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
-                            <Entry Placeholder="Tên tòa nhà, số tầng"></Entry>
+                        <Label FontAttributes="Bold" Text="Tòa nhà, số tầng" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <renderer:CustomEntry
+                                Placeholder="Tên tòa nhà, số tầng"
+                                Style="{StaticResource InputEntry}"
+                                Text="{Binding Block}" />
                         </Frame>
-                        <Label Text="Cổng" FontAttributes="Bold"></Label>
-                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
-                            <Entry Placeholder="Cổng"></Entry>
+                        <Label FontAttributes="Bold" Text="Cổng" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <renderer:CustomEntry
+                                Placeholder="Cổng"
+                                Style="{StaticResource InputEntry}"
+                                Text="{Binding Gate}" />
                         </Frame>
-                        <Label Text="Ghi chú khác" FontAttributes="Bold"></Label>
-                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
-                            <Entry Placeholder="Hướng dẫn giao hàng"></Entry>
+                        <Label FontAttributes="Bold" Text="Ghi chú khác" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <renderer:CustomEntry
+                                Placeholder="Hướng dẫn giao hàng"
+                                Style="{StaticResource InputEntry}"
+                                Text="{Binding Note}" />
                         </Frame>
                     </StackLayout>
                 </Frame>
-                <Frame Grid.Row="2" BackgroundColor="White" Margin="0,5,0,10" Padding="10" BorderColor="Transparent" HasShadow="True">
+                <Frame
+                    Grid.Row="2"
+                    Margin="0,5,0,10"
+                    Padding="10"
+                    BackgroundColor="White"
+                    BorderColor="Transparent"
+                    HasShadow="True">
                     <StackLayout>
-                        <Label Text="Tên người nhận*" FontAttributes="Bold"></Label>
-                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5" HasShadow="False">
-                            <Entry Text="Long Nguyễn" IsEnabled="False"></Entry>
+                        <Label FontAttributes="Bold" Text="Tên người nhận*" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <renderer:CustomEntry
+                                Placeholder="Nhập tên người nhận"
+                                Style="{StaticResource InputEntry}"
+                                Text="{Binding ReceiverName}" />
                         </Frame>
-                        <Label Text="Số điện thoại*" FontAttributes="Bold"></Label>
-                        <Frame CornerRadius="10" BackgroundColor="White" Padding="10,0" Margin="5,0,5,80" HasShadow="False">
-                            <Entry Placeholder="0388813493" MaxLength="10" Keyboard="Telephone"></Entry>
+                        <Label FontAttributes="Bold" Text="Số điện thoại*" />
+                        <Frame Margin="5,0,5,80" Style="{StaticResource InputFrame}">
+                            <renderer:CustomEntry
+                                Keyboard="Telephone"
+                                MaxLength="10"
+                                Placeholder="Nhập tên người nhận"
+                                Style="{StaticResource InputEntry}"
+                                Text="{Binding ReceiverPhone}" />
                         </Frame>
                     </StackLayout>
                 </Frame>
             </Grid>
         </ScrollView>
-        <Frame VerticalOptions="End" BackgroundColor="White" Padding="15">
-            <Button Text="Xong" CornerRadius="20" BackgroundColor="DarkGoldenrod" HeightRequest="55" VerticalOptions="Center"></Button>
+        <Frame
+            Padding="15"
+            BackgroundColor="White"
+            VerticalOptions="End">
+            <Button
+                BackgroundColor="DarkGoldenrod"
+                Command="{Binding CreateAddressCommand}"
+                CornerRadius="20"
+                HeightRequest="55"
+                Text="Xong"
+                VerticalOptions="Center" />
         </Frame>
     </Grid>
 </base:BasePage>

@@ -474,6 +474,24 @@ namespace TheCoffeHouse.Services.ApiService
 
         #endregion
 
+        #region AddAddress
+        public static async Task<Dictionary<string, int>> AddAddress(Address address)
+        {
+            var url = ApiUrl.AddAddress();
+            return await Post<Dictionary<string, int>>(url, address);
+        }
+
+        #endregion
+
+        #region GetAddresses
+        public static async Task<ObservableCollection<Address>> GetAddresses(int userID)
+        {
+            var url = ApiUrl.GetAddresses(userID);
+            return await GetList<ObservableCollection<Address>>(url);
+        }
+
+        #endregion
+
 
         #region Coupon
         #region GetCoupon

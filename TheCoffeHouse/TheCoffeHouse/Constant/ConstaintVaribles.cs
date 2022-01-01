@@ -15,6 +15,7 @@ namespace TheCoffeHouse.Constant
         public static int TotalPrice;
         public static Coupon Coupon;
         public static Store Store;
+        public static Address Address;
         public static User user;
     }
 }

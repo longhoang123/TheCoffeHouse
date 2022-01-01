@@ -13,5 +13,7 @@ namespace TheCoffeHouse.Enums
         StoreSelected,
         CouponSelected,
         IsNavigateFromPaymentPage,
+        NeedRefresh,
+        SelectedAddress,
     }
 }

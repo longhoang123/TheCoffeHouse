@@ -138,7 +138,7 @@ namespace TheCoffeHouse.ViewModels
             var result = await ApiService.UpdateUser(user);
             if(result != null)
             {
-                DependencyService.Get<Toast>().Show("Update succesfully");
+                DependencyService.Get<Toast>().Show("Cập nhật thành công");
                 await Navigation.GoBackAsync();
             }
         }

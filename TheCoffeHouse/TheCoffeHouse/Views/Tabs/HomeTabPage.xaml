@@ -95,12 +95,12 @@
                                     <StackLayout Padding="0,10,0,0">
                                         <Label
                                             FontAttributes="Bold"
-                                            FontSize="Large"
+                                            FontSize="Medium"
                                             Text="{Binding User.Name}"
                                             TextColor="White" />
                                         <Label
                                             FontAttributes="Bold"
-                                            FontSize="Medium"
+                                            FontSize="Small"
                                             Text="{Binding User.Bean, StringFormat='{0} Bean - Mới'}"
                                             TextColor="White" />
                                     </StackLayout>

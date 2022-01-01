@@ -63,6 +63,7 @@ namespace TheCoffeHouse.ViewModels
         private static HomeTabPageViewModel _instance;
         public static HomeTabPageViewModel Instance => _instance ?? (_instance = new HomeTabPageViewModel());
         Store Storetmp = new Store();
+        Address Addresstmp = new Address();
         private ObservableCollection<ImageSource> _listBanner;
 
         public ObservableCollection<ImageSource> ListBanner
@@ -154,11 +155,22 @@ namespace TheCoffeHouse.ViewModels
             }
         }
 
+        private Address _selectedAddress;
+
+        public Address SelectedAddress
+        {
+            get { return _selectedAddress; }
+            set
+            {
+                SetProperty(ref _selectedAddress, value);
+            }
+        }
+
         #endregion
 
 
 
-       
+
         public override async void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
@@ -180,11 +192,18 @@ namespace TheCoffeHouse.ViewModels
                 if (parameters.TryGetValue(ParamKey.StoreSelected.ToString(), out Storetmp))
                 {
                     ConstaintVaribles.Store = Storetmp;
+                    SelectedStore = Storetmp ?? new Store { StoreAddress = "Chọn cửa hàng để đến lấy" };
+                    //ConstaintVaribles.IDStore = SelectedStore.IDStore;             
+                    BottomTitle = "Đến lấy tại";
+                    BottomAddress = SelectedStore.StoreAddress;
                 }
-                SelectedStore = parameters.GetValue<Store>(ParamKey.StoreSelected.ToString()) ?? new Store{ StoreAddress = "Chọn cửa hàng để đến lấy"};
-                //ConstaintVaribles.IDStore = SelectedStore.IDStore;             
-                BottomTitle = "Đến lấy tại";
-                BottomAddress = SelectedStore.StoreAddress;
+                if (parameters.TryGetValue(ParamKey.SelectedAddress.ToString(), out Addresstmp))
+                {                    
+                    SelectedAddress = Addresstmp ?? new Address { AddressDetail = "Chọn địa chỉ cần giao đến" };
+                    BottomTitle = "Giao đến";
+                    BottomAddress = SelectedAddress.AddressString;
+                }
+
             }
         }
 
@@ -192,6 +211,7 @@ namespace TheCoffeHouse.ViewModels
         {
             ListPost = await ApiService.GetPosts() ?? new ObservableCollection<HomePostItem>();
             SelectedStore = new Store { StoreAddress = "Chọn cửa hàng để đến lấy", StoreDistance = "" };
+            SelectedAddress = new Address { AddressDetail = "Chọn địa chỉ của bạn", ReceiverName = "" };
 
             foreach (var post in ListPost)
             {
@@ -298,7 +318,7 @@ namespace TheCoffeHouse.ViewModels
         public ICommand OpenEditBookingPopupCommand { get; set; }
         private async void OpenEditBookingPopupExecute()
         {
-            await EditBookingPopup.Instance.Show("Đại học công nghệ thông tin", "Thạch Hoàng Long", SelectedStore.StoreAddress, SelectedStore.StoreDistance, () => OpenStoreFunc(), () => OpenAddressFunc());
+            await EditBookingPopup.Instance.Show(SelectedAddress.AddressString, SelectedAddress.ReceiverName, SelectedStore.StoreAddress, SelectedStore.StoreDistance, () => OpenStoreFunc(), () => OpenAddressFunc());
         }
 
         #region OpenStoreFunc

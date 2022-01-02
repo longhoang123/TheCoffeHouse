@@ -28,7 +28,7 @@ namespace TheCoffeHouse.ViewModels
         {
             ChangePromotion = new DelegateCommand(ChangePromotionExcute);
         }
-        public override void OnNavigatedNewTo(INavigationParameters parameters)
+        public override async void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
             SelectedPromotion = parameters.GetValue<Promotion>("PromotionSelected");
@@ -36,15 +36,12 @@ namespace TheCoffeHouse.ViewModels
             ImagePromotion = SelectedPromotion.PromotionImage;
             NumPointPromotion =SelectedPromotion.Point;
             PromotionEnable = false;
-            var user = new User();
-            if (parameters != null && parameters.Keys.Count() > 0)
+            var user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
+            if(user!=null)
             {
-                if (parameters.TryGetValue(ParamKey.CurrentUser.ToString(), out user))
-                {
-                    User = user;
-                }
+                User = user;
             }
-            if(User != null)
+            if (User != null)
             {
                 if (User.Bean >= Convert.ToInt32(NumPointPromotion))
                 {
@@ -125,12 +122,15 @@ namespace TheCoffeHouse.ViewModels
         public ICommand ChangePromotion { get; set; }
         private async void ChangePromotionExcute()
         {
-            User user = new User();
-            user = User;
-            user.Bean -= Convert.ToInt32(NumPointPromotion);
-            await ApiService.UpdateUser(user); 
+            int CurrentBean = 0;
+            CurrentBean= Convert.ToInt32(User.Bean) - Convert.ToInt32(NumPointPromotion);
+            await ApiService.UpdateUserBean(User.UserID, CurrentBean);
+            ConstaintVaribles.user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
             await DetailPromotionPopup.Instance.Show(SelectedPromotion.Brand, SelectedPromotion.PromotionCode, SelectedPromotion.PromotionDiscount.ToString(), SelectedPromotion.PromotionDes);
+            HomeTabPageViewModel.instance.setisLogin();
+            CollectPointPageViewModel.instance.inituser();
             SendMailExtension.SendEmail("Mã giảm giá","Chúc mừng bạn đã nhận được một mã giảm giá\n"+ "Mã giảm giá của bạn là: " + SelectedPromotion.PromotionCode+"\n"+SelectedPromotion.PromotionDes, "nguyenlong2k14@gmail.com");
+            await Navigation.NavigateAsync(PageManagement.CollectPointPage);
         }
         #endregion
         

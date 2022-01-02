@@ -419,7 +419,7 @@ namespace TheCoffeHouse.ViewModels
                 if (user != null)
                 {
                     CurrentBean = Convert.ToInt32(user.Bean);
-                    CurrentBean += TotalPriceCart * 10 / 100;
+                    CurrentBean += TotalPriceCart * 1 / 1000;
                     await ApiService.UpdateUserBean(user.UserID, CurrentBean);
                     ConstaintVaribles.user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
                     HomeTabPageViewModel.instance.setisLogin();

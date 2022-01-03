@@ -34,6 +34,7 @@ namespace TheCoffeHouse.ViewModels
         }
 
         #region Properties
+        bool isNavFromPayment = false;
         private ObservableCollection<Address> _listAddresses;
 
         public ObservableCollection<Address> ListAddresses
@@ -98,6 +99,10 @@ namespace TheCoffeHouse.ViewModels
 
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
+            if (parameters != null && parameters.Keys.Count() > 0)
+            {
+                isNavFromPayment = parameters.GetValue<bool>(ParamKey.IsNavigateFromPaymentPage.ToString());
+            }
             base.OnNavigatedNewTo(parameters);
             LoadData();
         }
@@ -146,7 +151,15 @@ namespace TheCoffeHouse.ViewModels
             ConstaintVaribles.Address = address;
             NavigationParameters navParams = new NavigationParameters();
             navParams.Add(ParamKey.SelectedAddress.ToString(), address);
-            await Navigation.GoBackAsync(navParams);
+            if (isNavFromPayment)
+            {
+                await Navigation.NavigateAsync($"../../{PageManagement.PaymentPage}", navParams);
+            }
+            else
+            {
+                await Navigation.GoBackAsync(navParams);
+            }
+          
         }
     }
 }

@@ -72,19 +72,33 @@
                     </Grid>
                 </Frame>
                 <Label Text="Chọn phương thức nhận hàng" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource MainColor_Payment}"/>
-                <Frame CornerRadius="10">
+                <Frame CornerRadius="10" >
                     <StackLayout>
                         <RadioButton   IsChecked="{Binding isAtStore}" VerticalOptions="CenterAndExpand" Content="Nhận tại cửa hàng"/>
-                        <Grid ColumnDefinitions="*,*">
-                            <Label IsVisible="{Binding isAtStore}" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Text="{Binding StoreName}"/>
-                            <Frame Padding="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" IsVisible="{Binding isAtStore}" CornerRadius="5">
-                                <Button Command="{Binding OpenStorePageCommand}" HeightRequest="40"  BackgroundColor="#fce492" FontAttributes="Bold" TextColor="OrangeRed" Text="Thay đổi"/>
-                            </Frame>
-                        </Grid>
+
+                        <Frame  IsVisible="{Binding isAtStore}">
+                            <Grid ColumnDefinitions="0.5*,1.5*,*">
+                                <Image Grid.Column="0" Aspect="AspectFill" WidthRequest="50" Source="{Binding StoreImage }"/>
+                                <Label Grid.Column="1" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Text="{Binding StoreName}"/>
+                                <Frame Padding="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" CornerRadius="5">
+                                    <Button Command="{Binding OpenStorePageCommand}" HeightRequest="40"  BackgroundColor="#fce492" FontAttributes="Bold" TextColor="OrangeRed" Text="Thay đổi"/>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                        
                         <BoxView HeightRequest="1" BackgroundColor="Gray" />
                         <RadioButton  IsChecked="{Binding isAtHome}" VerticalOptions="CenterAndExpand"  Content="Giao hàng tận tay"/>
-                        <Entry IsVisible="{Binding isAtHome}" Text="{Binding AddressUser}" Placeholder="Nhập địa chỉ của bạn"/>
-                        <Label IsVisible="{Binding isAtHome}" FontSize="15" Text="Phí giao hàng: 30.000vnđ"/>
+                        <Frame IsVisible="{Binding isAtHome}">
+                            <Grid RowDefinitions="*,*">
+                                <Grid ColumnDefinitions="1.5*,*">
+                                    <Label FontSize="Medium"  Text="{Binding AddressUser}" />
+                                    <Frame Padding="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" CornerRadius="5">
+                                        <Button Command="{Binding OpenAddressPageCommand}" HeightRequest="40"  BackgroundColor="#fce492" FontAttributes="Bold" TextColor="OrangeRed" Text="Thay đổi"/>
+                                    </Frame>
+                                </Grid>
+                                <Label Grid.Row="1" VerticalOptions="Center" FontSize="15" Text="Phí giao hàng: 30.000vnđ"/>
+                            </Grid>
+                        </Frame>
                     </StackLayout>
 
                 </Frame>

@@ -11,11 +11,12 @@ using TheCoffeHouse.Constant;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
+using TheCoffeHouse.Renderers.ToastMessage;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
-
-
+using TheCoffeHouse.Views.Popups;
+using Xamarin.Forms;
 
 namespace TheCoffeHouse.ViewModels
 {
@@ -31,6 +32,7 @@ namespace TheCoffeHouse.ViewModels
 
             OrderCommand = new DelegateCommand(OrderExec);
             OpenStorePageCommand = new DelegateCommand(OpenStorePageExec);
+            OpenAddressPageCommand = new DelegateCommand(OpenAddressPageExec);
             ChooseCodeCouponCommand = new DelegateCommand(ChooseCodeCouponExec);
             DeleteCouponCommand = new DelegateCommand(DeleteCouponExec);
             initData();
@@ -40,6 +42,8 @@ namespace TheCoffeHouse.ViewModels
         Cart cart;
         async void initData()
         {
+            // init isAtStore is true
+            ConstaintVaribles.isAtStore = true;
             var user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
             UserName = user.Name;
             PhoneNumber = user.Phone;
@@ -74,25 +78,43 @@ namespace TheCoffeHouse.ViewModels
             if (ConstaintVaribles.Store != null)
             {
                 StoreName = ConstaintVaribles.Store.StoreName.ToString();
+                StoreImage = ConstaintVaribles.Store.StoreImage;
             }
             else
             {
-                StoreName = "Chọn cửa hàng";
+                StoreName = "Vui lòng chọn cửa hàng";
+            }
+            if(ConstaintVaribles.Address != null)
+            {
+                AddressUser = ConstaintVaribles.Address.AddressString;
+            }
+            else
+            {
+                AddressUser = "Vui lòng chọn địa chỉ nhận hàng";
+            }
+            if(ConstaintVaribles.isAtStore == true)
+            {
+                isAtStore = true;
+                isAtHome = false;
+            }
+            else
+            {
+                isAtStore = false;
+                isAtHome = true;
             }
          
         }
         public override void OnNavigatedNewTo(INavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);
-            //SelectedStore = new Store { StoreName = "Chọn cửa hàng", StoreAddress = "Chọn cửa hàng để đến lấy" };
             Coupon SelectedCoupon = new Coupon();
-           
+          
             if (parameters != null && parameters.Keys.Count() > 0)
             {
                 if (parameters.TryGetValue(ParamKey.StoreSelected.ToString(), out SelectedStore))
                 {
-                   // SelectedStore = parameters.GetValue<Store>(ParamKey.StoreSelected.ToString());
                     ConstaintVaribles.Store = SelectedStore;
+                    ConstaintVaribles.isAtStore = true;
                 }
 
                 SelectedCoupon = parameters.GetValue<Coupon>(ParamKey.CouponSelected.ToString());
@@ -104,17 +126,18 @@ namespace TheCoffeHouse.ViewModels
                     Code = SelectedCoupon.Code;
                     CouponDiscount = SelectedCoupon.CouponDiscount;
                     hasCoupon = true;
-                    //TotalPriceCart = ConstaintVaribles.TotalPrice - ConstaintVaribles.TotalPrice * Discount / 100 + Shipping;
                 }
                 else
                 {
                     Discount = 0;
-                    //TotalPriceCart = cart.TotalPrice - cart.TotalPrice * Discount / 100 + Shipping;
                     hasCoupon = false;
-                } 
-            }
-          
-          
+                }
+                if (parameters.TryGetValue(ParamKey.SelectedAddress.ToString(), out SelectedAddress))
+                {
+                    ConstaintVaribles.Address = SelectedAddress;
+                    ConstaintVaribles.isAtStore = false;
+                }
+            }    
         }
         public override void OnNavigatedBackTo(INavigationParameters parameters)
         {
@@ -123,6 +146,7 @@ namespace TheCoffeHouse.ViewModels
         }
         #region Properties
         Store SelectedStore = new Store();
+        Address SelectedAddress = new Address();
         private int _CouponDiscount;
 
         public int CouponDiscount
@@ -153,6 +177,13 @@ namespace TheCoffeHouse.ViewModels
         {
             get { return _StoreName; }
             set { SetProperty(ref _StoreName, value); }
+        }
+        private string _StoreImage;
+
+        public string StoreImage
+        {
+            get { return _StoreImage; }
+            set { SetProperty(ref _StoreImage, value); }
         }
 
         private bool _hasCoupon = false;
@@ -335,7 +366,7 @@ namespace TheCoffeHouse.ViewModels
             get { return _username; }
             set
             {
-                SetProperty(ref _username, value);
+                SetProperty(ref _username, value);              
             }
         }
         private string _phonenumber;
@@ -383,7 +414,7 @@ namespace TheCoffeHouse.ViewModels
                 if (ConstaintVaribles.Store == null)
                 {
                     await App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng chọn cửa hàng để nhận sản phẩm", "OK");
-                   
+                    //DependencyService.Get<Toast>().Show("Vui lòng chọn cửa hàng để nhận sản phẩm");
                     isChecked = false;
                 }
                 else
@@ -396,9 +427,19 @@ namespace TheCoffeHouse.ViewModels
             }
             else
             {
-                methodReceive = "Nhận tận tay";
-                order.Shipping = 30000;
-                order.AddressUser = AddressUser;
+                if(ConstaintVaribles.Address == null)
+                {
+                    //DependencyService.Get<Toast>().Show("Vui lòng chọn địa chỉ của bạn để nhận sản phẩm");
+                    await App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng chọn địa chỉ của bạn để nhận sản phẩm", "OK");
+                    isChecked = false;
+                }
+                else
+                {
+                    methodReceive = "Nhận tận tay";
+                    order.Shipping = 30000;
+                    order.AddressUser = AddressUser;
+                    isChecked = true;
+                }               
             }
 
             order.IDCart = ConstaintVaribles.IDCart;
@@ -413,7 +454,9 @@ namespace TheCoffeHouse.ViewModels
             order.DateOrder = DateTime.Now;
             if (isChecked)
             {
-                await ApiService.CreateOrder(order);
+                await LoadingPopup.Instance.Show();
+                var ordered = await ApiService.CreateOrder(order);
+              
                 var user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
                 int CurrentBean = 0;
                 if (user != null)
@@ -426,8 +469,10 @@ namespace TheCoffeHouse.ViewModels
                     CollectPointPageViewModel.instance.inituser();
                 }
                 OrderPageViewModel.instance.initQty();
-                await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn đã đặt hàng thành công", "OK");
-                await Navigation.NavigateAsync($"../../{PageManagement.HistoryPage}");               
+                await LoadingPopup.Instance.Hide();
+                DependencyService.Get<Toast>().Show("Tạo đơn hàng thành công");
+                //await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn đã đặt hàng thành công", "OK");
+                await Navigation.NavigateAsync($"../../../{PageManagement.HistoryPage}");               
             }
 
 
@@ -441,6 +486,15 @@ namespace TheCoffeHouse.ViewModels
             NavigationParameters navParam = new NavigationParameters();
             navParam.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
             Navigation.NavigateAsync(PageManagement.StorePage, navParam);
+        }
+        #endregion
+        #region OpenAddressPageCommand
+        public ICommand OpenAddressPageCommand { get; set; }
+        private void OpenAddressPageExec()
+        {
+            NavigationParameters navParam = new NavigationParameters();
+            navParam.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
+            Navigation.NavigateAsync(PageManagement.AddressPage, navParam);
         }
         #endregion
         #region ChooseCodeCoupon

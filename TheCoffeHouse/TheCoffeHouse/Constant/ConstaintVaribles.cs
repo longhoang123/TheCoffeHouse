@@ -17,5 +17,6 @@ namespace TheCoffeHouse.Constant
         public static Store Store;
         public static Address Address;
         public static User user;
+        public static bool isAtStore = true;
     }
 }

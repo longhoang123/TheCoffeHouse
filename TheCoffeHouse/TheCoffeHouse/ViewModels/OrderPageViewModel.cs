@@ -84,10 +84,75 @@ namespace TheCoffeHouse.ViewModels
             //ListBanner.Add(new Drink { IDDrink = 4, DrinkName = "Cà phê matcha", DrinkPrice = 40000, DrinkImage = "Tradao.jpg" });
 
         }
-
+        #region MyRegion
+        public  async void initRecentlyDrink()
+        {
+            if (ConstaintVaribles.UserID != null)
+            {
+                ObservableCollection<Drink> DrinkRecently = new ObservableCollection<Drink>();
+                ObservableCollection<Order> orders = new ObservableCollection<Order>();
+                orders = await ApiService.GetAllOrderByIduser(Convert.ToInt32(ConstaintVaribles.UserID)) ;
+                if (orders != null)
+                {
+                    hasRecentlyDrink = true;
+                    int check = 0;
+                    foreach (Order ordertmp in orders)
+                    {
+                        var DetailOrders = await ApiService.GetDetailOrderByIdOrder(ordertmp.IDOrder);
+                        if (DetailOrders != null)
+                        {
+                            foreach (DetailOrder detail in DetailOrders)
+                            {
+                                if (check < 5)
+                                {
+                                    var drinktmp = await ApiService.GetDrinkById(detail.IDDrink);
+                                    if(DrinkRecently.Any(drink=>drink.IDDrink == drinktmp.IDDrink) == false)
+                                    {
+                                        DrinkRecently.Add(drinktmp);
+                                        check++;
+                                    } 
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    //ObservableCollection<Drink> drinktmps = new ObservableCollection<Drink>(DrinkRecently.Distinct());
+                    for (int j = 0; j < DrinkRecently.Count; j++)
+                    {
+                        int ID = DrinkRecently[j].IDDrink;
+                        ObservableCollection<DrinkImage> images = new ObservableCollection<DrinkImage>();
+                        images = await ApiService.GetDrinkImageById(ID);
+                        if (images.Count > 0)
+                        {
+                            DrinkRecently[j].DrinkImage = images[0].ImageData;
+                        }
+                    }
+                    ListBanner = DrinkRecently;
+                }
+                else
+                {
+                    hasRecentlyDrink = false;
+                }
+            }
+            else
+            {
+                hasRecentlyDrink = false;
+            }
+        }
+        #endregion
 
 
         #region Properties
+
+        private bool _hasRecentlyDrink = false;
+        public bool hasRecentlyDrink
+        {
+            get { return _hasRecentlyDrink; }
+            set { SetProperty(ref _hasRecentlyDrink, value); }
+        }
 
         private int _Qtity;
 

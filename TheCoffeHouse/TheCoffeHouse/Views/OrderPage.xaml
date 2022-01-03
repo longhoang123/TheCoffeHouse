@@ -253,7 +253,7 @@
                 </StackLayout>
 
                 <!--  Carousel Đặt gần đây  -->
-                <StackLayout Margin="20,0,0,0" HeightRequest="370">
+                <StackLayout IsVisible="{Binding hasRecentlyDrink}" Margin="20,0,0,0" HeightRequest="370">
                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
 
                         <ImageButton

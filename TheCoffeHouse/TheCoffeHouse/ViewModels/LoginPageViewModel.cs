@@ -68,6 +68,7 @@ namespace TheCoffeHouse.ViewModels
                 ConstaintVaribles.user = user; 
                 HomeTabPageViewModel.instance.setisLogin();
                 CollectPointPageViewModel.instance.inituser();
+                OrderPageViewModel.instance.initRecentlyDrink();
                 NavigationParameters navParam = new NavigationParameters();
                 navParam.Add(ParamKey.CurrentUser.ToString(), user);
                 

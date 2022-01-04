@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="TheCoffeHouse.Views.Popups.UpdateMailPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:renderers="clr-namespace:TheCoffeHouse.Renderers">
+
+    <Grid
+        BackgroundColor="Transparent"
+        HorizontalOptions="FillAndExpand"
+        RowDefinitions="*,*,*"
+        VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+        <Frame
+            Grid.Row="1"
+            Padding="15"
+            BackgroundColor="White"
+            CornerRadius="15"
+            Margin="15,0">
+            <StackLayout Spacing="10" HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontSize="Title"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Nhập Email"
+                        VerticalOptions="Center" />
+                    <Image
+                        HeightRequest="15"
+                        HorizontalOptions="End"
+                        Source="close.png"
+                        VerticalOptions="Center"
+                        WidthRequest="15">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <Label Text="Vui lòng thêm địa chỉ email nhận mã giảm giá!" FontSize="Small" HorizontalTextAlignment="Center"/>
+                <renderers:CustomEntry
+                        Keyboard="Email"
+                        Placeholder="Email"
+                        x:Name="EmailEntry"
+                        TextColor="Black" />
+                <Button
+                    Margin="5"
+                    BackgroundColor="DarkGoldenrod"
+                    Clicked="Button_Clicked"
+                    CornerRadius="10"
+                    Text="Thêm"
+                    TextColor="White" />
+            </StackLayout>
+        </Frame>
+    </Grid>
+</pages:PopupPage>

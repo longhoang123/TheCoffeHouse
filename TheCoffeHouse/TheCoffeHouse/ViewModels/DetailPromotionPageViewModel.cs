@@ -122,15 +122,22 @@ namespace TheCoffeHouse.ViewModels
         public ICommand ChangePromotion { get; set; }
         private async void ChangePromotionExcute()
         {
-            int CurrentBean = 0;
-            CurrentBean= Convert.ToInt32(User.Bean) - Convert.ToInt32(NumPointPromotion);
-            await ApiService.UpdateUserBean(User.UserID, CurrentBean);
-            ConstaintVaribles.user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
-            await DetailPromotionPopup.Instance.Show(SelectedPromotion.Brand, SelectedPromotion.PromotionCode, SelectedPromotion.PromotionDiscount.ToString(), SelectedPromotion.PromotionDes);
-            HomeTabPageViewModel.instance.setisLogin();
-            CollectPointPageViewModel.instance.inituser();
-            SendMailExtension.SendEmail("Mã giảm giá","Chúc mừng bạn đã nhận được một mã giảm giá\n"+ "Mã giảm giá của bạn là: " + SelectedPromotion.PromotionCode+"\n"+SelectedPromotion.PromotionDes, "nguyenlong2k14@gmail.com");
-            await Navigation.NavigateAsync(PageManagement.CollectPointPage);
+            if(User.Email==null || User.Email=="")
+            {
+                await UpdateMailPopup.Instance.Show();
+            }
+            else
+            {
+                int CurrentBean = 0;
+                CurrentBean = Convert.ToInt32(User.Bean) - Convert.ToInt32(NumPointPromotion);
+                await ApiService.UpdateUserBean(User.UserID, CurrentBean);
+                ConstaintVaribles.user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
+                await DetailPromotionPopup.Instance.Show(SelectedPromotion.Brand, SelectedPromotion.PromotionCode, SelectedPromotion.PromotionDiscount.ToString(), SelectedPromotion.PromotionDes);
+                HomeTabPageViewModel.instance.setisLogin();
+                CollectPointPageViewModel.instance.inituser();
+                SendMailExtension.SendEmail("Mã giảm giá", "Chúc mừng bạn đã nhận được một mã giảm giá\n" + "Mã giảm giá của bạn là: " + SelectedPromotion.PromotionCode + "\n" + SelectedPromotion.PromotionDes, User.Email);
+                await Navigation.NavigateAsync(PageManagement.CollectPointPage);
+            }
         }
         #endregion
         

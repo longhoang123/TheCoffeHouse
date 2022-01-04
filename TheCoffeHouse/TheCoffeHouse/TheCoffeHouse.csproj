@@ -40,6 +40,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\Popups\UpdateMailPopup.xaml.cs">
+      <DependentUpon>UpdateMailPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Popups\DetailPromotionPopup.xaml.cs">
       <DependentUpon>DetailPromotionPopup.xaml</DependentUpon>
     </Compile>

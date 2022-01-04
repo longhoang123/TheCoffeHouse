@@ -206,7 +206,12 @@ namespace TheCoffeHouse.ViewModels
 
             }
         }
-
+        public void initStoreSelected()
+        {
+            SelectedStore = ConstaintVaribles.Store ?? new Store { StoreAddress = "Chọn cửa hàng để đến lấy" };           
+            BottomTitle = "Đến lấy tại";
+            BottomAddress = SelectedStore.StoreAddress;
+        }
         private async void LoadData()
         {
             ListPost = await ApiService.GetPosts() ?? new ObservableCollection<HomePostItem>();

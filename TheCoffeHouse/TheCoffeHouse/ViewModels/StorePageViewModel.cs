@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
@@ -26,6 +27,7 @@ namespace TheCoffeHouse.ViewModels
         {
             PageTitle = "Cửa hàng";
             ListStore = new ObservableCollection<Store>();
+            SelectedStoreCommand = new DelegateCommand<Store>(store => SelectedStoreExec(store));
             initData();
 
         }
@@ -57,21 +59,21 @@ namespace TheCoffeHouse.ViewModels
         #region Properties
         private bool isNavFromMain = false;
         private bool isNavFromPayment = false;
-        private Store _selectedStored;
+        //private Store _selectedStored;
 
-        public Store SelectedStored
-        {
-            get { return _selectedStored; }
-            set 
-            { 
-                if(_selectedStored != value)
-                {
-                    SetProperty(ref _selectedStored, value);
-                    RaisePropertyChanged("SelectedStored");
-                    handleSelectedItem();
-                }
-            }
-        }
+        //public Store SelectedStored
+        //{
+        //    get { return _selectedStored; }
+        //    set 
+        //    { 
+        //        if(_selectedStored != value)
+        //        {
+        //            SetProperty(ref _selectedStored, value);
+        //            RaisePropertyChanged("SelectedStored");
+        //            handleSelectedItem();
+        //        }
+        //    }
+        //}
 
        
 
@@ -87,18 +89,39 @@ namespace TheCoffeHouse.ViewModels
 
         #endregion
         #region selectedItemListview
-        private async void handleSelectedItem()
+        //private async void handleSelectedItem()
+        //{
+        //    NavigationParameters navParams = new NavigationParameters();
+        //    navParams.Add(ParamKey.StoreSelected.ToString(), SelectedStored);
+        //    if (isNavFromPayment)
+        //    {
+        //        navParams.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
+        //    }
+        //    if(isNavFromMain)
+        //    {
+        //        await Navigation.GoBackAsync(navParams);
+        //    } else
+        //    {
+        //        await Navigation.NavigateAsync(PageManagement.StoreDetailPage, navParams);
+
+        //    }
+        //}
+        #endregion
+        #region SelectedStoreCommand
+        public ICommand SelectedStoreCommand { get; set; }
+        private async void SelectedStoreExec(Store store)
         {
             NavigationParameters navParams = new NavigationParameters();
-            navParams.Add(ParamKey.StoreSelected.ToString(), SelectedStored);
+            navParams.Add(ParamKey.StoreSelected.ToString(), store);
             if (isNavFromPayment)
             {
                 navParams.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
             }
-            if(isNavFromMain)
+            if (isNavFromMain)
             {
                 await Navigation.GoBackAsync(navParams);
-            } else
+            }
+            else
             {
                 await Navigation.NavigateAsync(PageManagement.StoreDetailPage, navParams);
 

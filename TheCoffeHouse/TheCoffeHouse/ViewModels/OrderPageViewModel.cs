@@ -30,7 +30,6 @@ namespace TheCoffeHouse.ViewModels
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
             PageTitle = "Đặt hàng";
-            //ListCategory = new ObservableCollection<string>();
             ListBanner = new ObservableCollection<Drink>();
             ListCategory = new ObservableCollection<Category>();
             ListCateDrinks = new ObservableCollection<CateDrink>();
@@ -47,7 +46,6 @@ namespace TheCoffeHouse.ViewModels
         {
             base.OnNavigatedNewTo(parameters);
         }
-
 
         async void InitData()
         {
@@ -74,18 +72,10 @@ namespace TheCoffeHouse.ViewModels
                 ListCateDrinksTmp.Add(new CateDrink { CategoryName = ListCateTmp[i].CateName, CategoryImage = ListCateTmp[i].CateImage, ListDrinkInfo = ListDrinksTmp });
             }
             ListCateDrinks = ListCateDrinksTmp;
-
-
             initQty();
-
-            //ListBanner.Add(new Drink { IDDrink = 1, DrinkName = "Cà phê sữa đá", DrinkPrice = 50000, DrinkImage = "Tradao.jpg" });
-            //ListBanner.Add(new Drink { IDDrink = 2, DrinkName = "Cà phê sữa nóng", DrinkPrice = 60000, DrinkImage = "Tradao.jpg" });
-            //ListBanner.Add(new Drink { IDDrink = 3, DrinkName = "Cà phê đen", DrinkPrice = 70000, DrinkImage = "Tradao.jpg" });
-            //ListBanner.Add(new Drink { IDDrink = 4, DrinkName = "Cà phê matcha", DrinkPrice = 40000, DrinkImage = "Tradao.jpg" });
-
         }
-        #region MyRegion
-        public  async void initRecentlyDrink()
+        #region initRecentlyDrink
+        public async void initRecentlyDrink()
         {
             if (ConstaintVaribles.UserID != null)
             {

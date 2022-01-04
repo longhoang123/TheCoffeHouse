@@ -1,18 +1,22 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Navigation.TabbedPages;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using TheCoffeHouse.Constant;
 using TheCoffeHouse.Enums;
 using TheCoffeHouse.Helpers;
 using TheCoffeHouse.Models;
+using TheCoffeHouse.Renderers.ToastMessage;
 using TheCoffeHouse.Services;
 using TheCoffeHouse.Services.ApiService;
 using TheCoffeHouse.ViewModels.Base;
+using Xamarin.Forms;
 
 namespace TheCoffeHouse.ViewModels
 {
@@ -95,6 +99,16 @@ namespace TheCoffeHouse.ViewModels
                 NavigationParameters navParams = new NavigationParameters();
                 navParams.Add(ParamKey.StoreSelected.ToString(), SelectedStore);
                 await Navigation.NavigateAsync($"../../../{PageManagement.PaymentPage}", navParams);
+            }
+            else
+            {
+                ConstaintVaribles.Store = SelectedStore;
+                HomeTabPageViewModel.instance.initStoreSelected();
+                DependencyService.Get<Toast>().Show("Đã chọn nơi nhận hàng thành công");
+                await Navigation.GoBackAsync();
+                //await Navigation.NavigateAsync("../");
+                //await Navigation.SelectTabAsync(PageManagement.HomeTabPage);
+                //await Navigation.NavigateAsync($"{PageManagement.HomeTabPage}");
             }
         }
         #endregion

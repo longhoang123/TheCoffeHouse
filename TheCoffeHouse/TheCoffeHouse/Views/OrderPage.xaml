@@ -29,7 +29,6 @@
                     BindableLayout.ItemsSource="{Binding ListCategory}"
                     x:Name="postList"
                     >
-
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout
@@ -49,11 +48,8 @@
                                     <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectedCateCommand, Source={x:Reference Name=postList}}" CommandParameter="{Binding .}" />
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
-
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
-
-
                 </FlexLayout>
 
                 <!--  Title each category  -->
@@ -79,98 +75,11 @@
                         HeightRequest="190"
                         Source="bannerPR.png" />
                 </StackLayout>
-                <!--  List category  -->
-                <!--<ListView  HasUnevenRows="True"
-                        ItemsSource="{Binding ListCateDrinks}"
-                        SelectionMode="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout>
-                                    <StackLayout
-                        Margin="20,10,0,0"
-                        HorizontalOptions="StartAndExpand"
-                        Orientation="Horizontal">
-                                        <ImageButton
-                            BackgroundColor="#f0daaa"
-                            CornerRadius="50"
-                            HeightRequest="35"
-                            Source="{Binding CategoryImage}"
-                            WidthRequest="35" />
-                                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Large"
-                            Text="{Binding CategoryName}" />
-                                    </StackLayout>
-                                    <ListView
-                            Margin="0,0,0,-80"                       
-                            HasUnevenRows="True"
-                            ItemsSource="{Binding ListDrinkInfo}"
-                            SelectedItem="{Binding SelectedDrink}"
-                            HorizontalOptions="Fill">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <ViewCell>
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="*" />
-                                                            <RowDefinition Height="*" />
-                                                            <RowDefinition Height="*" />
-                                                            <RowDefinition Height="0.5*" />
-                                                        </Grid.RowDefinitions>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="2*" />
-                                                            <ColumnDefinition Width="2*" />
-                                                            <ColumnDefinition />
-                                                        </Grid.ColumnDefinitions>
-                                                        <Image
-                                            Grid.Row="0"
-                                            Grid.RowSpan="4"
-                                            Grid.Column="0"
-                                            Aspect="AspectFill"
-                                            HeightRequest="100"
-                                            HorizontalOptions="Center"
-                                            Source="{Binding DrinkImage}"
-                                            VerticalOptions="Center"
-                                            WidthRequest="100" />
-                                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            FontAttributes="Bold"
-                                            FontSize="18"
-                                            Text="{Binding DrinkName}"
-                                            VerticalOptions="Center" />
-                                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            FontSize="15"
-                                            Text="{Binding DrinkPrice, StringFormat='{0:#,0}đ'}" />
-                                                        <ImageButton
-                                            Grid.Row="2"
-                                            Grid.Column="2"
-                                            Padding="10"
-                                            BackgroundColor="Orange"
-                                            CornerRadius="50"
-                                            HeightRequest="35"
-                                            HorizontalOptions="Center"
-                                            Source="plus.png"
-                                            VerticalOptions="Center"
-                                            WidthRequest="35" />
-                                                    </Grid>
-                                                </ViewCell>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
+               
                 <StackLayout BindableLayout.ItemsSource="{Binding ListCateDrinks}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                              
                                 <StackLayout
                         Margin="20,10,0,0"
                         HorizontalOptions="StartAndExpand"
@@ -189,8 +98,6 @@
                                 <StackLayout x:Name="lst_drink" BindableLayout.ItemsSource="{Binding ListDrinkInfo}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-
-
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="*" />
@@ -203,7 +110,6 @@
                                                     <ColumnDefinition Width="2*" />
                                                     <ColumnDefinition />
                                                 </Grid.ColumnDefinitions>
-
                                                 <Image
                                             Grid.Row="0"
                                             Grid.RowSpan="4"
@@ -244,10 +150,8 @@
                                             </Grid>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
-
                                 </StackLayout>
                             </StackLayout>
-
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
@@ -255,7 +159,6 @@
                 <!--  Carousel Đặt gần đây  -->
                 <StackLayout IsVisible="{Binding hasRecentlyDrink}" Margin="20,0,0,0" HeightRequest="370">
                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-
                         <ImageButton
                             BackgroundColor="#f0daaa"
                             CornerRadius="50"
@@ -266,11 +169,9 @@
                             FontAttributes="Bold"
                             FontSize="Large"
                             Text="Đặt gần đây" />
-
                     </StackLayout>
-
                     <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" HorizontalScrollBarVisibility="Never" >
-                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding ListBanner}">
+                        <StackLayout Orientation="Horizontal" x:Name="listbanner" BindableLayout.ItemsSource="{Binding ListBanner}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout Padding="5,0">
@@ -280,26 +181,22 @@
                                                 Source="{Binding DrinkImage}"
                                                 VerticalOptions="Fill"
                                                 WidthRequest="180" />
-
                                         </Frame>
                                         <Label Text="{Binding DrinkName}" FontAttributes="Bold" FontSize="Large" Margin="0,0,0,10" />
                                         <Label Text="{Binding DrinkPrice, StringFormat='{0:#,0}'}" FontSize="18" />
                                         <Frame Padding="0" CornerRadius="10" VerticalOptions="Center">
-                                            <Button
-                                               
+                                            <Button                                              
                                                 BackgroundColor="Orange"
                                                 Text="Chọn"
-                                                TextColor="White" />
+                                                TextColor="White"
+                                               Command="{Binding Path=BindingContext.SelectedDrinkCommand, Source={x:Reference listbanner}}" CommandParameter="{Binding .}"/>
                                         </Frame>
-
                                     </StackLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>
-
-               
 
             </StackLayout>
         </ScrollView>

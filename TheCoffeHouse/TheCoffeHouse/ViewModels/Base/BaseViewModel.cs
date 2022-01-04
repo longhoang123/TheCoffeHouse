@@ -65,6 +65,7 @@ namespace TheCoffeHouse.ViewModels.Base
             OpenCollectionPointCommand = new DelegateCommand(async () => await OpenCollectionPointExecute());
             OpenCartPageCommand = new DelegateCommand(async () => await OpenCartPageExec());
             OpenSearchPageCommand = new DelegateCommand(async () => await OpenSearchPageCommandExcute());
+            OpenSearchStorePageCommand = new DelegateCommand(async () => await OpenSearchStorePageCommandExcute());
             Instance = this;
             
         }
@@ -272,6 +273,14 @@ namespace TheCoffeHouse.ViewModels.Base
         protected virtual async Task OpenSearchPageCommandExcute()
         {
             await Navigation.NavigateAsync(PageManagement.SearchDrinkPage);
+        }
+        #endregion
+
+        #region OpenSearchStorePageCommand
+        public ICommand OpenSearchStorePageCommand { get; set; }
+        protected virtual async Task OpenSearchStorePageCommandExcute()
+        {
+            await Navigation.NavigateAsync(PageManagement.SearchStorePage);
         }
         #endregion
 

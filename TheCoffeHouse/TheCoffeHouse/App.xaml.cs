@@ -39,7 +39,7 @@ namespace TheCoffeHouse
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            //await NavigationService.NavigateAsync(PageManagement.AdminPage);
+            //await NavigationService.NavigateAsync(PageManagement.SearchStorePage);
             await NavigationService.NavigateAsync("NavigationPage/TabContainerPage?selectedTab=HomeTabPage");
         }
 
@@ -80,6 +80,7 @@ namespace TheCoffeHouse
             containerRegistry.RegisterForNavigation<AdminPage, AdminPageViewModel>(PageManagement.AdminPage);
             containerRegistry.RegisterForNavigation<AdminMasterPage, AdminMasterPageViewModel>(PageManagement.AdminMasterPage);
             containerRegistry.RegisterForNavigation<SearchDrinkPage, SearchDrinkPageViewModel>(PageManagement.SearchDrinkPage);
+            containerRegistry.RegisterForNavigation<SearchStorePage, SearchStorePageViewModel>(PageManagement.SearchStorePage);
         }
     }
 }

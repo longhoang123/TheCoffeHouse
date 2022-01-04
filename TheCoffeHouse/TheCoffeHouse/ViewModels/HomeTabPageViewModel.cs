@@ -332,7 +332,7 @@ namespace TheCoffeHouse.ViewModels
         {
             NavigationParameters navParam = new NavigationParameters();
             navParam.Add(ParamKey.IsNavigateFromMainPage.ToString(), true);
-            return Navigation.NavigateAsync(PageManagement.StorePage, navParam);
+            return Navigation.NavigateAsync(PageManagement.SearchStorePage, navParam);
         }
         #endregion
 

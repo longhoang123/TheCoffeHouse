@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage  xmlns:base="clr-namespace:TheCoffeHouse.Views.Base" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:renderers="clr-namespace:TheCoffeHouse.Renderers"
+                prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TheCoffeHouse.Views.SearchStorePage">
+    <Grid RowDefinitions="auto, *">
+     
+        <StackLayout Grid.Row="1">
+            <Grid ColumnDefinitions="5*,*">
+                <Frame
+                        Margin="20,5"
+                        Padding="20,5"
+                        BackgroundColor="LightGray"
+                        BorderColor="Transparent"
+                        CornerRadius="5"
+                        HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="5" Orientation="Horizontal">
+                        <renderers:CustomEntry
+                                HorizontalOptions="CenterAndExpand"
+                                Placeholder="Nhập cửa hàng"
+                        TextColor="Black"
+                        Text="{Binding SearchKey}"
+                               />
+                        <ImageButton
+                                HeightRequest="18"
+                                HorizontalOptions="EndAndExpand"
+                                Margin="30,0,0,0"
+                                Source="Search.png"
+                                WidthRequest="18" 
+                                Command="{Binding SearchCommand}"/>
+                    </StackLayout>
+                </Frame>
+                <Button BorderColor="Transparent" BackgroundColor="Transparent" Command="{Binding BackCommand}" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" Text="Đóng"  TextColor="Orange"/>
+               
+            </Grid>
+         
+            <StackLayout
+                    x:Name="listStore"
+                    Margin="10"
+                    BindableLayout.ItemsSource="{Binding ListStore}"
+                    
+                   >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+
+                        <Frame
+                                    Margin="0,10"
+                                    Padding="10,25"
+                                    BorderColor="Transparent"
+                                    CornerRadius="10">
+                            <Grid  ColumnSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="100"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding StoreImage}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="95" />
+                                <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="15"
+                                            Text="{Binding StoreName}"
+                                            VerticalOptions="End" />
+                                <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Grid.RowSpan="2"
+                                            FontAttributes="Bold"
+                                            FontSize="17"
+                                            Text="{Binding StoreAddress}" />
+                                <Label
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="15"
+                                            Text="{Binding StoreDistance}"
+                                            VerticalOptions="Start" />
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectedStoreCommand, Source={x:Reference Name=listStore}}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</base:BasePage>

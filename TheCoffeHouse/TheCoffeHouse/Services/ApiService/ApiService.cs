@@ -699,10 +699,10 @@ namespace TheCoffeHouse.Services.ApiService
         #endregion
 
         #region GetStoreByKey
-        public static async Task<Store> GetStoreByKey(string key)
+        public static async Task<ObservableCollection<Store>> GetStoreByKey(string key)
         {
             var url = ApiUrl.GetStoreByKey(key);
-            return await GetList<Store>(url);
+            return await GetList<ObservableCollection<Store>>(url);
         }
         #endregion
 

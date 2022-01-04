@@ -486,7 +486,7 @@ namespace TheCoffeHouse.ViewModels
         {
             NavigationParameters navParam = new NavigationParameters();
             navParam.Add(ParamKey.IsNavigateFromPaymentPage.ToString(), true);
-            Navigation.NavigateAsync(PageManagement.StorePage, navParam);
+            Navigation.NavigateAsync(PageManagement.SearchStorePage, navParam);
         }
         #endregion
         #region OpenAddressPageCommand

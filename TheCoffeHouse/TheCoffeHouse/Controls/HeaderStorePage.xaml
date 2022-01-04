@@ -57,13 +57,20 @@
                                 HorizontalOptions="Start"
                                 Margin="30,0,0,0"
                                 Source="Search.png"
-                                WidthRequest="18" />
-                            <renderers:CustomEntry
+                                WidthRequest="18" 
+                         />
+                            <!--<renderers:CustomEntry
                                 HorizontalOptions="CenterAndExpand"
                                 Keyboard="Telephone"
-                                Placeholder="Nhập tên đường"
-                               />
+                                Placeholder="Nhập tên cửa hàng"
+                                                            
+                               />-->
+                            <Label Text="Nhập tên cửa hàng" FontSize="Medium" HorizontalOptions="CenterAndExpand" TextColor="#6e6a5f"/>
+
                         </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenSearchStorePageCommand}" />
+                        </Frame.GestureRecognizers>
                     </Frame>
                     <StackLayout Padding="7,0,0,0" Grid.Column="1" Orientation="Horizontal">
                         <Image

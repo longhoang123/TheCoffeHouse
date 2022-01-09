@@ -3,7 +3,8 @@
                 xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
+                xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+                prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TheCoffeHouse.Views.StoreDetailPage">
     <StackLayout>
         <ScrollView Orientation="Vertical"  >
@@ -62,10 +63,27 @@
                         </StackLayout>
                        
                     </Grid>
-                    
-                    <BoxView CornerRadius="20" VerticalOptions="Center" Margin="20" HeightRequest="250" BackgroundColor="Gray">
-
-                    </BoxView>
+                    <Frame CornerRadius="20" VerticalOptions="Center" Padding="0" Margin="20" HeightRequest="250">
+                      
+                            <maps:Map MapType="Street">
+                            <x:Arguments>
+                                <maps:MapSpan>
+                                    <x:Arguments>
+                                        <maps:Position>
+                                            <x:Arguments>
+                                                <x:Double>10.773651</x:Double>
+                                                <x:Double>106.6813235</x:Double>
+                                            </x:Arguments>
+                                        </maps:Position>
+                                        <x:Double>0.01</x:Double>
+                                        <x:Double>0.01</x:Double>
+                                    </x:Arguments>
+                                </maps:MapSpan>
+                            </x:Arguments>
+                        </maps:Map>
+                        
+                    </Frame>
+                   
                     <Frame Padding="0" CornerRadius="20"  VerticalOptions="Center" Margin="20" HeightRequest="70">
                         <Button FontSize="15" Text="Đặt sản phẩm" Command="{Binding ChooseStoreCommand}" FontAttributes="Bold"  BackgroundColor="Orange" TextColor="White" />
                     </Frame>

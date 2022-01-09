@@ -472,7 +472,7 @@ namespace TheCoffeHouse.ViewModels
                 await LoadingPopup.Instance.Hide();
                 DependencyService.Get<Toast>().Show("Tạo đơn hàng thành công");
                 //await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn đã đặt hàng thành công", "OK");
-                await Navigation.NavigateAsync($"../../../{PageManagement.HistoryPage}");
+                await Navigation.NavigateAsync($"../../{PageManagement.HistoryPage}");
                 OrderPageViewModel.instance.initRecentlyDrink();
             }
 

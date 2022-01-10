@@ -17,7 +17,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <Frame Margin="5" Padding="5" CornerRadius="10">
-                            <custom:CustomCouponFrame TitleText="{Binding Title}" SourceImage="{Binding CouponImage}" DateText="{Binding CouponDate}"></custom:CustomCouponFrame>
+                                <custom:CustomCouponFrame TitleText="{Binding Title}" SourceImage="{Binding CouponImage}" DateText="{Binding CouponDate, StringFormat='Còn lại {0} ngày'}"></custom:CustomCouponFrame>
                         </Frame>
                     </ViewCell>
                 </DataTemplate>

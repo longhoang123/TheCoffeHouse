@@ -11,24 +11,6 @@
     ControlTemplate="{StaticResource CollectPointPageTemplete}">
     <ScrollView>
         <StackLayout>
-            <StackLayout Margin="5,10,5,5" Orientation="Horizontal">
-                <Button
-                    BackgroundColor="White"
-                    BorderColor="DarkGoldenrod"
-                    BorderWidth="2"
-                    CornerRadius="20"
-                    HeightRequest="40"
-                    Text="Tích điểm"
-                    TextColor="DarkGoldenrod"
-                    WidthRequest="120" />
-                <Button
-                    BackgroundColor="White"
-                    Command="{Binding OpenExchangePromotionPage}"
-                    CornerRadius="20"
-                    HeightRequest="40"
-                    Text="Đổi ưu đãi"
-                    WidthRequest="120" />
-            </StackLayout>
             <StackLayout
                 Padding="0,0,0,140"
                 BackgroundColor="WhiteSmoke"
@@ -224,7 +206,7 @@
                                     BorderColor="Transparent"
                                     CornerRadius="10">
                                     <custom:CustomCouponFrame
-                                        DateText="{Binding CouponDate}"
+                                        DateText="{Binding CouponDate, StringFormat='Còn lại {0} ngày'}"
                                         SourceImage="{Binding CouponImage}"
                                         TitleText="{Binding Title}" />
                                 </Frame>

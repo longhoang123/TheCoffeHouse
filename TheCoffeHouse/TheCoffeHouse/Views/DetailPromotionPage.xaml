@@ -14,9 +14,9 @@
         <ScrollView  Grid.Row="1" Margin="0,0,0,-40">
             <Frame CornerRadius="40" BackgroundColor="White" Margin="0,0,0,0" Padding="0,0,0,160">
                 <StackLayout Padding="20" Margin="0">
-                    <Image Source="{Binding ImagePromotion}" Scale="1.2"></Image>
+                    <Image Source="{Binding BigImagePromotion}" Scale="1.2"></Image>
                     <Frame Margin="0,-20,0,0" Padding="0" CornerRadius="10">
-                        <custom:CustomCouponFrame TitleText="{Binding TitlePromotion}" SourceImage="giftbox.png" DateText="Sử dụng trong vòng 90 Ngày"></custom:CustomCouponFrame>
+                        <custom:CustomCouponFrame TitleText="{Binding TitlePromotion}" SourceImage="{Binding ImagePromotion}" DateText="Sử dụng trong vòng 90 Ngày"></custom:CustomCouponFrame>
                     </Frame>
                     <Frame CornerRadius="10" Padding="20,15" Margin="0,10,0,20">
                         <StackLayout Orientation="Horizontal">
@@ -29,12 +29,12 @@
                             </StackLayout>
                             <StackLayout HorizontalOptions="EndAndExpand">
                                 <Label Text="Hạn quy đổi" HorizontalOptions="End"></Label>
-                                <Label Text="05/12/2021" FontSize="Medium" FontAttributes="Bold"></Label>
+                                <Label Text="22/04/2022" FontSize="Medium" FontAttributes="Bold"></Label>
                             </StackLayout>
                         </StackLayout>
                     </Frame>
                     <Label Text="Chi tiết ưu đãi" FontSize="Medium" FontAttributes="Bold" Margin="0,5,0,7"></Label>
-                    <Label Text="- Voucher 200.00 VNĐ áp dụng hóa đơn 3000.00 VNĐ tại PNJ. &#10;- HSD: 05/12/2021 &#10;- Voucher áp dụng cho các sản phẩm trang sức vàng bạc PNJ Silver và PNJ, các sản phẩm Disney &#10;- Voucher được áp dụng khi mua hàng tại hệ thống của hàng PNJ toàn quốc và mua hàng online tại website www.pnj.com.vn. &#10;- Voucher không được áp dụng đồng thời điểm với các chương trình giảm giá (PUB khác, thẻ VIP, thẻ ngân hàng) và các chương trình khuyến mãi quà tặng, rút thăm trúng thưởng, trả góp 0%. &#10;- Voucher không có giá trị quy đổi thành tien262 mặt, được cấn trừ trực tiếp vào hóa đơn bán hàng. &#10;- Áp dụng cho 1 lần giao dịch tại PNJ, 1 voucher/1 hóa đơn. &#10;- Sale deal: 7001776/Material: 91001814"></Label>
+                    <Label Text="- Voucher 200.00 VNĐ áp dụng hóa đơn 3000.00 VNĐ tại PNJ. &#10;- HSD: 22/04/2022 &#10;- Voucher áp dụng cho các sản phẩm trang sức vàng bạc PNJ Silver và PNJ, các sản phẩm Disney &#10;- Voucher được áp dụng khi mua hàng tại hệ thống của hàng PNJ toàn quốc và mua hàng online tại website www.pnj.com.vn. &#10;- Voucher không được áp dụng đồng thời điểm với các chương trình giảm giá (PUB khác, thẻ VIP, thẻ ngân hàng) và các chương trình khuyến mãi quà tặng, rút thăm trúng thưởng, trả góp 0%. &#10;- Voucher không có giá trị quy đổi thành tien262 mặt, được cấn trừ trực tiếp vào hóa đơn bán hàng. &#10;- Áp dụng cho 1 lần giao dịch tại PNJ, 1 voucher/1 hóa đơn. &#10;- Sale deal: 7001776/Material: 91001814"></Label>
                     <Label Text="Thể lệ" FontSize="Medium" FontAttributes="Bold"  Margin="0,15,0,7"></Label>
                     <Label Text="- Sau khi đổi ưu đãi, khách hàng nhận được 01 mã ưu đãi trong mục Coupon. &#10;- Đem mã này sử dụng mua hàng tại hệ thống cửa hàng PNJ trên toàn quốc hoặc website www.pnj.com.vn. &#10;- Mọi thắc mắc về sử dụng ưu đã, vui lòng liên hệ CSKH The Coffee House 02871 087 088 hoặc hotline PNJ 1800 54 54 57"></Label>
                     <Label Text="Liên lạc với chúng tôi" FontSize="Medium" FontAttributes="Bold" Margin="0,15,0,7"></Label>

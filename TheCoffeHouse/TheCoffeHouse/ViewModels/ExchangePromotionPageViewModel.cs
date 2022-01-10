@@ -23,18 +23,16 @@ namespace TheCoffeHouse.ViewModels
             IHttpService httpService = null,
             ISQLiteService sQLiteService = null) : base(navigationService, dialogService, httpService, sQLiteService)
         {
-            ListCategory = new ObservableCollection<Category>();
+            PageTitle = "Đổi ưu đãi";
             ListPromotion = new ObservableCollection<Promotion>();
             ListSpecialPromotion = new ObservableCollection<Promotion>();
-            initcategory();
+            init();
             OpenAllPromotionPage = new DelegateCommand(OpenAllPromotionPageExcute);
-            OpenCollectPointPage = new DelegateCommand(OpenCollectPointPageExcute);
             SelectedSpecialPromotionCommand = new DelegateCommand<Promotion>(SelectedPromotion => SelectedSpecialPromotionCommandExcute(SelectedPromotion));
         }
-        private async void initcategory()
+        private async void init()
         {
             ListPromotion = await ApiService.GetPromotions() ?? new ObservableCollection<Promotion>();
-            ListCategory = await ApiService.GetCategory() ?? new ObservableCollection<Category>();
             int max = 0;
             int submax = -1;
             for(int i=0;i<ListPromotion.Count;i++)
@@ -58,11 +56,6 @@ namespace TheCoffeHouse.ViewModels
             }
         }
         #region OpenPage
-        public ICommand OpenCollectPointPage { get; set; }
-        private async void OpenCollectPointPageExcute()
-        {
-            await Navigation.NavigateAsync(PageManagement.CollectPointPage);
-        }
         
         private async void OpenDetailPromotionPageExcute()
         {
@@ -86,17 +79,6 @@ namespace TheCoffeHouse.ViewModels
         }
         #endregion
 
-        private ObservableCollection<Category> _listCategory;
-
-        public ObservableCollection<Category> ListCategory
-        {
-            get => _listCategory;
-            set
-            {
-                SetProperty(ref _listCategory, value);
-                RaisePropertyChanged("ListCategory");
-            }
-        }
 
         #region ListPromotion
         private ObservableCollection<Promotion> _listPromotion;

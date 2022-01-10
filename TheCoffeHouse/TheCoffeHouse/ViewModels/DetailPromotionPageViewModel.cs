@@ -34,6 +34,7 @@ namespace TheCoffeHouse.ViewModels
             SelectedPromotion = parameters.GetValue<Promotion>("PromotionSelected");
             TitlePromotion = SelectedPromotion.PromotionDes;
             ImagePromotion = SelectedPromotion.PromotionImage;
+            BigImagePromotion = SelectedPromotion.PromotionBigImage;
             NumPointPromotion =SelectedPromotion.Point;
             PromotionEnable = false;
             var user = await ApiService.GetUserByID(Convert.ToInt32(ConstaintVaribles.UserID));
@@ -70,6 +71,17 @@ namespace TheCoffeHouse.ViewModels
             set
             {
                 SetProperty(ref _imagePromotion, value);
+                RaisePropertyChanged("Image");
+            }
+        }
+        private string _bigImagePromotion;
+
+        public string BigImagePromotion
+        {
+            get { return _bigImagePromotion; }
+            set
+            {
+                SetProperty(ref _bigImagePromotion, value);
                 RaisePropertyChanged("Image");
             }
         }

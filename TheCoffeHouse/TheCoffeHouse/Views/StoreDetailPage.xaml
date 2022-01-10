@@ -52,7 +52,7 @@
                         </StackLayout>
                         <StackLayout Grid.Column="1" Spacing="30">
                             <BoxView HeightRequest="2" HorizontalOptions="Fill"/>
-                            <Label Text="{Binding Store_Add}" FontSize="20" FontAttributes="Bold"/>
+                            <Label Text="{Binding Store_Add}" FontSize="17" FontAttributes="Bold"/>
                             <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Gainsboro"/>
                             <Label Text="Thêm vào danh sách yêu thích" FontSize="18"/>
                             <BoxView HeightRequest="2" HorizontalOptions="Fill" BackgroundColor="Gainsboro"/>

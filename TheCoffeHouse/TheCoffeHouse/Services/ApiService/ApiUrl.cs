@@ -23,6 +23,10 @@ namespace TheCoffeHouse.Services.ApiService
         {
             return Link($"UserProfileController/GetUserByID?userID={userID}");
         }
+        public static string CheckExisted(string phone)
+        {
+            return Link($"UserProfileController/CheckExisted?phone={phone}");
+        }
         public static string ValidateUser(string phone, string password)
         {
             return Link($"UserProfileController/ValidateUser/?phone={phone}&password={password}");

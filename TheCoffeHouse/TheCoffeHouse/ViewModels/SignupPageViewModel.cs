@@ -93,8 +93,19 @@ namespace TheCoffeHouse.ViewModels
             }
             else
             {
-               var result = await ApiService.RegisterUser(new User{ Phone = PhoneNumber, Name = Name, Password = Password });
-                return result != null ? true : false;
+                var check = 0;
+                var user = await ApiService.CheckExisted(PhoneNumber);
+                if (user==null)
+                {
+                    var result = await ApiService.RegisterUser(new User { Phone = PhoneNumber, Name = Name, Password = Password });
+                    check = 1;
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Lỗi", "Số điện thoại đã tồn tại", "OK");
+                }
+                return check == 1 ? true : false;
+                
             }
             return false;
                 

@@ -430,11 +430,19 @@ namespace TheCoffeHouse.Services.ApiService
         }
 
         #endregion
-
+        
         #region GetUserByID
         public static async Task<User> GetUserByID(int userID)
         {
             var url = ApiUrl.GetUserByID(userID);
+            return await Get<User>(url);
+        }
+
+        #endregion
+        #region CheckExisted
+        public static async Task<User> CheckExisted(string phone)
+        {
+            var url = ApiUrl.CheckExisted(phone);
             return await Get<User>(url);
         }
 
